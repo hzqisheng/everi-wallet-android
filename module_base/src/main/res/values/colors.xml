@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="color_ef">#EFEFEF</color>
+
+    <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="holo_orange_light">#ffffbb33</color>
+    <color name="holo_red_light">#ffff4444</color>
+    <color name="holo_green_light">#ff99cc00</color>
+
+    <color name="black">#000000</color>
+    <color name="color_77">#777777</color>
+    <color name="color_66">#666666</color>
+    <color name="color_72">#727171</color>
+    <color name="color_6c">#6c6c6c</color>
+    <color name="color_1D">#1D1D1D</color>
+    <color name="color_3f">#3F7DEF</color>
+    <color name="color_a3">#ACB3C3</color>
+    <color name="color_c1">#C1C1C1</color>
+    <color name="color_33">#333333</color>
+    <color name="color_d8">#D8DFE4</color>
+    <color name="color_fd">#FDFDFE</color>
+    <color name="color_fe">#FEFEFF</color>
+    <color name="color_67">#67AFFB</color>
+    <color name="color_8d">#8DB5FF</color>
+    <color name="color_00">#008DB5FF</color>
+    <color name="color_3b">#3B98F3</color>
+    <color name="color_b7">#B7E2FF</color>
+    <color name="color_c6">#C6C9CC</color>
+    <color name="color_f9">#F9F9F9</color>
+    <color name="color_f2">#F2F2F2</color>
+    <color name="color_fc">#FCFCFC</color>
+    <color name="color_fa">#FAFAFA</color>
+    <color name="color_cc">#CCCCCC</color>
+    <color name="color_8f">#8F8F8F</color>
+    <color name="color_a7">#A7B0C3</color>
+    <color name="color_78">#78A8FF</color>
+    <color name="color_3137">#313745</color>
+    <color name="color_e4">#e4b84f</color>
+    <color name="color_68">#686868</color>
+
+    <color name="color_default">#fafafa</color>
+    <color name="color_f0">#F0F3F6</color>
+    <color name="color_70">#707070</color>
+
+    <color name="color_b1">#B178FF</color>
+    <color name="color_91">#91A1B9</color>
+    <color name="color_ff">#FF8C3F</color>
+</resources>

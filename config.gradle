@@ -1,0 +1,18 @@
+ext {
+
+    isModule = false
+    moduleShopMall = false
+    moduleShopCart = false
+    moduleWelfare = false
+
+
+    android = [compileSdkVersion       : 28,
+               buildToolsVersion       : '28.0.0',
+               minSdkVersion           : 19,
+               targetSdkVersion        : 28,
+               versionCode             : 1,
+               versionName             : "1.0.0",
+               applicationId           : "com.qs.evertoken",
+               androidSupportSdkVersion: "28.0.0"
+    ]
+}

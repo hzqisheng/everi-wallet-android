@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context="com.qs.modulemain.ui.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_contain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="@color/color_3137"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_assets"
+            android:text="资产"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:drawableTop="@drawable/selector_assets"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/rb_market"
+            android:text="市场"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:drawableTop="@drawable/selector_market"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_gravity="bottom"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:background="@drawable/ic_home_wallet"/>
+        </RelativeLayout>
+
+        <RadioButton
+            android:id="@+id/rb_manage"
+            android:text="管理"
+            android:button="@null"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:drawableTop="@drawable/selector_manage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/rb_my"
+            android:text="我的"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:button="@null"
+            android:textSize="12sp"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:drawableTop="@drawable/selector_my"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>

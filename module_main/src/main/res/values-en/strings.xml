@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="manage_wallet">管理钱包</string>
+    <string name="address_manage">地址管理</string>
+    <string name="about_us">关于我们</string>
+    <string name="share_friends">分享好友</string>
+    <string name="add_community">加入社区</string>
+    <string name="help_center">帮助中心</string>
+    <string name="system_setting">系统设置</string>
+    <string name="login_out">退出身份</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
