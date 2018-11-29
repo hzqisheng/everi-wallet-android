@@ -28,7 +28,7 @@
 
         <RadioButton
             android:id="@+id/rb_assets"
-            android:text="资产"
+            android:text="@string/assets"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
 
         <RadioButton
             android:id="@+id/rb_market"
-            android:text="市场"
+            android:text="@string/market"
             android:gravity="center"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
@@ -53,13 +53,14 @@
             android:layout_height="match_parent" />
 
         <RelativeLayout
+            android:id="@+id/rl_wallet"
             android:layout_gravity="bottom"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:background="@drawable/ic_home_wallet"/>
@@ -67,7 +68,7 @@
 
         <RadioButton
             android:id="@+id/rb_manage"
-            android:text="管理"
+            android:text="@string/manage"
             android:button="@null"
             android:layout_marginTop="5dp"
             android:gravity="center"
@@ -79,7 +80,7 @@
             android:layout_height="match_parent" />
         <RadioButton
             android:id="@+id/rb_my"
-            android:text="我的"
+            android:text="@string/my"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_marginTop="5dp"

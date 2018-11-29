@@ -18,6 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.ScanActivity" />
+        <activity android:name=".ui.activity.WalletActivity" />
+        <activity android:name=".ui.activity.my.AddressManageActivity" />
+        <activity android:name=".ui.activity.PayActivity" />
+        <activity android:name=".ui.activity.my.CollectActivity" />
+        <activity android:name=".ui.activity.my.AddAddressActivity" />
+        <activity android:name=".ui.activity.my.ImportAddressActivity" />
+        <activity android:name=".ui.activity.my.ExportActivity" />
+        <activity android:name=".ui.activity.my.JoinCommunitiesActivity" />
+        <activity android:name=".ui.activity.my.SettingActivity" />
+        <activity android:name=".ui.activity.my.LanguagesActivity" />
+        <activity android:name=".ui.activity.my.HelpCenterActivity" />
+        <activity android:name=".ui.activity.my.CurrencySettingActivity" />
+        <activity android:name=".ui.activity.my.NodeSettingActivity"></activity>
     </application>
 
 </manifest>

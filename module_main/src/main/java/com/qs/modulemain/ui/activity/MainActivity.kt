@@ -1,6 +1,9 @@
 package com.qs.modulemain.ui.activity
 
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.qs.modulemain.R
+import com.qs.modulemain.arouter.ARouterCenter
+import com.qs.modulemain.arouter.ARouterConfig
 import com.qs.modulemain.ui.fragment.AssetsFragment
 import com.qs.modulemain.ui.fragment.ManageFragment
 import com.qs.modulemain.ui.fragment.MarketFragment
@@ -12,7 +15,7 @@ import com.smallcat.shenhai.mvpbase.utils.fitSystemAllScroll
 import kotlinx.android.synthetic.main.activity_main.*
 import me.yokeyword.fragmentation.ISupportFragment
 
-
+@Route(path = ARouterConfig.MAIN_MAIN)
 class MainActivity : SimpleActivity() {
 
     companion object {
@@ -30,7 +33,6 @@ class MainActivity : SimpleActivity() {
     private lateinit var fg2: MarketFragment
     private lateinit var fg3: ManageFragment
     private lateinit var fg4: MyFragment
-
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -51,7 +53,9 @@ class MainActivity : SimpleActivity() {
             showHideFragment(getFragment(show), getFragment(hide))
             hide = show
         }
-
+        rl_wallet.setOnClickListener {
+            ARouterCenter.goWalletActivity()
+        }
         fg1 = AssetsFragment()
         fg2 = MarketFragment()
         fg3 = ManageFragment()

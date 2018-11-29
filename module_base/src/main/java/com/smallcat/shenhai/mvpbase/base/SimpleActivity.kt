@@ -10,9 +10,13 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.TextView
 import com.smallcat.shenhai.mvpbase.R
+import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.adaptScreen4VerticalSlide
 import me.yokeyword.fragmentation.SupportActivity
+
 
 /**
  * @author hui
@@ -25,7 +29,12 @@ abstract class SimpleActivity : SupportActivity() {
     private var sNonCompatDensity: Float = 0F
     private var sNonCompatScaledDensity: Float = 0F
 
+    private var ivFinish:ImageView? = null
+    protected var tvTitle: TextView? = null
+
     protected abstract val layoutId: Int
+    protected var tvRight: TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +44,28 @@ abstract class SimpleActivity : SupportActivity() {
         fitSystem()
         //UI适配方案
         adaptScreen4VerticalSlide(this, 360)
+        LocalManageUtil.setLocal(this)
         setContentView(layoutId)
         mContext = this
         onViewCreated()
+        initToolbar()
         initData()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocalManageUtil.setLocal(newBase))
     }
 
     protected open fun onViewCreated() {}
 
     protected open fun fitSystem() {
+    }
+
+    private fun initToolbar(){
+        ivFinish = findViewById(R.id.iv_back)
+        ivFinish?.setOnClickListener { finish() }
+        tvTitle = findViewById(R.id.tv_title)
+        tvRight = findViewById(R.id.tv_right)
     }
 
     protected abstract fun initData()
@@ -85,7 +107,7 @@ abstract class SimpleActivity : SupportActivity() {
             sNonCompatScaledDensity = appDisplayMetrics.scaledDensity
             application.registerComponentCallbacks(object : ComponentCallbacks {
                 override fun onConfigurationChanged(newConfig: Configuration?) {
-                    if (newConfig != null && newConfig!!.fontScale > 0) {
+                    if (newConfig != null && newConfig.fontScale > 0) {
                         sNonCompatScaledDensity = application.resources.displayMetrics.scaledDensity
                     }
                 }

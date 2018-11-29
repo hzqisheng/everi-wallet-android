@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5"
+    tools:context=".ui.activity.my.ImportAddressActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:layout_margin="14dp"
+            android:padding="14dp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="8dp"
+            android:background="@drawable/shape_impot_address_msg"
+            android:text="@string/import_address_msg"/>
+
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/tv_msg"
+            android:background="@color/color_cc" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_line3"
+            android:textSize="13sp"
+            android:layout_margin="14dp"
+            android:lines="5"
+            android:gravity="clip_horizontal"
+            android:textColorHint="@color/color_bb"
+            android:background="@null"
+            android:hint="@string/Paste_the_address_here"/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

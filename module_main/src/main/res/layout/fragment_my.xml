@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.MyFragment">
+    android:background="@color/color_f5">
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/scrollview"
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/img_my_bg"
+        app:layout_constraintDimensionRatio="H, 2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_head">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_bg"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/img_my_bg"
-                app:layout_constraintDimensionRatio="H, 2:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_head"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_bg" />
-
             <RelativeLayout
                 android:id="@+id/layout1"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
-                android:layout_marginTop="25dp"
                 android:layout_marginEnd="7dp"
                 android:background="@drawable/shadow_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_head">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/tv_wallet"
@@ -69,8 +70,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/tv_wallet"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
                     android:background="@color/color_d8" />
 
                 <TextView
@@ -98,6 +97,7 @@
                 android:layout_marginEnd="7dp"
                 android:background="@drawable/shadow_circle"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout1">
 
@@ -121,8 +121,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/tv_add_community"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
                     android:background="@color/color_d8" />
 
                 <TextView
@@ -146,8 +144,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/tv_help"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
                     android:background="@color/color_d8" />
 
                 <TextView
@@ -175,6 +171,7 @@
                 android:layout_marginEnd="7dp"
                 android:background="@drawable/shadow_circle"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout2">
 
@@ -198,8 +195,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/tv_share"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
                     android:background="@color/color_d8" />
 
                 <TextView
@@ -238,5 +233,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
+

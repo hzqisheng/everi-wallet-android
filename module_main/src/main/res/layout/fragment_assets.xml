@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.AssetsFragment">
 
     <ImageView
@@ -33,13 +33,13 @@
         android:id="@+id/tv_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_assets_sweet"
-        android:text="扫一扫"
-        android:textColor="@color/white"
         android:layout_marginStart="24dp"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintEnd_toStartOf="@id/tv_pay"
+        android:drawableTop="@drawable/ic_assets_sweet"
+        android:text="@string/scan"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/tv_pay"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
@@ -48,11 +48,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_assets_pay"
-        android:text="付款"
+        android:text="@string/everi_pay"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/tv_scan"
         app:layout_constraintEnd_toStartOf="@id/tv_receive"
+        app:layout_constraintStart_toEndOf="@+id/tv_scan"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
     <TextView
@@ -60,10 +60,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_assets_receive"
-        android:text="收款"
+        android:text="@string/collect"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/tv_publish"
         app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/tv_publish"
         app:layout_constraintStart_toEndOf="@+id/tv_pay"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
@@ -71,25 +71,47 @@
         android:id="@+id/tv_publish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_assets_publish"
-        android:text="发行"
-        android:textColor="@color/white"
         android:layout_marginEnd="24dp"
+        android:drawableTop="@drawable/ic_assets_publish"
+        android:text="@string/issue"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@id/view"
         app:layout_constraintStart_toEndOf="@+id/tv_receive"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@id/view"/>
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:tabIndicatorColor="@color/color_3137"
+        app:tabIndicatorFullWidth="false"
         app:tabSelectedTextColor="@color/color_3137"
-        app:tabTextColor="@color/color_68" />
+        app:tabTextColor="@color/color_68">
+
+        <android.support.design.widget.TabItem
+            android:text="@string/my_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TabItem
+            android:text="@string/my_pass_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TabLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_cc"
+        android:layout_marginTop="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

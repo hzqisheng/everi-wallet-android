@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5"
+    tools:context=".ui.activity.my.AddAddressActivity">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <RadioGroup
+            android:id="@+id/rg_type"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="52dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <RadioButton
+                android:id="@+id/rb_evt"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="36dp"
+                android:text="EVT"
+                android:gravity="center"
+                android:checked="true"
+                android:textColor="@drawable/selector_check_type_text_color"
+                android:background="@drawable/selector_check_type_bg"
+                android:button="@null"/>
+
+            <RadioButton
+                android:id="@+id/rb_eth"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:text="ETH"
+                android:gravity="center"
+                android:textColor="@drawable/selector_check_type_text_color"
+                android:background="@drawable/selector_check_type_bg"
+                android:button="@null"/>
+
+            <RadioButton
+                android:id="@+id/rb_eos"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:text="EOS"
+                android:gravity="center"
+                android:textColor="@drawable/selector_check_type_text_color"
+                android:background="@drawable/selector_check_type_bg"
+                android:button="@null"/>
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/view_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_below="@+id/rg_type"
+            android:background="@color/color_cc" />
+
+        <LinearLayout
+            android:id="@+id/ll_address"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/rg_type">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:hint="@string/please_input_address"
+                android:textSize="13sp"
+                android:textColorHint="@color/color_bb"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/iv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_add_address_scan"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_below="@+id/ll_address"
+            android:background="@color/color_cc" />
+
+        <LinearLayout
+            android:id="@+id/ll_group_name"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/ll_address">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/group_name"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <EditText
+                android:id="@+id/et_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:hint="@string/please_input_group_name"
+                android:textSize="13sp"
+                android:textColorHint="@color/color_bb"
+                android:background="@null"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_below="@+id/ll_group_name"
+            android:background="@color/color_cc" />
+
+        <LinearLayout
+            android:id="@+id/ll_name"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/ll_group_name">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:hint="@string/please_input_name"
+                android:textSize="13sp"
+                android:textColorHint="@color/color_bb"
+                android:background="@null"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line5"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_below="@+id/ll_name"
+            android:background="@color/color_cc" />
+
+        <LinearLayout
+            android:id="@+id/ll_phone"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/ll_name">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:hint="@string/please_input_phone"
+                android:textSize="13sp"
+                android:textColorHint="@color/color_bb"
+                android:background="@null"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line6"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_below="@+id/ll_phone"
+            android:background="@color/color_cc" />
+
+        <LinearLayout
+            android:id="@+id/ll_remark"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/ll_phone">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/remark"
+                android:textColor="@color/color_33"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"/>
+
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:hint="@string/please_input_notes"
+                android:textSize="13sp"
+                android:textColorHint="@color/color_bb"
+                android:background="@null"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:background="@drawable/shape_3137_4"
+        android:text="@string/save"
+        android:textColor="@color/color_e4"
+        android:layout_marginTop="28dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -39,8 +39,5 @@ public abstract class BaseActivity<T extends IPresenter> extends SimpleActivity 
         StringExtensionKt.toast(msg);
     }
 
-    /**
-     * 实例化Presenter
-     */
     protected abstract void initPresenter();
 }

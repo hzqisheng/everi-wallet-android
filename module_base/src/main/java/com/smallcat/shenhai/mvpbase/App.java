@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class App extends Application {
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
 
+        ARouter.openLog();   // 打印日志
+        ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 
     private void registerActivityListener() {

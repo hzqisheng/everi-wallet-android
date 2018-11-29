@@ -9,6 +9,52 @@
     <string name="system_setting">系统设置</string>
     <string name="login_out">退出身份</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="assets">资产</string>
+    <string name="market">市场</string>
+    <string name="manage">管理</string>
+    <string name="my">我的</string>
+    <string name="my_token">我的代币</string>
+    <string name="my_pass_code">我的通证</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="scan">扫一扫</string>
+    <string name="everi_pay">付款</string>
+    <string name="collect">收款</string>
+    <string name="issue">发行</string>
+    <string name="tv_return">返回</string>
+    <string name="wallet">钱包</string>
+    <string name="now_user_wallet">当前身份下的钱包</string>
+    <string name="import_wallet">导入的钱包</string>
+    <string name="search">搜索</string>
+    <string name="all">全部</string>
+    <string name="choose_group">选择组</string>
+    <string name="add_address">新增地址</string>
+    <string name="import_address">导入地址</string>
+    <string name="export">导出</string>
+    <string name="please_use_same_wallet_scan">请使用相同钱包扫一扫</string>
+    <string name="pay_code">付款码</string>
+    <string name="sweep_code_payment">扫码支付</string>
+    <string name="address">地址</string>
+    <string name="max_pay">最大支付金额：</string>
+    <string name="choose_this_way_to_pay">选择此方式进行付款</string>
+    <string name="click_qrcode_to_copy_address">点击二维码复制地址</string>
+    <string name="type">类型</string>
+    <string name="please_input_address">请输入地址</string>
+    <string name="group_name">组名</string>
+    <string name="please_input_group_name">请输入组名</string>
+    <string name="name">名称</string>
+    <string name="please_input_name">请输入名称</string>
+    <string name="phone">电话</string>
+    <string name="please_input_phone">请输入联系电话</string>
+    <string name="remark">备注</string>
+    <string name="please_input_notes">请输入备注</string>
+    <string name="save">保存</string>
+    <string name="import_address_msg">数据格式：类型、地址、组名、名称、电话、备注\n类型展示只支持EVT、ETH、EOS三种\n地址一行</string>
+    <string name="Paste_the_address_here">在这里粘贴地址</string>
+    <string name="copy_content">复制内容</string>
+    <string name="languages">选择语言</string>
+    <string name="currency_setting">资产折合单位</string>
+    <string name="node_setting">节点设置</string>
+    <string name="max_service_fee">设置手续费最大值</string>
+    <string name="max_payment">设置最大支付金额</string>
 </resources>

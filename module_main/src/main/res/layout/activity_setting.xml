@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5"
+    tools:context=".ui.activity.my.SettingActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/tv_choose_language"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/my_item_selector"
+            android:drawableEnd="@drawable/ic_my_more"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:text="@string/languages"
+            android:textColor="@color/color_33"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/view_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/tv_choose_language"
+            android:background="@color/color_d8" />
+
+        <TextView
+            android:layout_below="@+id/view_line2"
+            android:id="@+id/tv_currency_setting"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/my_item_selector"
+            android:drawableEnd="@drawable/ic_my_more"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:text="@string/currency_setting"
+            android:textColor="@color/color_33"
+            android:textSize="15sp" />
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/tv_currency_setting"
+            android:background="@color/color_d8" />
+
+        <TextView
+            android:layout_below="@+id/view_line3"
+            android:id="@+id/tv_node_setting"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/my_item_selector"
+            android:drawableEnd="@drawable/ic_my_more"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:text="@string/node_setting"
+            android:textColor="@color/color_33"
+            android:textSize="15sp" />
+        <View
+            android:id="@+id/view_line4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/tv_node_setting"
+            android:background="@color/color_d8" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_max_service_fee"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_below="@id/view_line4"
+            android:layout_height="53dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/max_service_fee"
+                android:layout_weight="1"
+                android:textColor="@color/color_33"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tv_max_service_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:textColor="@color/color_bb"
+                android:drawablePadding="8dp"
+                tools:text="10 EVT/PEVT"
+                android:gravity="center"
+                android:drawableEnd="@drawable/ic_my_more"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line5"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/ll_max_service_fee"
+            android:background="@color/color_d8" />
+
+        <LinearLayout
+            android:id="@+id/ll_max_pay"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_below="@id/view_line5"
+            android:layout_height="53dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/max_payment"
+                android:layout_weight="1"
+                android:textColor="@color/color_33"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tv_max_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:textColor="@color/color_bb"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:drawableEnd="@drawable/ic_my_more"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

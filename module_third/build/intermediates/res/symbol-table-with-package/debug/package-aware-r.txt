@@ -476,6 +476,40 @@ attr preserveIconSpacing
 attr pressedTranslationZ
 attr progressBarPadding
 attr progressBarStyle
+attr qrcv_animTime
+attr qrcv_barCodeTipText
+attr qrcv_barcodeRectHeight
+attr qrcv_borderColor
+attr qrcv_borderSize
+attr qrcv_cornerColor
+attr qrcv_cornerDisplayType
+attr qrcv_cornerLength
+attr qrcv_cornerSize
+attr qrcv_customGridScanLineDrawable
+attr qrcv_customScanLineDrawable
+attr qrcv_isAutoZoom
+attr qrcv_isBarcode
+attr qrcv_isOnlyDecodeScanBoxArea
+attr qrcv_isScanLineReverse
+attr qrcv_isShowDefaultGridScanLineDrawable
+attr qrcv_isShowDefaultScanLineDrawable
+attr qrcv_isShowLocationPoint
+attr qrcv_isShowTipBackground
+attr qrcv_isShowTipTextAsSingleLine
+attr qrcv_isTipTextBelowRect
+attr qrcv_maskColor
+attr qrcv_qrCodeTipText
+attr qrcv_rectWidth
+attr qrcv_scanLineColor
+attr qrcv_scanLineMargin
+attr qrcv_scanLineSize
+attr qrcv_tipBackgroundColor
+attr qrcv_tipTextColor
+attr qrcv_tipTextMargin
+attr qrcv_tipTextSize
+attr qrcv_toolbarHeight
+attr qrcv_topOffset
+attr qrcv_verticalBias
 attr queryBackground
 attr queryHint
 attr quickScaleEnabled
@@ -714,6 +748,7 @@ color color_33
 color color_3b
 color color_3f
 color color_4d
+color color_4d7b
 color color_53
 color color_66
 color color_67
@@ -731,6 +766,7 @@ color color_a3
 color color_a7
 color color_b1
 color color_b7
+color color_bb
 color color_c1
 color color_c6
 color color_cc
@@ -740,6 +776,7 @@ color color_e4
 color color_ef
 color color_f0
 color color_f2
+color color_f5
 color color_f9
 color color_fa
 color color_fc
@@ -1236,6 +1273,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_placeholder
+drawable ic_return
 drawable ic_video_play
 drawable icon_audio
 drawable image_placeholder
@@ -1339,6 +1377,7 @@ id bannerContainer
 id bannerDefaultImage
 id bannerTitle
 id bannerViewPager
+id bgaqrcode_camera_preview
 id blocking
 id bottom
 id btn_cancel
@@ -1400,10 +1439,12 @@ id image_view_state_rotate
 id image_view_state_scale
 id indicatorInside
 id info
+id inside
 id invisible
 id isexpand
 id italic
 id item_touch_helper_previous_elevation
+id iv_back
 id iv_delete
 id iv_dot
 id iv_photo
@@ -1569,6 +1610,7 @@ id tv_musicTime
 id tv_musicTotal
 id tv_ok
 id tv_prompt
+id tv_right
 id tv_sign
 id tv_title
 id tv_title_camera
@@ -1672,6 +1714,7 @@ layout design_text_input_password_icon
 layout dialog_loading
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
+layout normal_toolbar
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1721,6 +1764,8 @@ layout umeng_socialize_share
 menu ucrop_menu_activity
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap qrcode_default_grid_scan_line
+mipmap qrcode_default_scan_line
 raw music
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -2417,6 +2462,7 @@ styleable MenuView android_headerBackground android_horizontalDivider android_it
 styleable NavigationView android_background android_fitsSystemWindows android_maxWidth elevation headerLayout itemBackground itemHorizontalPadding itemIconPadding itemIconTint itemTextAppearance itemTextColor menu
 styleable PopupWindow android_popupAnimationStyle android_popupBackground overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
+styleable QRCodeView qrcv_animTime qrcv_barCodeTipText qrcv_barcodeRectHeight qrcv_borderColor qrcv_borderSize qrcv_cornerColor qrcv_cornerDisplayType qrcv_cornerLength qrcv_cornerSize qrcv_customGridScanLineDrawable qrcv_customScanLineDrawable qrcv_isAutoZoom qrcv_isBarcode qrcv_isOnlyDecodeScanBoxArea qrcv_isScanLineReverse qrcv_isShowDefaultGridScanLineDrawable qrcv_isShowDefaultScanLineDrawable qrcv_isShowLocationPoint qrcv_isShowTipBackground qrcv_isShowTipTextAsSingleLine qrcv_isTipTextBelowRect qrcv_maskColor qrcv_qrCodeTipText qrcv_rectWidth qrcv_scanLineColor qrcv_scanLineMargin qrcv_scanLineSize qrcv_tipBackgroundColor qrcv_tipTextColor qrcv_tipTextMargin qrcv_tipTextSize qrcv_toolbarHeight qrcv_topOffset qrcv_verticalBias
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_descendantFocusability android_orientation fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
 styleable ScrimInsetsFrameLayout insetForeground

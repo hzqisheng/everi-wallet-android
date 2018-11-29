@@ -13,3 +13,5 @@ fun Context.getSharedPrefs() = getSharedPreferences(SharedPref.PREFS_KEY, Contex
 val Context.sharedPref: SharedPref get() = SharedPref.newInstance()
 
 fun Context.getResourceColor(color:Int) = ContextCompat.getColor(this, color)
+
+fun Context.getResourceString(string:Int): String = this.resources.getString(string)
