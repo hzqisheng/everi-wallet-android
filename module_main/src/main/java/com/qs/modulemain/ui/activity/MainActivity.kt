@@ -54,7 +54,7 @@ class MainActivity : SimpleActivity() {
             hide = show
         }
         rl_wallet.setOnClickListener {
-            ARouterCenter.goWalletActivity()
+            ARouterCenter.goWalletActivity(0)
         }
         fg1 = AssetsFragment()
         fg2 = MarketFragment()

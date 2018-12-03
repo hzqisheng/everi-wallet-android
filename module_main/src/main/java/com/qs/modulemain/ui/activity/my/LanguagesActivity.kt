@@ -17,7 +17,7 @@ class LanguagesActivity : SimpleActivity() {
         get() = R.layout.activity_languages
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.languages)
+        tvTitle?.text = getString(R.string.languages)
         ll_chinese.setOnClickListener {
             sharedPref.languages = 0
             changeLanguage()

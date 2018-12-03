@@ -1,8 +1,10 @@
 package com.qs.modulemain.ui.activity.my
 
+import android.view.View
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
+import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import kotlinx.android.synthetic.main.activity_currency_setting.*
 
 class CurrencySettingActivity : SimpleActivity() {
 
@@ -10,8 +12,22 @@ class CurrencySettingActivity : SimpleActivity() {
         get() = R.layout.activity_currency_setting
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.currency_setting)
+        tvTitle?.text = getString(R.string.currency_setting)
+        if(sharedPref.currency == 0){
+            iv_choose1.visibility = View.VISIBLE
+        }else{
+            iv_choose2.visibility = View.VISIBLE
+        }
+        ll_cny.setOnClickListener {
+            sharedPref.currency = 0
+            iv_choose2.visibility = View.GONE
+            iv_choose1.visibility = View.VISIBLE
+        }
+        ll_usd.setOnClickListener {
+            sharedPref.currency = 1
+            iv_choose2.visibility = View.VISIBLE
+            iv_choose1.visibility = View.GONE
+        }
     }
-
 
 }

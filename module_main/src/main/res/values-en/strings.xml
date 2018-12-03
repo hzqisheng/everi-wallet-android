@@ -12,9 +12,9 @@
     <string name="assets">资产</string>
     <string name="market">市场</string>
     <string name="manage">管理</string>
-    <string name="my">我的代币</string>
+    <string name="my">我的</string>
+    <string name="my_token">我的代币</string>
     <string name="my_pass_code">我的通证</string>
-    <string name="my_token">我的</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scan">扫一扫</string>
@@ -57,5 +57,43 @@
     <string name="node_setting">节点设置</string>
     <string name="max_service_fee">设置手续费最大值</string>
     <string name="max_payment">设置最大支付金额</string>
-
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="the_service_fee_can_not_be_empty">服务费不能为空</string>
+    <string name="need_camerl_permission">需要相机权限</string>
+    <string name="issue_fts">发行代币</string>
+    <string name="issue_fts_msg">适合积分、点数、标准化资产等</string>
+    <string name="issue_nfts">发行通证</string>
+    <string name="issue_nfts_msg">适合票据、房产等具有唯一性的资产/权益</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="retrieve_pwd">找回密码</string>
+    <string name="export_mnemonic_code">导出助记词</string>
+    <string name="tv_add_wallet">增加身份钱包</string>
+    <string name="erit_id_wallet">编辑身份钱包</string>
+    <string name="current_pwd">当前密码</string>
+    <string name="new_pwd">新密码</string>
+    <string name="confirm_new_pwd">确认新密码</string>
+    <string name="confirm_changes">确认修改</string>
+    <string name="Immediate_import">立即导入</string>
+    <string name="change_pwd_msg">忘记密码？导入助记词或私钥进行回复。</string>
+    <string name="import_wallet_msg">请输入备份的钱包助记词(12个英文单词)，按空格分割</string>
+    <string name="retrieve_pwd_msg">此软件不存储用户密码，无法提供找回或重置功能。如果忘记密码，用户只能通过自己备份的钱包私钥或助记词，重新导入后设置新密码</string>
+    <string name="wallet_import">导入钱包</string>
+    <string name="Be_careful">注意！</string>
+    <string name="export_mnemonic">拥有钱包私钥就能完全控制钱包资产，因此强烈建议你在使用钱包前做好备份，将钱包私钥保存到安全的地方。</string>
+    <string name="back_up">立即备份</string>
+    <string name="import_note">重要提示！</string>
+    <string name="please_input_pwd">请输入密码</string>
+    <string name="can_not_be_empty">不能为空</string>
+    <string name="next">下一步</string>
+    <string name="plese_remember_mnemonic">请记下你的钱包助记词并保存到安全的地方。</string>
+    <string name="wallet_mnemonic_can_contral">钱包助记词用于恢复钱包资产，拥有助记词即可完全控制钱包资产，请务必妥善保管，丢失助记词即丢失钱包资产。本软件无法提供找回功能。</string>
+    <string name="check_your_wallet_code">验证你的钱包助记词</string>
+    <string name="according_to_the_mnemonics_you_have_written_down">请根据你记下的助记词，按顺序点击，验证你备份的助记词正确无误。</string>
+    <string name="export_priate_key">导出私钥</string>
+    <string name="setting_up_sign">设置多签</string>
+    <string name="wallet_name">钱包名称</string>
+    <string name="export_private_key_msg">拥有私钥就能完全控制该地址的资产，不要分享给任何人。</string>
+    <string name="here_is_your_address_and_private_key">以下是您的地址和私钥，点击可复制</string>
+    <string name="private_key">私钥</string>
 </resources>

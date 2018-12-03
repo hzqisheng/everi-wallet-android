@@ -94,6 +94,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:background="@drawable/my_item_selector"
             android:layout_below="@id/view_line4"
             android:layout_height="53dp">
 
@@ -114,7 +115,7 @@
                 android:layout_marginEnd="18dp"
                 android:textColor="@color/color_bb"
                 android:drawablePadding="8dp"
-                tools:text="10 EVT/PEVT"
+                android:text="10 EVT/PEVT"
                 android:gravity="center"
                 android:drawableEnd="@drawable/ic_my_more"/>
         </LinearLayout>
@@ -132,6 +133,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:background="@drawable/my_item_selector"
             android:layout_below="@id/view_line5"
             android:layout_height="53dp">
 

@@ -1,4 +1,4 @@
-package com.qs.modulemain.ui.activity
+package com.qs.modulemain.ui.activity.index
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -19,14 +19,14 @@ class ScanActivity : SimpleActivity() {
 
     @SuppressLint("CheckResult")
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.scan)
+        tvTitle?.text = getString(R.string.scan)
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.CAMERA)
                 .subscribe { granted ->
                     if (granted!!) { // Always true pre-M
                        zxingview.startCamera()
                     } else {
-                        "需要相机权限".toast()
+                        getString(R.string.need_camerl_permission).toast()
                     }
                 }
     }

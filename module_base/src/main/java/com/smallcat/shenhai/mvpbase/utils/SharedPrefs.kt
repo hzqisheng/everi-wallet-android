@@ -14,6 +14,7 @@ open class SharedPref {
     val KEY_FIRST= "isFirst"
     val KEY_APP_SECRET= "appSecret"
     val KEY_LANGUAGE = "LANGUAGE"
+    val KEY_CURRENCY = "CURRENCY"
 
     private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
@@ -34,6 +35,13 @@ open class SharedPref {
     var languages: Int
         get() = prefs.getInt(KEY_LANGUAGE, 0)
         set(value) = prefs.edit().putInt(KEY_LANGUAGE, value).apply()
+
+    //0 cny 1 usd
+    var currency: Int
+        get() = prefs.getInt(KEY_CURRENCY, 0)
+        set(value) = prefs.edit().putInt(KEY_CURRENCY, value).apply()
+
+
 
     var appSecret: String
         get() = prefs.getString(KEY_APP_SECRET, "null")!!

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/according_to_the_mnemonics_you_have_written_down"
+        android:textColor="@color/color_68"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+    <FrameLayout
+        android:id="@+id/fl_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_circle"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg">
+
+        <TextView
+            android:id="@+id/tv_mnemonic_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:textSize="13sp"
+            tools:text="助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/sure"
+        android:textColor="@color/color_e4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/check_your_wallet_code"
+        android:textColor="@color/color_3137"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="187dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/fl_code" />
+
+
+</android.support.constraint.ConstraintLayout>

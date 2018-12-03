@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.index.ExportMnemonic2Activity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/wallet_mnemonic_can_contral"
+        android:textColor="@color/color_68"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+    <FrameLayout
+        android:id="@+id/fl_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_circle"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg">
+
+        <TextView
+            android:id="@+id/tv_mnemonic_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:textSize="13sp"
+            tools:text="助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词助记词" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="@color/color_e4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_code" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/color_3137"
+        android:textSize="17sp"
+        android:text="@string/plese_remember_mnemonic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
+</android.support.constraint.ConstraintLayout>

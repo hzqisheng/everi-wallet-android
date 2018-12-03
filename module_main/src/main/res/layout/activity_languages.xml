@@ -28,6 +28,7 @@
             android:id="@+id/ll_english"
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:background="@drawable/my_item_selector"
             android:gravity="center_vertical"
             android:layout_below="@id/view_line5"
             android:layout_height="53dp">
@@ -64,6 +65,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:background="@drawable/my_item_selector"
             android:layout_below="@id/view_line"
             android:layout_height="53dp">
 

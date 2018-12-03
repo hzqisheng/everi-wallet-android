@@ -20,7 +20,7 @@
         android:id="@+id/iv_head"
         android:layout_width="82dp"
         android:layout_height="82dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_my_logo"
         app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

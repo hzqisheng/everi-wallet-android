@@ -7,7 +7,6 @@ import com.qs.modulemain.presenter.AddressManagePresenter
 import com.qs.modulemain.view.AddressManageView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.start
 import kotlinx.android.synthetic.main.activity_address_manage.*
 
@@ -22,13 +21,13 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
         get() = R.layout.activity_address_manage
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.address_manage)
+        tvTitle?.text = getString(R.string.address_manage)
 
         tvRight?.apply {
-            text = getResourceString(R.string.export)
+            text = getString(R.string.export)
             setTextColor(getResourceColor(R.color.color_e4))
             setOnClickListener{
-                start(ExportActivity::class.java)
+                start(ExportAddressActivity::class.java)
             }
         }
 

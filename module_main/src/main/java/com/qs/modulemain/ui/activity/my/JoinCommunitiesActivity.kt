@@ -10,7 +10,7 @@ class JoinCommunitiesActivity : SimpleActivity() {
         get() = R.layout.activity_join_communities
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.add_community)
+        tvTitle?.text = getString(R.string.add_community)
     }
 
 }

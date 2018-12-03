@@ -27,8 +27,8 @@ object ARouterCenter{
     /**
      * 跳转钱包页面
      */
-    fun goWalletActivity(){
-        ARouter.getInstance().build(ARouterConfig.MAIN_WALLET).navigation()
+    fun goWalletActivity(type: Int){
+        ARouter.getInstance().build(ARouterConfig.MAIN_WALLET).withInt("type", type).navigation()
     }
 
     /**

@@ -5,10 +5,12 @@ import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 
 class NodeSettingActivity : SimpleActivity() {
 
+
     override val layoutId: Int
         get() = R.layout.activity_node_setting
 
     override fun initData() {
+        tvTitle?.text = getString(R.string.node_setting)
     }
 
 }

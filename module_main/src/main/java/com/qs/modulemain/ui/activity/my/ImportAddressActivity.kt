@@ -16,7 +16,7 @@ class ImportAddressActivity : BaseActivity<ImportAddressPresenter>(), ImportAddr
         get() = R.layout.activity_import_address
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.import_address)
+        tvTitle?.text = getString(R.string.import_address)
     }
 
 

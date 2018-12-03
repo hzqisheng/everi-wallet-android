@@ -18,20 +18,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.ScanActivity" />
-        <activity android:name=".ui.activity.WalletActivity" />
+        <activity android:name=".ui.activity.index.ScanActivity" />
+        <activity android:name=".ui.activity.index.WalletActivity" />
         <activity android:name=".ui.activity.my.AddressManageActivity" />
-        <activity android:name=".ui.activity.PayActivity" />
+        <activity android:name=".ui.activity.index.PayActivity" />
         <activity android:name=".ui.activity.my.CollectActivity" />
         <activity android:name=".ui.activity.my.AddAddressActivity" />
         <activity android:name=".ui.activity.my.ImportAddressActivity" />
-        <activity android:name=".ui.activity.my.ExportActivity" />
+        <activity android:name=".ui.activity.my.ExportAddressActivity" />
         <activity android:name=".ui.activity.my.JoinCommunitiesActivity" />
         <activity android:name=".ui.activity.my.SettingActivity" />
         <activity android:name=".ui.activity.my.LanguagesActivity" />
         <activity android:name=".ui.activity.my.HelpCenterActivity" />
         <activity android:name=".ui.activity.my.CurrencySettingActivity" />
-        <activity android:name=".ui.activity.my.NodeSettingActivity"></activity>
+        <activity android:name=".ui.activity.my.NodeSettingActivity" />
+        <activity android:name=".ui.activity.my.MaxPaymentActivity" />
+        <activity android:name=".ui.activity.index.EditIdWalletActivity" />
+        <activity android:name=".ui.activity.index.ChangePwdActivity" />
+        <activity android:name=".ui.activity.index.RetrievePwdActivity" />
+        <activity android:name=".ui.activity.index.ExportMnemonicActivity" />
+        <activity android:name=".ui.activity.index.ExportMnemonic2Activity" />
+        <activity android:name=".ui.activity.index.ExportMnemonic3Activity" />
+        <activity android:name=".ui.activity.index.WalletDetailActivity" />
+        <activity android:name=".ui.activity.index.ExportPrivateKeyActivity"></activity>
     </application>
 
 </manifest>

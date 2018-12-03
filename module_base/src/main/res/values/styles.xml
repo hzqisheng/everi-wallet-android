@@ -24,6 +24,6 @@
         <item name="colorPrimary">@color/color_3137</item>
         <item name="colorPrimaryDark">@color/color_3137</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/color_f5</item>
     </style>
 </resources>

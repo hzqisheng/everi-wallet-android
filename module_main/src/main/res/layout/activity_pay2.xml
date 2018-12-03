@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_f5"
-    tools:context=".ui.activity.PayActivity">
+    tools:context=".ui.activity.index.PayActivity">
 
     <include
         android:id="@+id/toolbar"

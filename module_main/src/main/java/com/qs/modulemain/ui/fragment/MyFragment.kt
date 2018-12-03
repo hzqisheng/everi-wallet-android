@@ -5,6 +5,7 @@ import android.view.View
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.presenter.MyPresenter
+import com.qs.modulemain.ui.activity.my.HelpCenterActivity
 import com.qs.modulemain.ui.activity.my.JoinCommunitiesActivity
 import com.qs.modulemain.ui.activity.my.SettingActivity
 import com.qs.modulemain.view.MyView
@@ -44,10 +45,11 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
      */
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.tv_wallet -> ARouterCenter.goWalletActivity()
+            R.id.tv_wallet -> ARouterCenter.goWalletActivity(1)
             R.id.tv_address -> ARouterCenter.goAddressManageActivity()
             R.id.tv_add_community -> mContext.start(JoinCommunitiesActivity::class.java)
             R.id.tv_setting -> mContext.start(SettingActivity::class.java)
+            R.id.tv_help -> mContext.start(HelpCenterActivity::class.java)
         }
     }
 

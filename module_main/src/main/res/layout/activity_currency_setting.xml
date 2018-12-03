@@ -26,6 +26,7 @@
 
         <LinearLayout
             android:id="@+id/ll_cny"
+            android:background="@drawable/my_item_selector"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
@@ -61,6 +62,7 @@
 
         <LinearLayout
             android:id="@+id/ll_usd"
+            android:background="@drawable/my_item_selector"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"

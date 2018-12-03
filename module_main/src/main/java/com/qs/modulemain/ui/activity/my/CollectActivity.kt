@@ -10,7 +10,7 @@ class CollectActivity : SimpleActivity() {
         get() = R.layout.activity_pay2
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.collect)
+        tvTitle?.text = getString(R.string.collect)
     }
 
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_5">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/max_service_fee"
+            android:textColor="@color/color_33"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:inputType="number"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:hint="@string/max_service_fee"
+            android:background="@drawable/shape_line_3_68"
+            android:textColor="@color/color_33"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_bb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_cancel"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="38dp"
+            android:background="@color/color_bb"
+            app:layout_constraintStart_toEndOf="@id/tv_cancel"
+            app:layout_constraintTop_toBottomOf="@+id/line"/>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:layout_marginTop="18dp"
+            android:text="@string/cancel"
+            android:textColor="@color/color_68"
+            app:layout_constraintTop_toBottomOf="@id/et_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sure"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sure"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/color_3f"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_cancel"
+            app:layout_constraintTop_toTopOf="@+id/tv_cancel" />
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

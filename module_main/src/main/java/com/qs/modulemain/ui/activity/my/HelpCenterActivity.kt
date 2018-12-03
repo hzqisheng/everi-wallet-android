@@ -10,7 +10,7 @@ class HelpCenterActivity : SimpleActivity() {
         get() = R.layout.activity_help_center
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.help_center)
+        tvTitle?.text = getString(R.string.help_center)
     }
 
 }

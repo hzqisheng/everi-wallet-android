@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.index.ExportMnemonicActivity">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="18dp"
+        android:padding="14dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_68"
+        android:text="@string/export_mnemonic"
+        android:background="@drawable/shape_impot_address_msg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/back_up"
+        android:textColor="@color/color_e4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
+
+</android.support.constraint.ConstraintLayout>

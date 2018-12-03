@@ -16,7 +16,7 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
         get() = R.layout.activity_add_address
 
     override fun initData() {
-        tvTitle?.text = getResourceString(R.string.add_address)
+        tvTitle?.text = getString(R.string.add_address)
     }
 
     override fun loadSuccess(data: Any) {

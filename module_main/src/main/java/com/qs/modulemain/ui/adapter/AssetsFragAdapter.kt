@@ -17,7 +17,7 @@ import com.qs.modulemain.ui.fragment.AssetsItemFragment
  */
 class AssetsFragAdapter(fm: FragmentManager?, mContext: Context) : FragmentPagerAdapter(fm) {
 
-    private val tabTitles = listOf(mContext.resources.getText(R.string.my_token), mContext.resources.getText(R.string.my_pass_code))
+    private val tabTitles = listOf(mContext.getString(R.string.my_token), mContext.getString(R.string.my_pass_code))
     private val img = listOf(R.drawable.selector_token, R.drawable.selector_pass_code)
 
     override fun getItem(position: Int): Fragment {

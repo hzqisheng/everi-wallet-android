@@ -1,14 +1,17 @@
 package com.qs.modulemain.ui.fragment
 
 
+import android.app.Dialog
 import android.support.design.widget.TabLayout
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.ui.activity.my.CollectActivity
-import com.qs.modulemain.ui.activity.PayActivity
+import com.qs.modulemain.ui.activity.index.PayActivity
 import com.qs.modulemain.ui.adapter.AssetsFragAdapter
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
 import com.smallcat.shenhai.mvpbase.extension.start
@@ -18,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_assets.*
 class AssetsFragment : SimpleFragment(), View.OnClickListener {
 
     private lateinit var adapter: AssetsFragAdapter
+
+    private var dialog:Dialog ?= null
 
     override val layoutId: Int
         get() = R.layout.fragment_assets
@@ -68,6 +73,30 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         }
     }
 
+    private fun showIssueDialog(){
+        if (dialog == null) {
+            dialog = Dialog(mContext, R.style.CustomDialog)
+        }
+        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_issue, null)
+        val ivFTs = view.findViewById<ImageView>(R.id.iv_issue_fts)
+        val ivNFTs = view.findViewById<ImageView>(R.id.iv_issue_nfts)
+        ivFTs.setOnClickListener {
+            dialog!!.dismiss()
+        }
+        ivNFTs.setOnClickListener{ dialog!!.dismiss() }
+        dialog!!.setContentView(view)
+        dialog!!.setCanceledOnTouchOutside(false)
+        dialog!!.setCancelable(true)
+        dialog!!.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (dialog != null && dialog!!.isShowing){
+            dialog!!.dismiss()
+        }
+    }
+
     /**
      * Called when a view has been clicked.
      *
@@ -78,6 +107,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
             R.id.tv_scan -> ARouterCenter.goScanActivity()
             R.id.tv_pay -> mContext.start(PayActivity::class.java)
             R.id.tv_receive -> mContext.start(CollectActivity::class.java)
+            R.id.tv_publish -> showIssueDialog()
         }
     }
 }

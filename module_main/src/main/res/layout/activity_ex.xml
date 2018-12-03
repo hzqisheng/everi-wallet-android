@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/shape_impot_address_msg"
+        android:padding="14dp"
+        android:text="@string/export_private_key_msg"
+        android:textColor="@color/color_68"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/here_is_your_address_and_private_key"
+        android:textColor="@color/color_3137"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
+
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/shadow_circle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+        <LinearLayout
+            android:id="@+id/ll_everi"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/my_item_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:gravity="center_vertical"
+                android:text="@string/address"
+                android:textColor="@color/color_33" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="18dp"
+                android:gravity="clip_vertical"
+                android:textColor="@color/color_68"
+                android:textSize="12sp"
+                tools:text="EOS5fKvaUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagC" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_d8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@drawable/my_item_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:gravity="center_vertical"
+                android:text="@string/private_key"
+                android:textColor="@color/color_33" />
+
+            <TextView
+                android:id="@+id/tv_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="18dp"
+                android:gravity="clip_vertical"
+                android:textColor="@color/color_68"
+                android:textSize="12sp"
+                tools:text="EOS5fKvaUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagC" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

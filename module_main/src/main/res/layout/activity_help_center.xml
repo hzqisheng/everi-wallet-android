@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.my.HelpCenterActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
