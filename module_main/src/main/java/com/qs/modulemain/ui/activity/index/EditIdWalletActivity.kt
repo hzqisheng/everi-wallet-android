@@ -15,6 +15,7 @@ class EditIdWalletActivity : SimpleActivity() {
         tv_change_pwd.setOnClickListener { start(ChangePwdActivity::class.java) }
         tv_retrieve_pwd.setOnClickListener { start(RetrievePwdActivity::class.java) }
         tv_export.setOnClickListener { start(ExportMnemonicActivity::class.java) }
+        tv_add.setOnClickListener { start(WalletAddIdActivity::class.java) }
     }
 
 }

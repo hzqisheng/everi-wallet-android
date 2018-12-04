@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/normal_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_data"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/shadow_circle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/nfts"
+                    android:textColor="@color/color_33"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_nfts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="14dp"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="@string/please_input"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:singleLine="true"
+                    android:src="@drawable/ic_metadata_add"
+                    android:textSize="@dimen/sp_14"
+                    tools:ignore="LabelFor" />
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="@dimen/dp_7"
+                android:background="@drawable/shadow_circle">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="2dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/color_4d7b"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/issue"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/view"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <CheckBox
+                    android:id="@+id/cb_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:checked="true"
+                    android:paddingStart="8dp"
+                    android:text="@string/only_i_can_issue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_issue" />
+
+                <CheckBox
+                    android:id="@+id/cb_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:paddingStart="8dp"
+                    android:text="@string/manual_edit_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/tv_issue_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:padding="8dp"
+                    android:text="@string/edit"
+                    android:textColor="@color/color_4d7b"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="@dimen/dp_7"
+                android:background="@drawable/shadow_circle">
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="2dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/color_4d7b"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/change"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/view1"
+                    app:layout_constraintStart_toEndOf="@+id/view1"
+                    app:layout_constraintTop_toTopOf="@+id/view1" />
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+                <CheckBox
+                    android:id="@+id/cb_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:checked="true"
+                    android:paddingStart="8dp"
+                    android:text="@string/only_i_and_have_can_change"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_change" />
+
+                <CheckBox
+                    android:id="@+id/cb_edit_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:paddingStart="8dp"
+                    android:text="@string/manual_edit_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+                <TextView
+                    android:id="@+id/tv_change_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:padding="8dp"
+                    android:text="@string/edit"
+                    android:textColor="@color/color_4d7b"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="@dimen/dp_7"
+                android:background="@drawable/shadow_circle">
+
+                <View
+                    android:id="@+id/view0"
+                    android:layout_width="2dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/color_4d7b"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/manage"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/view0"
+                    app:layout_constraintStart_toEndOf="@+id/view0"
+                    app:layout_constraintTop_toTopOf="@+id/view0" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                <CheckBox
+                    android:id="@+id/cb_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:checked="true"
+                    android:paddingStart="8dp"
+                    android:text="@string/only_i_can_manage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+                <View
+                    android:id="@+id/view11"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_manage" />
+
+                <CheckBox
+                    android:id="@+id/cb_edit_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:button="@drawable/selector_pwd_use"
+                    android:paddingStart="8dp"
+                    android:text="@string/manual_edit_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+                <TextView
+                    android:id="@+id/tv_manage_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:padding="8dp"
+                    android:text="@string/edit"
+                    android:textColor="@color/color_4d7b"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view11" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_sure"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/shape_3137_4"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textColor="@color/color_e4" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -34,7 +34,7 @@ abstract class SimpleActivity : SupportActivity() {
 
     protected abstract val layoutId: Int
     protected var tvRight: TextView? = null
-
+    protected var ivRight: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +66,7 @@ abstract class SimpleActivity : SupportActivity() {
         ivFinish?.setOnClickListener { finish() }
         tvTitle = findViewById(R.id.tv_title)
         tvRight = findViewById(R.id.tv_right)
+        ivRight = findViewById(R.id.iv_icon)
     }
 
     protected abstract fun initData()

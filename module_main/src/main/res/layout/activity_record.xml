@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.index.PayDetailActivity">
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_pay_bg"
+        app:layout_constraintDimensionRatio="h, 20:13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.qs.modulemain.ui.widget.CompatToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        app:contentInsetStart="0dp">
+
+        <TextView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="true"
+            android:drawableStart="@drawable/ic_return"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/index"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:text="@string/pay"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </com.qs.modulemain.ui.widget.CompatToolbar>
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/tv_currency"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_img"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toEndOf="@+id/iv_img"
+        app:layout_constraintTop_toTopOf="@+id/iv_img"
+        tools:text="EVT(#1)" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/textView13"
+        app:layout_constraintEnd_toStartOf="@id/tv_currency2"
+        app:layout_constraintTop_toBottomOf="@+id/iv_img"
+        tools:text="200.50" />
+
+    <TextView
+        android:id="@+id/tv_currency2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_money"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_money"
+        tools:text="EVT" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/number"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_money"
+        app:layout_constraintEnd_toStartOf="@+id/tv_money"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_money" />
+
+    <TextView
+        android:id="@+id/tv_transfer"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:textColor="@color/color_e4"
+        android:background="@drawable/shape_3137_4"
+        android:text="@string/transfer"
+        app:layout_constraintEnd_toStartOf="@id/tv_batch_transfer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_batch_transfer"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:textColor="@color/color_e4"
+        android:background="@drawable/shape_3137_4"
+        android:text="@string/batch_transfers"
+        app:layout_constraintEnd_toStartOf="@id/tv_collect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_transfer" />
+
+
+    <TextView
+        android:id="@+id/tv_collect"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/shape_4d_3"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="@string/collect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_batch_transfer" />
+
+    <FrameLayout
+        android:id="@+id/fl_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constrainedHeight="true"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@+id/tv_batch_transfer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_money">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

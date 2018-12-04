@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
-import com.qs.modulemain.ui.activity.my.CollectActivity
+import com.qs.modulemain.ui.activity.index.ChooseFTsActivity
+import com.qs.modulemain.ui.activity.index.CollectActivity
+import com.qs.modulemain.ui.activity.index.NFTsActivity
 import com.qs.modulemain.ui.activity.index.PayActivity
 import com.qs.modulemain.ui.adapter.AssetsFragAdapter
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
@@ -81,9 +83,13 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         val ivFTs = view.findViewById<ImageView>(R.id.iv_issue_fts)
         val ivNFTs = view.findViewById<ImageView>(R.id.iv_issue_nfts)
         ivFTs.setOnClickListener {
+            mContext.start(ChooseFTsActivity::class.java)
             dialog!!.dismiss()
         }
-        ivNFTs.setOnClickListener{ dialog!!.dismiss() }
+        ivNFTs.setOnClickListener{
+            dialog!!.dismiss()
+            mContext.start(NFTsActivity::class.java)
+        }
         dialog!!.setContentView(view)
         dialog!!.setCanceledOnTouchOutside(false)
         dialog!!.setCancelable(true)

@@ -44,8 +44,5 @@ public abstract class BaseFragment<T extends IPresenter> extends SimpleFragment 
         StringExtensionKt.toast(msg);
     }
 
-    /**
-     * 实例化Presenter
-     */
     protected abstract void initPresenter();
 }

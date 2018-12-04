@@ -74,7 +74,7 @@
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="12dp"
         android:background="@color/color_cc"
-        app:layout_constraintBottom_toTopOf="@+id/iv_img"
+        app:layout_constraintBottom_toTopOf="@+id/tv_max_pay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -98,6 +98,7 @@
             android:gravity="center"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
+            android:checked="true"
             android:button="@null"
             android:drawablePadding="6dp"
             android:textColor="@drawable/selector_bottom_view_textcolor"
@@ -148,54 +149,66 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_bg"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_img"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_max_pay"
-        app:layout_constraintStart_toStartOf="@+id/tv_max_pay" />
-
-    <TextView
-        android:id="@+id/tv_wallet_name"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_choose"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/color_33"
-        app:layout_constraintStart_toEndOf="@+id/iv_img"
-        app:layout_constraintTop_toTopOf="@+id/iv_img"
-        tools:text="EVT(#1)" />
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="12sp"
-        android:text="@string/choose_this_way_to_pay"
-        app:layout_constraintBottom_toTopOf="@+id/tv_max_pay"
-        app:layout_constraintStart_toEndOf="@+id/iv_img" />
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_img"
-        app:srcCompat="@drawable/ic_erweima_enter" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/color_3137"
+            app:layout_constraintStart_toEndOf="@+id/iv_img"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="EVT(#1）" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_erweima_enter" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/color_cc"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="请选择币种进行付款" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <ImageView
         android:id="@+id/iv_qr_code"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintDimensionRatio="H, 1:1"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintDimensionRatio="W, 1:1"
+        app:layout_constraintBottom_toTopOf="@id/layout_choose"
         app:layout_constraintEnd_toEndOf="@+id/view_bg"
         app:layout_constraintStart_toStartOf="@+id/view_bg"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -210,5 +223,15 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_qr_code"
         app:layout_constraintStart_toStartOf="@+id/iv_qr_code"
         app:layout_constraintTop_toBottomOf="@+id/iv_qr_code" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:textColor="@color/color_4d7b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_max_pay"
+        tools:text="10000" />
 
 </android.support.constraint.ConstraintLayout>

@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="@+id/iv_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_wallet_more" />
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_bg"
-        app:srcCompat="@android:drawable/btn_star" />
+        tools:srcCompat="@android:drawable/btn_star" />
 
     <TextView
         android:id="@+id/tv_type"

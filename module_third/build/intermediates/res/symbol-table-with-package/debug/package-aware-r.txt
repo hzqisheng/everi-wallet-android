@@ -771,6 +771,8 @@ color color_c1
 color color_c6
 color color_cc
 color color_d8
+color color_da
+color color_dd
 color color_default
 color color_e4
 color color_ef
@@ -1447,6 +1449,7 @@ id item_touch_helper_previous_elevation
 id iv_back
 id iv_delete
 id iv_dot
+id iv_icon
 id iv_photo
 id iv_picture
 id iv_play

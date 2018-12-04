@@ -89,6 +89,7 @@
             android:layout_marginTop="4dp"
             android:textSize="12sp"
             android:button="@null"
+            android:checked="true"
             android:drawablePadding="6dp"
             android:textColor="@drawable/selector_bottom_view_textcolor"
             android:drawableTop="@drawable/selector_pay_code"

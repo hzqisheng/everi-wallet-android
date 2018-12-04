@@ -28,6 +28,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         val type = intent.getIntExtra("type", 0)
         tvTitle?.text = getString(R.string.wallet)
         iv_add_now.setOnClickListener { start(EditIdWalletActivity::class.java) }
+        iv_add_import.setOnClickListener { start(ImportWalletActivity::class.java) }
         nowList.add("")
         adapterNow = WalletAdapter(nowList)
         adapterNow.setOnItemChildClickListener { adapter, view, position ->

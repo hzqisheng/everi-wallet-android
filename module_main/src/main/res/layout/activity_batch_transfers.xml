@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_bg"/>
+
+    <TextView
+        android:id="@+id/tv_search"
+        android:layout_width="67dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="14dp"
+        android:text="@string/batch_set"
+        android:gravity="center"
+        android:textColor="@color/color_e4"
+        android:background="@drawable/shape_3137_4"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="@+id/view_bg"
+        app:layout_constraintTop_toTopOf="@+id/view_bg" />
+
+    <TextView
+        android:id="@+id/tv_choose_address"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="@string/choose_address"
+        android:layout_marginStart="14dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center"
+        android:textColor="@color/color_3137"
+        android:background="@drawable/shape_line_3_cc"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_bg" />
+
+    <EditText
+        android:id="@+id/et_number"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/shape_line_3_cc"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:hint="@string/please_input_every_address_money"
+        android:textColorHint="@color/color_bb"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+        app:layout_constraintEnd_toStartOf="@+id/tv_search"
+        app:layout_constraintStart_toEndOf="@+id/tv_choose_address"
+        app:layout_constraintTop_toTopOf="@+id/view_bg" />
+
+    <TextView
+        android:id="@+id/tv_add"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:background="@drawable/shape_line_0_31"
+        android:textColor="@color/color_33"
+        tools:text="转账总额 0.00 EVT"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/tv_sure"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:paddingStart="29dp"
+        android:paddingEnd="29dp"
+        android:background="@color/color_3137"
+        android:text="@string/confirm_transfer"
+        android:textColor="@color/color_e4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_add" />
+
+    <FrameLayout
+        android:id="@+id/fl_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        app:layout_constrainedHeight="true"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@+id/tv_sure"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_bg">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

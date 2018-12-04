@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="7dp"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/color_4d7b"
+            android:text="@string/address"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:textColor="@color/color_68"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:textSize="12sp"
+            android:text="@string/please_copy_keystore_to_save"/>
+
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_cc" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/color_4d7b"
+            android:text="@string/please_dont_use_internet"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:textColor="@color/color_68"
+            android:textSize="12sp"
+            android:text="@string/please_dont_use_internet_msg"/>
+
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_cc" />
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/color_4d7b"
+            android:text="@string/pwd_save_deposit"/>
+
+        <TextView
+            android:id="@+id/text6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="14dp"
+            android:textSize="12sp"
+            android:textColor="@color/color_68"
+            android:text="@string/pwd_save_deposit_msg"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="7dp"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintTop_toBottomOf="@+id/layout">
+        <TextView
+            android:id="@+id/tv_keystore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_68"
+            tools:text="23lj2lefjl2efklwdsjksfado923asdfljl2nflajdsflajdlfj2ljaalsdkjcaoudfjl23jsladsflkscvnadkjf23o89adf’l’al;’2[df-23f0uasldkjflajdslclkjxvlaksdlfkjadslkjasdfljkadfkljadlfj"
+            android:padding="14dp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/copy_keystore"
+        android:textColor="@color/color_e4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_key" />
+</android.support.constraint.ConstraintLayout>

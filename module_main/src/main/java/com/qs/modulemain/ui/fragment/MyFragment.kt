@@ -5,6 +5,7 @@ import android.view.View
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.presenter.MyPresenter
+import com.qs.modulemain.ui.activity.my.AboutUsActivity
 import com.qs.modulemain.ui.activity.my.HelpCenterActivity
 import com.qs.modulemain.ui.activity.my.JoinCommunitiesActivity
 import com.qs.modulemain.ui.activity.my.SettingActivity
@@ -50,6 +51,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
             R.id.tv_add_community -> mContext.start(JoinCommunitiesActivity::class.java)
             R.id.tv_setting -> mContext.start(SettingActivity::class.java)
             R.id.tv_help -> mContext.start(HelpCenterActivity::class.java)
+            R.id.tv_about_us -> mContext.start(AboutUsActivity::class.java)
         }
     }
 

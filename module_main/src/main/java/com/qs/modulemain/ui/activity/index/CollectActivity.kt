@@ -1,4 +1,4 @@
-package com.qs.modulemain.ui.activity.my
+package com.qs.modulemain.ui.activity.index
 
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
@@ -12,5 +12,6 @@ class CollectActivity : SimpleActivity() {
     override fun initData() {
         tvTitle?.text = getString(R.string.collect)
     }
+
 
 }
