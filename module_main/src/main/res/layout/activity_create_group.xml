@@ -78,17 +78,16 @@
                 android:textSize="15sp"
                 android:layout_marginStart="24dp"/>
 
-            <EditText
-                android:id="@+id/et_manage"
+            <TextView
+                android:id="@+id/tv_manage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="end|center_vertical"
-                android:hint="@string/I_am_in_charge_of_management"
+                android:text="@string/I_am_in_charge_of_management"
                 android:textSize="13sp"
-                android:textColorHint="@color/color_bb"
-                android:background="@null"/>
+                android:textColorHint="@color/color_bb" />
         </LinearLayout>
 
         <View

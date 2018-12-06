@@ -1,41 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/layout1"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
         android:layout_height="43dp"
+        android:drawablePadding="15dp"
+        android:layout_marginStart="19dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:text="@string/I_am_in_charge_of_management"
+        android:textColor="@color/color_33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_weight="1"
-            android:drawablePadding="15dp"
-            android:gravity="center_vertical"
-            android:text="@string/I_am_in_charge_of_management"
-            android:textColor="@color/color_33" />
-
-        <ImageView
-            android:id="@+id/iv_choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:src="@drawable/ic_languages_choose" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:src="@drawable/ic_languages_choose"
+        app:layout_constraintBottom_toTopOf="@+id/view12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view12"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_half"
         android:background="@color/color_cc"
-        app:layout_constraintTop_toBottomOf="@+id/layout1"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 </android.support.constraint.ConstraintLayout>

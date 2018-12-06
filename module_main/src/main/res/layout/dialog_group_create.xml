@@ -11,6 +11,7 @@
         android:background="@drawable/shape_white_5"
         android:layout_marginStart="29dp"
         android:layout_marginEnd="29dp"
+        android:minWidth="300dp"
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

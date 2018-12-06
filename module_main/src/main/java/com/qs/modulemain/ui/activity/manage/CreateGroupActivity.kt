@@ -1,6 +1,7 @@
 package com.qs.modulemain.ui.activity.manage
 
 import android.app.Dialog
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import com.qs.modulemain.R
@@ -16,8 +17,7 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 
     private var dialog:Dialog? = null
     private var mChoosePosition = 0
-    private var list = arrayListOf(ChooseBean(getString(R.string.I_am_in_charge_of_management)),
-            ChooseBean(getString(R.string.from_adress_book_choose)), ChooseBean(getString(R.string.hand_input_pub_key)))
+    private lateinit var list: ArrayList<ChooseBean>
 
     override fun initPresenter() {
         mPresenter = CreateGroupPresenter(mContext)
@@ -27,7 +27,9 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 
     override fun initData() {
         tvTitle?.text = getString(R.string.create_group)
-        et_manage.setOnClickListener { showDialog() }
+        list = arrayListOf(ChooseBean(getString(R.string.I_am_in_charge_of_management), true),
+                ChooseBean(getString(R.string.from_adress_book_choose)), ChooseBean(getString(R.string.hand_input_pub_key)))
+        tv_manage.setOnClickListener { showDialog() }
         iv_add_note.setOnClickListener { start(AddNoteActivity::class.java) }
         tv_sure.setOnClickListener { start(CreateGroup2Activity::class.java) }
     }
@@ -39,24 +41,25 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
         val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_group_create, null)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_list)
         val adapter = ChooseAdapter(list)
-        mChoosePosition = 0
         adapter.setOnItemClickListener { _, _, position ->
             list[mChoosePosition].isSelected = false
             mChoosePosition = position
             list[mChoosePosition].isSelected = true
             adapter.setNewData(list)
-            dialog?.dismiss()
-            et_manage.setText(list[position].title)
+            Handler().postDelayed({
+                dialog?.dismiss()
+                tv_manage.text = list[position].title
+            }, 300)
         }
         recyclerView.adapter = adapter
         dialog!!.setContentView(view)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog!!.setCanceledOnTouchOutside(true)
         dialog!!.setCancelable(true)
         dialog!!.show()
     }
 
     override fun onDestroy() {
-        if (dialog!=null || dialog!!.isShowing){
+        if (dialog != null && dialog!!.isShowing){
             dialog!!.dismiss()
         }
         super.onDestroy()
