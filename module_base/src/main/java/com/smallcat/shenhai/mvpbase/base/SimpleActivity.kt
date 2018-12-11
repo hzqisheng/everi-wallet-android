@@ -1,20 +1,20 @@
 package com.smallcat.shenhai.mvpbase.base
 
-import android.app.Activity
-import android.app.Application
+import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.ComponentCallbacks
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
 import com.smallcat.shenhai.mvpbase.R
 import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.adaptScreen4VerticalSlide
+import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
 import me.yokeyword.fragmentation.SupportActivity
 
 
@@ -36,6 +36,9 @@ abstract class SimpleActivity : SupportActivity() {
     protected var tvRight: TextView? = null
     protected var ivRight: ImageView? = null
 
+    protected lateinit var mWebView: WebView
+
+    @SuppressLint("JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //固定竖屏
@@ -47,6 +50,7 @@ abstract class SimpleActivity : SupportActivity() {
         LocalManageUtil.setLocal(this)
         setContentView(layoutId)
         mContext = this
+        mWebView = getWebViewInstance()
         onViewCreated()
         initToolbar()
         initData()
@@ -96,38 +100,5 @@ abstract class SimpleActivity : SupportActivity() {
         return Intent(mContext, cls)
     }
 
-    /**
-     * 简书最新适配方案，根据360dp宽度适配所有机型
-     * @author hui
-     * @date 2018/7/24
-     */
-    private fun setCustomDensity(activity: Activity, application: Application) {
-        val appDisplayMetrics = application.resources.displayMetrics
-        if (sNonCompatDensity == 0f) {
-            sNonCompatDensity = appDisplayMetrics.density
-            sNonCompatScaledDensity = appDisplayMetrics.scaledDensity
-            application.registerComponentCallbacks(object : ComponentCallbacks {
-                override fun onConfigurationChanged(newConfig: Configuration?) {
-                    if (newConfig != null && newConfig.fontScale > 0) {
-                        sNonCompatScaledDensity = application.resources.displayMetrics.scaledDensity
-                    }
-                }
 
-                override fun onLowMemory() {
-
-                }
-            })
-        }
-        val targetDensity = (appDisplayMetrics.widthPixels / 360).toFloat()
-        val targetScaleDensity = targetDensity * (sNonCompatScaledDensity / sNonCompatDensity)
-        val targetDensityDpi = (160 * targetDensity).toInt()
-        appDisplayMetrics.density = targetDensity
-        appDisplayMetrics.scaledDensity = targetScaleDensity
-        appDisplayMetrics.densityDpi = targetDensityDpi
-
-        val activityDisplayMetrics = activity.resources.displayMetrics
-        activityDisplayMetrics.density = targetDensity
-        activityDisplayMetrics.scaledDensity = targetScaleDensity
-        activityDisplayMetrics.densityDpi = targetDensityDpi
-    }
 }

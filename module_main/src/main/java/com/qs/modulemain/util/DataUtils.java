@@ -9,9 +9,17 @@ import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.smallcat.shenhai.mvpbase.model.bean.FtsBean;
 import com.smallcat.shenhai.mvpbase.utils.SharedPref;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class DataUtils {
@@ -43,5 +51,9 @@ public class DataUtils {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void test(String s){
+        List<String> list = new Gson().fromJson(s, new TypeToken<ArrayList<String>>() {}.getType());
     }
 }

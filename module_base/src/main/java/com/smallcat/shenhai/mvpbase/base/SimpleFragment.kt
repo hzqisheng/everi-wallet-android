@@ -7,7 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.JavascriptInterface
+import android.webkit.WebView
 import com.smallcat.shenhai.mvpbase.R
+import com.smallcat.shenhai.mvpbase.extension.logE
+import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -21,6 +25,8 @@ abstract class SimpleFragment : SupportFragment() {
     protected lateinit var mContext: Context
     private var loadingDialog: Dialog? = null
 
+    protected lateinit var mWebView: WebView
+
     protected abstract val layoutId: Int
 
     override fun onAttach(context: Context?) {
@@ -31,6 +37,7 @@ abstract class SimpleFragment : SupportFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(layoutId, null)
+        mWebView = getWebViewInstance()
         return mView
     }
 

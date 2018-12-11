@@ -10,26 +10,19 @@ import com.smallcat.shenhai.mvpbase.App
  */
 open class SharedPref {
 
-    val KEY_TOKEN = "token"
-    val KEY_FIRST= "isFirst"
-    val KEY_APP_SECRET= "appSecret"
     val KEY_LANGUAGE = "LANGUAGE"
     val KEY_CURRENCY = "CURRENCY"
+    val KEY_PUBLIC = "publicKey"
+    val KEY_PRIVATE = "privateKey"
+    val KEY_PWD = "password"
+    val KEY_MNEMOINC = "mnemoinc"
 
     private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
     companion object {
         fun newInstance() = SharedPref()
-        val PREFS_KEY = "ZH"
+        val PREFS_KEY = "EVER"
     }
-
-    var token: String
-        get() = prefs.getString(KEY_TOKEN, "null")!!
-        set(token) = prefs.edit().putString(KEY_TOKEN, token).apply()
-
-    var isFirst: Int
-        get() = prefs.getInt(KEY_FIRST, 0)
-        set(value) = prefs.edit().putInt(KEY_FIRST, value).apply()
 
     //0 chinese 1 english
     var languages: Int
@@ -42,10 +35,20 @@ open class SharedPref {
         set(value) = prefs.edit().putInt(KEY_CURRENCY, value).apply()
 
 
+    var publicKey: String
+        get() = prefs.getString(KEY_PUBLIC, "")!!
+        set(value) = prefs.edit().putString(KEY_PUBLIC, value).apply()
 
-    var appSecret: String
-        get() = prefs.getString(KEY_APP_SECRET, "null")!!
-        set(value) = prefs.edit().putString(KEY_APP_SECRET, value).apply()
+    var privateKey: String
+        get() = prefs.getString(KEY_PRIVATE, "")!!
+        set(value) = prefs.edit().putString(KEY_PRIVATE, value).apply()
 
+    var password: String
+        get() = prefs.getString(KEY_PWD, "")!!
+        set(value) = prefs.edit().putString(KEY_PWD, value).apply()
+
+    var mnemoinc: String
+        get() = prefs.getString(KEY_MNEMOINC, "")!!
+        set(value) = prefs.edit().putString(KEY_MNEMOINC, value).apply()
 
 }

@@ -9,12 +9,15 @@ import android.net.http.SslError;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+
+import com.smallcat.shenhai.mvpbase.utils.LogUtil;
 
 
 /**
@@ -37,6 +40,7 @@ public class ProgressWebView extends WebView {
         this(context, attrs,  android.R.attr.webViewStyle);
     }
 
+    @SuppressLint("JavascriptInterface")
     public ProgressWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mProgressBar = new ProgressView(context);
@@ -47,7 +51,16 @@ public class ProgressWebView extends WebView {
         addView(mProgressBar);
         mWebView = this;
         mWebView.setLayerType(View.LAYER_TYPE_HARDWARE,null);
+        mWebView.addJavascriptInterface(new AndroidToJs(), "test");
         initSetting();
+    }
+
+    public class AndroidToJs extends Object{
+
+        @JavascriptInterface
+        public void createEVTWalletCallback(String s){
+            LogUtil.e(s + "ssss");
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")

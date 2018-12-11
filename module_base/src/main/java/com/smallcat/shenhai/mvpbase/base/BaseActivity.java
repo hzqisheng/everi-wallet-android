@@ -49,10 +49,17 @@ public abstract class BaseActivity<T extends IPresenter> extends SimpleActivity 
         initPresenter();
         if (mPresenter != null) {
             //添加LifecycleObserver
-            getLifecycle().addObserver(mPresenter);
             mPresenter.attachView(this);
+            mPresenter.onCreate();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onStop();
+    }
+
 
     @Override
     public void showErrorMsg(String msg) {

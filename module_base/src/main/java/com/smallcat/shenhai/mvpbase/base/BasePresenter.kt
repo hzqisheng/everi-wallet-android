@@ -5,13 +5,9 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleOwner
 import android.content.Context
 import android.view.LayoutInflater
+import android.webkit.WebView
 import com.smallcat.shenhai.mvpbase.R
-import com.smallcat.shenhai.mvpbase.extension.sanitizeJson
-import com.smallcat.shenhai.mvpbase.model.Api
-import com.smallcat.shenhai.mvpbase.model.http.CommonSubscriber
-import com.smallcat.shenhai.mvpbase.model.http.HttpModule
-import com.smallcat.shenhai.mvpbase.model.http.HttpResponse
-import io.reactivex.Flowable
+import com.smallcat.shenhai.mvpbase.extension.logE
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -24,7 +20,8 @@ abstract class BasePresenter<T : BaseView> : IPresenter<T> {
     private var loadingDialog: Dialog? = null
     private var mCompositeDisposable: CompositeDisposable? = null
     protected var mView: T? = null
-    protected lateinit var mApi: Api
+
+    protected lateinit var mWebView: WebView
 
     private fun unSubscribe() {
         if (mCompositeDisposable != null)
@@ -35,19 +32,15 @@ abstract class BasePresenter<T : BaseView> : IPresenter<T> {
         mView = view
     }
 
-    override fun onCreate(owner: LifecycleOwner) {
-        mApi = HttpModule.getInstance().api
+    override fun onCreate() {
     }
 
-    override fun onDestroy(owner: LifecycleOwner) {
+    override fun onStop() {
         mView = null
         unSubscribe()
         dismissLoading()
     }
 
-    override fun onLifecycleChanged(owner: LifecycleOwner, event: Lifecycle.Event) {
-
-    }
 
     protected fun addSubscribe(disposable: Disposable) {
         if (mCompositeDisposable == null) {
@@ -56,12 +49,12 @@ abstract class BasePresenter<T : BaseView> : IPresenter<T> {
         mCompositeDisposable!!.add(disposable)
     }
 
-    protected fun <T> addSubscribe(observable: Flowable<HttpResponse<T>>, subscriber: CommonSubscriber<T>) {
+  /*  protected fun <T> addSubscribe(observable: Flowable<HttpResponse<T>>, subscriber: CommonSubscriber<T>) {
         addSubscribe(observable
                 .sanitizeJson()
                 .subscribeWith(subscriber)
         )
-    }
+    }*/
 
     protected fun showLoading(mContext: Context) {
         if (loadingDialog == null) {

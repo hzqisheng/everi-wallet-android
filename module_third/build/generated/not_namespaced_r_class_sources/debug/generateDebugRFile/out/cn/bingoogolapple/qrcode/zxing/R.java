@@ -50,9 +50,9 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static int bgaqrcode_camera_preview = 0x7f0c0021;
-        public static int center = 0x7f0c0029;
-        public static int inside = 0x7f0c005f;
+        public static int bgaqrcode_camera_preview = 0x7f0c0023;
+        public static int center = 0x7f0c002b;
+        public static int inside = 0x7f0c0065;
     }
     public static final class mipmap {
         private mipmap() {}

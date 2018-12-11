@@ -26,15 +26,15 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static int fragmentation_help = 0x7f09006e;
-        public static int fragmentation_ic_expandable = 0x7f09006f;
-        public static int fragmentation_ic_right = 0x7f090070;
-        public static int fragmentation_ic_stack = 0x7f090071;
+        public static int fragmentation_help = 0x7f09007d;
+        public static int fragmentation_ic_expandable = 0x7f09007e;
+        public static int fragmentation_ic_right = 0x7f09007f;
+        public static int fragmentation_ic_stack = 0x7f090080;
     }
     public static final class id {
         private id() {}
 
-        public static int hierarchy = 0x7f0c0050;
-        public static int isexpand = 0x7f0c0061;
+        public static int hierarchy = 0x7f0c0054;
+        public static int isexpand = 0x7f0c0067;
     }
 }

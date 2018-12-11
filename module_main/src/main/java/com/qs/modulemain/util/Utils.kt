@@ -74,3 +74,25 @@ fun px2dip(context: Context, pxValue: Float): Int {
     val scale = context.resources.displayMetrics.density
     return (pxValue / scale + 0.5f).toInt()
 }
+
+fun stringToList(str: String) = str.split(",").map { it.trim() }
+
+fun listToString(list: List<String>?): String? {
+
+    //list?.joinToString()
+    if (list == null) {
+        return ""
+    }
+    val result = StringBuilder()
+    var first = true
+    //第一个前面不拼接","
+    for (string in list) {
+        if (first) {
+            first = false
+        } else {
+            result.append(",")
+        }
+        result.append(string)
+    }
+    return result.toString()
+}

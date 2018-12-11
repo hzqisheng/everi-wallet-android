@@ -1,0 +1,8 @@
+<litepal>
+    <dbname value="everToken"/>
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.smallcat.shenhai.mvpbase.model.bean.BaseData"/>
+    </list>
+</litepal>

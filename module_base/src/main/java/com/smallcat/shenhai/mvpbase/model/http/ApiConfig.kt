@@ -41,14 +41,4 @@ object ApiConfig {
                }
               }
      }
-
-    fun getH5Url(uri: String): String{
-        val token = App.getInstance().sharedPref.token
-        return "$WEB_URL$uri?parkToken=$token&platform=android"
-    }
-
-    fun getWebUrl(uri: String): String{
-        val token = App.getInstance().sharedPref.token
-        return "$WEB_URL$uri&parkToken=$token&platform=android"
-    }
 }

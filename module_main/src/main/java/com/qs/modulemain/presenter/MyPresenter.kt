@@ -37,9 +37,7 @@ class MyPresenter(private val mContext: Context) : BasePresenter<MyView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
                     when(it.type){
-                        RxBusCenter.LOGIN -> loadData()
-                        RxBusCenter.LOGIN_OUT -> mView!!.loginOut()
-                        RxBusCenter.REFRRESH_MY -> loadData()
+
                     }
                 })
     }

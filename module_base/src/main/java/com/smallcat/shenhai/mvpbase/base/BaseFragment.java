@@ -23,12 +23,15 @@ public abstract class BaseFragment<T extends IPresenter> extends SimpleFragment 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         initPresenter();
-        if (mPresenter != null) {
-            //添加LifecycleObserver
-            getLifecycle().addObserver(mPresenter);
-            mPresenter.attachView(this);
-        }
+        mPresenter.onCreate();
+        mPresenter.attachView(this);
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.onStop();
     }
 
     @Override

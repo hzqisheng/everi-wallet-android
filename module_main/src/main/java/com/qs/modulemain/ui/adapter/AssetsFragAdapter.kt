@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.qs.modulemain.R
 import com.qs.modulemain.ui.fragment.AssetsItemFragment
+import com.qs.modulemain.ui.fragment.AssetsItemNFTsFragment
 
 /**
  * Created by hui on 2018/5/9.
@@ -21,6 +22,10 @@ class AssetsFragAdapter(fm: FragmentManager?, mContext: Context) : FragmentPager
     private val img = listOf(R.drawable.selector_token, R.drawable.selector_pass_code)
 
     override fun getItem(position: Int): Fragment {
+        when(position){
+            0 -> return AssetsItemFragment()
+            1 -> return AssetsItemNFTsFragment()
+        }
         return AssetsItemFragment()
     }
 

@@ -1,7 +1,6 @@
 package com.smallcat.shenhai.mvpbase.extension
 
 import com.smallcat.shenhai.mvpbase.model.http.ApiException
-import com.smallcat.shenhai.mvpbase.model.http.HttpResponse
 import com.smallcat.shenhai.mvpbase.utils.LogUtil
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -19,23 +18,6 @@ fun <T> transformScheduler(): FlowableTransformer<T, T> {
     }
 }
 
-/**
- * 统一返回结果处理
- * @param
- * @return
- */
-fun <T> Flowable<HttpResponse<T>>.sanitizeJson(): Flowable<T> = this
-        .subscribeOn(Schedulers.io())
-        .flatMap { response ->
-            if (response.code == 0 && response.data!= null) {
-                createData(response.data!!)
-            }else if(response.code == 2){
-                Flowable.error(ApiException("登录过期", response.code))
-            }else {
-                Flowable.error(ApiException(response.message, response.code))
-            }
-        }
-        .observeOn(AndroidSchedulers.mainThread())
 
 /**
  * 生成新的对象

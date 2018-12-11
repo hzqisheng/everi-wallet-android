@@ -1,22 +1,30 @@
 package com.qs.modulemain.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.arouter.ARouterConfig
+import com.qs.modulemain.presenter.MainPresenter
 import com.qs.modulemain.ui.fragment.AssetsFragment
 import com.qs.modulemain.ui.fragment.ManageFragment
 import com.qs.modulemain.ui.fragment.MarketFragment
 import com.qs.modulemain.ui.fragment.MyFragment
+import com.qs.modulemain.view.MainView
 import com.smallcat.shenhai.mvpbase.App
-import com.smallcat.shenhai.mvpbase.base.SimpleActivity
+import com.smallcat.shenhai.mvpbase.base.BaseActivity
+import com.smallcat.shenhai.mvpbase.extension.logE
+import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.model.WebViewApi
+import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import com.smallcat.shenhai.mvpbase.utils.destroyWebView
 import com.smallcat.shenhai.mvpbase.utils.fitSystemAllScroll
 import kotlinx.android.synthetic.main.activity_main.*
 import me.yokeyword.fragmentation.ISupportFragment
 
 @Route(path = ARouterConfig.MAIN_MAIN)
-class MainActivity : SimpleActivity() {
+class MainActivity : BaseActivity<MainPresenter>(),MainView {
 
     companion object {
         private const val ASSETS = 1
@@ -33,6 +41,10 @@ class MainActivity : SimpleActivity() {
     private lateinit var fg2: MarketFragment
     private lateinit var fg3: ManageFragment
     private lateinit var fg4: MyFragment
+
+    override fun initPresenter() {
+        mPresenter = MainPresenter(mContext)
+    }
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -61,6 +73,16 @@ class MainActivity : SimpleActivity() {
         fg3 = ManageFragment()
         fg4 = MyFragment()
         loadMultipleRootFragment(R.id.fl_contain, 0, fg1, fg2, fg3, fg4)
+        mWebView.evaluateJavascript(WebViewApi.createEVTWallet("123456")) {}
+    }
+
+    override fun loginSuccess(data: String) {
+        val bean = Gson().fromJson(data, BaseData::class.java)
+        bean.save()
+        sharedPref.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
+        sharedPref.privateKey = bean.privateKey
+        sharedPref.password = bean.password
+        sharedPref.mnemoinc = bean.mnemoinc
     }
 
     private fun getFragment(position: Int): ISupportFragment {
@@ -77,6 +99,7 @@ class MainActivity : SimpleActivity() {
         val currentBackTime = System.currentTimeMillis()
         if (currentBackTime - lastBackTime < 2000) {
             super.onBackPressed()
+            destroyWebView()
             App.getInstance().exitApp()
         } else {
             lastBackTime = currentBackTime

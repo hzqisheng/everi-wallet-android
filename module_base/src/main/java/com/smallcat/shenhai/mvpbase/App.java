@@ -7,6 +7,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.smallcat.shenhai.mvpbase.utils.WebViewUtilsKt;
+
+import org.litepal.LitePal;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -32,12 +35,15 @@ public class App extends Application {
         mApplication = this;
         registerActivityListener();
 
+        WebViewUtilsKt.initWebView();
         //app字体大小不随系统变化
         Resources res = getResources();
         Configuration config = new Configuration();
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
 
+        LitePal.initialize(this);
+        
         ARouter.openLog();   // 打印日志
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
