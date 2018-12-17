@@ -49,6 +49,7 @@ private class WebViewCallBack : Any() {
     @JavascriptInterface
     fun createEVTWalletCallback(s: String) {
         s.logE()
+        RxBus.post(MessageEvent(s, RxBusCenter.LOGIN))
     }
 
     @JavascriptInterface
@@ -71,5 +72,7 @@ private class WebViewCallBack : Any() {
     }
 
     @JavascriptInterface
-    fun needPrivateKey() {}
+    fun needPrivateKey() {
+
+    }
 }
