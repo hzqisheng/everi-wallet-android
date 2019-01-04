@@ -31,7 +31,7 @@
             android:paddingStart="10dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_marginTop="18dp"
             android:gravity="center_vertical"
             android:hint="@string/max_service_fee"

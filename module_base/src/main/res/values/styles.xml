@@ -15,7 +15,7 @@
 
     <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:background">@drawable/audio_placeholder</item>
+        <item name="android:background">@drawable/splash</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 

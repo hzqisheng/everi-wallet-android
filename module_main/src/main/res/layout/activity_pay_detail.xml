@@ -23,12 +23,12 @@
         android:minHeight="?android:attr/actionBarSize"
         app:contentInsetStart="0dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:cropToPadding="true"
-            android:drawableStart="@drawable/ic_return"
+            android:src="@drawable/ic_return"
             android:gravity="center"
             android:padding="8dp"
             android:text="@string/index"
@@ -57,10 +57,11 @@
             android:textSize="16sp" />
     </com.qs.modulemain.ui.widget.CompatToolbar>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_img"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:src="@drawable/icon_fukuan_evt"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintEnd_toStartOf="@id/tv_currency"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -190,7 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="8dp"
-            tools:text="null"
+            tools:text=" "
             android:textColor="@color/color_68"
             android:textSize="14sp" />
     </LinearLayout>
@@ -225,7 +226,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_sure"
+        android:id="@+id/tvSure"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_marginStart="14dp"

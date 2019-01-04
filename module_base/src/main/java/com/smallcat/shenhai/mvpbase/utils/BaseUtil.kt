@@ -1,13 +1,19 @@
 package com.smallcat.shenhai.mvpbase.utils
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.support.v4.content.ContextCompat.getSystemService
 import com.smallcat.shenhai.mvpbase.App
+import com.smallcat.shenhai.mvpbase.R
+import com.smallcat.shenhai.mvpbase.extension.getResourceString
+import com.smallcat.shenhai.mvpbase.extension.toast
 
 /**
  * @author smallCut
@@ -136,4 +142,16 @@ fun isAdaptScreen(): Boolean {
     val systemDm = Resources.getSystem().displayMetrics
     val appDm = App.getInstance().resources.displayMetrics
     return systemDm.density != appDm.density
+}
+
+/**
+ * 添加到剪切板
+ */
+fun addClipboard(context:Context,content:String){
+    //获取剪贴板管理器：
+    val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    // 创建普通字符型ClipData
+    val mClipData = ClipData.newPlainText("Label", content)
+    // 将ClipData内容放到系统剪贴板里。
+    cm.setPrimaryClip(mClipData)
 }

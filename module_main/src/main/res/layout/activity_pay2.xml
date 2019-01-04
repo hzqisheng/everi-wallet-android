@@ -93,7 +93,7 @@
             android:drawablePadding="6dp"
             android:textColor="@drawable/selector_bottom_view_textcolor"
             android:drawableTop="@drawable/selector_pay_code"
-            android:text="@string/pay_code"/>
+            android:text="@string/collect_code"/>
 
         <View
             android:layout_width="1dp"
@@ -113,7 +113,7 @@
             android:drawablePadding="6dp"
             android:textColor="@drawable/selector_bottom_view_textcolor"
             android:drawableTop="@drawable/selector_sweep_payment"
-            android:text="@string/sweep_code_payment"/>
+            android:text="@string/scan_collect"/>
     </RadioGroup>
 
     <TextView

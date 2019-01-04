@@ -15,9 +15,6 @@ import io.reactivex.schedulers.Schedulers
  */
 class AssetsItemNFTsPresenter(private val mContext: Context) : BasePresenter<AssetsItemNFTsView>() {
 
-    init {
-        registerEvent()
-    }
 
     fun loadData(){
         /*addSubscribe(mApi.getUseInfo()
@@ -27,6 +24,10 @@ class AssetsItemNFTsPresenter(private val mContext: Context) : BasePresenter<Ass
                         mView!!.loadSuccess(data)
                     }
                 }))*/
+    }
+
+    init {
+        registerEvent()
     }
 
 

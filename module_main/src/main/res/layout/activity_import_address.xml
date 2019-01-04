@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
         android:background="@drawable/shadow_circle"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        >
 
         <TextView
             android:id="@+id/tv_msg"
@@ -52,4 +53,18 @@
             android:hint="@string/Paste_the_address_here"/>
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center"
+        android:background="@drawable/shape_3137_4"
+        android:text="@string/save"
+        android:textColor="@color/color_e4"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

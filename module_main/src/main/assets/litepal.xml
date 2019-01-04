@@ -4,5 +4,6 @@
 
     <list>
         <mapping class="com.smallcat.shenhai.mvpbase.model.bean.BaseData"/>
+        <mapping class="com.qs.modulemain.bean.AddressBean"/>
     </list>
 </litepal>

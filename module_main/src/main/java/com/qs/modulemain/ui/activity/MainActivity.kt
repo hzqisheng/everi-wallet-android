@@ -13,15 +13,16 @@ import com.qs.modulemain.ui.fragment.MyFragment
 import com.qs.modulemain.view.MainView
 import com.smallcat.shenhai.mvpbase.App
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.destroyWebView
 import com.smallcat.shenhai.mvpbase.utils.fitSystemAllScroll
 import kotlinx.android.synthetic.main.activity_main.*
 import me.yokeyword.fragmentation.ISupportFragment
+import java.util.*
 
 @Route(path = ARouterConfig.MAIN_MAIN)
 class MainActivity : BaseActivity<MainPresenter>(),MainView {
@@ -54,6 +55,28 @@ class MainActivity : BaseActivity<MainPresenter>(),MainView {
     }
 
     override fun initData() {
+
+//        if(sharedPref.publicKey.isEmpty()){
+//            var bean = BaseData()
+//            bean.name = "EVT-wallet"
+//            bean.mnemoinc ="into grocery arrive trend alien flee trial cinnamon weird angle pen refuse"
+//            bean.password = "123456"
+//            bean.privateKey = "5JrNgyyNDqz2pikijgdJwUktV8xkS7JPPSURr2YwxkhKPzm2eRi"
+//            bean.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
+//            bean.type = "EVT"
+//            bean.isSelect = 0;
+//            bean.isCreate = 0;
+//            bean.save()
+//        }
+//
+//        sharedPref.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
+//        sharedPref.privateKey = "5JrNgyyNDqz2pikijgdJwUktV8xkS7JPPSURr2YwxkhKPzm2eRi"
+//        sharedPref.password = "123456"
+//        sharedPref.mnemoinc = "into grocery arrive trend alien flee trial cinnamon weird angle pen refuse"
+//        sharedPref.name= "EVT-wallet"
+
+
+
         rb_assets.isChecked = true
         rg_bottom.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId){
@@ -66,23 +89,29 @@ class MainActivity : BaseActivity<MainPresenter>(),MainView {
             hide = show
         }
         rl_wallet.setOnClickListener {
-            ARouterCenter.goWalletActivity(0)
+            ARouterCenter.goWalletActivity(1)
         }
         fg1 = AssetsFragment()
         fg2 = MarketFragment()
         fg3 = ManageFragment()
         fg4 = MyFragment()
         loadMultipleRootFragment(R.id.fl_contain, 0, fg1, fg2, fg3, fg4)
-        mWebView.evaluateJavascript(WebViewApi.createEVTWallet("123456")) {}
+//        mWebView.evaluateJavascript(WebViewApi.createEVTWallet("123456")) {}
+
+        if(LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA){
+            cent_icon.background = getDrawable(R.drawable.ic_home_wallet)
+        }else{
+            cent_icon.background = getDrawable(R.drawable.switch_en)
+        }
     }
 
     override fun loginSuccess(data: String) {
-        val bean = Gson().fromJson(data, BaseData::class.java)
-        bean.save()
-        sharedPref.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
-        sharedPref.privateKey = bean.privateKey
-        sharedPref.password = bean.password
-        sharedPref.mnemoinc = bean.mnemoinc
+//        val bean = Gson().fromJson(data, BaseData::class.java)
+//        bean.save()
+//        sharedPref.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
+//        sharedPref.privateKey = bean.privateKey
+//        sharedPref.password = bean.password
+//        sharedPref.mnemoinc = bean.mnemoinc
     }
 
     private fun getFragment(position: Int): ISupportFragment {

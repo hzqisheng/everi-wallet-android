@@ -23,16 +23,16 @@
         android:minHeight="?android:attr/actionBarSize"
         app:contentInsetStart="0dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:cropToPadding="true"
-            android:drawableStart="@drawable/ic_return"
+            android:src="@drawable/ic_return"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@string/index"
             android:textColor="@color/white" />
+
 
         <TextView
             android:id="@+id/tv_title"
@@ -41,7 +41,6 @@
             android:layout_gravity="center_horizontal"
             android:maxLength="20"
             android:singleLine="true"
-            android:text="@string/pay"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -57,10 +56,11 @@
             android:textSize="16sp" />
     </com.qs.modulemain.ui.widget.CompatToolbar>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_img"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:src="@drawable/icon_fukuan_evt"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintEnd_toStartOf="@id/tv_currency"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -115,6 +115,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_money" />
 
+
+
+    <LinearLayout
+        android:id="@+id/fl_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constrainedHeight="true"
+        android:orientation="vertical"
+        android:background="@drawable/shadow_circle"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@+id/tv_batch_transfer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_money">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="交易记录"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_transfer"
         android:layout_width="0dp"
@@ -137,6 +172,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="14dp"
         android:gravity="center"
+        android:visibility="gone"
         android:textColor="@color/color_e4"
         android:background="@drawable/shape_3137_4"
         android:text="@string/batch_transfers"
@@ -159,26 +195,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_batch_transfer" />
-
-    <FrameLayout
-        android:id="@+id/fl_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constrainedHeight="true"
-        android:background="@drawable/shadow_circle"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintBottom_toTopOf="@+id/tv_batch_transfer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_money">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
-    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

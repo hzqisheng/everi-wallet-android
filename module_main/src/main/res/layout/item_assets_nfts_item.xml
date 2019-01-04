@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -24,6 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textColor="@color/color_68"
+        android:maxLength="35"
+        android:maxEms="35"
+        android:textSize="12sp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:scrollHorizontally="true"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="EOS5fKva...UBt7gBagC" />
@@ -36,7 +43,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_assets_item_ever" />
+        android:src="@drawable/icon_home_everipass"
+        />
+
 
     <View
         android:layout_width="match_parent"

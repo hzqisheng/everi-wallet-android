@@ -73,6 +73,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="10dp"
+                    android:inputType="number"
                     android:background="@null"
                     android:hint="@string/enter_the_asset_number"
                     android:textSize="14sp" />
@@ -103,6 +104,7 @@
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="10dp"
                     android:background="@null"
+                    android:inputType="number"
                     android:hint="@string/enter_the_total_number"
                     android:textSize="14sp" />
 
@@ -131,6 +133,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="10dp"
+                    android:inputType="number"
                     android:background="@null"
                     android:hint="@string/please_input_decimals"
                     android:textSize="14sp" />
@@ -181,8 +184,8 @@
 
                 <ImageView
                     android:id="@+id/iv_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="14dp"
@@ -205,7 +208,7 @@
                     android:textColor="@color/color_33"
                     android:textSize="15sp" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/tv_permission"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"

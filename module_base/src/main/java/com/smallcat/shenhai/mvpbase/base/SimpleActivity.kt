@@ -15,6 +15,8 @@ import com.smallcat.shenhai.mvpbase.R
 import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.adaptScreen4VerticalSlide
 import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import me.yokeyword.fragmentation.SupportActivity
 
 
@@ -23,7 +25,7 @@ import me.yokeyword.fragmentation.SupportActivity
  * @date 2018/4/27
  */
 abstract class SimpleActivity : SupportActivity() {
-
+    private var mCompositeDisposable: CompositeDisposable? = null
     protected lateinit var mContext: Context
     private var loadingDialog: Dialog? = null
     private var sNonCompatDensity: Float = 0F
@@ -98,6 +100,23 @@ abstract class SimpleActivity : SupportActivity() {
 
     protected fun getIntent(cls: Class<*>): Intent {
         return Intent(mContext, cls)
+    }
+
+    private fun unSubscribe() {
+        if (mCompositeDisposable != null)
+            mCompositeDisposable!!.clear()
+    }
+
+    protected fun addSubscribe(disposable: Disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        mCompositeDisposable!!.add(disposable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unSubscribe()
     }
 
 

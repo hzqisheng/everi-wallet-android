@@ -4,8 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.smallcat.shenhai.mvpbase.App
+import com.smallcat.shenhai.mvpbase.model.bean.ResultBean
 import com.smallcat.shenhai.mvpbase.utils.LogUtil
+import org.json.JSONObject
+import java.lang.Exception
 
 /**
  * @author hui
@@ -41,4 +46,22 @@ fun String.hide4(): String{
     val subString = this.substring(3, 7)
     return this.replace(subString, "****")
 }
+
+fun String.toResultBean():ResultBean{
+    var resultBean:ResultBean?
+    try {
+        var json :JSONObject = JSONObject(this)
+        resultBean = ResultBean()
+        resultBean.code = json.getInt("code")
+        resultBean.message = json.getString("message")
+        resultBean.data = json.get("data")
+    }catch (e:Exception){
+        resultBean = ResultBean()
+        resultBean.code = 0
+        resultBean.message = "data is invalid !"
+    }
+    return resultBean!!
+}
+
+
 

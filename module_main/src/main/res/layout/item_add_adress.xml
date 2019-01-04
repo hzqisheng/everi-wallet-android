@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:lines="1"
+        android:maxEms="25"
+        android:ellipsize="end"
+        android:maxLength="25"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/ivDeleted"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="@dimen/dp_10"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_address_add"
+        />
+
+
+</RelativeLayout>

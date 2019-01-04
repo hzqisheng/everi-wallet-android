@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.smallcat.shenhai.mvpbase.utils.WebViewUtilsKt;
+import com.zxy.tiny.Tiny;
 
 import org.litepal.LitePal;
 
@@ -43,6 +44,8 @@ public class App extends Application {
         res.updateConfiguration(config, res.getDisplayMetrics());
 
         LitePal.initialize(this);
+
+        Tiny.getInstance().init(this);
         
         ARouter.openLog();   // 打印日志
         ARouter.init(this); // 尽可能早，推荐在Application中初始化

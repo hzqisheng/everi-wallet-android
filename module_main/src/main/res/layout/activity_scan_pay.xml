@@ -30,12 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_img"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="18dp"
+                android:src="@drawable/logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,9 +47,10 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:textColor="@color/color_3137"
+                android:text="EVT(#1）"
                 app:layout_constraintStart_toEndOf="@+id/iv_img"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="EVT(#1）" />
+                />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -71,7 +73,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                tools:text="请选择币种进行付款" />
+                android:text="请选择币种进行付款"
+                />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -147,6 +150,9 @@
                 android:text="@string/please_choose_address"
                 android:textColor="@color/color_cc"
                 android:textSize="13sp"
+                android:maxLines="1"
+                android:maxEms="30"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -171,11 +177,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
             android:background="@null"
             android:hint="@string/please_input_money"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:textColor="@color/color_68"
             android:textColorHint="@color/color_bb"
@@ -203,7 +209,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:inputType="number"
             android:hint="@string/enter_remarks"
             android:singleLine="true"
             android:gravity="clip_vertical"

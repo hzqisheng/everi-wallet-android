@@ -322,7 +322,7 @@
             </android.support.constraint.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tv_sure"
+                android:id="@+id/tvSure"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginStart="14dp"

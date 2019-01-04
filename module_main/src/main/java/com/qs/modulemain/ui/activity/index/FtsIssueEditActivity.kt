@@ -1,24 +1,218 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.app.Dialog
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import com.google.gson.Gson
 import com.qs.modulemain.R
+import com.qs.modulemain.bean.ChooseGetBean
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceColor
-import com.smallcat.shenhai.mvpbase.extension.start
+import com.smallcat.shenhai.mvpbase.extension.*
+import com.smallcat.shenhai.mvpbase.model.WebViewApi
+import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
+import com.smallcat.shenhai.mvpbase.model.helper.RxBus
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.SET_FTS
+import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_fts_issue_edit.*
+import java.util.ArrayList
 
 class FtsIssueEditActivity : SimpleActivity() {
+    private lateinit var mFTSBean: ChooseGetBean
+    private lateinit var upIssuBean:UpIssueBean
+    /** 密码框 **/
+    private var pwdDialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_fts_issue_edit
 
     override fun initData() {
-        tvTitle?.text = getString(R.string.issue)
+
+        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { it ->
+                    when(it.type){
+                        RxBusCenter.SET_FTS -> onDataResult(it.msg)
+                    }
+                })
+
+        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { it ->
+                    when(it.type){
+                        RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
+                    }
+                })
+
+
+        mFTSBean = intent.getSerializableExtra("data") as ChooseGetBean;
+        tvTitle?.text = mFTSBean.name
+        tv_name.text = mFTSBean.name
+        tv_code.text = mFTSBean.creator
+        tv_threshold.text = mFTSBean.issue.threshold.toString()
+        tv_threshold1.text = mFTSBean.manage.threshold.toString()
+
+        //发行地址
+        var issueString:String = ""
+        if (mFTSBean.issue.authorizers.size > 0) {
+            for (authorizer in mFTSBean.issue.authorizers) {
+                issueString+=authorizer.ref+"\n"
+            }
+        }
+        tv_address.text = issueString
+
+
+        var manageString:String = ""
+        if (mFTSBean.manage.authorizers.size > 0) {
+            for (authorizer in mFTSBean.manage.authorizers) {
+                manageString+=authorizer.ref+"\n"
+            }
+        }
+        tv_address1.text = manageString
+
+
+        upIssuBean = UpIssueBean()
+        upIssuBean.sym_id = mFTSBean.sym.split("#")[1]
+        upIssuBean.issue = mFTSBean.issue
+        upIssuBean.manage = mFTSBean.manage
+//        upIssuBean.metas = ArrayList()
+
         tvRight?.apply {
             text = getString(R.string.authority_setting)
             setTextColor(getResourceColor(R.color.color_e4))
-            setOnClickListener{
-                start(IssueFtsAuthorityActivity::class.java)
+            setOnClickListener {
+                var intent = Intent(this@FtsIssueEditActivity,IssueFtsAuthorityActivity::class.java)
+                startActivityForResult(intent,101)
+            }
+        }
+
+        tv_save.setOnClickListener {
+          var sendJson = Gson().toJson(upIssuBean)
+            sendJson.logE()
+            lastPushTransaction = SET_FTS
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("updfungible",sendJson)){}
+        }
+
+        iv_add_data.setOnClickListener {
+            var intent = Intent(this@FtsIssueEditActivity,AddMetaActivity::class.java)
+            startActivityForResult(intent,103)
+        }
+        tv_add_data.setOnClickListener {
+            var intent = Intent(this@FtsIssueEditActivity,AddMetaActivity::class.java)
+            startActivityForResult(intent,103)
+        }
+    }
+
+    fun onDataResult(s:String){
+        if(!s.isEmpty()) {
+            "设置成功".toast()
+            finish()
+        }
+        s.logE()
+    }
+
+    class UpIssueBean {
+        //sym_id
+        var sym_id: String = ""
+        //管理
+        var manage: ChooseGetBean.ManageBean? = null
+        //发型
+        var issue: ChooseGetBean.IssueBean? = null
+
+        var metas: ArrayList<ChooseGetBean.MetasBean>? = null
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 101){
+            if(resultCode > 0 && data != null) {
+                var chooseGetBean: ChooseGetBean = data!!.getSerializableExtra("result") as ChooseGetBean
+                upIssuBean.issue = chooseGetBean.issue
+                upIssuBean.manage = chooseGetBean.manage
+
+
+                tv_threshold.text = upIssuBean.issue!!.threshold.toString()
+                tv_threshold1.text = upIssuBean.manage!!.threshold.toString()
+
+                //发行地址
+                var issueString: String = ""
+                if (upIssuBean.issue != null && upIssuBean.issue!!.authorizers != null &&upIssuBean.issue!!.authorizers.size > 0) {
+                    for (authorizer in upIssuBean.issue!!.authorizers) {
+                        if (authorizer != null)
+                            issueString += authorizer.ref + "\n"
+                    }
+                }
+                tv_address.text = issueString
+
+
+                var manageString: String = ""
+                if (upIssuBean.manage != null && upIssuBean.manage!!.authorizers != null &&upIssuBean.manage!!.authorizers.size > 0) {
+                    for (authorizer in upIssuBean.manage!!.authorizers) {
+                        if (authorizer != null)
+                            manageString += authorizer.ref + "\n"
+                    }
+                }
+                tv_address1.text = manageString
+            }
+        }
+        //AddMetaActivity
+        if(requestCode == 103){
+            if(resultCode > 0 && data != null){
+               var metaBean =  data!!.getSerializableExtra("result") as ChooseGetBean.MetasBean
+                if(upIssuBean.metas == null){
+                    upIssuBean.metas = ArrayList()
+                }
+                metaBean.toString().logE()
+                upIssuBean.metas!!.add(metaBean)
+            }
+
+            if(upIssuBean.metas != null && upIssuBean!!.metas!!.size>0){
+                iv_add_data.visibility = View.GONE
+                var resultString = ""
+                upIssuBean!!.metas!!.forEach { resultString += "Key:"+it.key+" Value:"+it.value+"\n"}
+                tv_add_data.text = resultString
+            }else{
+                iv_add_data.visibility = View.VISIBLE
+                tv_add_data.text = ""
             }
         }
     }
+
+    private fun showSetUpDialog(){
+        if (pwdDialog == null) {
+            pwdDialog = Dialog(mContext, R.style.CustomDialog)
+        }
+        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
+        val etNumber = view.findViewById<EditText>(R.id.et_number)
+        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
+        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
+        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+        tvSure.setOnClickListener {
+            if(sharedPref.password.equals(etNumber.text.toString())){
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
+            }else{
+                getResourceString(R.string.password_error).toast()
+            }
+            pwdDialog!!.dismiss()
+        }
+        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
+        pwdDialog!!.setContentView(view)
+        pwdDialog!!.setCanceledOnTouchOutside(false)
+        pwdDialog!!.setCancelable(true)
+        pwdDialog!!.show()
+    }
+
+
+
 
 }

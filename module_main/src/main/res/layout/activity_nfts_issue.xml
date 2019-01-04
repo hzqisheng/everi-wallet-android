@@ -34,13 +34,14 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/tvCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="14dp"
-                    android:text="@string/address_number"
+                    android:text="@string/domain_number"
                     android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
@@ -111,6 +112,7 @@
                     android:background="@color/color_dd" />
 
                 <TextView
+                    android:id="@+id/tvBatchGeneration"
                     android:layout_width="69dp"
                     android:layout_height="23dp"
                     android:layout_gravity="end"
@@ -167,7 +169,13 @@
                         android:src="@drawable/ic_address_add" />
 
                 </LinearLayout>
+            <LinearLayout
+                android:id="@+id/addressContent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+            </LinearLayout>
             </LinearLayout>
 
             <TextView

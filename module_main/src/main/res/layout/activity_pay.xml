@@ -38,8 +38,10 @@
         android:background="@drawable/shadow_circle"
         app:layout_constraintBottom_toTopOf="@+id/rg_bottom"
         app:layout_constraintEnd_toEndOf="@+id/tv_msg"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_msg"
-        app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -156,12 +158,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_img"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_marginStart="38dp"
             android:layout_marginTop="18dp"
+            android:src="@drawable/icon_fukuan_evt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -197,7 +200,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            tools:text="请选择币种进行付款" />
+            android:text="@string/select_pay"
+            />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -232,6 +236,7 @@
         android:textColor="@color/color_4d7b"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_max_pay"
-        tools:text="10000" />
+        android:text="100"
+        />
 
 </android.support.constraint.ConstraintLayout>

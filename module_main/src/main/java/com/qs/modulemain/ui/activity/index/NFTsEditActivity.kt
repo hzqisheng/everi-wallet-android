@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.content.Intent
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.start
@@ -16,7 +17,12 @@ class NFTsEditActivity : SimpleActivity() {
             setBackgroundResource(R.drawable.ic_question)
             setOnClickListener{}
         }
-        tv_sure.setOnClickListener { start(NFTsIssueActivity::class.java) }
+        tv_sure.setOnClickListener {
+            var intent = Intent()
+            intent.putExtra("result",rv_list.text.toString())
+            setResult(1,intent)
+            finish()
+        }
     }
 
 }

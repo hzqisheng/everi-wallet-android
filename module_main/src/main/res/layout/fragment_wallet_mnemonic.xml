@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/normal_toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/layout2"
@@ -48,6 +43,7 @@
             android:layout_marginEnd="14dp"
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
+            android:inputType="textPassword"
             android:hint="@string/pwd"
             android:textColorHint="@color/color_bb"
             android:textColor="@color/color_33"
@@ -62,6 +58,7 @@
             android:layout_margin="14dp"
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
+            android:inputType="textPassword"
             android:hint="@string/comfire_pwd"
             android:textColorHint="@color/color_bb"
             android:textColor="@color/color_33"

@@ -16,7 +16,7 @@ open class SharedPref {
     val KEY_PRIVATE = "privateKey"
     val KEY_PWD = "password"
     val KEY_MNEMOINC = "mnemoinc"
-
+    val KEY_NAME = "name"
     private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
     companion object {
@@ -50,5 +50,10 @@ open class SharedPref {
     var mnemoinc: String
         get() = prefs.getString(KEY_MNEMOINC, "")!!
         set(value) = prefs.edit().putString(KEY_MNEMOINC, value).apply()
+
+    var name:String
+        get() = prefs.getString(KEY_NAME, "")!!
+        set(value) = prefs.edit().putString(KEY_NAME, value).apply()
+
 
 }

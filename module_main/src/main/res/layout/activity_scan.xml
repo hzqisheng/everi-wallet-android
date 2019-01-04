@@ -26,6 +26,7 @@
         app:qrcv_scanLineColor="@color/color_4d7b"
         app:qrcv_scanLineSize="1dp"
         app:qrcv_topOffset="90dp"
+        app:qrcv_isOnlyDecodeScanBoxArea="false"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_height="wrap_content"

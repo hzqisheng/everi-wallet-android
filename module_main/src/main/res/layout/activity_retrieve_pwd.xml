@@ -31,6 +31,7 @@
             android:background="@drawable/shape_line_3_bb"
             android:layout_margin="14dp"
             android:paddingStart="16dp"
+            android:inputType="textPassword"
             android:paddingEnd="12dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -48,6 +49,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginEnd="14dp"
             android:paddingStart="16dp"
+            android:inputType="textPassword"
             android:paddingEnd="12dp"
             android:hint="@string/new_pwd"
             android:textColorHint="@color/color_bb"
@@ -63,6 +65,7 @@
             android:layout_margin="14dp"
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
+            android:inputType="textPassword"
             android:hint="@string/confirm_new_pwd"
             android:textColorHint="@color/color_bb"
             android:textColor="@color/color_33"
@@ -86,7 +89,7 @@
 
 
     <TextView
-        android:id="@+id/tv_sure"
+        android:id="@+id/tvNext"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="14dp"

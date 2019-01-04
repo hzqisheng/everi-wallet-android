@@ -1,7 +1,9 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.app.Dialog
+import android.text.InputType
 import android.view.LayoutInflater
+import android.view.inputmethod.EditorInfo
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
@@ -9,11 +11,12 @@ import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_wallet_detail.*
 
 class WalletDetailActivity : SimpleActivity() {
 
-    private var mWalletName = ""
+    private var mWalletName :BaseData?=null
     private var dialog:Dialog? = null
     private var pwdDialog:Dialog? = null
 
@@ -21,10 +24,11 @@ class WalletDetailActivity : SimpleActivity() {
         get() = R.layout.activity_wallet_detail
 
     override fun initData() {
-        mWalletName = intent.getStringExtra("name")
-        tvTitle?.text = mWalletName
-        tv_name.text = mWalletName
-        layout_wallet.setOnClickListener { showDialog(getString(R.string.wallet_name), mWalletName, 0) }
+        mWalletName = intent.getSerializableExtra("data") as BaseData?
+        tvTitle?.text = mWalletName?.name
+        tv_name.text = mWalletName?.name
+        tv_sign.text = mWalletName?.publicKey
+        layout_wallet.setOnClickListener { showDialog(getString(R.string.wallet_name), mWalletName!!.name, 0) }
         tv_export.setOnClickListener { start(ExportPrivateKeyActivity::class.java)}
         tv_set_up.setOnClickListener { showSetUpDialog() }
     }
@@ -38,6 +42,7 @@ class WalletDetailActivity : SimpleActivity() {
         val tvSure = view.findViewById<TextView>(R.id.tv_sure)
         val tvTitle = view.findViewById<TextView>(R.id.tv_title)
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+        etNumber.inputType = EditorInfo.TYPE_CLASS_TEXT
         etNumber.hint = hint
         tvTitle.text = title
         tvSure.setOnClickListener {
@@ -47,8 +52,9 @@ class WalletDetailActivity : SimpleActivity() {
                 dialog!!.dismiss()
                 when(type){
                     0 -> {
-                        mWalletName = etNumber.text.toString()
-                        tv_name.text = mWalletName
+                        mWalletName!!.name = etNumber.text.toString()
+                        mWalletName!!.update(mWalletName!!.id.toLong())
+                        tv_name.text = mWalletName!!.name
                     }
                 }
 

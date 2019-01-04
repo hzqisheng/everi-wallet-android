@@ -1,12 +1,21 @@
 package com.smallcat.shenhai.mvpbase.model.bean
 
 import org.litepal.crud.DataSupport
+import java.io.Serializable
 
-data class BaseData(
-    var id:Int = 0,
-    val mnemoinc: String,
-    val password: String,
-    val privateKey: String,
-    val publicKey: String,
-    val type: String
-):DataSupport()
+//钱包
+class BaseData:DataSupport(),Serializable
+{
+    var id:Int = 0;
+    var name:String = "";
+    var mnemoinc: String = "";
+    var password: String ="";
+    var privateKey: String="";
+    var publicKey: String="";
+    var type: String="";
+
+    var isSelect:Int = 0;
+    var isCreate : Int = 0;
+
+
+}

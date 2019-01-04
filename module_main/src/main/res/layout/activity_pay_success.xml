@@ -13,27 +13,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:background="@drawable/shadow_circle"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/ic_pay_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="     交易成功"
+            android:drawableLeft="@drawable/ic_collect_success"
+            />
 
         <TextView
             android:id="@+id/tv_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="20dp"
-            android:textColor="@color/color_33"
-            android:padding="36dp"
             android:gravity="center"
-            android:drawableTop="@drawable/ic_pay_success"
-            tools:text="-0.50000 EVT(#1)"/>
+            android:text="-1.0000 EVT"
+            android:textColor="@color/white"
+            />
 
-    </FrameLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_sure"

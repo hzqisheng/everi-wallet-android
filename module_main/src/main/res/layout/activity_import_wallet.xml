@@ -36,6 +36,7 @@
         android:layout_marginEnd="14dp"
         android:background="@drawable/shape_4d_3"
         android:gravity="center"
+        android:visibility="gone"
         android:text="@string/eth_wallet"
         android:textColor="@color/white" />
 
@@ -49,5 +50,6 @@
         android:background="@drawable/shape_4d_3"
         android:gravity="center"
         android:text="@string/eos_wallet"
+        android:visibility="gone"
         android:textColor="@color/white" />
 </LinearLayout>

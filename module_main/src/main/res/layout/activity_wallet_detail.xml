@@ -18,8 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="7dp"
-        app:layout_constraintDimensionRatio="h, 4:1"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/shadow_circle"
+        app:layout_constraintDimensionRatio="h, 4:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
@@ -33,19 +35,19 @@
             android:textColor="@color/color_33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="EVT-wallet" />
+            tools:text="EVT-wallet"/>
 
         <TextView
             android:id="@+id/tv_sign"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            tools:text="EOS5fKvaUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagC" />
+            tools:text="EOS5fKvaUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagCUBt7gBagC"/>
 
         <ImageView
             android:id="@+id/imageView2"
@@ -55,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_my_more" />
+            app:srcCompat="@drawable/ic_my_more"/>
     </android.support.constraint.ConstraintLayout>
 
 

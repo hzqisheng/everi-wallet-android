@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/change"
+            android:text="@string/manage"
             android:textColor="@color/color_3137"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -137,7 +137,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
         <CheckBox
-            android:id="@+id/cb_change"
+            android:id="@+id/cb_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -145,7 +145,7 @@
             android:paddingStart="8dp"
             android:checked="true"
             android:button="@drawable/selector_pwd_use"
-            android:text="@string/only_i_can_issue"
+            android:text="@string/only_i_can_manage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view8" />
 
@@ -156,10 +156,10 @@
             android:layout_marginTop="12dp"
             android:background="@color/color_dd"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cb_change" />
+            app:layout_constraintTop_toBottomOf="@+id/cb_manage" />
 
         <CheckBox
-            android:id="@+id/cb_edit_change"
+            android:id="@+id/cb_edit_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -173,7 +173,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view9" />
 
         <TextView
-            android:id="@+id/tv_change_edit"
+            android:id="@+id/tv_manage_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="18dp"

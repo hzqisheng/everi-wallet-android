@@ -51,9 +51,10 @@
         android:paddingEnd="6dp"
         android:textColor="@color/color_3137"
         android:textSize="13sp"
+        android:text="EVT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="evt" />
+        />
 
 </android.support.constraint.ConstraintLayout>

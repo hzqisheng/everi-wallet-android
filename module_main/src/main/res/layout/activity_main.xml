@@ -41,7 +41,7 @@
 
         <RadioButton
             android:id="@+id/rb_market"
-            android:text="@string/market"
+            android:text="@string/address"
             android:gravity="center"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
@@ -59,6 +59,7 @@
             android:layout_height="60dp">
 
             <TextView
+                android:id="@+id/cent_icon"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_centerHorizontal="true"

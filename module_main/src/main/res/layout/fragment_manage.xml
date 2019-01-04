@@ -15,11 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/iv_head"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
-        android:src="@drawable/ic_my_logo"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:src="@drawable/icon_wode_logo"
         app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
                 android:layout_marginEnd="18dp"
                 android:textColor="@color/color_bb"
                 android:drawablePadding="8dp"
-                android:text="2"
+                android:text=""
                 android:gravity="center"
                 android:drawableEnd="@drawable/ic_my_more"/>
         </LinearLayout>
@@ -128,7 +128,7 @@
                 android:layout_marginEnd="18dp"
                 android:textColor="@color/color_bb"
                 android:drawablePadding="8dp"
-                android:text="2"
+                android:text=""
                 android:gravity="center"
                 android:drawableEnd="@drawable/ic_my_more"/>
         </LinearLayout>

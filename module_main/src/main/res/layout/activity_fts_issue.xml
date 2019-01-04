@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="发行量"
+            android:text="@string/circulation"
             android:textColor="@color/color_33" />
 
         <EditText
@@ -114,7 +114,6 @@
             android:layout_marginBottom="16dp"
             android:background="@null"
             android:hint="@string/enter_remarks"
-            android:inputType="number"
             android:singleLine="true"
             android:textColor="@color/color_68"
             android:textColorHint="@color/color_bb"

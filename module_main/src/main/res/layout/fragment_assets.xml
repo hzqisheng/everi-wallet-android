@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,28 +8,95 @@
     android:background="@color/white"
     tools:context=".ui.fragment.AssetsFragment">
 
-    <ImageView
-        android:id="@+id/iv_bg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/black"
-        app:layout_constraintDimensionRatio="H, 36:23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/cl_current"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/assetbackground"
+        >
+
+        <RelativeLayout
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_wallet_yellow_bg"
+            >
+
+
+            <TextView
+                android:id="@+id/tv_asset_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_icon"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/iv_icon"
+                android:textColor="@color/color_3137"
+                android:text="EVT-wallet"
+                tools:text="EVT-wallet"/>
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/icon_fukuan_evt"
+                />
+
+            <TextView
+                android:id="@+id/tv_asset_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_asset_name"
+                android:layout_below="@+id/tv_asset_name"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/iv_icon"
+                android:background="@drawable/shape_line_0_31"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:text="EVT"
+                android:textColor="@color/color_3137"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/public_asset_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_asset_type"
+                android:layout_below="@+id/tv_asset_name"
+                android:layout_marginStart="8dp"
+                android:layout_toRightOf="@+id/tv_asset_type"
+                android:drawableEnd="@drawable/ic_wallet_card"
+                android:drawablePadding="6dp"
+                android:ellipsize="end"
+                android:maxEms="25"
+                android:maxLength="25"
+                android:singleLine="true"
+                android:textColor="@color/color_3137"
+                android:textSize="12sp"
+                tools:text="ssssssssssss"
+                />
+        </RelativeLayout>
+    </FrameLayout>
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
         android:background="@drawable/shape_3137_8"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/cl_current"
         app:layout_constraintDimensionRatio="H, 11:3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_bg" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_current"/>
 
     <TextView
         android:id="@+id/tv_scan"
@@ -42,7 +110,7 @@
         app:layout_constraintEnd_toStartOf="@id/tv_pay"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"/>
 
     <TextView
         android:id="@+id/tv_pay"
@@ -50,11 +118,12 @@
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_assets_pay"
         android:text="@string/everi_pay"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@id/tv_receive"
         app:layout_constraintStart_toEndOf="@+id/tv_scan"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"/>
 
     <TextView
         android:id="@+id/tv_receive"
@@ -62,11 +131,12 @@
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_assets_receive"
         android:text="@string/collect"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@id/tv_publish"
         app:layout_constraintStart_toEndOf="@+id/tv_pay"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"/>
 
     <TextView
         android:id="@+id/tv_publish"
@@ -79,7 +149,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@id/view"
         app:layout_constraintStart_toEndOf="@+id/tv_receive"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -94,14 +164,14 @@
         app:tabTextColor="@color/color_68">
 
         <android.support.design.widget.TabItem
-            android:text="@string/my_token"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/my_token"/>
 
         <android.support.design.widget.TabItem
-            android:text="@string/my_pass_code"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/my_pass_code"/>
 
     </android.support.design.widget.TabLayout>
 
@@ -109,10 +179,10 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_cc"
         android:layout_marginTop="58dp"
+        android:background="@color/color_cc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
@@ -120,5 +190,5 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"/>
 </android.support.constraint.ConstraintLayout>

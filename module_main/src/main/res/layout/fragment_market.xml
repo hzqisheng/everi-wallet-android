@@ -1,14 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.MarketFragment">
+    android:background="@color/color_f5"
+    tools:context=".ui.activity.my.AddressManageActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:contentInsetStart="0dp"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/color_3137">
+
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/iv_back"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:src="@drawable/ic_return"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:maxLength="20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_marginEnd="8dp"
+            android:id="@+id/iv_icon"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_gravity="end"
+            android:textSize="13sp"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        android:layout_below="@+id/toolbar"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="67dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="14dp"
+            android:text="@string/search"
+            android:gravity="center"
+            android:textColor="@color/color_e4"
+            android:background="@drawable/shape_3137_4"
+            android:layout_alignParentRight="true"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="101dp"
+            android:layout_height="30dp"
+            android:text="EVT"
+            android:layout_marginStart="14dp"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="2dp"
+            android:drawableEnd="@drawable/ic_blue_choose"
+            android:background="@drawable/shape_line_3_cc"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_group"
+            android:layout_width="101dp"
+            android:layout_height="30dp"
+            android:text="@string/choose_group"
+            android:layout_marginStart="14dp"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="2dp"
+            android:layout_toRightOf="@+id/tv_type"
+            android:drawableEnd="@drawable/ic_blue_choose"
+            android:background="@drawable/shape_line_3_cc"
+            app:layout_constraintStart_toEndOf="@id/tv_type"
+            />
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_bg"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/view_bg"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
-</FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        >
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="14dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/shape_3137_4"
+            android:text="@string/add_address"
+            android:textColor="@color/color_e4"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_import"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="14dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/shape_3137_4"
+            android:text="@string/import_address"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_add" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

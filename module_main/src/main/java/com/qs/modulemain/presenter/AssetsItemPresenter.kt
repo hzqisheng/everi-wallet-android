@@ -38,7 +38,7 @@ class AssetsItemPresenter(private val mContext: Context) : BasePresenter<AssetsI
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
                     when(it.type){
-                        RxBusCenter.MY_FTS -> mView!!.loadFTsSuccess(it.msg)
+                        RxBusCenter.HOME_FTS -> mView!!.loadFTsSuccess(it.msg)
                     }
                 })
     }

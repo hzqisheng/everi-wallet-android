@@ -7,6 +7,9 @@ object WebViewApi{
      */
     fun createEVTWallet(pwd :String):String = "createEVTWallet('$pwd')"
 
+
+    fun privateToPublic(privateKey: String):String = "privateToPublic('$privateKey')"
+
     /**
      * getNFts List
      * @param publicKeys
@@ -37,4 +40,44 @@ object WebViewApi{
      */
     fun needPrivateKeyResponse(privateKey :String):String = "javascript:needPrivateKeyResponse('$privateKey')"
 
+    /**
+     * hava fungibles list
+     * @param publicKeys public key
+     */
+    fun getCreatedFungibles(publicKeys:String) = "javascript:getCreatedFungibles('$publicKeys')"
+
+    /** pushTranscation **/
+    fun pushTransaction(action:String,json:String) = "javascript:pushTransaction('$action','$json')"
+
+    /** 选择代币列表 **/
+    fun getEVTFungiblesList(publicKeys: String) = "javascript:getEVTFungiblesList('$publicKeys')"
+
+    /** 获取域列表 **/
+    fun getEVTDomainsList(publicKeys:String) = "javascript:getEVTDomainsList('$publicKeys')"
+
+    /** 二维码相关 **/
+    fun getEVTLinkQrImage(code:String,json: String,auto:String) = "javascript:getEVTLinkQrImage('$code','$json','$auto')"
+
+    /** 获取linkId **/
+    fun getUniqueLinkId() = "javascript:getUniqueLinkId()"
+    /** pushTranscation **/
+    fun pushTransaction(action:String,json:String,config:String) = "javascript:pushTransaction('$action','$json','$config')"
+
+    //解析二维码
+    fun parseEvtLink(code:String, options:String) = "javascript:parseEvtLink('$code','$options')"
+
+    //代币
+    fun getEVTFungibleBalanceList(publicKeys: String) = "javascript:getEVTFungibleBalanceList('$publicKeys')"
+
+    /** 交易记录 **/
+    fun getActions(json:String) = "javascript:getActions('$json')"
+
+    /** 交易记录 **/
+    fun getFungibleActionsByAddress(id:Int,publicKeys: String,current:Int,take:Int)= "javascript:getFungibleActionsByAddress('$id','$publicKeys','$current','$take')"
+
+    /** 解析地址 **/
+    fun parseEvtLink(link:String) ="javascript:parseEvtLink('$link')"
+
+    /** 获取手续费 **/
+    fun getEstimatedChargeForTransaction(code:String,json:String,json1: String) = "javascript:getEstimatedChargeForTransaction('$code','$json','$json1')"
 }

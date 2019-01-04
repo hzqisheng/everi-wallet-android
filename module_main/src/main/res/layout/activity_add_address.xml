@@ -63,6 +63,7 @@
                 android:gravity="center"
                 android:textColor="@drawable/selector_check_type_text_color"
                 android:background="@drawable/selector_check_type_bg"
+                android:visibility="gone"
                 android:button="@null"/>
 
             <RadioButton
@@ -71,6 +72,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="8dp"
                 android:text="EOS"
+                android:visibility="gone"
                 android:gravity="center"
                 android:textColor="@drawable/selector_check_type_text_color"
                 android:background="@drawable/selector_check_type_bg"
@@ -114,7 +116,7 @@
                 android:background="@null"/>
 
             <ImageView
-                android:id="@+id/iv_scan"
+                android:id="@+id/ivScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"

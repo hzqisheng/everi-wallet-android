@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,12 +8,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_img"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="18dp"
-        android:src="@drawable/ic_pevt"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/tv_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_name" />
@@ -34,6 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
+        android:maxLines="1"
+        android:maxEms="20"
+        android:maxLength="20"
+        android:ellipsize="end"
         android:textColor="@color/color_68"
         app:layout_constraintStart_toEndOf="@+id/iv_img"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
