@@ -51,6 +51,13 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         }
         iv_add_import.setOnClickListener { start(ImportWalletActivity::class.java) }
 
+        iv_more.setOnClickListener {
+            Intent(mContext, WalletDetailActivity::class.java).apply {
+                putExtra("data", dataList[0])
+                mContext.startActivity(this)
+            }
+        }
+
         adapterNow.setOnItemClickListener { adapter, view, position ->
             if (type == 1) {
 

@@ -1,6 +1,7 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.app.Dialog
+import android.content.Intent
 import android.text.Html
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -17,6 +18,7 @@ class ExportMnemonicActivity : SimpleActivity() {
     /** 当前传递过来的钱包 **/
     private lateinit var mWalletBean: BaseData
     private var dialog:Dialog? = null
+    private var isCreate :Boolean = false
 
     override val layoutId: Int
         get() = R.layout.activity_export_mnemonic
@@ -24,8 +26,29 @@ class ExportMnemonicActivity : SimpleActivity() {
     override fun initData() {
         mWalletBean = intent.getSerializableExtra("data") as BaseData
 
+        if (intent.hasExtra("isCreate")){
+            isCreate = intent.getBooleanExtra("isCreate",false);
+        }
+
         tvTitle?.text = getString(R.string.export_mnemonic_code)
-        tv_sure.setOnClickListener { showDialog() }
+        tv_sure.setOnClickListener {
+            if(isCreate ){
+                var intent = Intent(this,ExportMnemonic2Activity::class.java).apply{
+                    putExtra("data",mWalletBean.mnemoinc)
+                    startActivity(this)
+                    finish()
+                }
+            }else {
+
+                showDialog()
+            }
+
+        }
+
+        tv_exit.setOnClickListener {
+            finish()
+        }
+
         val str = getString(R.string.export_mnemonic)
         val s = "<font color=\"#3F7DEE\">${getString(R.string.import_note)}</font>$str"
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -39,7 +62,7 @@ class ExportMnemonicActivity : SimpleActivity() {
         if (dialog == null) {
             dialog = Dialog(mContext, R.style.CustomDialog)
         }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_max_service_fee, null)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
         val etNumber = view.findViewById<EditText>(R.id.et_number)
         val tvSure = view.findViewById<TextView>(R.id.tv_sure)
         val tvTitle = view.findViewById<TextView>(R.id.tv_title)
@@ -51,15 +74,17 @@ class ExportMnemonicActivity : SimpleActivity() {
                 getString(R.string.please_input_pwd).toast()
             }else{
                 if(mWalletBean.password.equals(etNumber.text.toString())){
-                    addClipboard(this,mWalletBean.mnemoinc)
-                    getString(R.string.copy_success).toast()
+                    var intent = Intent(this,ExportMnemonic2Activity::class.java).apply{
+                        putExtra("data",mWalletBean.mnemoinc)
+                        startActivity(this)
+                    }
                     finish()
                 }else{
                     getString(R.string.password_error).toast()
 
                 }
                 dialog!!.dismiss()
-                start(ExportMnemonic2Activity::class.java)
+
             }
         }
         tvCancel.setOnClickListener{ dialog!!.dismiss() }

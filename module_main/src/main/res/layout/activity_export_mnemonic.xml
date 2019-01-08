@@ -44,4 +44,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
 
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center"
+        android:autoLink="all"
+        android:text="@string/zanbubeifen"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sure" />
+
 </android.support.constraint.ConstraintLayout>

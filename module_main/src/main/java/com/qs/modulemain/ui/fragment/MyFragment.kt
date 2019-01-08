@@ -83,7 +83,8 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         tvSure.setOnClickListener {
 
             if(!mContext.sharedPref.password.equals(etNumber.text.toString())){
-                getString(R.string.password_not_equals)
+                getString(R.string.password_error).toast()
+                pwdDialog!!.dismiss()
                 return@setOnClickListener
             }
 

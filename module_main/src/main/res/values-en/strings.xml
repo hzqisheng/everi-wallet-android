@@ -196,6 +196,7 @@
     <string name="select_pay">Please choose currency for payment</string>
     <string name="collect_code">Collect Code</string>
     <string name="scan_collect">Scan Collect</string>
+    <string name="zanbubeifen">No Backup</string>
 
     <string-array name="add_power">
         <item>Only I can distribute, the permissions can not be changed</item>

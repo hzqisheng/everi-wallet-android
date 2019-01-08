@@ -73,8 +73,16 @@ class WalletAddIdActivity : SimpleActivity() {
         mContext.sharedPref.mnemoinc = baseBean.mnemoinc
         getString(R.string.import_success).toast()
         finish()
+
         var intent = Intent(mContext, MainActivity::class.java)
+        intent.putExtra("data",baseBean)
+        intent.putExtra("isCreate",true)
         startActivity(intent)
+
+        var intent_1 = Intent(mContext, ExportMnemonicActivity::class.java)
+        intent_1.putExtra("data",baseBean)
+        intent_1.putExtra("isCreate",true)
+        startActivity(intent_1)
     }
 
 }
