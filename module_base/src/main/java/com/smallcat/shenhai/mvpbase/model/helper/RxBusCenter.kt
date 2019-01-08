@@ -57,4 +57,7 @@ object RxBusCenter{
 
     //解析扫码收款地址
     const val SCAN_QRLINKE = 0x2019
+
+    //获取币的详细信息
+    const val SYMBOL_DETAIL = 0x2020
 }

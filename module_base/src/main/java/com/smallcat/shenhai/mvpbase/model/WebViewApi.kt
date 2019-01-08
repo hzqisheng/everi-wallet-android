@@ -58,6 +58,9 @@ object WebViewApi{
     /** 二维码相关 **/
     fun getEVTLinkQrImage(code:String,json: String,auto:String) = "javascript:getEVTLinkQrImage('$code','$json','$auto')"
 
+    /** 停止二维码生成 **/
+    fun stopEVTLinkQrImageReload() = "javascript:stopEVTLinkQrImageReload()"
+
     /** 获取linkId **/
     fun getUniqueLinkId() = "javascript:getUniqueLinkId()"
     /** pushTranscation **/
@@ -80,4 +83,7 @@ object WebViewApi{
 
     /** 获取手续费 **/
     fun getEstimatedChargeForTransaction(code:String,json:String,json1: String) = "javascript:getEstimatedChargeForTransaction('$code','$json','$json1')"
+
+    /** 获取币的详细信息 **/
+    fun getFungibleSymbolDetail(sybid:Long) = "javascript:getFungibleSymbolDetail($sybid)";
 }

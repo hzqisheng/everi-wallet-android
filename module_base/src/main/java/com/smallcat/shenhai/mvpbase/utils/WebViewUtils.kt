@@ -166,6 +166,12 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(handleResult(s),RxBusCenter.PRIVATE_TO_PUBLIC))
     }
 
+    @JavascriptInterface
+    fun getFungibleSymbolDetailCallback(s:String){
+        ("privateToPublicCallback"+s).logE()
+        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.SYMBOL_DETAIL))
+    }
+
     fun handleResult(s: String): String {
         var resultBean = s.toResultBean();
         if(resultBean.code == 0){

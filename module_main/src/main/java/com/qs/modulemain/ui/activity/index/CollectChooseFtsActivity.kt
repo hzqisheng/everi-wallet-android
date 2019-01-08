@@ -11,6 +11,7 @@ import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.presenter.ChooseFTsPresenter
 import com.qs.modulemain.ui.adapter.ChooseFTSAdapter
+import com.qs.modulemain.ui.adapter.CollChooseFTSAdapter
 import com.qs.modulemain.view.ChooseFTsView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_collect_choose_fts.*
 
 class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView {
 
-    private lateinit var chooseAdapter: ChooseFTSAdapter;
+    private lateinit var chooseAdapter: CollChooseFTSAdapter;
     private lateinit var dataList:ArrayList<ChooseGetBean>
     override fun initPresenter() {
         mPresenter = ChooseFTsPresenter(mContext)
@@ -33,7 +34,7 @@ class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsVi
     override fun initData() {
         tvTitle?.text = getString(R.string.choose_fts)
         dataList = ArrayList()
-        chooseAdapter = ChooseFTSAdapter(dataList);
+        chooseAdapter = CollChooseFTSAdapter(dataList);
         rv_list.adapter = chooseAdapter
 
         chooseAdapter.onItemClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {

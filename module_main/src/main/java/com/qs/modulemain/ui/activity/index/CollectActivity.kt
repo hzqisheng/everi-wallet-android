@@ -84,14 +84,13 @@ class CollectActivity : SimpleActivity() {
         var address = PayActivity.Address()
         address.address = sharedPref.publicKey
         qrcode_type = RxBusCenter.QRCODE_RECE
-        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("payeeCode", Gson().toJson(address),"{\"autoReload\": false}")){}
+        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("payeeCode", Gson().toJson(address),"{\"autoReload\": true}")){}
 
     }
 
     fun onDataResult(string: String){
         var collectBean = Gson().fromJson<CollectBean>(string,CollectBean::class.java)
         iv_qr_code.setImageBitmap(Base64Utils.base64ToBitmap(collectBean.dataUrl))
-        qrcode_type = -1
 //        mHandler.sendEmptyMessageDelayed(0,5000)
     }
 
@@ -100,6 +99,10 @@ class CollectActivity : SimpleActivity() {
 //        mHandler.removeMessages(0)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()){}
+    }
 
 
 

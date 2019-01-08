@@ -42,7 +42,7 @@
             android:textColor="@color/color_33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/you_need_pay_currency" />
+            android:text="@string/you_need_collect_currency" />
 
         <TextView
             android:id="@+id/textView6"

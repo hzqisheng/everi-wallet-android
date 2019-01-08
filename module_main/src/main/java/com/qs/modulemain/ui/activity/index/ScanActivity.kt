@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterConfig
+import com.qs.modulemain.bean.ChooseFTSBean
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.ReceScanBean
 import com.qs.modulemain.bean.ScanResultLinkeBean
@@ -34,6 +35,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_scan.*
+import org.json.JSONArray
+import org.json.JSONObject
 import java.text.DecimalFormat
 
 @Route(path = ARouterConfig.ASSETS_SCAN)
@@ -105,31 +108,37 @@ class ScanActivity : SimpleActivity() {
                             RxBusCenter.SCAN_QRLINKE -> onLinkeResult(it.msg)
                         }
                     })
+
+            addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe { it ->
+                        when(it.type){
+                            RxBusCenter.SYMBOL_DETAIL -> onFTSDetail(it.msg)
+                        }
+                    })
         }
 
 
 
         zxingview.setDelegate(object :QRCodeView.Delegate{
             override fun onScanQRCodeSuccess(result: String?) {
+                scanResult = result!!
                 if(scanType == 0) {
                     var intent = Intent()
                     intent.putExtra("result", result)
                     setResult(resultCode, intent)
                     finish()
                 }else if(scanType == RECE){
-
-                    scanResult = result!!
                     qrcode_type = RxBusCenter.SCAN_QRLINKE
                     mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
 
 
                 }else if(scanType == 1000){
-                    scanResult = result!!
                     qrcode_type = RxBusCenter.SCAN_QRLINKE
                     mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
 
                 }else if(scanType == 10001){
-                    scanResult = result!!
                     qrcode_type = RxBusCenter.SCAN_QRLINKE
                     mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
                 }
@@ -158,6 +167,18 @@ class ScanActivity : SimpleActivity() {
 
     }
 
+    private fun onFTSDetail(msg: String) {
+        "onFTSDetail".logE()
+        if(msg.isNullOrBlank())return
+       var bean : ChooseGetBean = Gson().fromJson(msg,ChooseGetBean::class.java)
+        msg.logE()
+        intent = Intent(this,ScanCollectActivity::class.java)
+        intent.putExtra("data",bean);
+        intent.putExtra("scanResult",scanResult)
+        startActivity(intent)
+
+    }
+
     private fun RecvieSuccess(msg: String) {
 
         var num = intent.getStringExtra("num")
@@ -176,30 +197,57 @@ class ScanActivity : SimpleActivity() {
     private var scanResult:String = ""
     private fun onLinkeResult(msg: String) {
         msg.logE()
-
+        var address =""
         var linkBean = Gson().fromJson(msg, ScanResultLinkeBean::class.java)
 
+        if(linkBean.publicKeys.size > 0){
+            address = linkBean.publicKeys[0]
+        }else{
+            for (segment in linkBean.segments) {
+                if(segment!!.typeKey == 95){
+                    address = segment!!.value.toString();
+                }
+            }
+        }
         if(scanType == 1000){
             var intent2 = Intent()
-            intent2!!.putExtra("result", linkBean.publicKeys[0])
+            intent2!!.putExtra("result", address)
             setResult(resultCode, intent2)
             finish()
             return
         }else if (scanType == 10001){
             if(linkBean.flag == 5){
                 //收款
-                var intent = Intent(this,PayActivity::class.java)
-                startActivity(intent)
+//                var intent = Intent(this,PayActivity::class.java)
+//                startActivity(intent)
+
+
+
+                var sybid:Long = 0
+
+                var  jsonObj = JSONObject(msg)
+                var jsonAry = jsonObj.getJSONArray("segments")
+
+                for ( i in 0..jsonAry.length() -1){
+                    var segment = jsonAry.getJSONObject(i);
+                    if(segment.getInt("typeKey") == 44){
+                        sybid = segment.getLong("value")
+                        break
+                    }
+                }
+
+                mWebView.evaluateJavascript(WebViewApi.getFungibleSymbolDetail(sybid)){}
+
+
             }
             else if (linkBean.flag == 17)
             {
-//                var intent = Intent(mContext,ScanPayActivity::class.java)
-//                intent.putExtra("maxMoney", AssetsItemFragment.firstBean !!.sym.split(" ")[0])
-//                intent.putExtra("data", AssetsItemFragment.firstBean !!)
-//                startActivity(intent)
-
-                intent = Intent(this,ScanCollectActivity::class.java)
+                var intent = Intent(mContext,ScanPayActivity::class.java)
+                intent.putExtra("maxMoney", AssetsItemFragment.firstBean !!.sym.split(" ")[0])
+                intent.putExtra("data", AssetsItemFragment.firstBean !!)
+                intent.putExtra("address",address)
                 startActivity(intent)
+
 
             }
             finish()

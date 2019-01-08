@@ -116,6 +116,7 @@
     <string name="now_version">当前版本</string>
     <string name="check_version">检测版本</string>
     <string name="you_need_pay_currency">您需要付款的币种为：</string>
+    <string name="you_need_collect_currency">您需要收款的币种为：</string>
     <string name="sum_of_money">金额</string>
     <string name="please_input_money">请输入金额</string>
     <string name="please_choose_need_money">请选择需要收款的金额</string>

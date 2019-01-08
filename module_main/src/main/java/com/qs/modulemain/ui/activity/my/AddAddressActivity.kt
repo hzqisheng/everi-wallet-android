@@ -27,6 +27,7 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
 
         ivScan.setOnClickListener {
             var intent = Intent(this@AddAddressActivity, ScanActivity::class.java)
+            intent.putExtra("ScanType",1000)
             startActivityForResult(intent,1)
         }
 

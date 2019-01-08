@@ -1,5 +1,7 @@
 package com.qs.modulemain.bean;
 
+import java.util.List;
+
 /**
  * 作者： MirsFang on 2018/12/20 22:58
  * 邮箱： mirsfang@163.com
@@ -72,6 +74,28 @@ public class RecordDetailBean {
         this.timestamp = timestamp;
     }
 
+    public static class LinkBean{
+
+        /**
+         * keys : ["EVT8Um4idufDFtyk6z3HLg3vKNyJyYTCiTstWDshVsumGZvXyQdb9"]
+         * header : 5
+         * segments : [{"key":42,"value":1546766728},{"key":43,"value":10000},{"key":44,"value":655312434},{"key":156,"value":"fd94ac14e8ae71ae56fdfbc01f0de5c8"}]
+         * signatures : ["SIG_K1_Kay6rcUvC7auuF9vfyxdgAFUSFXMm9vtKLnVm2txaR3vdeVndDMDDKQeuCwYCRgmor4ou6fJ2V6JVVra2GMsw5DZLREPn9"]
+         */
+
+        private List<String> keys;
+
+
+
+        public List<String> getKeys() {
+            return keys;
+        }
+
+        public void setKeys(List<String> keys) {
+            this.keys = keys;
+        }
+    }
+
     public static class DataBean {
         /**
          * to : EVT6Jkvov6UMEnB3n1bELKtdg4FCUUAHdC8V3DWsuaAm8wuA9LJFY
@@ -84,6 +108,8 @@ public class RecordDetailBean {
         private String from;
         private String memo;
         private String number;
+        private String payee;
+        private LinkBean link;
 
         public String getTo() {
             return to;
@@ -115,6 +141,22 @@ public class RecordDetailBean {
 
         public void setNumber(String number) {
             this.number = number;
+        }
+
+        public String getPayee() {
+            return payee;
+        }
+
+        public void setPayee(String payee) {
+            this.payee = payee;
+        }
+
+        public LinkBean getLink() {
+            return link;
+        }
+
+        public void setLink(LinkBean link) {
+            this.link = link;
         }
     }
 }

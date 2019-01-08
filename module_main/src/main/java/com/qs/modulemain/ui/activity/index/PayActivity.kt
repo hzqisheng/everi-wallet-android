@@ -35,7 +35,7 @@ import kotlinx.android.synthetic.main.activity_pay.*
 
 /** 付款 **/
 class PayActivity : BaseActivity<PayPresenter>(), PayView {
-    private lateinit var mLinkId:String;
+    private var mLinkId:String ?= null;
     private var pwdDialog:Dialog ?= null;
     private var maxMoney:Float = 0f
     private var bean : ChooseGetBean? = null
@@ -107,7 +107,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     private fun onQrData(msg: String) {
         var collectBean = Gson().fromJson<CollectBean>(msg, CollectBean::class.java)
         iv_qr_code.setImageBitmap(Base64Utils.base64ToBitmap(collectBean.dataUrl))
-        qrcode_type = -1
+//        qrcode_type = -1
     }
 
     private fun onLinkResult(msg: String) {
@@ -120,9 +120,24 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         payBean.linkId = mLinkId
         payBean.maxAmount = tv_money.text.toString().toFloat() * 100000
         payBean.symbol = bean!!.sym.split("#")[1].toInt()
-
         qrcode_type = RxBusCenter.QRCODE_PAL
-        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean),"{\"autoReload\": false}")){}
+        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean),"{\"autoReload\": true}")){}
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if( mLinkId.isNullOrBlank())return
+
+        var payBean = PayBean()
+        payBean.keyProvider = listOf(sharedPref.privateKey)
+        payBean.linkId = mLinkId
+        payBean.maxAmount = tv_money.text.toString().toFloat() * 100000
+        payBean.symbol = bean!!.sym.split("#")[1].toInt()
+        qrcode_type = RxBusCenter.QRCODE_PAL
+        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean),"{\"autoReload\": true}")){}
+
 
     }
 
@@ -187,6 +202,16 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()){}
+        qrcode_type = -1;
+
+    }
 
 
 }

@@ -64,6 +64,10 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
             tv_money.text = mFtsBean!!.asset.split(" ")[0]
         }
 
+        if(intent.hasExtra("address")){
+            tv_address.text = intent.getStringExtra("address")
+        }
+
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
@@ -81,6 +85,7 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
 
         iv_scan.setOnClickListener {
             var intent = Intent(this@ScanPayActivity,ScanActivity::class.java)
+            intent.putExtra("ScanType",1000)
             startActivityForResult(intent,1)
         }
 
@@ -125,6 +130,8 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
         "1111111111".logE()
         msg.logE()
         var payResult = Gson().fromJson<PayResultBean>(msg,PayResultBean::class.java)
+
+        if(payResult == null || payResult.segments == null)return
 
         for (segment in payResult.segments) {
             if(segment.typeKey == 95){

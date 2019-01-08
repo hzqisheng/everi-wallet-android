@@ -82,6 +82,11 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
         tvSure.setOnClickListener {
 
+            if(!mContext.sharedPref.password.equals(etNumber.text.toString())){
+                getString(R.string.password_not_equals)
+                return@setOnClickListener
+            }
+
             mContext.sharedPref.publicKey = ""
             mContext.sharedPref.privateKey = ""
             mContext.sharedPref.password = ""
