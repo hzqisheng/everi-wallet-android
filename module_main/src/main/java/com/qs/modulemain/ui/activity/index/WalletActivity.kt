@@ -14,11 +14,8 @@ import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_wallet.*
-import kotlinx.android.synthetic.main.fragment_assets.*
 import org.litepal.crud.DataSupport
 import android.content.ContentValues
-import android.media.Image
-import android.widget.ImageView
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 
 
@@ -42,14 +39,15 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         nowList.addAll(DataSupport.where("isCreate = ?", "0").find(BaseData::class.java))
         adapterNow = WalletAdapter(nowList)
 
-        var dataList: List<BaseData> = updateShow()
+        val dataList: List<BaseData> = updateShow()
 
         iv_add_now.setOnClickListener {
-            var intent = Intent(this@WalletActivity,EditIdWalletActivity::class.java)
-            intent.putExtra("data",dataList[0])
+            val intent = Intent(this@WalletActivity, EditIdWalletActivity::class.java)
+            intent.putExtra("data", dataList[0])
             startActivity(intent)
         }
         iv_add_import.setOnClickListener { start(ImportWalletActivity::class.java) }
+        iv_more.setOnClickListener {  }
 
         iv_more.setOnClickListener {
             Intent(mContext, WalletDetailActivity::class.java).apply {
@@ -61,17 +59,15 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         adapterNow.setOnItemClickListener { adapter, view, position ->
             if (type == 1) {
 
-                var baseBean = nowList[position]
-
+                val baseBean = nowList[position]
 
                 val values = ContentValues()
-                values.put("isSelect", 0);
-                DataSupport.updateAll(BaseData::class.java,values,"isSelect = ?", "1")
+                values.put("isSelect", 0)
+                DataSupport.updateAll(BaseData::class.java, values, "isSelect = ?", "1")
 
                 baseBean.isSelect = 1
                 baseBean.save()
-
-               var datas =  DataSupport.findAll(BaseData::class.java)
+                var datas = DataSupport.findAll(BaseData::class.java)
 
                 updateShow()
 
@@ -80,6 +76,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
                 sharedPref.mnemoinc = nowList[position].mnemoinc
                 sharedPref.password = nowList[position].password
                 sharedPref.name = nowList[position].name
+                sharedPref.isFinger = nowList[position].isFinger
                 "Switch Success!".toast()
                 finish()
             }
@@ -89,27 +86,26 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
     }
 
     private fun updateShow(): List<BaseData> {
-        var dataList: List<BaseData> = DataSupport.where("isCreate == 1").find(BaseData::class.java);
-        if (dataList.size > 0) {
-            if(dataList[dataList.size - 1].name!=null && !dataList[dataList.size - 1].name.isEmpty())
-            tv_name.text = dataList[dataList.size - 1].name
+        val dataList: List<BaseData> = DataSupport.where("isCreate == 1").find(BaseData::class.java)
+        if (dataList.isNotEmpty()) {
+            if (dataList[dataList.size - 1].name.isNotEmpty())
+                tv_name.text = dataList[dataList.size - 1].name
             public_key.text = dataList[dataList.size - 1].publicKey
             tv_type.text = dataList[dataList.size - 1].type
 
             if (dataList[dataList.size - 1].isSelect == 1) {
-                findViewById<View>(R.id.iv_bg).background = getDrawable(R.drawable.ic_wallet_yellow_bg)
+                iv_bg.setImageResource(mContext.getResourceColor(R.color.transparent))
+                iv_bg.setBackgroundResource(R.drawable.ic_wallet_yellow_bg)
             } else {
-                //R.drawable.shape_round_wallet_bg
-                findViewById<View>(R.id.iv_bg).setBackgroundColor(getResourceColor(R.color.transparent))
-                findViewById<ImageView>(R.id.iv_bg).setImageDrawable(getDrawable(R.drawable.shape_round_wallet_bg))
+                iv_bg.setBackgroundColor(mContext.getResourceColor(R.color.transparent))
+                iv_bg.setImageResource(R.drawable.shape_round_wallet_bg)
             }
-            findViewById<View>(R.id.iv_bg).setOnClickListener {
-                var baseBean = dataList[dataList.size - 1]
-
+            iv_bg.setOnClickListener {
+                val baseBean = dataList[dataList.size - 1]
 
                 val values = ContentValues()
-                values.put("isSelect", 0);
-                DataSupport.updateAll(BaseData::class.java,values,"isSelect = ?", "1")
+                values.put("isSelect", 0)
+                DataSupport.updateAll(BaseData::class.java, values, "isSelect = ?", "1")
 
                 baseBean.isSelect = 1
                 baseBean.save()

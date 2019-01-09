@@ -173,7 +173,7 @@ private class WebViewCallBack : Any() {
     }
 
     fun handleResult(s: String): String {
-        var resultBean = s.toResultBean();
+        val resultBean = s.toResultBean()
         if(resultBean.code == 0){
             resultBean.message.toast()
             return ""

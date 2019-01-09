@@ -27,7 +27,7 @@ class ExportMnemonicActivity : SimpleActivity() {
         mWalletBean = intent.getSerializableExtra("data") as BaseData
 
         if (intent.hasExtra("isCreate")){
-            isCreate = intent.getBooleanExtra("isCreate",false);
+            isCreate = intent.getBooleanExtra("isCreate",false)
         }
 
         tvTitle?.text = getString(R.string.export_mnemonic_code)

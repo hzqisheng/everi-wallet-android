@@ -12,47 +12,47 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static int qrcv_animTime = 0x7f0401a8;
-        public static int qrcv_barCodeTipText = 0x7f0401a9;
-        public static int qrcv_barcodeRectHeight = 0x7f0401aa;
-        public static int qrcv_borderColor = 0x7f0401ab;
-        public static int qrcv_borderSize = 0x7f0401ac;
-        public static int qrcv_cornerColor = 0x7f0401ad;
-        public static int qrcv_cornerDisplayType = 0x7f0401ae;
-        public static int qrcv_cornerLength = 0x7f0401af;
-        public static int qrcv_cornerSize = 0x7f0401b0;
-        public static int qrcv_customGridScanLineDrawable = 0x7f0401b1;
-        public static int qrcv_customScanLineDrawable = 0x7f0401b2;
-        public static int qrcv_isAutoZoom = 0x7f0401b3;
-        public static int qrcv_isBarcode = 0x7f0401b4;
-        public static int qrcv_isOnlyDecodeScanBoxArea = 0x7f0401b5;
-        public static int qrcv_isScanLineReverse = 0x7f0401b6;
-        public static int qrcv_isShowDefaultGridScanLineDrawable = 0x7f0401b7;
-        public static int qrcv_isShowDefaultScanLineDrawable = 0x7f0401b8;
-        public static int qrcv_isShowLocationPoint = 0x7f0401b9;
-        public static int qrcv_isShowTipBackground = 0x7f0401ba;
-        public static int qrcv_isShowTipTextAsSingleLine = 0x7f0401bb;
-        public static int qrcv_isTipTextBelowRect = 0x7f0401bc;
-        public static int qrcv_maskColor = 0x7f0401bd;
-        public static int qrcv_qrCodeTipText = 0x7f0401be;
-        public static int qrcv_rectWidth = 0x7f0401bf;
-        public static int qrcv_scanLineColor = 0x7f0401c0;
-        public static int qrcv_scanLineMargin = 0x7f0401c1;
-        public static int qrcv_scanLineSize = 0x7f0401c2;
-        public static int qrcv_tipBackgroundColor = 0x7f0401c3;
-        public static int qrcv_tipTextColor = 0x7f0401c4;
-        public static int qrcv_tipTextMargin = 0x7f0401c5;
-        public static int qrcv_tipTextSize = 0x7f0401c6;
-        public static int qrcv_toolbarHeight = 0x7f0401c7;
-        public static int qrcv_topOffset = 0x7f0401c8;
-        public static int qrcv_verticalBias = 0x7f0401c9;
+        public static int qrcv_animTime = 0x7f0401b8;
+        public static int qrcv_barCodeTipText = 0x7f0401b9;
+        public static int qrcv_barcodeRectHeight = 0x7f0401ba;
+        public static int qrcv_borderColor = 0x7f0401bb;
+        public static int qrcv_borderSize = 0x7f0401bc;
+        public static int qrcv_cornerColor = 0x7f0401bd;
+        public static int qrcv_cornerDisplayType = 0x7f0401be;
+        public static int qrcv_cornerLength = 0x7f0401bf;
+        public static int qrcv_cornerSize = 0x7f0401c0;
+        public static int qrcv_customGridScanLineDrawable = 0x7f0401c1;
+        public static int qrcv_customScanLineDrawable = 0x7f0401c2;
+        public static int qrcv_isAutoZoom = 0x7f0401c3;
+        public static int qrcv_isBarcode = 0x7f0401c4;
+        public static int qrcv_isOnlyDecodeScanBoxArea = 0x7f0401c5;
+        public static int qrcv_isScanLineReverse = 0x7f0401c6;
+        public static int qrcv_isShowDefaultGridScanLineDrawable = 0x7f0401c7;
+        public static int qrcv_isShowDefaultScanLineDrawable = 0x7f0401c8;
+        public static int qrcv_isShowLocationPoint = 0x7f0401c9;
+        public static int qrcv_isShowTipBackground = 0x7f0401ca;
+        public static int qrcv_isShowTipTextAsSingleLine = 0x7f0401cb;
+        public static int qrcv_isTipTextBelowRect = 0x7f0401cc;
+        public static int qrcv_maskColor = 0x7f0401cd;
+        public static int qrcv_qrCodeTipText = 0x7f0401ce;
+        public static int qrcv_rectWidth = 0x7f0401cf;
+        public static int qrcv_scanLineColor = 0x7f0401d0;
+        public static int qrcv_scanLineMargin = 0x7f0401d1;
+        public static int qrcv_scanLineSize = 0x7f0401d2;
+        public static int qrcv_tipBackgroundColor = 0x7f0401d3;
+        public static int qrcv_tipTextColor = 0x7f0401d4;
+        public static int qrcv_tipTextMargin = 0x7f0401d5;
+        public static int qrcv_tipTextSize = 0x7f0401d6;
+        public static int qrcv_toolbarHeight = 0x7f0401d7;
+        public static int qrcv_topOffset = 0x7f0401d8;
+        public static int qrcv_verticalBias = 0x7f0401d9;
     }
     public static final class id {
         private id() {}
 
-        public static int bgaqrcode_camera_preview = 0x7f0c0023;
-        public static int center = 0x7f0c002b;
-        public static int inside = 0x7f0c0065;
+        public static int bgaqrcode_camera_preview = 0x7f0c0026;
+        public static int center = 0x7f0c0032;
+        public static int inside = 0x7f0c0072;
     }
     public static final class mipmap {
         private mipmap() {}
@@ -63,7 +63,7 @@ public final class R {
     public static final class styleable {
         private styleable() {}
 
-        public static int[] QRCodeView = { 0x7f0401a8, 0x7f0401a9, 0x7f0401aa, 0x7f0401ab, 0x7f0401ac, 0x7f0401ad, 0x7f0401ae, 0x7f0401af, 0x7f0401b0, 0x7f0401b1, 0x7f0401b2, 0x7f0401b3, 0x7f0401b4, 0x7f0401b5, 0x7f0401b6, 0x7f0401b7, 0x7f0401b8, 0x7f0401b9, 0x7f0401ba, 0x7f0401bb, 0x7f0401bc, 0x7f0401bd, 0x7f0401be, 0x7f0401bf, 0x7f0401c0, 0x7f0401c1, 0x7f0401c2, 0x7f0401c3, 0x7f0401c4, 0x7f0401c5, 0x7f0401c6, 0x7f0401c7, 0x7f0401c8, 0x7f0401c9 };
+        public static int[] QRCodeView = { 0x7f0401b8, 0x7f0401b9, 0x7f0401ba, 0x7f0401bb, 0x7f0401bc, 0x7f0401bd, 0x7f0401be, 0x7f0401bf, 0x7f0401c0, 0x7f0401c1, 0x7f0401c2, 0x7f0401c3, 0x7f0401c4, 0x7f0401c5, 0x7f0401c6, 0x7f0401c7, 0x7f0401c8, 0x7f0401c9, 0x7f0401ca, 0x7f0401cb, 0x7f0401cc, 0x7f0401cd, 0x7f0401ce, 0x7f0401cf, 0x7f0401d0, 0x7f0401d1, 0x7f0401d2, 0x7f0401d3, 0x7f0401d4, 0x7f0401d5, 0x7f0401d6, 0x7f0401d7, 0x7f0401d8, 0x7f0401d9 };
         public static int QRCodeView_qrcv_animTime = 0;
         public static int QRCodeView_qrcv_barCodeTipText = 1;
         public static int QRCodeView_qrcv_barcodeRectHeight = 2;

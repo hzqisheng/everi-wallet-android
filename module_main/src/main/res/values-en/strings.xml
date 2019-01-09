@@ -197,10 +197,15 @@
     <string name="collect_code">Collect Code</string>
     <string name="scan_collect">Scan Collect</string>
     <string name="zanbubeifen">No Backup</string>
+    <string name="transaction_record">Transaction Record</string>
+    <string name="start_touch_id_unlock">Start Touch ID Unlock</string>
+    <string name="input_password">USE PASSWORD</string>
+    <string name="please_check_finger">Validation of your Touch ID</string>
 
     <string-array name="add_power">
         <item>Only I can distribute, the permissions can not be changed</item>
         <item>Only I can distribute, and later I can modify the permissions</item>
     </string-array>
+    <string name="Fingerprint_authentication_failed_please_try_again">指纹认证失败，请再试一次</string>
 
 </resources>

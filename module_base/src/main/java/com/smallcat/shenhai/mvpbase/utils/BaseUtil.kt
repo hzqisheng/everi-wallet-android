@@ -53,7 +53,7 @@ fun getVersionName(context: Context): String? {
 /**
  * 打电话
  */
-fun Call(phone: String, mContext: Context) {
+fun callPhone(phone: String, mContext: Context) {
     LogUtil.e(phone)
     val intent = Intent(Intent.ACTION_DIAL)
     val data = Uri.parse("tel:$phone")
@@ -153,5 +153,5 @@ fun addClipboard(context:Context,content:String){
     // 创建普通字符型ClipData
     val mClipData = ClipData.newPlainText("Label", content)
     // 将ClipData内容放到系统剪贴板里。
-    cm.setPrimaryClip(mClipData)
+    cm.primaryClip = mClipData
 }

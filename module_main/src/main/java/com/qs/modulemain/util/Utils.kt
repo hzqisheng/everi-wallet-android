@@ -2,10 +2,15 @@ package com.qs.modulemain.util
 
 import android.content.Context
 import android.support.design.widget.TabLayout
+import android.support.v4.app.FragmentManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.luck.picture.lib.tools.ScreenUtils.dip2px
-
+import com.qs.modulemain.ui.activity.index.ExportPrivateKeyActivity
+import com.qs.modulemain.ui.fragment.FingerprintDialogFragment
+import com.qs.modulemain.ui.fragment.PasswordDialogFragment
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
+import com.smallcat.shenhai.mvpbase.extension.start
 
 
 fun reflex(tabLayout: TabLayout) {
@@ -95,4 +100,16 @@ fun listToString(list: List<String>?): String? {
         result.append(string)
     }
     return result.toString()
+}
+
+fun confirmPassword(isFinger: Int, manager: FragmentManager, mCallBack: FingerSuccessCallback) {
+    if (isFinger == 1) {
+        val fragment = FingerprintDialogFragment()
+        fragment.setCallback(mCallBack)
+        fragment.show(manager, "fingerprint")
+    } else {
+        val fragment = PasswordDialogFragment()
+        fragment.setCallback(mCallBack)
+        fragment.show(manager, "password")
+    }
 }

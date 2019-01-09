@@ -37,13 +37,12 @@ class AssetsItemAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<Ch
 
         val bg = viewHolder.getView<ImageView>(R.id.iv_img)
 
-        bg.setImageDrawable(mContext.getDrawable(R.drawable.icon_fukuan_evt))
+        bg.setImageResource(R.drawable.icon_fukuan_evt)
 
         for (meta in item.metas) {
-            if("symbol-icon".equals(meta.key)){
+            if("symbol-icon" == meta.key){
                 if(meta.value.isEmpty())return
-                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                if(decodedByte == null)return
+                val decodedByte: Bitmap = Base64Utils.base64ToBitmap(meta.value) ?: return
                 bg.setImageBitmap(decodedByte)
             }
         }
@@ -59,12 +58,12 @@ class AssetsItemAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<Ch
         val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
         tvSure.setOnClickListener {
-            if(mContext.sharedPref.password.equals(etNumber.text.toString())){
-                var intent = Intent(mContext, PayActivity::class.java)
+            if(mContext.sharedPref.password == etNumber.text.toString()){
+                val intent = Intent(mContext, PayActivity::class.java)
                 intent.putExtra("data",item)
                 mContext.startActivity(intent)
             }else{
-                mContext.getResourceString(R.string.password_error).toast()
+                mContext.getString(R.string.password_error).toast()
             }
             pwdDialog!!.dismiss()
         }

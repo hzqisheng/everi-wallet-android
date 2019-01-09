@@ -1,12 +1,12 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.content.Intent
+import android.os.Build
 import android.text.Html
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.ui.activity.MainActivity
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
@@ -39,33 +39,32 @@ class WalletAddIdActivity : SimpleActivity() {
 
         val str = getString(R.string.export_mnemonic)
         val s = "<font color=\"#3F7DEE\">${getString(R.string.Be_careful)}</font>$str"
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             tv_msg.text = Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY)
         } else {
             tv_msg.text = Html.fromHtml(s)
         }
 
 
-
         tv_create.setOnClickListener {
 
-            var oldpwd = et_new_pwd.text.toString()
-            var newpwd = et_new_pwd_confirm.text.toString()
+            val oldPwd = et_new_pwd.text.toString()
+            val newPwd = et_new_pwd_confirm.text.toString()
 
-            if(!oldpwd.equals(newpwd)){
+            if(oldPwd != newPwd){
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
 
-            mWebView.evaluateJavascript(WebViewApi.createEVTWallet(et_new_pwd.text.toString())) {}
+            mWebView.evaluateJavascript(WebViewApi.createEVTWallet(et_new_pwd.text.toString()), null)
         }
     }
 
-    fun onDateResult(msg: String) {
+    private fun onDateResult(msg: String) {
         if (msg.isEmpty()) return
-        var baseBean = Gson().fromJson(msg, BaseData::class.java)
-        baseBean.isCreate = 1;
-        baseBean.isSelect = 1;
+        val baseBean = Gson().fromJson(msg, BaseData::class.java)
+        baseBean.isCreate = 1
+        baseBean.isSelect = 1
         baseBean.save()
         mContext.sharedPref.publicKey = baseBean.publicKey
         mContext.sharedPref.privateKey = baseBean.privateKey
@@ -74,15 +73,15 @@ class WalletAddIdActivity : SimpleActivity() {
         getString(R.string.import_success).toast()
         finish()
 
-        var intent = Intent(mContext, MainActivity::class.java)
+        val intent = Intent(mContext, MainActivity::class.java)
         intent.putExtra("data",baseBean)
         intent.putExtra("isCreate",true)
         startActivity(intent)
 
-        var intent_1 = Intent(mContext, ExportMnemonicActivity::class.java)
-        intent_1.putExtra("data",baseBean)
-        intent_1.putExtra("isCreate",true)
-        startActivity(intent_1)
+        val intent1 = Intent(mContext, ExportMnemonicActivity::class.java)
+        intent1.putExtra("data",baseBean)
+        intent1.putExtra("isCreate",true)
+        startActivity(intent1)
     }
 
 }

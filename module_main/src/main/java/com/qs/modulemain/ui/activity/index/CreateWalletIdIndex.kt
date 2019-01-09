@@ -1,7 +1,5 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Activity
-import android.os.Bundle
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.sharedPref

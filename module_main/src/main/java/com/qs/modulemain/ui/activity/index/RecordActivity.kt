@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import com.google.gson.Gson
@@ -19,6 +20,7 @@ import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.utils.Base64Utils
+import com.smallcat.shenhai.mvpbase.utils.fitSystemAllScroll
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_record.*
@@ -35,6 +37,11 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
 
     override val layoutId: Int = R.layout.activity_record
 
+    override fun fitSystem() {
+        fitSystemAllScroll(this)
+    }
+
+    @SuppressLint("SetTextI18n")
     override fun initData() {
 
         data = intent.getSerializableExtra("data") as ChooseGetBean
@@ -43,10 +50,9 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
         tv_money.text = data.asset.split(" ")[0] +" "+data.sym_name
 
         for (meta in data.metas) {
-            if("symbol-icon".equals(meta.key)){
+            if("symbol-icon" == meta.key){
                 if(meta.value.isEmpty())return
-                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                if(decodedByte == null)return
+                val decodedByte: Bitmap = Base64Utils.base64ToBitmap(meta.value) ?: return
                 iv_img.setImageBitmap(decodedByte)
             }
         }
@@ -59,14 +65,14 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
                         RxBusCenter.RECORD_TRANSACATION -> onDataResult(it.msg)
                     }
                 })
-       var request =  RecordRequestBean()
+        val request =  RecordRequestBean()
         request.domain = ".fungible"
         request.key = data.sym.split("#")[1].toInt();
         request.skip = 0
         request.take = 100;
         request.names = arrayOf("transferft").asList()
 
-        mAdapter = RecordItemAdapter(resultBean);
+        mAdapter = RecordItemAdapter(resultBean)
         rv_list.adapter = mAdapter
 
 
@@ -78,7 +84,7 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
 
         //转账
         tv_transfer.setOnClickListener {
-            var intent = Intent(this@RecordActivity,ScanPayActivity::class.java)
+            val intent = Intent(this@RecordActivity,ScanPayActivity::class.java)
             intent.putExtra("maxMoney",data.sym.split(" ")[0])
             intent.putExtra("data",data)
             startActivity(intent)
@@ -93,7 +99,7 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
 
     private fun onDataResult(msg: String) {
         if(msg.isEmpty())return
-        var result = Gson().fromJson<java.util.ArrayList<RecordDetailBean>>(msg,object : TypeToken<ArrayList<RecordDetailBean>>() {}.type)
+        val result = Gson().fromJson<java.util.ArrayList<RecordDetailBean>>(msg,object : TypeToken<ArrayList<RecordDetailBean>>() {}.type)
         resultBean.addAll(result)
         mAdapter.notifyDataSetChanged()
     }

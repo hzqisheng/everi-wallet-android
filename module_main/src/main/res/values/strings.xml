@@ -211,6 +211,13 @@
     <string name="collect_code">收款码</string>
     <string name="scan_collect">扫码收款</string>
     <string name="zanbubeifen">暂不备份</string>
+    <string name="transaction_record">交易记录</string>
+    <string name="start_touch_id_unlock">开通钱包指纹解锁</string>
+    <string name="input_password">输入密码</string>
+    <string name="please_check_finger">请验证指纹解锁</string>
+
+    <string name="property">property</string>
+    <string name="Fingerprint_authentication_failed_please_try_again">指纹认证失败，请再试一次</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

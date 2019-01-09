@@ -25,7 +25,7 @@ import me.yokeyword.fragmentation.ISupportFragment
 import java.util.*
 
 @Route(path = ARouterConfig.MAIN_MAIN)
-class MainActivity : BaseActivity<MainPresenter>(),MainView {
+class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
     companion object {
         private const val ASSETS = 1
@@ -76,10 +76,9 @@ class MainActivity : BaseActivity<MainPresenter>(),MainView {
 //        sharedPref.name= "EVT-wallet"
 
 
-
         rb_assets.isChecked = true
         rg_bottom.setOnCheckedChangeListener { _, checkedId ->
-            when(checkedId){
+            when (checkedId) {
                 R.id.rb_assets -> show = ASSETS
                 R.id.rb_market -> show = MARKET
                 R.id.rb_manage -> show = MANAGE
@@ -96,12 +95,11 @@ class MainActivity : BaseActivity<MainPresenter>(),MainView {
         fg3 = ManageFragment()
         fg4 = MyFragment()
         loadMultipleRootFragment(R.id.fl_contain, 0, fg1, fg2, fg3, fg4)
-//        mWebView.evaluateJavascript(WebViewApi.createEVTWallet("123456")) {}
 
-        if(LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA){
-            cent_icon.background = getDrawable(R.drawable.ic_home_wallet)
-        }else{
-            cent_icon.background = getDrawable(R.drawable.switch_en)
+        if (LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA) {
+            cent_icon.setBackgroundResource(R.drawable.ic_home_wallet)
+        } else {
+            cent_icon.setBackgroundResource(R.drawable.switch_en)
         }
     }
 

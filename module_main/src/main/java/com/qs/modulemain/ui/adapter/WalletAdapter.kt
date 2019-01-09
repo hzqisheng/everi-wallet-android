@@ -34,14 +34,14 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
 //            //ic_wallet_yellow_bg
 //            viewHolder.getView<View>(R.id.iv_bg).background = mContext.getDrawable(R.drawable.ic_wallet_yellow_bg)
 //        }
-
+        val imageView =  viewHolder.getView<ImageView>(R.id.iv_bg)
 
         if (item.isSelect == 1) {
-            viewHolder.getView<View>(R.id.iv_bg).background = mContext.getDrawable(R.drawable.ic_wallet_yellow_bg)
+            imageView.setImageResource(mContext.getResourceColor(R.color.transparent))
+            imageView.setBackgroundResource(R.drawable.ic_wallet_yellow_bg)
         } else {
-            //R.drawable.shape_round_wallet_bg
-            viewHolder.getView<View>(R.id.iv_bg).setBackgroundColor(mContext.getResourceColor(R.color.transparent))
-            viewHolder.getView<ImageView>(R.id.iv_bg).setImageDrawable(mContext.getDrawable(R.drawable.shape_round_wallet_bg))
+            imageView.setBackgroundColor(mContext.getResourceColor(R.color.transparent))
+            imageView.setImageResource(R.drawable.shape_round_wallet_bg)
         }
 
         viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener {
@@ -52,8 +52,8 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
         }
 
         viewHolder.getView<TextView>(R.id.public_key).setOnClickListener {
-            addClipboard(this.mContext,item.publicKey)
-            mContext.getResourceString(R.string.copy_success).toast()
+            addClipboard(mContext,item.publicKey)
+            mContext.getString(R.string.copy_success).toast()
         }
     }
 }

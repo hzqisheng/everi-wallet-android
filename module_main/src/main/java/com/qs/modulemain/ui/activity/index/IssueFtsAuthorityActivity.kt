@@ -55,14 +55,13 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
             }
         }
 
-
         tv_issue_edit.setOnClickListener {
-            var intent = Intent(this@IssueFtsAuthorityActivity,NFTsEditActivity::class.java)
+            val intent = Intent(this@IssueFtsAuthorityActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,101)
         }
 
         tv_manage_edit.setOnClickListener {
-            var intent = Intent(this@IssueFtsAuthorityActivity,NFTsEditActivity::class.java)
+            val intent = Intent(this@IssueFtsAuthorityActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,102)
         }
 
@@ -78,7 +77,7 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 101){
             if(data == null)return
-            var resultJson = data!!.getStringExtra("result")
+            val resultJson = data.getStringExtra("result")
             if(resultJson.toString().isEmpty()){
                 "invalid code !".toast()
                 return
@@ -92,7 +91,7 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
         }
 
         if(requestCode == 102){
-            var resultJson = data!!.getStringExtra("result")
+            val resultJson = data!!.getStringExtra("result")
             if(resultJson.toString().isEmpty()){
                 "invalid code !".toast()
                 return
@@ -109,9 +108,8 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
 
 
     fun handleFtsBean(){
-
         if (cb_issue.isChecked) {
-            var issueBean = ChooseGetBean.IssueBean.AuthorizersBean()
+            val issueBean = ChooseGetBean.IssueBean.AuthorizersBean()
             issueBean.ref = "[A] " + sharedPref.publicKey
             issueBean.weight = 1
             mChooseGetBean.addIssueAuthorizersBean(issueBean)
@@ -121,7 +119,7 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
         }
 
         if(cb_manage.isChecked) {
-            var manageBean = ChooseGetBean.ManageBean.AuthorizersBeanXX()
+            val manageBean = ChooseGetBean.ManageBean.AuthorizersBeanXX()
             manageBean.ref = "[A] " + sharedPref.publicKey
             manageBean.weight = 1
             mChooseGetBean.addManageAuthorizersBean(manageBean)
@@ -131,20 +129,20 @@ class IssueFtsAuthorityActivity : SimpleActivity() {
         }
 
         if(mChooseGetBean.issue == null ){
-            var issue = ChooseGetBean.IssueBean()
+            val issue = ChooseGetBean.IssueBean()
             issue.authorizers = ArrayList()
             mChooseGetBean.issue = issue
             return
         }
 
         if(mChooseGetBean.manage == null){
-            var mange = ChooseGetBean.ManageBean()
+            val mange = ChooseGetBean.ManageBean()
             mange.authorizers = ArrayList()
             mChooseGetBean.manage = mange
 
         }
 
-        var intent = Intent()
+        val intent = Intent()
         intent.putExtra("result",mChooseGetBean)
         setResult(1,intent)
         finish()

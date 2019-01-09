@@ -12,6 +12,7 @@ import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
 import com.smallcat.shenhai.mvpbase.R
+import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.adaptScreen4VerticalSlide
 import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance

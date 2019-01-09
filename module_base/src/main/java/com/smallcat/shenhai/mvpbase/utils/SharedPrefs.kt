@@ -10,18 +10,19 @@ import com.smallcat.shenhai.mvpbase.App
  */
 open class SharedPref {
 
-    val KEY_LANGUAGE = "LANGUAGE"
-    val KEY_CURRENCY = "CURRENCY"
-    val KEY_PUBLIC = "publicKey"
-    val KEY_PRIVATE = "privateKey"
-    val KEY_PWD = "password"
-    val KEY_MNEMOINC = "mnemoinc"
-    val KEY_NAME = "name"
-    private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = App.getInstance().getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
     companion object {
         fun newInstance() = SharedPref()
-        val PREFS_KEY = "EVER"
+        const val PREFS_KEY = "EVER"
+        const val KEY_LANGUAGE = "LANGUAGE"
+        const val KEY_CURRENCY = "CURRENCY"
+        const val KEY_PUBLIC = "publicKey"
+        const val KEY_PRIVATE = "privateKey"
+        const val KEY_PWD = "password"
+        const val KEY_MNEMONIC = "mnemonic"
+        const val KEY_NAME = "name"
+        const val KEY_FINGER = "finger"
     }
 
     //0 chinese 1 english
@@ -29,11 +30,15 @@ open class SharedPref {
         get() = prefs.getInt(KEY_LANGUAGE, 0)
         set(value) = prefs.edit().putInt(KEY_LANGUAGE, value).apply()
 
+    //0 close 1 open
+    var isFinger: Int
+        get() = prefs.getInt(KEY_FINGER, 0)
+        set(value) = prefs.edit().putInt(KEY_FINGER, value).apply()
+
     //0 cny 1 usd
     var currency: Int
         get() = prefs.getInt(KEY_CURRENCY, 0)
         set(value) = prefs.edit().putInt(KEY_CURRENCY, value).apply()
-
 
     var publicKey: String
         get() = prefs.getString(KEY_PUBLIC, "")!!
@@ -48,12 +53,11 @@ open class SharedPref {
         set(value) = prefs.edit().putString(KEY_PWD, value).apply()
 
     var mnemoinc: String
-        get() = prefs.getString(KEY_MNEMOINC, "")!!
-        set(value) = prefs.edit().putString(KEY_MNEMOINC, value).apply()
+        get() = prefs.getString(KEY_MNEMONIC, "")!!
+        set(value) = prefs.edit().putString(KEY_MNEMONIC, value).apply()
 
-    var name:String
+    var name: String
         get() = prefs.getString(KEY_NAME, "")!!
         set(value) = prefs.edit().putString(KEY_NAME, value).apply()
-
 
 }

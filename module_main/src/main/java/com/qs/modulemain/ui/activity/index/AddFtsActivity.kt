@@ -172,7 +172,7 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 if(isSuccess){
                     iv_img.setImageBitmap(bitmap)
                     uriList[0].toString().logE()
-                    var type:String = options.outMimeType;
+                    var type:String = options.outMimeType
                     base64Image = "data:"+type+";base64,"+bitmapToBase64(bitmap)
                 }
 

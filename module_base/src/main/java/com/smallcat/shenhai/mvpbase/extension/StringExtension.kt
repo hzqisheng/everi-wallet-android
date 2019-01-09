@@ -50,7 +50,7 @@ fun String.hide4(): String{
 fun String.toResultBean():ResultBean{
     var resultBean:ResultBean?
     try {
-        var json :JSONObject = JSONObject(this)
+        val json = JSONObject(this)
         resultBean = ResultBean()
         resultBean.code = json.getInt("code")
         resultBean.message = json.getString("message")

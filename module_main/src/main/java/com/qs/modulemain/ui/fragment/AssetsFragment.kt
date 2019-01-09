@@ -71,7 +71,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        if(mContext.sharedPref.name != null && !TextUtils.isEmpty(mContext.sharedPref.name)) {
+        if(!TextUtils.isEmpty(mContext.sharedPref.name)) {
             tv_asset_name.text = mContext.sharedPref.name
         }
 
@@ -134,17 +134,17 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.tv_scan ->{
-                var intent = Intent(mContext, ScanActivity::class.java)
+                val intent = Intent(mContext, ScanActivity::class.java)
                 intent.putExtra("ScanType", 10001)
                 startActivity(intent)
             }
-            R.id.tv_pay -> showSetUpDialog(AssetsItemFragment.firstBean!!)
+            R.id.tv_pay -> showSetUpDialog(AssetsItemFragment.firstBean)
             R.id.tv_receive -> mContext.start(CollectActivity::class.java)
             R.id.tv_publish -> showIssueDialog()
         }
     }
 
-    private fun showSetUpDialog(item: ChooseGetBean){
+    private fun showSetUpDialog(item: ChooseGetBean?){
         if (pwdDialog == null) {
             pwdDialog = Dialog(mContext, R.style.CustomDialog)
         }
@@ -154,12 +154,12 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
         tvSure.setOnClickListener {
-            if(mContext.sharedPref.password.equals(etNumber.text.toString())){
-                var intent = Intent(mContext, PayActivity::class.java)
+            if(mContext.sharedPref.password == etNumber.text.toString()){
+                val intent = Intent(mContext, PayActivity::class.java)
                 intent.putExtra("data",item)
                 mContext.startActivity(intent)
             }else{
-                mContext.getResourceString(R.string.password_error).toast()
+                mContext.getString(R.string.password_error).toast()
             }
             pwdDialog!!.dismiss()
         }

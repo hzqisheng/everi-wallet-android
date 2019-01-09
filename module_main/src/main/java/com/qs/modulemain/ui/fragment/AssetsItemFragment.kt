@@ -65,7 +65,7 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
             }
 
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                var intent = Intent(context,RecordActivity::class.java)
+                val intent = Intent(context,RecordActivity::class.java)
                 intent.putExtra("data",ftsList[position])
                 startActivity(intent)
             }
@@ -86,7 +86,7 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
             chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg,object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
             firstBean = chooseBean[0]
         }catch (e: Exception){
-            "异常".logE()
+            "数据为空".logE()
         }
 
         ftsList.clear()

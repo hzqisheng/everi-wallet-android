@@ -33,6 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
         android:text="@string/here_is_your_address_and_private_key"
         android:textColor="@color/color_3137"
         android:textSize="17sp"
