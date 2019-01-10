@@ -2,6 +2,8 @@ package com.qs.modulemain.ui.activity.index
 
 import android.app.Dialog
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckBox
@@ -29,7 +31,7 @@ import java.util.*
 //发行域
 class NFTsIssueActivity : SimpleActivity() {
     private var mDomain = ""
-    private var mCount:Int = 1
+    private var mCount:Int = 0
     private var mDoaminNameList:ArrayList<String> = java.util.ArrayList()
     private var mAddressList:LinkedList<String> = java.util.LinkedList()
     private var mViewList:LinkedList<View> = java.util.LinkedList()
@@ -90,8 +92,25 @@ class NFTsIssueActivity : SimpleActivity() {
                 showName+=s+"\n"
             }
             et_name.setText(showName)
-
         }
+
+        et_name.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var lst = s!!.split("\n")
+                if(lst != null)countChanged(lst.size - 1)
+            }
+
+        })
+
+        mAddressList.add(sharedPref.publicKey)
+        genAddressView(sharedPref.publicKey)
 
         //添加地址
         iv_add_address.setOnClickListener {
@@ -126,6 +145,18 @@ class NFTsIssueActivity : SimpleActivity() {
             lastPushTransaction = RxBusCenter.ISSUE_DOMAIN
             mWebView.evaluateJavascript(WebViewApi.pushTransaction("issuetoken",pushJson)){}
         }
+    }
+
+
+    fun countChanged(count : Int){
+        var lst = et_name.text.toString()!!.split("\n")
+        mDoaminNameList.clear()
+        for (item:Int in 0..lst.size-1){
+            if(!lst[item].isNullOrBlank())
+            mDoaminNameList.add(lst[item])
+        }
+        mCount = mDoaminNameList.size
+        tvCount.text = getResourceString(R.string.domain_number)+":"+mCount
     }
 
     fun addAddress(address:String){
@@ -164,6 +195,7 @@ class NFTsIssueActivity : SimpleActivity() {
         if(requestCode == 1 && data != null){
             if(requestCode > 0 ){
                 var result = data.getStringExtra("result")
+                mAddressList.add(result)
                 genAddressView(result)
             }
         }

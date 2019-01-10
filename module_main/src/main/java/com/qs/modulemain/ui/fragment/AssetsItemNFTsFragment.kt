@@ -22,7 +22,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     private var nFTsList = ArrayList<ChooseGetBean>()
 
-    private lateinit var nFTsAdapter: AssetsNFtsAdapter
+    private var nFTsAdapter: AssetsNFtsAdapter ? = null
 
     override fun initPresenter() {
         mPresenter = AssetsItemNFTsPresenter(mContext)
@@ -54,6 +54,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
         nFTsList.clear()
         nFTsList.addAll(chooseBean)
+        if(nFTsAdapter != null)
         nFTsAdapter.setNewData(nFTsList)
     }
 }
