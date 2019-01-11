@@ -52,8 +52,8 @@ class NFTsActivity : BaseActivity<NFTsPresenter>(), NFTsView {
         nFTsAdapter.onItemClickListener =object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-                var intent  = Intent(this@NFTsActivity,NFTsIssueActivity::class.java)
-                var bundle = Bundle()
+                val intent  = Intent(this@NFTsActivity,NFTsIssueActivity::class.java)
+                val bundle = Bundle()
                 bundle.putSerializable("domain",nFTsList[position].name)
                 intent.putExtras(bundle)
                 startActivity(intent)
@@ -62,16 +62,14 @@ class NFTsActivity : BaseActivity<NFTsPresenter>(), NFTsView {
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
             }
-
         }
-
 
     }
 
     override fun onResume() {
         super.onResume()
         lastMY_NFTS = RxBusCenter.MY_NFTS_ACTIVITY
-        mWebView.evaluateJavascript(WebViewApi.getEVTDomainsList(sharedPref.publicKey)) {}
+        mWebView.evaluateJavascript(WebViewApi.getEVTDomainsList(sharedPref.publicKey), null)
     }
 
     override fun loadNFTsSuccess(msg: String) {

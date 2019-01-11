@@ -130,7 +130,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
             App.getInstance().exitApp()
         } else {
             lastBackTime = currentBackTime
-            "再按一次退出".toast()
+            getString(R.string.repress_Exit).toast()
         }
     }
 }

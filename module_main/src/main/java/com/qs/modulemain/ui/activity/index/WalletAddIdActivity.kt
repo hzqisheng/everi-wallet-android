@@ -55,12 +55,13 @@ class WalletAddIdActivity : SimpleActivity() {
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
-
+            showLoading()
             mWebView.evaluateJavascript(WebViewApi.createEVTWallet(et_new_pwd.text.toString()), null)
         }
     }
 
     private fun onDateResult(msg: String) {
+        dismissLoading()
         if (msg.isEmpty()) return
         val baseBean = Gson().fromJson(msg, BaseData::class.java)
         baseBean.isCreate = 1

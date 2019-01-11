@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.annotation.SuppressLint
 import com.qs.modulemain.R
 import com.qs.modulemain.ui.activity.MainActivity
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
@@ -11,14 +12,16 @@ class PaySuccessActivity : SimpleActivity() {
     override val layoutId: Int
         get() = R.layout.activity_pay_success
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
-      var  data = intent.getStringExtra("data")
-
-        tv_pay.text  = data+" EVT"
+        val data = intent.getStringExtra("data")
+        tvTitle?.text = getString(R.string.transaction_success)
+        tv_pay.text = "$data EVT"
 
         tv_sure.setOnClickListener {
             start(MainActivity::class.java)
         }
     }
+
 
 }

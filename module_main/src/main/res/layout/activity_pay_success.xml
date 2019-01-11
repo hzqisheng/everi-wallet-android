@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="     交易成功"
-            android:drawableLeft="@drawable/ic_collect_success"
+            android:text="@string/transaction_success"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_collect_success"
             />
 
         <TextView
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="-1.0000 EVT"
+            tools:text="-1.0000 EVT"
             android:textColor="@color/white"
             />
 

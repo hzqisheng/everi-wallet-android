@@ -34,7 +34,7 @@ class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsVi
     override fun initData() {
         tvTitle?.text = getString(R.string.choose_fts)
         dataList = ArrayList()
-        chooseAdapter = CollChooseFTSAdapter(dataList);
+        chooseAdapter = CollChooseFTSAdapter(dataList)
         rv_list.adapter = chooseAdapter
 
         chooseAdapter.onItemClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {

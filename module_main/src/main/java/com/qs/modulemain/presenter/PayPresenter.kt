@@ -24,15 +24,4 @@ class PayPresenter(private val mContext: Context) : BasePresenter<PayView>() {
     }
 
 
-    fun loadData(){
-        /*addSubscribe(mApi.getUseInfo()
-                .sanitizeJson()
-                .subscribeWith(object : CommonSubscriber<UseInfoBean>(mView) {
-                    override fun onNext(data: UseInfoBean) {
-                        mView!!.loadSuccess(data)
-                    }
-                }))*/
-    }
-
-
 }

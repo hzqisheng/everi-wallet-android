@@ -40,7 +40,7 @@ class EditIdWalletActivity : SimpleActivity() {
             intent.putExtra("data", mWalletBean)
             startActivity(intent)
         }
-        tv_add.setOnClickListener { start(WalletAddIdActivity::class.java) }
+        //tv_add.setOnClickListener { start(WalletAddIdActivity::class.java) }
     }
 
 }

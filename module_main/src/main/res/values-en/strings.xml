@@ -206,6 +206,9 @@
         <item>Only I can distribute, the permissions can not be changed</item>
         <item>Only I can distribute, and later I can modify the permissions</item>
     </string-array>
-    <string name="Fingerprint_authentication_failed_please_try_again">指纹认证失败，请再试一次</string>
+    <string name="Fingerprint_authentication_failed_please_try_again">Failed, Please try again</string>
+    <string name="switch_success">Switch Success!</string>
+    <string name="repress_Exit">Re-press Exit</string>
+    <string name="transaction_success">Transaction Success</string>
 
 </resources>

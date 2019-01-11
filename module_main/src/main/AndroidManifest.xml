@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.qs.modulemain">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.qs.modulemain">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_APN_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -13,80 +17,76 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.index.ScanActivity"/>
-        <activity android:name=".ui.activity.index.WalletActivity"/>
-        <activity android:name=".ui.activity.my.AddressManageActivity"/>
-        <activity android:name=".ui.activity.index.PayActivity"/>
-        <activity android:name=".ui.activity.index.CollectActivity"/>
-        <activity android:name=".ui.activity.my.AddAddressActivity"/>
-        <activity android:name=".ui.activity.my.ImportAddressActivity"/>
-        <activity android:name=".ui.activity.my.ExportAddressActivity"/>
-        <activity android:name=".ui.activity.my.JoinCommunitiesActivity"/>
-        <activity android:name=".ui.activity.my.SettingActivity"/>
-        <activity android:name=".ui.activity.my.LanguagesActivity"/>
-        <activity android:name=".ui.activity.my.HelpCenterActivity"/>
-        <activity android:name=".ui.activity.my.CurrencySettingActivity"/>
-        <activity android:name=".ui.activity.my.NodeSettingActivity"/>
-        <activity android:name=".ui.activity.my.MaxPaymentActivity"/>
-        <activity android:name=".ui.activity.index.EditIdWalletActivity"/>
-        <activity android:name=".ui.activity.index.ChangePwdActivity"/>
-        <activity android:name=".ui.activity.index.RetrievePwdActivity"/>
-        <activity android:name=".ui.activity.index.ExportMnemonicActivity"/>
-        <activity android:name=".ui.activity.index.ExportMnemonic2Activity"/>
-        <activity android:name=".ui.activity.index.ExportMnemonic3Activity"/>
-        <activity android:name=".ui.activity.index.WalletDetailActivity"/>
-        <activity android:name=".ui.activity.index.ExportPrivateKeyActivity"/>
-        <activity android:name=".ui.activity.index.SetUpSignActivity"/>
-        <activity android:name=".ui.activity.index.ImportWalletActivity"/>
-        <activity android:name=".ui.activity.index.ImportWalletMnemonicActivity"/>
-        <activity android:name=".ui.activity.my.AboutUsActivity"/>
-        <activity android:name=".ui.activity.index.ScanPayActivity"/>
-        <activity android:name=".ui.activity.index.ScanCollectActivity"/>
-        <activity android:name=".ui.activity.index.PaySuccessActivity"/>
-        <activity android:name=".ui.activity.index.CollectSuccessActivity"/>
-        <activity android:name=".ui.activity.index.PayDetailActivity"/>
-        <activity android:name=".ui.activity.index.RecordActivity"/>
-        <activity android:name=".ui.activity.index.TransactionDetailActivity"/>
-        <activity android:name=".ui.activity.index.BatchTransfersActivity"/>
-        <activity android:name=".ui.activity.index.ChooseAddressActivity"/>
-        <activity android:name=".ui.activity.index.ChooseFTsActivity"/>
-        <activity android:name=".ui.activity.index.AddFtsActivity"/>
-        <activity android:name=".ui.activity.index.FtsIssueActivity"/>
-        <activity android:name=".ui.activity.index.IssueChooseAddressActivity"/>
-        <activity android:name=".ui.activity.index.FtsIssueEditActivity"/>
-        <activity android:name=".ui.activity.index.IssueFtsAuthorityActivity"/>
-        <activity android:name=".ui.activity.index.WalletAddIdActivity"/>
-        <activity android:name=".ui.activity.index.NFTsActivity"/>
-        <activity android:name=".ui.activity.index.NFTsCreateActivity"/>
-        <activity android:name=".ui.activity.index.NFTsEditActivity"/>
-        <activity android:name=".ui.activity.index.NFTsIssueActivity"/>
-        <activity android:name=".ui.activity.manage.MyGroupActivity"/>
-        <activity android:name=".ui.activity.manage.CreateGroupActivity"/>
-        <activity android:name=".ui.activity.manage.AddNoteActivity"/>
-        <activity android:name=".ui.activity.manage.CreateGroup2Activity"/>
-        <activity android:name=".ui.activity.manage.EnterPubKeyActivity"/>
-        <activity android:name=".ui.activity.index.NFTSIssueEditActivity">
-        </activity>
-        <activity android:name=".ui.activity.index.AddMetaActivity">
-        </activity>
-        <activity android:name=".ui.activity.index.CollectSetActivity">
-        </activity>
-        <activity android:name=".ui.activity.index.CollectChooseFtsActivity">
-        </activity>
-        <activity android:name=".ui.activity.index.CreateWalletIdIndex">
-        </activity>
-        <activity android:name=".ui.activity.index.RecoveryActivity">
-        </activity>
+        <activity android:name=".ui.activity.index.ScanActivity" />
+        <activity android:name=".ui.activity.index.WalletActivity" />
+        <activity android:name=".ui.activity.my.AddressManageActivity" />
+        <activity android:name=".ui.activity.index.PayActivity" />
+        <activity android:name=".ui.activity.index.CollectActivity" />
+        <activity android:name=".ui.activity.my.AddAddressActivity" />
+        <activity android:name=".ui.activity.my.ImportAddressActivity" />
+        <activity android:name=".ui.activity.my.ExportAddressActivity" />
+        <activity android:name=".ui.activity.my.JoinCommunitiesActivity" />
+        <activity android:name=".ui.activity.my.SettingActivity" />
+        <activity android:name=".ui.activity.my.LanguagesActivity" />
+        <activity android:name=".ui.activity.my.HelpCenterActivity" />
+        <activity android:name=".ui.activity.my.CurrencySettingActivity" />
+        <activity android:name=".ui.activity.my.NodeSettingActivity" />
+        <activity android:name=".ui.activity.my.MaxPaymentActivity" />
+        <activity android:name=".ui.activity.index.EditIdWalletActivity" />
+        <activity android:name=".ui.activity.index.ChangePwdActivity" />
+        <activity android:name=".ui.activity.index.RetrievePwdActivity" />
+        <activity android:name=".ui.activity.index.ExportMnemonicActivity" />
+        <activity android:name=".ui.activity.index.ExportMnemonic2Activity" />
+        <activity android:name=".ui.activity.index.ExportMnemonic3Activity" />
+        <activity android:name=".ui.activity.index.WalletDetailActivity" />
+        <activity android:name=".ui.activity.index.ExportPrivateKeyActivity" />
+        <activity android:name=".ui.activity.index.SetUpSignActivity" />
+        <activity android:name=".ui.activity.index.ImportWalletActivity" />
+        <activity android:name=".ui.activity.index.ImportWalletMnemonicActivity" />
+        <activity android:name=".ui.activity.my.AboutUsActivity" />
+        <activity android:name=".ui.activity.index.ScanPayActivity" />
+        <activity android:name=".ui.activity.index.ScanCollectActivity" />
+        <activity android:name=".ui.activity.index.PaySuccessActivity" />
+        <activity android:name=".ui.activity.index.CollectSuccessActivity" />
+        <activity android:name=".ui.activity.index.PayDetailActivity" />
+        <activity android:name=".ui.activity.index.RecordActivity" />
+        <activity android:name=".ui.activity.index.TransactionDetailActivity" />
+        <activity android:name=".ui.activity.index.BatchTransfersActivity" />
+        <activity android:name=".ui.activity.index.ChooseAddressActivity" />
+        <activity android:name=".ui.activity.index.ChooseFTsActivity" />
+        <activity android:name=".ui.activity.index.AddFtsActivity" />
+        <activity android:name=".ui.activity.index.FtsIssueActivity" />
+        <activity android:name=".ui.activity.index.IssueChooseAddressActivity" />
+        <activity android:name=".ui.activity.index.FtsIssueEditActivity" />
+        <activity android:name=".ui.activity.index.IssueFtsAuthorityActivity" />
+        <activity android:name=".ui.activity.index.WalletAddIdActivity" />
+        <activity android:name=".ui.activity.index.NFTsActivity" />
+        <activity android:name=".ui.activity.index.NFTsCreateActivity" />
+        <activity android:name=".ui.activity.index.NFTsEditActivity" />
+        <activity android:name=".ui.activity.index.NFTsIssueActivity" />
+        <activity android:name=".ui.activity.manage.MyGroupActivity" />
+        <activity android:name=".ui.activity.manage.CreateGroupActivity" />
+        <activity android:name=".ui.activity.manage.AddNoteActivity" />
+        <activity android:name=".ui.activity.manage.CreateGroup2Activity" />
+        <activity android:name=".ui.activity.manage.EnterPubKeyActivity" />
+        <activity android:name=".ui.activity.index.NFTSIssueEditActivity" />
+        <activity android:name=".ui.activity.index.AddMetaActivity" />
+        <activity android:name=".ui.activity.index.CollectSetActivity" />
+        <activity android:name=".ui.activity.index.CollectChooseFtsActivity" />
+        <activity android:name=".ui.activity.index.CreateWalletIdIndex" />
+        <activity android:name=".ui.activity.index.RecoveryActivity" />
+        <activity android:name=".ui.activity.index.TransactionRecordActivity" />
+        <activity android:name=".ui.activity.index.NFTsPayActivity"></activity>
     </application>
 
 </manifest>

@@ -11,17 +11,23 @@ import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.presenter.AssetsItemPresenter
+import com.qs.modulemain.ui.activity.index.ExportPrivateKeyActivity
 import com.qs.modulemain.ui.activity.index.NFTsIssueActivity
+import com.qs.modulemain.ui.activity.index.PayActivity
 import com.qs.modulemain.ui.activity.index.RecordActivity
 import com.qs.modulemain.ui.adapter.AssetsItemAdapter
 import com.qs.modulemain.ui.adapter.AssetsNFtsAdapter
+import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AssetsItemView
 import com.smallcat.shenhai.mvpbase.base.BaseFragment
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import kotlinx.android.synthetic.main.fragment_assets_item.*
 import java.lang.Exception
+import java.text.FieldPosition
 import java.util.*
 
 
@@ -59,33 +65,38 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
         ftsAdapter = AssetsItemAdapter(ftsList)
         rv_list.adapter = ftsAdapter
 
-        ftsAdapter.onItemChildClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-
-            }
-
-            override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                val intent = Intent(context,RecordActivity::class.java)
-                intent.putExtra("data",ftsList[position])
-                startActivity(intent)
-            }
-
-            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            }
-
+        ftsAdapter.setOnItemClickListener { _, _, position ->
+            val intent = Intent(context, RecordActivity::class.java)
+            intent.putExtra("data", ftsList[position])
+            startActivity(intent)
         }
 
+        ftsAdapter.setOnItemChildClickListener { _, _, position ->
+            showFingerPrintDialog(position)
+        }
     }
+
+    private fun showFingerPrintDialog(position: Int) {
+        confirmPassword(mContext.sharedPref.isFinger, childFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                val intent = Intent(mContext, PayActivity::class.java)
+                intent.putExtra("data", ftsList[position])
+                mContext.startActivity(intent)
+            }
+        })
+    }
+
     companion object {
-        var firstBean:ChooseGetBean ?= null
+        var firstBean: ChooseGetBean? = null
     }
+
     override fun loadFTsSuccess(msg: String) {
-        if(msg.isEmpty())return
+        if (msg.isEmpty()) return
         var chooseBean = ArrayList<ChooseGetBean>()
         try {
-            chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg,object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
+            chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
             firstBean = chooseBean[0]
-        }catch (e: Exception){
+        } catch (e: Exception) {
             "数据为空".logE()
         }
 

@@ -29,33 +29,32 @@ import java.util.ArrayList
 class CollChooseFTSAdapter(data: ArrayList<ChooseGetBean>?) : BaseQuickAdapter<ChooseGetBean, BaseViewHolder>(R.layout.item_collect_fts, data) {
     override fun convert(viewHolder: BaseViewHolder, item: ChooseGetBean?) {
         viewHolder.setText(R.id.tv_name, item!!.sym_name+"(#"+item.sym.split("#")[1]+")")
-        var diff = item.total_supply.split(" ")[0].toFloat() - item.current_supply.split(" ")[0].toFloat()
+        val diff = item.total_supply.split(" ")[0].toFloat() - item.current_supply.split(" ")[0].toFloat()
 
         var JING = ""
-        for (i in 0..item!!.sym.split(",")[0].toInt()-1){
+        for (i in 0 until item.sym.split(",")[0].toInt()){
             JING +="0";
         }
 
         viewHolder.setText(R.id.tv_address,mContext.getString(R.string.count)+" : "+item.total_supply.split(" ")[0]+","+mContext.getString(R.string.surplus)+" : "+ DecimalFormat("0."+JING).format(diff))
 
         val bg = viewHolder.getView<ImageView>(R.id.iv_img)
-        bg.setImageDrawable(mContext.getDrawable(R.drawable.icon_fukuan_evt))
+        bg.setImageResource(R.drawable.icon_fukuan_evt)
         for (meta in item.metas) {
-            if("symbol-icon".equals(meta.key)){
+            if("symbol-icon" == meta.key){
                 if(meta.value.isEmpty())return
-                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                if(decodedByte == null)return
+                val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                 bg.setImageBitmap(decodedByte)
             }
         }
 
-        viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener({
-            var intent  = Intent(mContext, FtsIssueEditActivity::class.java)
-            var bundle = Bundle()
+        viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener {
+            val intent  = Intent(mContext, FtsIssueEditActivity::class.java)
+            val bundle = Bundle()
             bundle.putSerializable("data",item)
             intent.putExtras(bundle)
             mContext.startActivity(intent)
-        })
+        }
     }
 
 }

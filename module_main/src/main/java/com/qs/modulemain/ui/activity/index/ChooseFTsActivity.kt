@@ -25,10 +25,10 @@ import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.utils.lastMY_NFTS
 import kotlinx.android.synthetic.main.activity_choose_fts.*
 
-class ChooseFTsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView{
+class ChooseFTsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView {
 
-    private lateinit var chooseAdapter:ChooseFTSAdapter;
-    private lateinit var dataList:ArrayList<ChooseGetBean>
+    private lateinit var chooseAdapter: ChooseFTSAdapter
+    private lateinit var dataList: ArrayList<ChooseGetBean>
     override fun initPresenter() {
         mPresenter = ChooseFTsPresenter(mContext)
     }
@@ -39,39 +39,32 @@ class ChooseFTsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView{
         tvTitle?.text = getString(R.string.choose_fts)
         tv_sure.setOnClickListener { start(AddFtsActivity::class.java) }
         dataList = ArrayList()
-        chooseAdapter = ChooseFTSAdapter(dataList);
+        chooseAdapter = ChooseFTSAdapter(dataList)
         rv_list.adapter = chooseAdapter
 
-        chooseAdapter.onItemClickListener = object :AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-
-                //dataList[position]!!.sym.split("#")[1]
-                var intent  = Intent(mContext, FtsIssueActivity::class.java)
-                var bundle = Bundle()
-                bundle.putString("data",dataList[position]!!.sym.split("#")[1])
-                bundle.putString("jingdu",dataList[position]!!.sym.split(",")[0])
-                intent.putExtras(bundle)
-                mContext.startActivity(intent)
-            }
-
-            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-            }
-
+        chooseAdapter.setOnItemClickListener { _, _, position ->
+            //dataList[position]!!.sym.split("#")[1]
+            val intent = Intent(mContext, FtsIssueActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("data", dataList[position].sym.split("#")[1])
+            bundle.putString("jingdu", dataList[position].sym.split(",")[0])
+            intent.putExtras(bundle)
+            mContext.startActivity(intent)
         }
-
     }
 
     override fun onResume() {
         super.onResume()
-        mWebView.evaluateJavascript(WebViewApi.getEVTFungiblesList(sharedPref.publicKey)){}
+        mWebView.evaluateJavascript(WebViewApi.getEVTFungiblesList(sharedPref.publicKey), null)
     }
 
     override fun onDataResult(result: String) {
-        val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(result,object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
-        dataList.clear()
-        dataList.addAll(chooseBean)
-        chooseAdapter.notifyDataSetChanged()
+        val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(result, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
+        if (chooseBean != null) {
+            dataList.clear()
+            dataList.addAll(chooseBean)
+            chooseAdapter.notifyDataSetChanged()
+        }
     }
 
 }

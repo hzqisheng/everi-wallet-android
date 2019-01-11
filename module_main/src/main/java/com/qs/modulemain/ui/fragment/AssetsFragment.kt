@@ -17,6 +17,8 @@ import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.ui.activity.index.*
 import com.qs.modulemain.ui.adapter.AssetsFragAdapter
+import com.qs.modulemain.util.confirmPassword
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
 import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
@@ -30,7 +32,6 @@ import kotlinx.android.synthetic.main.fragment_assets.*
 class AssetsFragment : SimpleFragment(), View.OnClickListener {
 
     private lateinit var adapter: AssetsFragAdapter
-    private var pwdDialog:Dialog? = null
 
     private var dialog:Dialog ?= null
 
@@ -126,6 +127,16 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         }
     }
 
+    private fun showFingerPrintDialog(item: ChooseGetBean?) {
+        confirmPassword(mContext.sharedPref.isFinger, childFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                val intent = Intent(mContext, PayActivity::class.java)
+                intent.putExtra("data",item)
+                mContext.startActivity(intent)
+            }
+        })
+    }
+
     /**
      * Called when a view has been clicked.
      *
@@ -138,35 +149,9 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
                 intent.putExtra("ScanType", 10001)
                 startActivity(intent)
             }
-            R.id.tv_pay -> showSetUpDialog(AssetsItemFragment.firstBean)
+            R.id.tv_pay -> showFingerPrintDialog(AssetsItemFragment.firstBean)
             R.id.tv_receive -> mContext.start(CollectActivity::class.java)
             R.id.tv_publish -> showIssueDialog()
         }
-    }
-
-    private fun showSetUpDialog(item: ChooseGetBean?){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(mContext.sharedPref.password == etNumber.text.toString()){
-                val intent = Intent(mContext, PayActivity::class.java)
-                intent.putExtra("data",item)
-                mContext.startActivity(intent)
-            }else{
-                mContext.getString(R.string.password_error).toast()
-            }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
     }
 }

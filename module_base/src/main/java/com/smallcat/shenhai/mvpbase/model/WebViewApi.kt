@@ -1,5 +1,7 @@
 package com.smallcat.shenhai.mvpbase.model
 
+import com.smallcat.shenhai.mvpbase.model.bean.LinkBean
+
 object WebViewApi{
     /**
      * create EVT wallet
@@ -63,6 +65,11 @@ object WebViewApi{
 
     /** 获取linkId **/
     fun getUniqueLinkId() = "javascript:getUniqueLinkId()"
+
+    /** 获取交易结果 **/
+    fun getStatusOfEvtLink(link: String) = "javascript:getStatusOfEvtLink('$link')"
+    //fun getStatusOfEvtLink() = "javascript:getStatusOfEvtLink()"
+
     /** pushTranscation **/
     fun pushTransaction(action:String,json:String,config:String) = "javascript:pushTransaction('$action','$json','$config')"
 
@@ -85,5 +92,5 @@ object WebViewApi{
     fun getEstimatedChargeForTransaction(code:String,json:String,json1: String) = "javascript:getEstimatedChargeForTransaction('$code','$json','$json1')"
 
     /** 获取币的详细信息 **/
-    fun getFungibleSymbolDetail(sybid:Long) = "javascript:getFungibleSymbolDetail($sybid)";
+    fun getFungibleSymbolDetail(sybid:Long) = "javascript:getFungibleSymbolDetail($sybid)"
 }

@@ -25,7 +25,7 @@ import java.util.ArrayList
 class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressManageView {
     private lateinit var adapter: AddressAdapter
     private lateinit var dataList:ArrayList<AddressBean>
-    private var isNeedBack : Boolean = false;
+    private var isNeedBack : Boolean = false
 
     override fun initPresenter() {
         mPresenter = AddressManagePresenter(mContext)

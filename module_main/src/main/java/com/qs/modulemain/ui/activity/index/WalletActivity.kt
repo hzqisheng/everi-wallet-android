@@ -47,8 +47,6 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
             startActivity(intent)
         }
         iv_add_import.setOnClickListener { start(ImportWalletActivity::class.java) }
-        iv_more.setOnClickListener {  }
-
         iv_more.setOnClickListener {
             Intent(mContext, WalletDetailActivity::class.java).apply {
                 putExtra("data", dataList[0])
@@ -117,7 +115,8 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
                 sharedPref.mnemoinc = baseBean.mnemoinc
                 sharedPref.password = baseBean.password
                 sharedPref.name = baseBean.name
-                "Switch Success!".toast()
+                sharedPref.isFinger = baseBean.isFinger
+                getString(R.string.switch_success).toast()
                 finish()
             }
         }
@@ -129,6 +128,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
     }
 
     override fun loadSuccess(data: Any) {
+
     }
 
 }

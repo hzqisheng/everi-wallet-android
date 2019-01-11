@@ -10,6 +10,8 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
+import com.qs.modulemain.util.confirmPassword
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.*
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
@@ -27,7 +29,7 @@ import java.util.ArrayList
 
 class FtsIssueEditActivity : SimpleActivity() {
     private lateinit var mFTSBean: ChooseGetBean
-    private lateinit var upIssuBean:UpIssueBean
+    private lateinit var upIssuBean: UpIssueBean
     /** 密码框 **/
     private var pwdDialog: Dialog? = null
 
@@ -40,20 +42,11 @@ class FtsIssueEditActivity : SimpleActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.SET_FTS -> onDataResult(it.msg)
+                        RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                     }
                 })
-
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
-                    }
-                })
-
 
         mFTSBean = intent.getSerializableExtra("data") as ChooseGetBean;
         tvTitle?.text = mFTSBean.name
@@ -63,19 +56,19 @@ class FtsIssueEditActivity : SimpleActivity() {
         tv_threshold1.text = mFTSBean.manage.threshold.toString()
 
         //发行地址
-        var issueString:String = ""
+        var issueString: String = ""
         if (mFTSBean.issue.authorizers.size > 0) {
             for (authorizer in mFTSBean.issue.authorizers) {
-                issueString+=authorizer.ref+"\n"
+                issueString += authorizer.ref + "\n"
             }
         }
         tv_address.text = issueString
 
 
-        var manageString:String = ""
+        var manageString = ""
         if (mFTSBean.manage.authorizers.size > 0) {
             for (authorizer in mFTSBean.manage.authorizers) {
-                manageString+=authorizer.ref+"\n"
+                manageString += authorizer.ref + "\n"
             }
         }
         tv_address1.text = manageString
@@ -91,30 +84,30 @@ class FtsIssueEditActivity : SimpleActivity() {
             text = getString(R.string.authority_setting)
             setTextColor(getResourceColor(R.color.color_e4))
             setOnClickListener {
-                var intent = Intent(this@FtsIssueEditActivity,IssueFtsAuthorityActivity::class.java)
-                startActivityForResult(intent,101)
+                var intent = Intent(this@FtsIssueEditActivity, IssueFtsAuthorityActivity::class.java)
+                startActivityForResult(intent, 101)
             }
         }
 
         tv_save.setOnClickListener {
-          var sendJson = Gson().toJson(upIssuBean)
+            var sendJson = Gson().toJson(upIssuBean)
             sendJson.logE()
             lastPushTransaction = SET_FTS
-            mWebView.evaluateJavascript(WebViewApi.pushTransaction("updfungible",sendJson)){}
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("updfungible", sendJson)) {}
         }
 
         iv_add_data.setOnClickListener {
-            var intent = Intent(this@FtsIssueEditActivity,AddMetaActivity::class.java)
-            startActivityForResult(intent,103)
+            var intent = Intent(this@FtsIssueEditActivity, AddMetaActivity::class.java)
+            startActivityForResult(intent, 103)
         }
         tv_add_data.setOnClickListener {
-            var intent = Intent(this@FtsIssueEditActivity,AddMetaActivity::class.java)
-            startActivityForResult(intent,103)
+            var intent = Intent(this@FtsIssueEditActivity, AddMetaActivity::class.java)
+            startActivityForResult(intent, 103)
         }
     }
 
-    fun onDataResult(s:String){
-        if(!s.isEmpty()) {
+    fun onDataResult(s: String) {
+        if (!s.isEmpty()) {
             "设置成功".toast()
             finish()
         }
@@ -134,8 +127,8 @@ class FtsIssueEditActivity : SimpleActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 101){
-            if(resultCode > 0 && data != null) {
+        if (requestCode == 101) {
+            if (resultCode > 0 && data != null) {
                 var chooseGetBean: ChooseGetBean = data!!.getSerializableExtra("result") as ChooseGetBean
                 upIssuBean.issue = chooseGetBean.issue
                 upIssuBean.manage = chooseGetBean.manage
@@ -146,7 +139,7 @@ class FtsIssueEditActivity : SimpleActivity() {
 
                 //发行地址
                 var issueString: String = ""
-                if (upIssuBean.issue != null && upIssuBean.issue!!.authorizers != null &&upIssuBean.issue!!.authorizers.size > 0) {
+                if (upIssuBean.issue != null && upIssuBean.issue!!.authorizers != null && upIssuBean.issue!!.authorizers.size > 0) {
                     for (authorizer in upIssuBean.issue!!.authorizers) {
                         if (authorizer != null)
                             issueString += authorizer.ref + "\n"
@@ -156,7 +149,7 @@ class FtsIssueEditActivity : SimpleActivity() {
 
 
                 var manageString: String = ""
-                if (upIssuBean.manage != null && upIssuBean.manage!!.authorizers != null &&upIssuBean.manage!!.authorizers.size > 0) {
+                if (upIssuBean.manage != null && upIssuBean.manage!!.authorizers != null && upIssuBean.manage!!.authorizers.size > 0) {
                     for (authorizer in upIssuBean.manage!!.authorizers) {
                         if (authorizer != null)
                             manageString += authorizer.ref + "\n"
@@ -166,53 +159,34 @@ class FtsIssueEditActivity : SimpleActivity() {
             }
         }
         //AddMetaActivity
-        if(requestCode == 103){
-            if(resultCode > 0 && data != null){
-               var metaBean =  data!!.getSerializableExtra("result") as ChooseGetBean.MetasBean
-                if(upIssuBean.metas == null){
+        if (requestCode == 103) {
+            if (resultCode > 0 && data != null) {
+                var metaBean = data.getSerializableExtra("result") as ChooseGetBean.MetasBean
+                if (upIssuBean.metas == null) {
                     upIssuBean.metas = ArrayList()
                 }
                 metaBean.toString().logE()
                 upIssuBean.metas!!.add(metaBean)
             }
 
-            if(upIssuBean.metas != null && upIssuBean!!.metas!!.size>0){
+            if (upIssuBean.metas != null && upIssuBean.metas!!.size > 0) {
                 iv_add_data.visibility = View.GONE
                 var resultString = ""
-                upIssuBean!!.metas!!.forEach { resultString += "Key:"+it.key+" Value:"+it.value+"\n"}
+                upIssuBean.metas!!.forEach { resultString += "Key:" + it.key + " Value:" + it.value + "\n" }
                 tv_add_data.text = resultString
-            }else{
+            } else {
                 iv_add_data.visibility = View.VISIBLE
                 tv_add_data.text = ""
             }
         }
     }
 
-    private fun showSetUpDialog(){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(sharedPref.password.equals(etNumber.text.toString())){
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
-            }else{
-                getResourceString(R.string.password_error).toast()
+    private fun showFingerPrintDialog() {
+        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
+        })
     }
-
-
-
 
 }

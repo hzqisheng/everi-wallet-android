@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.index.PaySuccessActivity">
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_pay_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="h, 0.56"/>
+
+    <com.qs.modulemain.ui.widget.CompatToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetStart="0dp"
+        android:minHeight="?android:attr/actionBarSize">
+
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/iv_back"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:src="@drawable/ic_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.qs.modulemain.ui.widget.CompatToolbar>
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_collect_success"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/transaction_success"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        tools:text="-1.0000 EVT" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/sure"
+        android:textColor="@color/color_e4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_bg" />
+</android.support.constraint.ConstraintLayout>

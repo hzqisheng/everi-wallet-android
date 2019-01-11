@@ -2,25 +2,19 @@ package com.qs.modulemain.ui.activity.index
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
-import android.os.Vibrator
-import android.view.LayoutInflater
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import cn.bingoogolapple.qrcode.core.QRCodeView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterConfig
-import com.qs.modulemain.bean.ChooseFTSBean
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.ReceScanBean
 import com.qs.modulemain.bean.ScanResultLinkeBean
 import com.qs.modulemain.ui.fragment.AssetsItemFragment
+import com.qs.modulemain.util.confirmPassword
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -28,31 +22,27 @@ import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
-import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.SCAN_QRLINKE
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import com.smallcat.shenhai.mvpbase.utils.qrcode_type
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_scan.*
-import org.json.JSONArray
 import org.json.JSONObject
 import java.text.DecimalFormat
 
 @Route(path = ARouterConfig.ASSETS_SCAN)
 class ScanActivity : SimpleActivity() {
-    /** 密码框 **/
-    private var pwdDialog: Dialog? = null
 
     companion object {
         var resultCode = 0x101000
         //付款
         const val PAY = 0x2001
         //收款
-        const val RECE = 0x2002;
+        const val RECE = 0x2002
     }
     // 1000 需要地址
-    private var scanType:Int = 0;
+    private var scanType:Int = 0
 
     //付款的币种
     private lateinit  var mUseFts: ChooseGetBean
@@ -84,7 +74,7 @@ class ScanActivity : SimpleActivity() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { it ->
                             when(it.type){
-                                RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
+                                RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                             }
                         })
 
@@ -274,8 +264,6 @@ class ScanActivity : SimpleActivity() {
     private fun onReceResult(msg: String) {
         "rece".logE()
         msg.logE()
-
-
     }
 
     override fun onStart() {
@@ -295,29 +283,12 @@ class ScanActivity : SimpleActivity() {
         zxingview.onDestroy()
     }
 
-    private fun showSetUpDialog(){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(sharedPref.password.equals(etNumber.text.toString())){
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
-            }else{
-                getResourceString(R.string.password_error).toast()
+    private fun showFingerPrintDialog() {
+        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
+        })
     }
-
 
 }

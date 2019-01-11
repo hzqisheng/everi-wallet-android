@@ -2,7 +2,6 @@ package com.qs.modulemain.presenter
 
 import android.content.Context
 import com.qs.modulemain.view.AddFTsView
-import com.qs.modulemain.view.ChooseFTsView
 import com.smallcat.shenhai.mvpbase.base.BasePresenter
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
@@ -24,18 +23,10 @@ class AddFTsPresenter(private val mContext: Context) : BasePresenter<AddFTsView>
                 .subscribe { it ->
                     when(it.type){
                         RxBusCenter.ADD_FTS -> mView!!.onDataResult(it.msg)
+
+                        RxBusCenter.NEED_PRIVATE_KEY -> mView!!.showPassWordDialog(it.msg)
                     }
                 })
-
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.NEED_PRIVATE_KEY -> mView!!.showPassWordDailog(it.msg)
-                    }
-                })
-
 
     }
 

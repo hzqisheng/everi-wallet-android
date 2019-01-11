@@ -30,6 +30,7 @@ object RxBusCenter{
 
     //付款
     const val QRCODE_PAL = 0x2009
+
     //收款
     const val QRCODE_RECE = 0x2010
 
@@ -60,4 +61,7 @@ object RxBusCenter{
 
     //获取币的详细信息
     const val SYMBOL_DETAIL = 0x2020
+
+    //交易记录
+    const val PAY_RECORD = 0x2021
 }

@@ -1,28 +1,28 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.inputmethod.EditorInfo
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.PayBean
+import com.qs.modulemain.bean.TransactionResult
 import com.qs.modulemain.presenter.PayPresenter
 import com.qs.modulemain.ui.fragment.AssetsItemFragment
 import com.qs.modulemain.view.PayView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.CollectBean
+import com.smallcat.shenhai.mvpbase.model.bean.LinkBean
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
@@ -35,10 +35,11 @@ import kotlinx.android.synthetic.main.activity_pay.*
 
 /** 付款 **/
 class PayActivity : BaseActivity<PayPresenter>(), PayView {
-    private var mLinkId:String ?= null;
-    private var pwdDialog:Dialog ?= null;
-    private var maxMoney:Float = 0f
-    private var bean : ChooseGetBean? = null
+
+    private var mLinkId: String = ""
+    private var pwdDialog: Dialog? = null
+    private var maxMoney: Float = 0f
+    private var bean: ChooseGetBean? = null
 
     override fun initPresenter() {
         mPresenter = PayPresenter(mContext)
@@ -47,6 +48,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     override val layoutId: Int
         get() = R.layout.activity_pay
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
         tvTitle?.text = getString(R.string.everi_pay)
 
@@ -54,25 +56,26 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.GET_LINkID -> onLinkResult(it.msg)
                         RxBusCenter.QRCODE_PAL -> onQrData(it.msg)
+                        RxBusCenter.PAY_RECORD -> onPayRecord(it.msg)
                     }
                 })
 
-        mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()){}
+        mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()) {}
 
-        if(intent.hasExtra("data")){
+        if (intent.hasExtra("data")) {
             bean = intent.getSerializableExtra("data") as ChooseGetBean
-        }else{
-            bean = AssetsItemFragment.firstBean !!
+        } else {
+            bean = AssetsItemFragment.firstBean!!
         }
 
         tv_address.text = sharedPref.publicKey
 
         textView7.setOnClickListener {
-            addClipboard(this@PayActivity,sharedPref.publicKey)
-            getResourceString(R.string.copy_success).toast()
+            addClipboard(this@PayActivity, sharedPref.publicKey)
+            getString(R.string.copy_success).toast()
         }
 
         tv_money.setOnClickListener {
@@ -80,23 +83,22 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         }
 
         rb_sweep_payment.setOnClickListener {
-            var intent = Intent(this@PayActivity,ScanPayActivity::class.java)
-            intent.putExtra("maxMoney",maxMoney)
+            val intent = Intent(this@PayActivity, ScanPayActivity::class.java)
+            intent.putExtra("maxMoney", maxMoney)
             startActivity(intent)
         }
 
         layout_choose.setOnClickListener {
-            var intent = Intent(this,CollectChooseFtsActivity::class.java)
-            startActivityForResult(intent,101)
+            val intent = Intent(this, CollectChooseFtsActivity::class.java)
+            startActivityForResult(intent, 101)
         }
 
-        if(bean != null){
-            tv_name.text=bean!!.sym_name+"("+bean!!.asset.split("S")[1]+")"
+        if (bean != null) {
+            tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
             for (meta in bean!!.metas) {
-                if("symbol-icon".equals(meta.key)){
-                    if(meta.value.isEmpty())return
-                    var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                    if(decodedByte == null)return
+                if ("symbol-icon" == meta.key) {
+                    if (meta.value.isEmpty()) return
+                    val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                     iv_img.setImageBitmap(decodedByte)
                 }
             }
@@ -105,62 +107,64 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     }
 
     private fun onQrData(msg: String) {
-        var collectBean = Gson().fromJson<CollectBean>(msg, CollectBean::class.java)
+        val collectBean = Gson().fromJson<CollectBean>(msg, CollectBean::class.java)
         iv_qr_code.setImageBitmap(Base64Utils.base64ToBitmap(collectBean.dataUrl))
 //        qrcode_type = -1
+    }
+
+    private fun onPayRecord(msg: String) {
+        val transactionRecord = Gson().fromJson(msg, TransactionResult::class.java) ?: return
+        if (transactionRecord.transactionId != null) {
+            start(TransactionRecordActivity::class.java)
+            finish()
+        } else {
+            val str = Gson().toJson(LinkBean(mLinkId), LinkBean::class.java)
+            mWebView.evaluateJavascript(WebViewApi.getStatusOfEvtLink(str), null)
+        }
     }
 
     private fun onLinkResult(msg: String) {
         msg.logE()
         mLinkId = msg
 
-
-        var payBean = PayBean()
+        val payBean = PayBean()
         payBean.keyProvider = listOf(sharedPref.privateKey)
         payBean.linkId = mLinkId
         payBean.maxAmount = tv_money.text.toString().toFloat() * 100000
         payBean.symbol = bean!!.sym.split("#")[1].toInt()
         qrcode_type = RxBusCenter.QRCODE_PAL
-        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean),"{\"autoReload\": true}")){}
+        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean), "{\"autoReload\": true}")) {}
 
-
+        val str = Gson().toJson(LinkBean(mLinkId), LinkBean::class.java)
+        mWebView.evaluateJavascript(WebViewApi.getStatusOfEvtLink(str), null)
     }
 
     override fun onResume() {
         super.onResume()
-        if( mLinkId.isNullOrBlank())return
+        if (mLinkId == "") return
 
-        var payBean = PayBean()
+        val payBean = PayBean()
         payBean.keyProvider = listOf(sharedPref.privateKey)
         payBean.linkId = mLinkId
         payBean.maxAmount = tv_money.text.toString().toFloat() * 100000
         payBean.symbol = bean!!.sym.split("#")[1].toInt()
         qrcode_type = RxBusCenter.QRCODE_PAL
-        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean),"{\"autoReload\": true}")){}
-
-
-    }
-
-    override fun loadSuccess(data: Any) {
+        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("everiPay", Gson().toJson(payBean), "{\"autoReload\": true}")) {}
 
     }
 
-    class Address{
-        var address:String = ""
+    class Address {
+        var address: String = ""
     }
 
-    override fun onDataResult(msg: String) {
-        "------------------------------"+msg.logE()
-    }
-
-    private fun showSetUpDialog(){
+    private fun showSetUpDialog() {
         if (pwdDialog == null) {
             pwdDialog = Dialog(mContext, R.style.CustomDialog)
         }
         val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_max_service_fee, null)
-        view.findViewById<TextView>(R.id.tv_title).text = getResourceString(R.string.set_max_money)
+        view.findViewById<TextView>(R.id.tv_title).text = getString(R.string.set_max_money)
         val etNumber = view.findViewById<EditText>(R.id.et_number)
-        etNumber.hint = getResourceString(R.string.please_input)
+        etNumber.hint = getString(R.string.please_input)
         val tvSure = view.findViewById<TextView>(R.id.tv_sure)
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
         tvSure.setOnClickListener {
@@ -168,7 +172,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
             tv_money.text = maxMoney.toString()
             pwdDialog!!.dismiss()
         }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
+        tvCancel.setOnClickListener { pwdDialog!!.dismiss() }
         pwdDialog!!.setContentView(view)
         pwdDialog!!.setCanceledOnTouchOutside(false)
         pwdDialog!!.setCancelable(true)
@@ -177,39 +181,34 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 101){
-            if(resultCode == 101){
-                if(data == null)return
+        if (requestCode == 101) {
+            if (resultCode == 101) {
+                if (data == null) return
 
                 bean = data.getSerializableExtra("data") as ChooseGetBean
 
                 iv_img.setImageResource(R.drawable.icon_fukuan_evt)
-                if(bean != null){
-                    tv_name.text=bean!!.sym_name+"("+bean!!.asset.split("S")[1]+")"
+                if (bean != null) {
+                    tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
                     for (meta in bean!!.metas) {
-                        if("symbol-icon".equals(meta.key)){
-                            if(meta.value.isEmpty())return
+                        if ("symbol-icon".equals(meta.key)) {
+                            if (meta.value.isEmpty()) return
                             var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                            if(decodedByte == null)return
+                            if (decodedByte == null) return
                             iv_img.setImageBitmap(decodedByte)
                         }
                     }
                 }
-
-                mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()){}
+                mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload(), null)
+                mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()) {}
             }
         }
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     override fun onPause() {
         super.onPause()
-        mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()){}
-        qrcode_type = -1;
+        mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()) {}
+        qrcode_type = -1
 
     }
 

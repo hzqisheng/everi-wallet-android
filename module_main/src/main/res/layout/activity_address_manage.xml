@@ -32,7 +32,7 @@
             android:gravity="center"
             android:textColor="@color/color_e4"
             android:background="@drawable/shape_3137_4"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
              />
 
 
@@ -59,12 +59,11 @@
             android:gravity="center_vertical"
             android:paddingStart="8dp"
             android:paddingEnd="2dp"
-            android:layout_toRightOf="@+id/tv_type"
+            android:layout_toEndOf="@+id/tv_type"
             android:drawableEnd="@drawable/ic_blue_choose"
             android:background="@drawable/shape_line_3_cc"
             app:layout_constraintStart_toEndOf="@id/tv_type"
             />
-
 
     </RelativeLayout>
 

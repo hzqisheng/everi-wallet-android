@@ -9,6 +9,8 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.DomainBean
+import com.qs.modulemain.util.confirmPassword
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
@@ -21,10 +23,7 @@ import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.CREATE_DOMAIN
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_add_fts.*
 import kotlinx.android.synthetic.main.activity_nfts_create.*
 import java.lang.Exception
 
@@ -46,15 +45,7 @@ class NFTsCreateActivity : SimpleActivity() {
                             it.msg.logE()
                             finish()
                         }
-                    }
-                })
-
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
+                        RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                     }
                 })
 
@@ -112,37 +103,37 @@ class NFTsCreateActivity : SimpleActivity() {
         }
 
         tv_issue_edit.setOnClickListener {
-            var intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
+            val intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,101)
         }
 
         tv_change_edit.setOnClickListener {
-            var intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
+            val intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,102)
         }
 
         tv_manage_edit.setOnClickListener {
-            var intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
+            val intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,103)
         }
 
 
         //start(NFTsEditActivity::class.java)
         tvSure.setOnClickListener {
-            handleCompeleted()
+            handleCompleted()
         }
 
 
     }
 
-    private fun handleCompeleted() {
+    private fun handleCompleted() {
 
-        var domainBean: DomainBean = DomainBean.build();
+        val domainBean: DomainBean = DomainBean.build();
         domainBean.name = et_nfts.text.toString()
         domainBean.creator = sharedPref.publicKey
 
         if (cb_issue.isChecked) {
-            var issueBean = DomainBean.IssueBean.AuthorizersBean()
+            val issueBean = DomainBean.IssueBean.AuthorizersBean()
             issueBean.ref = "[A] " + sharedPref.publicKey
             issueBean.weight = 1
             domainBean.addIssueAuthorizersBean(issueBean)
@@ -151,7 +142,7 @@ class NFTsCreateActivity : SimpleActivity() {
         }
 
         if(cb_change.isChecked) {
-            var transBean = DomainBean.TransferBean.AuthorizersBeanX()
+            val transBean = DomainBean.TransferBean.AuthorizersBeanX()
             transBean.ref = "[A] " + sharedPref.publicKey
             transBean.weight = 1
             domainBean.addTransferAuthorizersBean(transBean)
@@ -160,7 +151,7 @@ class NFTsCreateActivity : SimpleActivity() {
         }
 
         if(cb_manage.isChecked) {
-            var manageBean = DomainBean.ManageBean.AuthorizersBeanXX()
+            val manageBean = DomainBean.ManageBean.AuthorizersBeanXX()
             manageBean.ref = "[A] " + sharedPref.publicKey
             manageBean.weight = 1
             domainBean.addManageAuthorizersBean(manageBean)
@@ -168,7 +159,7 @@ class NFTsCreateActivity : SimpleActivity() {
             domainBean.addManageAuthorizersBean(mManageBean)
         }
 
-        var domainJson = Gson().toJson(domainBean)
+        val domainJson = Gson().toJson(domainBean)
         domainJson.logE()
         lastPushTransaction = CREATE_DOMAIN
         mWebView.evaluateJavascript(WebViewApi.pushTransaction("newdomain",domainJson)){}
@@ -180,8 +171,10 @@ class NFTsCreateActivity : SimpleActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) return
+
         if(requestCode == 101){
-            var resultJson = data!!.getStringExtra("result")
+            val resultJson = data.getStringExtra("result")
             if(resultJson.toString().isEmpty()){
                 "invalid code !".toast()
                 return
@@ -195,7 +188,7 @@ class NFTsCreateActivity : SimpleActivity() {
         }
 
         if(requestCode == 102){
-            var resultJson = data!!.getStringExtra("result")
+            val resultJson = data.getStringExtra("result")
             if(resultJson.toString().isEmpty()){
                 "invalid code !".toast()
                 return
@@ -209,7 +202,7 @@ class NFTsCreateActivity : SimpleActivity() {
         }
 
         if(requestCode == 103){
-            var resultJson = data!!.getStringExtra("result")
+            val resultJson = data.getStringExtra("result")
             if(resultJson.toString().isEmpty()){
                 "invalid code !".toast()
                 return
@@ -222,28 +215,12 @@ class NFTsCreateActivity : SimpleActivity() {
         }
     }
 
-    private fun showSetUpDialog(){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(sharedPref.password.equals(etNumber.text.toString())){
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
-            }else{
-                getResourceString(R.string.password_error).toast()
+    private fun showFingerPrintDialog() {
+        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
+        })
     }
 
 }

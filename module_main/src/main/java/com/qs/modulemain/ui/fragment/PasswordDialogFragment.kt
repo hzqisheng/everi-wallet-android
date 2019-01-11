@@ -18,9 +18,14 @@ import com.smallcat.shenhai.mvpbase.extension.toast
 class PasswordDialogFragment : DialogFragment() {
 
     private lateinit var mCallback: FingerSuccessCallback
+    private var mPassword: String = ""
 
     fun setCallback(callback: FingerSuccessCallback) {
         mCallback = callback
+    }
+
+    fun setPwd(password: String) {
+        mPassword = password
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +40,10 @@ class PasswordDialogFragment : DialogFragment() {
         val cbCheck = v.findViewById<CheckBox>(R.id.cb_check)
         val tvCancel = v.findViewById<TextView>(R.id.tv_cancel)
         tvSure.setOnClickListener {
-            if(context?.sharedPref?.password == etNumber.text.toString()){
+            if (mPassword == ""){
+                mPassword = context!!.sharedPref.password
+            }
+            if(mPassword == etNumber.text.toString()){
                 mCallback.onCheckSuccess()
                 dismiss()
             }else{

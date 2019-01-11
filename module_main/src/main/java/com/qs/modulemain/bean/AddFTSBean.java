@@ -39,7 +39,6 @@ public class AddFTSBean {
         addFTSBean.name = allName;
         addFTSBean.sym = jingdu + ",S#" + symbol_id;
         addFTSBean.sym_name = symbol;
-        addFTSBean.creator = publicKey;
         String jCount = count + ".";
         for (int i = 0; i < jingdu; i++) {
             jCount += "0";

@@ -33,7 +33,7 @@ var lastPushTransaction: Int = 0
 var lastMY_NFTS: Int = 0
 
 //收付款
-var qrcode_type:Int = 0
+var qrcode_type: Int = 0
 
 fun getWebViewInstance(): WebView {
     if (webView == null) {
@@ -105,76 +105,83 @@ private class WebViewCallBack : Any() {
     }
 
     @JavascriptInterface
-    fun getEVTFungiblesListCallback(s:String){
+    fun getEVTFungiblesListCallback(s: String) {
         ("getEVTFungiblesListCallback()  " + s).logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHOOSE_FTS))
     }
 
     @JavascriptInterface
-    fun getEVTDomainsListCallback(s:String){
+    fun getEVTDomainsListCallback(s: String) {
         ("getEVTDomainsListCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.MY_DOMAIN))
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.MY_DOMAIN))
     }
 
     /** 收付款二维码 **/
     @JavascriptInterface
-    fun getEVTLinkQrImageCallback(s:String){
-        ("getEVTDomainsListCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s),qrcode_type))
+    fun getEVTLinkQrImageCallback(s: String) {
+        ("getEVTLinkQrImageCallback()  " + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), qrcode_type))
     }
 
     /** 扫描二维码 **/
     @JavascriptInterface
-    fun parseEvtLinkCallback(s:String){
+    fun parseEvtLinkCallback(s: String) {
         ("parseEvtLinkCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s),qrcode_type))
+        RxBus.post(MessageEvent(handleResult(s), qrcode_type))
     }
 
     @JavascriptInterface
-    fun getUniqueLinkIdCallback(s:String){
+    fun getUniqueLinkIdCallback(s: String) {
         ("getUniqueLinkId()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.GET_LINkID))
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.GET_LINkID))
     }
 
     @JavascriptInterface
-    fun getActionsCallback(s:String){
+    fun getActionsCallback(s: String) {
         ("getActionsCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.RECORD_TRANSACATION))
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
-    fun getEVTFungibleBalanceListCallback(s:String){
-        ("getEVTFungibleBalanceListCallback"+s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.HOME_FTS))
+    fun getEVTFungibleBalanceListCallback(s: String) {
+        ("getEVTFungibleBalanceListCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.HOME_FTS))
     }
 
     @JavascriptInterface
-    fun getFungibleActionsByAddressCallback(s:String){
-        ("getFungibleActionsByAddressCallback"+s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.RECORD_TRANSACATION))
+    fun getFungibleActionsByAddressCallback(s: String) {
+        ("getFungibleActionsByAddressCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
-    fun getEstimatedChargeForTransactionCallback(s:String){
-        ("getEstimatedChargeForTransactionCallback"+s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.SERVICE_CHARGE))
+    fun getEstimatedChargeForTransactionCallback(s: String) {
+        ("getEstimatedChargeForTransactionCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SERVICE_CHARGE))
     }
 
     @JavascriptInterface
-    fun privateToPublicCallback(s:String){
-        ("privateToPublicCallback"+s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.PRIVATE_TO_PUBLIC))
+    fun privateToPublicCallback(s: String) {
+        ("privateToPublicCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PRIVATE_TO_PUBLIC))
     }
 
     @JavascriptInterface
-    fun getFungibleSymbolDetailCallback(s:String){
-        ("privateToPublicCallback"+s).logE()
-        RxBus.post(MessageEvent(handleResult(s),RxBusCenter.SYMBOL_DETAIL))
+    fun getFungibleSymbolDetailCallback(s: String) {
+        ("getFungibleSymbolDetailCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SYMBOL_DETAIL))
+    }
+
+
+    @JavascriptInterface
+    fun getStatusOfEvtLinkCallback(s: String) {
+        ("getStatusOfEvtLinkCallback" + s).logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PAY_RECORD))
     }
 
     fun handleResult(s: String): String {
         val resultBean = s.toResultBean()
-        if(resultBean.code == 0){
+        if (resultBean.code == 0) {
             resultBean.message.toast()
             return ""
         }

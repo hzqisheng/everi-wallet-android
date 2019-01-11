@@ -102,7 +102,7 @@ fun listToString(list: List<String>?): String? {
     return result.toString()
 }
 
-fun confirmPassword(isFinger: Int, manager: FragmentManager, mCallBack: FingerSuccessCallback) {
+fun confirmPassword(isFinger: Int, manager: FragmentManager, mCallBack: FingerSuccessCallback, password: String = "" ) {
     if (isFinger == 1) {
         val fragment = FingerprintDialogFragment()
         fragment.setCallback(mCallBack)
@@ -110,6 +110,9 @@ fun confirmPassword(isFinger: Int, manager: FragmentManager, mCallBack: FingerSu
     } else {
         val fragment = PasswordDialogFragment()
         fragment.setCallback(mCallBack)
+        if (password != ""){
+            fragment.setPwd(password)
+        }
         fragment.show(manager, "password")
     }
 }

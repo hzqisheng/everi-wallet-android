@@ -1,17 +1,16 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Dialog
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.DomainIssueBean
+import com.qs.modulemain.util.confirmPassword
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
@@ -35,16 +34,16 @@ class NFTsIssueActivity : SimpleActivity() {
     private var mDoaminNameList:ArrayList<String> = java.util.ArrayList()
     private var mAddressList:LinkedList<String> = java.util.LinkedList()
     private var mViewList:LinkedList<View> = java.util.LinkedList()
-    private var pwdDialog:Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_nfts_issue
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
         tvTitle?.text = getString(R.string.create_nfts)
         ivRight?.apply {
             setBackgroundResource(R.drawable.ic_question)
-            setOnClickListener{}
+            setOnClickListener {}
         }
 
         mDomain = intent.getStringExtra("domain")
@@ -53,43 +52,35 @@ class NFTsIssueActivity : SimpleActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.ISSUE_DOMAIN -> onDateResult(it.msg)
-                    }
-                })
-
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
+                        RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                     }
                 })
 
         tv_number.text = mCount.toString()
 
         iv_add.setOnClickListener {
-            mCount ++
+            mCount++
             tv_number.text = mCount.toString()
         }
 
         iv_reduce.setOnClickListener {
-            mCount --
+            mCount--
             tv_number.text = mCount.toString()
         }
 
         tvBatchGeneration.setOnClickListener {
             mDoaminNameList.clear()
-            for (item:Int in 0..mCount-1){
-                mDoaminNameList.add(et_batch_name.text.toString()+item)
+            for (item: Int in 0 until mCount) {
+                mDoaminNameList.add(et_batch_name.text.toString() + item)
             }
 
-            tvCount.text = getResourceString(R.string.domain_number)+":"+mCount
+            tvCount.text = getString(R.string.domain_number) + ":" + mCount
 
-            var showName:String=""
+            var showName = ""
             for (s in mDoaminNameList) {
-                showName+=s+"\n"
+                showName += s + "\n"
             }
             et_name.setText(showName)
         }
@@ -118,49 +109,49 @@ class NFTsIssueActivity : SimpleActivity() {
         }
         //扫一扫
         iv_scan.setOnClickListener {
-            var intent = Intent(this@NFTsIssueActivity,ScanActivity::class.java)
-            intent.putExtra("ScanType",1000)
-            startActivityForResult(intent,1)
+            val intent = Intent(this@NFTsIssueActivity, ScanActivity::class.java)
+            intent.putExtra("ScanType", 1000)
+            startActivityForResult(intent, 1)
         }
 
         //发行
         tv_save.setOnClickListener {
 
-            if(mDoaminNameList.size == 0){
+            if (mDoaminNameList.size == 0) {
                 "Name is 0".toast()
                 return@setOnClickListener
             }
-            if(mAddressList.size == 0){
+            if (mAddressList.size == 0) {
                 "Address is 0".toast()
                 return@setOnClickListener
             }
 
-            var domainIssue = DomainIssueBean()
+            val domainIssue = DomainIssueBean()
             domainIssue.domain = mDomain
             domainIssue.names = mDoaminNameList
             domainIssue.owner = mAddressList
-            var pushJson = Gson().toJson(domainIssue)
+            val pushJson = Gson().toJson(domainIssue)
             pushJson.logE()
 
             lastPushTransaction = RxBusCenter.ISSUE_DOMAIN
-            mWebView.evaluateJavascript(WebViewApi.pushTransaction("issuetoken",pushJson)){}
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("issuetoken", pushJson), null)
         }
     }
 
-
+    @SuppressLint("SetTextI18n")
     fun countChanged(count : Int){
-        var lst = et_name.text.toString()!!.split("\n")
+        val lst = et_name.text.toString().split("\n")
         mDoaminNameList.clear()
-        for (item:Int in 0..lst.size-1){
+        for (item:Int in 0 until lst.size){
             if(!lst[item].isNullOrBlank())
             mDoaminNameList.add(lst[item])
         }
         mCount = mDoaminNameList.size
-        tvCount.text = getResourceString(R.string.domain_number)+":"+mCount
+        tvCount.text = getString(R.string.domain_number)+":"+mCount
     }
 
-    fun addAddress(address:String){
-        if(address.isEmpty()){
+    private fun addAddress(address: String) {
+        if (address.isEmpty()) {
             "Address Invalid".toast()
             return
         }
@@ -169,60 +160,44 @@ class NFTsIssueActivity : SimpleActivity() {
     }
 
     /** 生成并添加一个View **/
-    fun genAddressView(address: String){
-        var view = LayoutInflater.from(this).inflate(R.layout.item_add_adress,null)
+    private fun genAddressView(address: String) {
+        val view = LayoutInflater.from(this).inflate(R.layout.item_add_adress, null)
         view.tvAddress.text = address
         view.ivDeleted.setOnClickListener {
             addressContent.removeView(view)
-            if(mAddressList.size > mViewList.indexOf(view))
-            mAddressList.removeAt(mViewList.indexOf(view))
+            if (mAddressList.size > mViewList.indexOf(view))
+                mAddressList.removeAt(mViewList.indexOf(view))
             mViewList.remove(view)
         }
         mViewList.add(view)
         addressContent.addView(view)
     }
 
-    fun onDateResult(string: String){
-        "issue domain "+string.logE()
-        if(string.length>0){
-            getResourceString(R.string.issue_nfts_success).toast()
+    private fun onDateResult(string: String) {
+        "issue domain " + string.logE()
+        if (string.isNotEmpty()) {
+            getString(R.string.issue_nfts_success).toast()
             finish()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1 && data != null){
-            if(requestCode > 0 ){
-                var result = data.getStringExtra("result")
+        if (requestCode == 1 && data != null) {
+            if (requestCode > 0) {
+                val result = data.getStringExtra("result")
                 mAddressList.add(result)
                 genAddressView(result)
             }
         }
     }
 
-    private fun showSetUpDialog(){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(sharedPref.password.equals(etNumber.text.toString())){
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
-            }else{
-                getResourceString(R.string.password_error).toast()
+    private fun showFingerPrintDialog() {
+        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey), null)
             }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
+        })
     }
 
 }
