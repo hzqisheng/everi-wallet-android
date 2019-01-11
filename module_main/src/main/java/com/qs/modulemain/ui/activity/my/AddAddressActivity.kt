@@ -26,7 +26,7 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
         tvTitle?.text = getString(R.string.add_address)
 
         ivScan.setOnClickListener {
-            var intent = Intent(this@AddAddressActivity, ScanActivity::class.java)
+            val intent = Intent(this@AddAddressActivity, ScanActivity::class.java)
             intent.putExtra("ScanType",1000)
             startActivityForResult(intent,1)
         }
@@ -43,24 +43,9 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
 
             var address = et_address.text.toString()
 
-            if(et_group_name.text.toString().isEmpty()){
-                "Gorop name is not null !".toast()
-                 return@setOnClickListener
-            }
-
             var groupName = et_group_name.text.toString()
 
-            if(et_name.text.toString().isEmpty()){
-                "Name is not null !".toast()
-                return@setOnClickListener
-            }
-
             var name = et_name.text.toString()
-
-            if(et_phone.text.toString().isEmpty()){
-                "Phone num not null !".toast()
-                return@setOnClickListener
-            }
 
             var phoneNum = et_phone.text.toString()
 

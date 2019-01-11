@@ -86,7 +86,8 @@
         <activity android:name=".ui.activity.index.CreateWalletIdIndex" />
         <activity android:name=".ui.activity.index.RecoveryActivity" />
         <activity android:name=".ui.activity.index.TransactionRecordActivity" />
-        <activity android:name=".ui.activity.index.NFTsPayActivity"></activity>
+        <activity android:name=".ui.activity.index.NFTsPayActivity" />
+        <activity android:name=".ui.activity.index.NFTsDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -19,10 +19,12 @@
 
     <TextView
         android:id="@+id/tv_code"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:maxLines="2"
         android:textColor="@color/color_3137"
+        app:layout_constraintEnd_toStartOf="@id/tv_type"
         app:layout_constraintBottom_toTopOf="@+id/tv_msg"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"

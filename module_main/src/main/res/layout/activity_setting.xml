@@ -85,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="16dp"
+            android:visibility="gone"
             android:layout_below="@+id/tv_node_setting"
             android:background="@color/color_d8" />
 
@@ -94,6 +95,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:visibility="gone"
             android:background="@drawable/my_item_selector"
             android:layout_below="@id/view_line4"
             android:layout_height="53dp">
@@ -124,6 +126,7 @@
             android:id="@+id/view_line5"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+            android:visibility="gone"
             android:layout_marginStart="16dp"
             android:layout_below="@+id/ll_max_service_fee"
             android:background="@color/color_d8" />
@@ -132,6 +135,7 @@
             android:id="@+id/ll_max_pay"
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:gravity="center_vertical"
             android:background="@drawable/my_item_selector"
             android:layout_below="@id/view_line5"

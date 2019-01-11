@@ -1,14 +1,19 @@
 package com.qs.modulemain.ui.fragment
 
 
+import android.content.Intent
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.presenter.AssetsItemNFTsPresenter
+import com.qs.modulemain.ui.activity.index.NFTsDetailActivity
+import com.qs.modulemain.ui.activity.index.NFTsPayActivity
 import com.qs.modulemain.ui.adapter.AssetsNFtsAdapter
+import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AssetsItemNFTsView
 import com.smallcat.shenhai.mvpbase.base.BaseFragment
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
@@ -22,7 +27,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     private var nFTsList = ArrayList<ChooseGetBean>()
 
-    private var nFTsAdapter: AssetsNFtsAdapter ? = null
+    private lateinit var nFTsAdapter: AssetsNFtsAdapter
 
     override fun initPresenter() {
         mPresenter = AssetsItemNFTsPresenter(mContext)
@@ -41,6 +46,16 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
     override fun initData() {
         lastMY_NFTS = RxBusCenter.MY_NFTS
         nFTsAdapter = AssetsNFtsAdapter(nFTsList)
+        nFTsAdapter.setOnItemClickListener { _, _, position ->
+            Intent(mActivity, NFTsDetailActivity::class.java).apply {
+                putExtra("domain", nFTsList[position].domain)
+                putExtra("token", nFTsList[position].name)
+                startActivity(this)
+            }
+        }
+        nFTsAdapter.setOnItemChildClickListener { _, _, position ->
+           showFingerPrintDialog(position)
+        }
         rv_list.adapter = nFTsAdapter
     }
 
@@ -54,7 +69,18 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
         nFTsList.clear()
         nFTsList.addAll(chooseBean)
-        if(nFTsAdapter != null)
         nFTsAdapter.setNewData(nFTsList)
+    }
+
+    private fun showFingerPrintDialog(position: Int) {
+        confirmPassword(mContext.sharedPref.isFinger, childFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                Intent(mActivity, NFTsPayActivity::class.java).apply {
+                    putExtra("domain", nFTsList[position].domain)
+                    putExtra("token", nFTsList[position].name)
+                    startActivity(this)
+                }
+            }
+        })
     }
 }

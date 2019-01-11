@@ -130,6 +130,10 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
     private fun showFingerPrintDialog(item: ChooseGetBean?) {
         confirmPassword(mContext.sharedPref.isFinger, childFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
+                if (item == null){
+                    getString(R.string.no_fts).toast()
+                    return
+                }
                 val intent = Intent(mContext, PayActivity::class.java)
                 intent.putExtra("data",item)
                 mContext.startActivity(intent)

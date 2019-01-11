@@ -56,8 +56,8 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
             start(ImportAddressActivity::class.java)
         }
 
-        dataList = ArrayList();
-        adapter = AddressAdapter(dataList);
+        dataList = ArrayList()
+        adapter = AddressAdapter(dataList)
 
         var footView = View(this)
         var layoutParams = ViewGroup.LayoutParams(MATCH_PARENT,60)
@@ -72,7 +72,7 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
 
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 if(isNeedBack) {
-                    var intent = Intent(mContext, RecordActivity::class.java)
+                    val intent = Intent(mContext, RecordActivity::class.java)
                     intent.putExtra("data", dataList[position].address)
                     setResult(1, intent)
                     finish()
@@ -88,7 +88,7 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
 
     override fun onResume() {
         super.onResume()
-        var list:List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
+        val list:List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
         dataList.clear()
         dataList.addAll(list)
         adapter.notifyDataSetChanged()

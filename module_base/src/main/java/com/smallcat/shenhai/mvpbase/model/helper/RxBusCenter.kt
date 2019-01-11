@@ -11,7 +11,7 @@ object RxBusCenter{
     const val MY_NFTS_ACTIVITY = 10004
 
     //选择代币
-    const val CHOOSE_FTS = 0x2001;
+    const val CHOOSE_FTS = 0x2001
 
     //创建代币
     const val ADD_FTS = 0x2002
@@ -64,4 +64,7 @@ object RxBusCenter{
 
     //交易记录
     const val PAY_RECORD = 0x2021
+
+    //通证交易
+    const val PAY_NFTS = 0x2022
 }

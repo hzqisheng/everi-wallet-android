@@ -201,14 +201,19 @@
     <string name="start_touch_id_unlock">Start Touch ID Unlock</string>
     <string name="input_password">USE PASSWORD</string>
     <string name="please_check_finger">Validation of your Touch ID</string>
+    <string name="Fingerprint_authentication_failed_please_try_again">Failed, Please try again</string>
+    <string name="switch_success">Switch Success!</string>
+    <string name="repress_Exit">Re-press Exit</string>
+    <string name="transaction_success">Transaction Success</string>
+    <string name="domain">domain</string>
+    <string name="Automatic_refresh_every_5_seconds">Automatic refresh every 5 seconds</string>
+    <string name="owner">owner</string>
+    <string name="no_fts">NO FTS</string>
+    <string name="operation_success">Operation success</string>
 
     <string-array name="add_power">
         <item>Only I can distribute, the permissions can not be changed</item>
         <item>Only I can distribute, and later I can modify the permissions</item>
     </string-array>
-    <string name="Fingerprint_authentication_failed_please_try_again">Failed, Please try again</string>
-    <string name="switch_success">Switch Success!</string>
-    <string name="repress_Exit">Re-press Exit</string>
-    <string name="transaction_success">Transaction Success</string>
 
 </resources>

@@ -172,7 +172,9 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SYMBOL_DETAIL))
     }
 
-
+    /**
+     * 交易结果放回
+     */
     @JavascriptInterface
     fun getStatusOfEvtLinkCallback(s: String) {
         ("getStatusOfEvtLinkCallback" + s).logE()

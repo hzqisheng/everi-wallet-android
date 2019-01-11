@@ -2,6 +2,8 @@ package com.qs.modulemain.ui.activity.index
 
 import android.app.Dialog
 import android.app.KeyguardManager
+import android.content.ContentValues
+import android.content.Intent
 import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.view.LayoutInflater
@@ -15,10 +17,10 @@ import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
-import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_wallet_detail.*
+import org.litepal.crud.DataSupport
 
 
 class WalletDetailActivity : SimpleActivity() {
@@ -30,7 +32,8 @@ class WalletDetailActivity : SimpleActivity() {
         get() = R.layout.activity_wallet_detail
 
     override fun initData() {
-        mWalletName = intent.getSerializableExtra("data") as BaseData?
+        val id = intent.getIntExtra("data", 0)
+        mWalletName = DataSupport.find(BaseData::class.java, id.toLong())
 
         val name = if (mWalletName?.name.isNullOrBlank()) {
             "EVT-wallet"
@@ -67,11 +70,13 @@ class WalletDetailActivity : SimpleActivity() {
             val fragment = PasswordDialogFragment()
             fragment.setCallback(object : FingerSuccessCallback() {
                 override fun onCheckSuccess() {
-                    sharedPref.isFinger = 1
-                    mWalletName?.apply {
-                        isFinger = 1
-                        update(id.toLong())
+                    if (mWalletName?.isSelect == 1){
+                        sharedPref.isFinger = 1
                     }
+                    mWalletName?.isFinger = 1
+                    val values = ContentValues()
+                    values.put("isFinger", 1)
+                    DataSupport.update(BaseData::class.java, values, mWalletName!!.id.toLong())
                     iv_touch.setImageResource(R.drawable.ic_finger_open)
                 }
             })
@@ -80,11 +85,13 @@ class WalletDetailActivity : SimpleActivity() {
     }
 
     private fun closeFinger() {
-        sharedPref.isFinger = 0
-        mWalletName?.apply {
-            isFinger = 0
-            update(id.toLong())
+        if (mWalletName?.isSelect == 1){
+            sharedPref.isFinger = 0
         }
+        mWalletName?.isFinger = 0
+        val values = ContentValues()
+        values.put("isFinger", 0)
+        DataSupport.update(BaseData::class.java, values, mWalletName!!.id.toLong())
         iv_touch.setImageResource(R.drawable.ic_finger_close)
     }
 
@@ -112,7 +119,10 @@ class WalletDetailActivity : SimpleActivity() {
     private fun showFingerPrintDialog() {
         confirmPassword(mWalletName!!.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
-                start(ExportPrivateKeyActivity::class.java)
+                Intent(mContext, ExportPrivateKeyActivity::class.java).apply {
+                    putExtra("data", mWalletName)
+                    startActivity(this)
+                }
             }
         })
     }

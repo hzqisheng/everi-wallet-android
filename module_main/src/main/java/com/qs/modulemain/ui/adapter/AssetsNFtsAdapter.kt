@@ -12,9 +12,9 @@ import com.smallcat.shenhai.mvpbase.model.bean.NFtsBean
 class AssetsNFtsAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<ChooseGetBean, BaseViewHolder>(R.layout.item_assets_nfts_item, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: ChooseGetBean) {
-        viewHolder.addOnClickListener(R.id.content)
-        viewHolder.setText(R.id.tv_name, item.name).setText(R.id.tv_number, item.domain)
-
+        viewHolder.setText(R.id.tv_name, item.name)
+                .setText(R.id.tv_number, item.domain)
+                .addOnClickListener(R.id.iv_pay)
 
     }
 }

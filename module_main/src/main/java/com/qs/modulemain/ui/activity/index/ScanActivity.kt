@@ -41,11 +41,12 @@ class ScanActivity : SimpleActivity() {
         //收款
         const val RECE = 0x2002
     }
+
     // 1000 需要地址
-    private var scanType:Int = 0
+    private var scanType: Int = 0
 
     //付款的币种
-    private lateinit  var mUseFts: ChooseGetBean
+    private lateinit var mUseFts: ChooseGetBean
 
     override val layoutId: Int
         get() = R.layout.activity_scan
@@ -55,16 +56,16 @@ class ScanActivity : SimpleActivity() {
         tvTitle?.text = getString(R.string.scan)
         val rxPermissions = RxPermissions(this)
 
-        if(intent != null && intent.hasExtra("ScanType")){
-            scanType = intent.getIntExtra("ScanType",0)
+        if (intent != null && intent.hasExtra("ScanType")) {
+            scanType = intent.getIntExtra("ScanType", 0)
 
-            if(scanType == RECE){
+            if (scanType == RECE) {
                 mUseFts = intent.getSerializableExtra("data") as ChooseGetBean
                 addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { it ->
-                            when(it.type){
+                            when (it.type) {
                                 RxBusCenter.QRCODE_RECE -> onReceResult(it.msg)
                             }
                         })
@@ -73,7 +74,7 @@ class ScanActivity : SimpleActivity() {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { it ->
-                            when(it.type){
+                            when (it.type) {
                                 RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                             }
                         })
@@ -84,7 +85,7 @@ class ScanActivity : SimpleActivity() {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { it ->
-                            when(it.type){
+                            when (it.type) {
                                 RxBusCenter.SCAN_RECE -> RecvieSuccess(it.msg)
                             }
                         })
@@ -94,7 +95,7 @@ class ScanActivity : SimpleActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { it ->
-                        when(it.type){
+                        when (it.type) {
                             RxBusCenter.SCAN_QRLINKE -> onLinkeResult(it.msg)
                         }
                     })
@@ -103,7 +104,7 @@ class ScanActivity : SimpleActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { it ->
-                        when(it.type){
+                        when (it.type) {
                             RxBusCenter.SYMBOL_DETAIL -> onFTSDetail(it.msg)
                         }
                     })
@@ -111,26 +112,28 @@ class ScanActivity : SimpleActivity() {
 
 
 
-        zxingview.setDelegate(object :QRCodeView.Delegate{
+        zxingview.setDelegate(object : QRCodeView.Delegate {
             override fun onScanQRCodeSuccess(result: String?) {
                 scanResult = result!!
-                if(scanType == 0) {
-                    var intent = Intent()
-                    intent.putExtra("result", result)
-                    setResult(resultCode, intent)
-                    finish()
-                }else if(scanType == RECE){
-                    qrcode_type = RxBusCenter.SCAN_QRLINKE
-                    mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
-
-
-                }else if(scanType == 1000){
-                    qrcode_type = RxBusCenter.SCAN_QRLINKE
-                    mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
-
-                }else if(scanType == 10001){
-                    qrcode_type = RxBusCenter.SCAN_QRLINKE
-                    mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)){}
+                when (scanType) {
+                    0 -> {
+                        val intent = Intent()
+                        intent.putExtra("result", result)
+                        setResult(resultCode, intent)
+                        finish()
+                    }
+                    RECE -> {
+                        qrcode_type = RxBusCenter.SCAN_QRLINKE
+                        mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)) {}
+                    }
+                    1000 -> {
+                        qrcode_type = RxBusCenter.SCAN_QRLINKE
+                        mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)) {}
+                    }
+                    10001 -> {
+                        qrcode_type = RxBusCenter.SCAN_QRLINKE
+                        mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result!!)) {}
+                    }
                 }
             }
 
@@ -159,12 +162,12 @@ class ScanActivity : SimpleActivity() {
 
     private fun onFTSDetail(msg: String) {
         "onFTSDetail".logE()
-        if(msg.isNullOrBlank())return
-       var bean : ChooseGetBean = Gson().fromJson(msg,ChooseGetBean::class.java)
+        if (msg.isNullOrBlank()) return
+        var bean: ChooseGetBean = Gson().fromJson(msg, ChooseGetBean::class.java)
         msg.logE()
-        intent = Intent(this,ScanCollectActivity::class.java)
-        intent.putExtra("data",bean);
-        intent.putExtra("scanResult",scanResult)
+        intent = Intent(this, ScanCollectActivity::class.java)
+        intent.putExtra("data", bean);
+        intent.putExtra("scanResult", scanResult)
         startActivity(intent)
 
     }
@@ -174,71 +177,68 @@ class ScanActivity : SimpleActivity() {
         var num = intent.getStringExtra("num")
 
         var JING = ""
-        for (i in 0..mUseFts!!.sym.split(",")[0].toInt()-1){
-            JING +="0";
+        for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
+            JING += "0";
         }
-        val df = DecimalFormat("0."+JING)
+        val df = DecimalFormat("0." + JING)
 
-        var intent = Intent(this,PaySuccessActivity::class.java)
-        intent.putExtra("data","+"+df.format(num))
+        var intent = Intent(this, PaySuccessActivity::class.java)
+        intent.putExtra("data", "+" + df.format(num))
         startActivity(intent)
     }
 
-    private var scanResult:String = ""
+    private var scanResult: String = ""
     private fun onLinkeResult(msg: String) {
         msg.logE()
-        var address =""
+        var address = ""
         var linkBean = Gson().fromJson(msg, ScanResultLinkeBean::class.java)
 
-        if(linkBean.publicKeys.size > 0){
+        if (linkBean.publicKeys.size > 0) {
             address = linkBean.publicKeys[0]
-        }else{
+        } else {
             for (segment in linkBean.segments) {
-                if(segment!!.typeKey == 95){
+                if (segment!!.typeKey == 95) {
                     address = segment!!.value.toString();
                 }
             }
         }
-        if(scanType == 1000){
+        if (scanType == 1000) {
             var intent2 = Intent()
             intent2!!.putExtra("result", address)
             setResult(resultCode, intent2)
             finish()
             return
-        }else if (scanType == 10001){
-            if(linkBean.flag == 5){
+        } else if (scanType == 10001) {
+            if (linkBean.flag == 5) {
                 //收款
 //                var intent = Intent(this,PayActivity::class.java)
 //                startActivity(intent)
 
+                var sybid: Long = 0
 
-
-                var sybid:Long = 0
-
-                var  jsonObj = JSONObject(msg)
+                var jsonObj = JSONObject(msg)
                 var jsonAry = jsonObj.getJSONArray("segments")
 
-                for ( i in 0..jsonAry.length() -1){
+                for (i in 0..jsonAry.length() - 1) {
                     var segment = jsonAry.getJSONObject(i);
-                    if(segment.getInt("typeKey") == 44){
+                    if (segment.getInt("typeKey") == 44) {
                         sybid = segment.getLong("value")
                         break
                     }
                 }
 
-                mWebView.evaluateJavascript(WebViewApi.getFungibleSymbolDetail(sybid)){}
+                mWebView.evaluateJavascript(WebViewApi.getFungibleSymbolDetail(sybid)) {}
 
 
-            }
-            else if (linkBean.flag == 17)
-            {
-                var intent = Intent(mContext,ScanPayActivity::class.java)
-                intent.putExtra("maxMoney", AssetsItemFragment.firstBean !!.sym.split(" ")[0])
-                intent.putExtra("data", AssetsItemFragment.firstBean !!)
-                intent.putExtra("address",address)
+            } else if (linkBean.flag == 17) {
+                var intent = Intent(mContext, ScanPayActivity::class.java)
+                intent.putExtra("maxMoney", AssetsItemFragment.firstBean!!.sym.split(" ")[0])
+                intent.putExtra("data", AssetsItemFragment.firstBean!!)
+                intent.putExtra("address", address)
                 startActivity(intent)
 
-
+            } else if (linkBean.flag == 3) {
+                getString(R.string.operation_success).toast()
             }
             finish()
             return
@@ -248,17 +248,17 @@ class ScanActivity : SimpleActivity() {
         var num = intent.getStringExtra("num")
 
         var JING = ""
-        for (i in 0..mUseFts!!.sym.split(",")[0].toInt()-1){
-            JING +="0";
+        for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
+            JING += "0";
         }
-        val df = DecimalFormat("0."+JING)
+        val df = DecimalFormat("0." + JING)
         //linkBean!!.publicKeys[0]
-        var json = Gson().toJson(ReceScanBean.createBean(scanResult,sharedPref.publicKey,df.format(num.toFloat()),mUseFts.sym.split("#")[1]))
+        var json = Gson().toJson(ReceScanBean.createBean(scanResult, sharedPref.publicKey, df.format(num.toFloat()), mUseFts.sym.split("#")[1]))
 
         json.logE()
 
         lastPushTransaction = RxBusCenter.SCAN_RECE
-        mWebView.evaluateJavascript(WebViewApi.pushTransaction("everipay",json)){}
+        mWebView.evaluateJavascript(WebViewApi.pushTransaction("everipay", json)) {}
     }
 
     private fun onReceResult(msg: String) {

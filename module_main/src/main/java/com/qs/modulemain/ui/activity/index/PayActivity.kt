@@ -193,8 +193,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
                     for (meta in bean!!.metas) {
                         if ("symbol-icon".equals(meta.key)) {
                             if (meta.value.isEmpty()) return
-                            var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                            if (decodedByte == null) return
+                            val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                             iv_img.setImageBitmap(decodedByte)
                         }
                     }

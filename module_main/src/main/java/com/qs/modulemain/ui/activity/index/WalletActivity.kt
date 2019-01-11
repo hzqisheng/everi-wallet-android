@@ -9,14 +9,11 @@ import com.qs.modulemain.presenter.WalletPresenter
 import com.qs.modulemain.ui.adapter.WalletAdapter
 import com.qs.modulemain.view.WalletView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.sharedPref
-import com.smallcat.shenhai.mvpbase.extension.start
-import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_wallet.*
 import org.litepal.crud.DataSupport
 import android.content.ContentValues
-import com.smallcat.shenhai.mvpbase.extension.getResourceColor
+import com.smallcat.shenhai.mvpbase.extension.*
 
 
 @Route(path = ARouterConfig.MAIN_WALLET)
@@ -49,7 +46,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         iv_add_import.setOnClickListener { start(ImportWalletActivity::class.java) }
         iv_more.setOnClickListener {
             Intent(mContext, WalletDetailActivity::class.java).apply {
-                putExtra("data", dataList[0])
+                putExtra("data", dataList[0].id)
                 mContext.startActivity(this)
             }
         }

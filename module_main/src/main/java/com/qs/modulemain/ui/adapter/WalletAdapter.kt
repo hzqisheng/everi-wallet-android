@@ -46,7 +46,7 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
 
         viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener {
             Intent(mContext, WalletDetailActivity::class.java).apply {
-                putExtra("data", item)
+                putExtra("data", item.id)
                 mContext.startActivity(this)
             }
         }
