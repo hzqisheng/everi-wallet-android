@@ -33,7 +33,7 @@ class FtsIssueActivity : SimpleActivity() {
                 .subscribe { it ->
                     when (it.type) {
                         RxBusCenter.ISSUE_FTS -> {
-                            "发行成功".toast()
+                            getString(R.string.issue_success).toast()
                             finish()
                         }
                         RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
@@ -44,6 +44,7 @@ class FtsIssueActivity : SimpleActivity() {
         tv_address.text = sharedPref.publicKey
         iv_scan.setOnClickListener {
             val intent = Intent(this@FtsIssueActivity, ScanActivity::class.java)
+            intent.putExtra("ScanType", 1000)
             startActivityForResult(intent, 1)
         }
 
@@ -51,7 +52,6 @@ class FtsIssueActivity : SimpleActivity() {
             val intent = Intent(this@FtsIssueActivity, ChooseAddressActivity::class.java)
             startActivityForResult(intent, 2)
         }
-
 
         tv_issue.setOnClickListener {
             //发行量

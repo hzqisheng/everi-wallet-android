@@ -93,4 +93,8 @@ object WebViewApi {
 
     /** 获取币的详细信息 **/
     fun getFungibleSymbolDetail(sybid: Long) = "javascript:getFungibleSymbolDetail($sybid)"
+
+    /** 上传图片 **/
+    fun pushTransaction(s1: String, s2: String, s3: String, s4: String, int: Int) = "javascript:pushTransaction('$s1','$s2','$s3','$s4',$int)"
+
 }

@@ -8,6 +8,7 @@ import com.qs.modulemain.ui.widget.ProgressWebView
 import com.qs.modulemain.view.AboutUsView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.utils.getVersionName
 import kotlinx.android.synthetic.main.activity_about_us.*
 
 class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
@@ -28,8 +29,7 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
         findViewById<ViewGroup>(android.R.id.content).addView(webView)
         webView.loadUrl("file:///android_asset/dist/index.html")
 
-        iv_head.setOnClickListener { it ->
-        }
+        tv_version.text = getVersionName(mContext)
 
     }
 }

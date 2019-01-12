@@ -23,7 +23,7 @@ class AddFTsPresenter(private val mContext: Context) : BasePresenter<AddFTsView>
                 .subscribe { it ->
                     when(it.type){
                         RxBusCenter.ADD_FTS -> mView!!.onDataResult(it.msg)
-
+                        RxBusCenter.UPLOAD_IMG -> mView!!.uploadSuccess(it.msg)
                         RxBusCenter.NEED_PRIVATE_KEY -> mView!!.showPassWordDialog(it.msg)
                     }
                 })

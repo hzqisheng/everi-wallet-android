@@ -191,7 +191,7 @@
     <!--选择代币-->
     <string name="add_fts_symbol_not_empty">符号不能为空</string>
     <string name="add_fts_symbol_id_not_empty">资产编号不能为空</string>
-    <string name="add_fts_count_not_null">发行总量不能为空</string>
+    <string name="add_fts_count_not_null">发行总量和精度不能为空</string>
     <string name="add_fts_full_name_not_null">代币全称不能为空</string>
     <string name="password_error">密码错误</string>
     <string name="copy_success">复制到剪切板</string>
@@ -226,6 +226,12 @@
     <string name="owner">所有者</string>
     <string name="no_fts">未持有代币</string>
     <string name="operation_success">操作成功</string>
+    <string name="symbol_id_too_long">资产编号过长</string>
+    <string name="issue_success">发行成功</string>
+    <string name="Payer">收款方</string>
+    <string name="memo">备注</string>
+    <string name="fees">转账手续费</string>
+    <string name="choose_currency_for_pay">请选择币种进行付款</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

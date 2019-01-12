@@ -134,7 +134,7 @@
     <string name="transfer">Transfer</string>
     <string name="confirm_transfer">Confirm transfer</string>
     <string name="choose_fts">Choose Fts</string>
-    <string name="CreateFts">Create token</string>
+    <string name="CreateFts">Create FT</string>
     <string name="submit">Submit</string>
     <string name="authority">Jurisdiction</string>
     <string name="icon">Icon (Recommendation 180*180)</string>
@@ -147,7 +147,7 @@
     <string name="enter_the_asset_number">Please enter the asset number</string>
     <string name="asset_number">Asset number</string>
     <string name="enter_the_symbol">Please enter symbols</string>
-    <string name="coin_symbol">Token money</string>
+    <string name="coin_symbol">FT name</string>
     <string name="please_choose_address">Please choose your address for payment</string>
     <string name="please_choose_currency_and_money">Please choose the currency and amount of payment</string>
     <string name="balance">Balance</string>
@@ -160,8 +160,8 @@
     <string name="change">transfer</string>
     <string name="edit">edit</string>
     <string name="create_now">Create immediately</string>
-    <string name="my_nfts">My pass</string>
-    <string name="create_nfts">Create pass</string>
+    <string name="my_nfts">My NFTs</string>
+    <string name="create_nfts">Create NFT</string>
     <string name="only_i_and_have_can_change">Only I and the holder can transfer</string>
     <string name="nfts">Pass card</string>
     <string name="please_input">Please input</string>
@@ -199,7 +199,7 @@
     <string name="zanbubeifen">No Backup</string>
     <string name="transaction_record">Transaction Record</string>
     <string name="start_touch_id_unlock">Start Touch ID Unlock</string>
-    <string name="input_password">USE PASSWORD</string>
+    <string name="input_password">Use Password</string>
     <string name="please_check_finger">Validation of your Touch ID</string>
     <string name="Fingerprint_authentication_failed_please_try_again">Failed, Please try again</string>
     <string name="switch_success">Switch Success!</string>
@@ -211,9 +211,26 @@
     <string name="no_fts">NO FTS</string>
     <string name="operation_success">Operation success</string>
 
+    <string name="add_fts_symbol_not_empty">Symbol Not Empty</string>
+    <string name="add_fts_symbol_id_not_empty">Symbol Id Not Empty</string>
+    <string name="add_fts_count_not_null">Count Not Null</string>
+    <string name="add_fts_full_name_not_null">Full Name Not Null</string>
+    <string name="symbol_id_too_long">Symbol Id Too Long</string>
+    <string name="issue_success">Issue Success</string>
+
     <string-array name="add_power">
         <item>Only I can distribute, the permissions can not be changed</item>
         <item>Only I can distribute, and later I can modify the permissions</item>
     </string-array>
+    <string name="create">create</string>
+    <string name="recover">recover</string>
+    <string name="issue_nfts_success">issue_success</string>
+    <string name="batch_create">Batch Generation</string>
+    <string name="batch_create_nfts_name">Define with the Batch   Generation</string>
+    <string name="domain_number">count</string>
+    <string name="Payer">Payer</string>
+    <string name="memo">Memo</string>
+    <string name="fees">Fees</string>
+    <string name="choose_currency_for_pay">Choose currency for payment</string>
 
 </resources>

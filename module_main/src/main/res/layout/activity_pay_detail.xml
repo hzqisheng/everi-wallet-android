@@ -130,6 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             tools:text="EVT824300sdi997JJH4300sdi99784jjd"
             android:textColor="@color/color_68"
             android:textSize="14sp" />
@@ -152,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="收款方"
+            android:text="@string/Payer"
             android:textColor="@color/color_3137" />
 
         <TextView
@@ -161,6 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             tools:text="EVT824300sdi997JJH4300sdi99784jjd"
             android:textColor="@color/color_68"
             android:textSize="14sp" />
@@ -182,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="备注"
+            android:text="@string/memo"
             android:textColor="@color/color_3137" />
 
         <TextView
@@ -211,7 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="转账手续费"
+            android:text="@string/fees"
             android:textColor="@color/color_3137" />
 
         <TextView

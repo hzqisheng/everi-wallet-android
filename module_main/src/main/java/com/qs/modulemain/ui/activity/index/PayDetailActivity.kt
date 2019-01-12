@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.activity.index
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
@@ -15,8 +16,10 @@ import com.qs.modulemain.bean.PayRequestBean
 import com.qs.modulemain.bean.ServerCharge
 import com.qs.modulemain.presenter.PayDetailPresenter
 import com.qs.modulemain.ui.activity.MainActivity
+import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.PayDetailView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.*
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
@@ -31,10 +34,9 @@ import kotlinx.android.synthetic.main.activity_pay_detail.*
 import org.json.JSONObject
 
 class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
-    private var bean: PayRequestBean?= null
-    private var pwdDialog:Dialog? = null
+    private var bean: PayRequestBean? = null
     private var data: ChooseGetBean? = null
-    private var jingdu:String ?= null
+    private var jingdu: String? = null
 
     override fun initPresenter() {
         mPresenter = PayDetailPresenter(mContext)
@@ -46,6 +48,7 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
         fitSystemAllScroll(this)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
         iv_back.setOnClickListener { start(MainActivity::class.java) }
 
@@ -54,8 +57,8 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.SERVICE_CHARGE ->onDataResult(it.msg)
+                    when (it.type) {
+                        RxBusCenter.SERVICE_CHARGE -> onDataResult(it.msg)
                     }
                 })
 
@@ -63,8 +66,8 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.REQUEST_PAY ->onDataResult1(it.msg)
+                    when (it.type) {
+                        RxBusCenter.REQUEST_PAY -> onDataResult1(it.msg)
                     }
                 })
 
@@ -72,8 +75,8 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
-                        RxBusCenter.NEED_PRIVATE_KEY -> showSetUpDialog()
+                    when (it.type) {
+                        RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                     }
                 })
 
@@ -81,14 +84,14 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
         bean = intent.getSerializableExtra("data") as PayRequestBean
         data = intent.getSerializableExtra("fts") as ChooseGetBean
 
-        tv_currency.text = data!!.sym_name+"("+ data!!.asset.split("S")[1] +")"
-        tv_money.text = data!!.asset.split(" ")[0] +" "+data!!.sym_name
+        tv_currency.text = data!!.sym_name + "(" + data!!.asset.split("S")[1] + ")"
+        tv_money.text = bean!!.number.split(" ")[0] + " " + data!!.sym_name
 
         for (meta in data!!.metas) {
-            if("symbol-icon".equals(meta.key)){
-                if(meta.value.isEmpty())return
+            if ("symbol-icon".equals(meta.key)) {
+                if (meta.value.isEmpty()) return
                 var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                if(decodedByte == null)return
+                if (decodedByte == null) return
                 iv_img.setImageBitmap(decodedByte)
             }
         }
@@ -104,23 +107,24 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
 
         var jsss = Gson().toJson(charge)
 
-        mWebView.evaluateJavascript(WebViewApi.getEstimatedChargeForTransaction("transferft",serverJson,jsss)){}
+        mWebView.evaluateJavascript(WebViewApi.getEstimatedChargeForTransaction("transferft", serverJson, jsss)) {}
 
         tvSure.setOnClickListener {
 
 
-         var json = Gson().toJson(bean)
+            var json = Gson().toJson(bean)
 
-         lastPushTransaction = RxBusCenter.REQUEST_PAY
-         mWebView.evaluateJavascript(WebViewApi.pushTransaction("transferft",json,jsss)){} }
+            lastPushTransaction = RxBusCenter.REQUEST_PAY
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("transferft", json, jsss)) {}
+        }
 
     }
 
     private fun onDataResult1(msg: String) {
         "onDataResult1".logE()
         msg.logE()
-        var intent = Intent(this,PaySuccessActivity::class.java)
-        intent.putExtra("data","-"+bean!!.number.split(" ")[0])
+        var intent = Intent(this, PaySuccessActivity::class.java)
+        intent.putExtra("data", "-" + bean!!.number.split(" ")[0])
         startActivity(intent)
     }
 
@@ -131,30 +135,11 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
     }
 
 
-
-    private fun showSetUpDialog(){
-        if (pwdDialog == null) {
-            pwdDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_set_up_sign, null)
-        val etNumber = view.findViewById<EditText>(R.id.et_number)
-        val tvSure = view.findViewById<TextView>(R.id.tv_sure)
-        val cbCheck = view.findViewById<CheckBox>(R.id.cb_check)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvSure.setOnClickListener {
-            if(sharedPref.password.equals(etNumber.text.toString())){
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)){}
-            }else{
-                getResourceString(R.string.password_error).toast()
+    private fun showFingerPrintDialog() {
+        confirmPassword(sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }
-            pwdDialog!!.dismiss()
-        }
-        tvCancel.setOnClickListener{ pwdDialog!!.dismiss() }
-        pwdDialog!!.setContentView(view)
-        pwdDialog!!.setCanceledOnTouchOutside(false)
-        pwdDialog!!.setCancelable(true)
-        pwdDialog!!.show()
+        })
     }
-
-
 }

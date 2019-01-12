@@ -1,15 +1,14 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.Manifest
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.AddFTSBean
@@ -18,7 +17,9 @@ import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AddFTsView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
-import com.smallcat.shenhai.mvpbase.extension.*
+import com.smallcat.shenhai.mvpbase.extension.logE
+import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.utils.Glide4Engine
@@ -33,8 +34,6 @@ import kotlinx.android.synthetic.main.activity_add_fts.*
 
 class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
-    /** 密码框 **/
-    private var pwdDialog: Dialog? = null
     private var REQUEST_CODE_CHOOSE = 0x11
     private var base64Image = ""
 
@@ -48,7 +47,6 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         tvTitle?.text = getString(R.string.CreateFts)
 
         iv_img.setOnClickListener {
-
             val rxPermissions = RxPermissions(this)
             rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .subscribe { granted ->
@@ -65,7 +63,6 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                         }
                     }
         }
-
 
         val stringArray: Array<String> = this.resources.getStringArray(R.array.add_power)
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray)
@@ -93,15 +90,20 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 return@setOnClickListener
             }
 
-            if (et_decimals.text.isEmpty()) {
+            if (et_decimals.text.isEmpty() || et_issue_number.text.isEmpty()) {
                 getString(R.string.add_fts_count_not_null).toast()
+                return@setOnClickListener
+            }
+
+            if (et_code.text.toString().toIntOrNull() == null){
+                getString(R.string.symbol_id_too_long).toast()
                 return@setOnClickListener
             }
 
 
             val addBean = AddFTSBean.create(et_name.text.toString(), et_full_name.text.toString(), et_code.text.toString(),
-                    sharedPref.publicKey, et_decimals.text.toString().toInt(), et_decimals.text.toString().toInt(),
-                    tv_permission.selectedItemPosition, base64Image)
+                    sharedPref.publicKey, et_issue_number.text.toString().toInt(), et_decimals.text.toString().toInt(),
+                    tv_permission.selectedItemPosition, "")
             val addBeanJson = Gson().toJson(addBean)
             addBeanJson.logE()
             /** 创建 **/
@@ -113,18 +115,33 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
     override fun onDataResult(msg: String) {
         msg.logE()
-        if (!msg.isEmpty()) {
+        if (base64Image == "") {
             finish()
         }
+        lastPushTransaction = RxBusCenter.UPLOAD_IMG
+        val map = HashMap<String, Any>()
+        map["key"] = "symbol-icon"
+        map["value"] = base64Image
+        map["creator"] = "[A] ${sharedPref.publicKey}"
+        val json = Gson().toJson(map)
+        mWebView.evaluateJavascript(WebViewApi.pushTransaction("addmeta", json, "{}", ".fungible", et_code.text.toString().toInt()), null)
+    }
+
+    override fun uploadSuccess(msg: String) {
+        finish()
     }
 
     /** 显示输入密码 **/
     override fun showPassWordDialog(msg: String) {
-        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
-            override fun onCheckSuccess() {
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey), null)
-            }
-        })
+        if (lastPushTransaction == RxBusCenter.UPLOAD_IMG) {
+            mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey), null)
+        } else {
+            confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+                override fun onCheckSuccess() {
+                    mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey), null)
+                }
+            })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -147,15 +164,11 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                     uriList[0].toString().logE()
                     val type: String = options.outMimeType
                     base64Image = "data:" + type + ";base64," + bitmapToBase64(bitmap)
-                    base64Image = base64Image.replace("\n","")
+                    base64Image = base64Image.replace("\n", "")
                     WebViewApi.EVTInit()
                 }
-
             }
-
-
         }
     }
-
 
 }

@@ -67,4 +67,7 @@ object RxBusCenter{
 
     //通证交易
     const val PAY_NFTS = 0x2022
+
+    //上传图片
+    const val UPLOAD_IMG = 0x2023
 }

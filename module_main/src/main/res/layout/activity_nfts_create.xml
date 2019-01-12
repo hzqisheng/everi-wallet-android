@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
-                    android:text="@string/nfts"
+                    android:text="@string/domain"
                     android:textColor="@color/color_33"
                     android:textStyle="bold" />
 

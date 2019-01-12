@@ -2,12 +2,19 @@ package com.qs.modulemain.ui.activity.index
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.os.Vibrator
+import android.view.LayoutInflater
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
 import cn.bingoogolapple.qrcode.core.QRCodeView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterConfig
+import com.qs.modulemain.bean.ChooseFTSBean
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.ReceScanBean
 import com.qs.modulemain.bean.ScanResultLinkeBean
@@ -15,6 +22,7 @@ import com.qs.modulemain.ui.fragment.AssetsItemFragment
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
+import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -22,17 +30,20 @@ import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.SCAN_QRLINKE
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import com.smallcat.shenhai.mvpbase.utils.qrcode_type
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_scan.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.text.DecimalFormat
 
 @Route(path = ARouterConfig.ASSETS_SCAN)
 class ScanActivity : SimpleActivity() {
+    /** 密码框 **/
 
     companion object {
         var resultCode = 0x101000
@@ -79,8 +90,6 @@ class ScanActivity : SimpleActivity() {
                             }
                         })
 
-
-
                 addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -109,7 +118,6 @@ class ScanActivity : SimpleActivity() {
                         }
                     })
         }
-
 
 
         zxingview.setDelegate(object : QRCodeView.Delegate {
@@ -166,7 +174,7 @@ class ScanActivity : SimpleActivity() {
         var bean: ChooseGetBean = Gson().fromJson(msg, ChooseGetBean::class.java)
         msg.logE()
         intent = Intent(this, ScanCollectActivity::class.java)
-        intent.putExtra("data", bean);
+        intent.putExtra("data", bean)
         intent.putExtra("scanResult", scanResult)
         startActivity(intent)
 
@@ -178,7 +186,7 @@ class ScanActivity : SimpleActivity() {
 
         var JING = ""
         for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
-            JING += "0";
+            JING += "0"
         }
         val df = DecimalFormat("0." + JING)
 
@@ -198,14 +206,14 @@ class ScanActivity : SimpleActivity() {
         } else {
             for (segment in linkBean.segments) {
                 if (segment!!.typeKey == 95) {
-                    address = segment!!.value.toString();
+                    address = segment!!.value.toString()
                 }
             }
         }
         if (scanType == 1000) {
-            var intent2 = Intent()
-            intent2!!.putExtra("result", address)
-            setResult(resultCode, intent2)
+            val intent = Intent()
+            intent.putExtra("result", address)
+            setResult(resultCode, intent)
             finish()
             return
         } else if (scanType == 10001) {
@@ -213,6 +221,7 @@ class ScanActivity : SimpleActivity() {
                 //收款
 //                var intent = Intent(this,PayActivity::class.java)
 //                startActivity(intent)
+
 
                 var sybid: Long = 0
 
@@ -237,7 +246,9 @@ class ScanActivity : SimpleActivity() {
                 intent.putExtra("address", address)
                 startActivity(intent)
 
-            } else if (linkBean.flag == 3) {
+
+            } else if (linkBean.flag == 3){
+                //通证校验
                 getString(R.string.operation_success).toast()
             }
             finish()
@@ -284,11 +295,12 @@ class ScanActivity : SimpleActivity() {
     }
 
     private fun showFingerPrintDialog() {
-        confirmPassword(mContext.sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+        confirmPassword(sharedPref.isFinger , supportFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
                 mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }
         })
     }
+
 
 }

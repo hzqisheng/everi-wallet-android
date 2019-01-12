@@ -208,7 +208,6 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         super.onPause()
         mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()) {}
         qrcode_type = -1
-
     }
 
 

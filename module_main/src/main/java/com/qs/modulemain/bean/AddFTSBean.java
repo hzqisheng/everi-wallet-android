@@ -51,7 +51,6 @@ public class AddFTSBean {
             metasBean.key = "symbol-icon";
             metasBean.value = base64Image;
             metasBeans.add(metasBean);
-
             addFTSBean.metas = metasBeans;
         }
         return addFTSBean;
