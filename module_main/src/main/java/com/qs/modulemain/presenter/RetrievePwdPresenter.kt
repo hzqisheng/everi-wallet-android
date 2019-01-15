@@ -36,6 +36,7 @@ class RetrievePwdPresenter(private val mContext: Context) : BasePresenter<Retrie
                 .subscribe { it ->
                     when(it.type){
                         RxBusCenter.LOGIN -> mView!!.onDataResult(it.msg)
+                        RxBusCenter.CHECK_MEMO -> mView!!.checkSuccess(it.msg)
                     }
                 })
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)

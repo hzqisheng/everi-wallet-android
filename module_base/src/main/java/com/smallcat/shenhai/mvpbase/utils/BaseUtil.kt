@@ -147,7 +147,7 @@ fun isAdaptScreen(): Boolean {
 /**
  * 添加到剪切板
  */
-fun addClipboard(context:Context,content:String){
+fun addClipboard(context: Context, content: String) {
     //获取剪贴板管理器：
     val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     // 创建普通字符型ClipData

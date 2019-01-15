@@ -4,16 +4,19 @@ import android.annotation.SuppressLint
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.widget.LinearLayout
+import com.google.gson.Gson
 import com.smallcat.shenhai.mvpbase.App
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.toResultBean
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
+import com.smallcat.shenhai.mvpbase.model.bean.ErrorMSG
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.widget.ProgressWebView
 import java.security.PublicKey
+import java.util.*
 
 @SuppressLint("StaticFieldLeak")
 private var webView: WebView? = null
@@ -181,10 +184,33 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PAY_RECORD))
     }
 
+    /**
+     * 验证助记词
+     */
+    @JavascriptInterface
+    fun validateMnemonicCallback(s: String) {
+        ("validateMnemonicCallback$s").logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHECK_MEMO))
+    }
+
+    /**
+     * 验证私钥
+     */
+    @JavascriptInterface
+    fun isValidPrivateKeyCallback(s: String) {
+        ("isValidPrivateKey$s").logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHECK_PRIVATE))
+    }
+
     fun handleResult(s: String): String {
         val resultBean = s.toResultBean()
         if (resultBean.code == 0) {
-            resultBean.message.toast()
+            val s = Gson().fromJson<ErrorMSG>(resultBean.message, ErrorMSG::class.java)
+            if (LocalManageUtil.getSetLanguageLocale(App.getInstance()) == Locale.CHINA) {
+                s.cn.toast()
+            } else {
+                s.en.toast()
+            }
             return ""
         }
         return resultBean.data.toString()

@@ -47,6 +47,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
 
         public_asset_key.setOnClickListener {
             addClipboard(mContext,mContext.sharedPref.publicKey)
+            getString(R.string.copy_success).toast()
         }
 
         for (i in 0..1) {

@@ -49,7 +49,7 @@
     <string name="remark">备注</string>
     <string name="please_input_notes">请输入备注</string>
     <string name="save">保存</string>
-    <string name="import_address_msg">数据格式：类型、地址、组名、名称、电话、备注\n类型展示只支持EVT、ETH、EOS三种\n地址一行</string>
+    <string name="import_address_msg">数据格式：类型、地址、组名、名称、电话、备注\n一地址一行</string>
     <string name="Paste_the_address_here">在这里粘贴地址</string>
     <string name="copy_content">复制内容</string>
     <string name="languages">选择语言</string>
@@ -104,7 +104,7 @@
     <string name="pwd_save_deposit_msg">如需在线保存，则建议使用安全登记更高1password等密码保管软件保存Keystore。</string>
     <string name="copy_keystore">复制Keystore</string>
     <string name="please_choose_wallet_type">请选择钱包类型</string>
-    <string name="evt_wallet">EVT钱包</string>
+    <string name="evt_wallet">everiToken钱包</string>
     <string name="eth_wallet">ETH钱包</string>
     <string name="eos_wallet">EOS钱包</string>
     <string name="mnemonic">助记词</string>
@@ -149,7 +149,7 @@
     <string name="total_supply">发行总量</string>
     <string name="enter_the_asset_number">请输入资产编号</string>
     <string name="asset_number">资产编号</string>
-    <string name="enter_the_symbol">请输入符号</string>
+    <string name="enter_the_symbol">请输入符号(必须是大写字母)</string>
     <string name="coin_symbol">代币简称</string>
     <string name="please_choose_address">请选择地址进行付款</string>
     <string name="please_choose_currency_and_money">请选择付款币种及金额</string>
@@ -228,10 +228,20 @@
     <string name="operation_success">操作成功</string>
     <string name="symbol_id_too_long">资产编号过长</string>
     <string name="issue_success">发行成功</string>
-    <string name="Payer">收款方</string>
+    <string name="payee">收款方</string>
     <string name="memo">备注</string>
     <string name="fees">转账手续费</string>
     <string name="choose_currency_for_pay">请选择币种进行付款</string>
+    <string name="payer">付款方</string>
+    <string name="copyed_please_search">复制成功，请到微信搜索</string>
+    <string name="Password_must_not_be_less_than_8_bits">密码不能少于8位</string>
+    <string name="input_memo">请输入助记词</string>
+    <string name="private_key_not_empty">请输入私钥</string>
+    <string name="Upload_icon">请上传图片</string>
+    <string name="can_not_biger_18">发行总量加上精度的长度不能超过18位</string>
+    <string name="memo_error">助记词错误</string>
+    <string name="error_private_key">私钥不存在</string>
+    <string name="issue_number_empty">请输入发行量</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

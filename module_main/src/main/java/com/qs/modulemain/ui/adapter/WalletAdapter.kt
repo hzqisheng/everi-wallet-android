@@ -22,11 +22,11 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
 
     override fun convert(viewHolder: BaseViewHolder, item: BaseData) {
         viewHolder.addOnClickListener(R.id.iv_more)
-        if(item.name!=null && !item.name.isEmpty())
-        viewHolder.setText(R.id.tv_name,item.name)
-        if(item.type!=null && !item.type.isEmpty())
-        viewHolder.setText(R.id.tv_type,item.type)
-        viewHolder.setText(R.id.public_key,item.publicKey)
+        if (item.name != null && !item.name.isEmpty())
+            viewHolder.setText(R.id.tv_name, item.name)
+        if (item.type != null && !item.type.isEmpty())
+            viewHolder.setText(R.id.tv_type, item.type)
+        viewHolder.setText(R.id.public_key, item.publicKey)
 
 //        if(item.isSelect == 0) {
 //            viewHolder.getView<View>(R.id.iv_bg).setBackgroundColor(mContext.getColor(R.color.white))
@@ -34,7 +34,7 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
 //            //ic_wallet_yellow_bg
 //            viewHolder.getView<View>(R.id.iv_bg).background = mContext.getDrawable(R.drawable.ic_wallet_yellow_bg)
 //        }
-        val imageView =  viewHolder.getView<ImageView>(R.id.iv_bg)
+        val imageView = viewHolder.getView<ImageView>(R.id.iv_bg)
 
         if (item.isSelect == 1) {
             imageView.setImageResource(mContext.getResourceColor(R.color.transparent))
@@ -52,7 +52,7 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
         }
 
         viewHolder.getView<TextView>(R.id.public_key).setOnClickListener {
-            addClipboard(mContext,item.publicKey)
+            addClipboard(mContext, item.publicKey)
             mContext.getString(R.string.copy_success).toast()
         }
     }

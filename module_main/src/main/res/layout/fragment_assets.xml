@@ -34,8 +34,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/iv_icon"
                 android:textColor="@color/color_3137"
-                android:text="EVT-wallet"
-                tools:text="EVT-wallet"/>
+                android:text="everiToken-wallet"/>
 
             <ImageView
                 android:id="@+id/iv_icon"
@@ -70,13 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/tv_asset_type"
                 android:layout_below="@+id/tv_asset_name"
-                android:layout_marginStart="8dp"
+                android:padding="8dp"
+                android:layout_alignBaseline="@id/tv_asset_type"
                 android:layout_toRightOf="@+id/tv_asset_type"
                 android:drawableEnd="@drawable/ic_wallet_card"
                 android:drawablePadding="6dp"
                 android:ellipsize="end"
-                android:maxEms="25"
-                android:maxLength="25"
+                android:maxLength="20"
                 android:singleLine="true"
                 android:textColor="@color/color_3137"
                 android:textSize="12sp"

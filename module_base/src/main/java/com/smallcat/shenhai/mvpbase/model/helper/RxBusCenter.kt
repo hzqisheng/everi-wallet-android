@@ -70,4 +70,11 @@ object RxBusCenter{
 
     //上传图片
     const val UPLOAD_IMG = 0x2023
+
+    //验证助记词
+    const val CHECK_MEMO = 0x2024
+
+    //验证私钥
+    const val CHECK_PRIVATE = 0x2025
+
 }

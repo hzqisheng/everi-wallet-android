@@ -42,7 +42,7 @@
             <RelativeLayout
                 android:id="@+id/layout1"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginStart="7dp"
                 android:layout_marginEnd="7dp"
                 android:background="@drawable/shadow_circle"
@@ -65,7 +65,7 @@
                     android:textColor="@color/color_33"
                     android:textSize="13sp" />
 
-                <View
+              <!--  <View
                     android:id="@+id/view_line"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -86,7 +86,7 @@
                     android:paddingEnd="12dp"
                     android:text="@string/address_manage"
                     android:textColor="@color/color_33"
-                    android:textSize="13sp" />
+                    android:textSize="13sp" />-->
             </RelativeLayout>
 
             <RelativeLayout

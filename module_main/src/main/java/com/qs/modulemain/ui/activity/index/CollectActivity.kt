@@ -67,14 +67,14 @@ class CollectActivity : SimpleActivity() {
 
         rb_sweep_payment.setOnClickListener {
 
-            intent = Intent(this,ScanCollectActivity::class.java)
+            intent = Intent(this,ScanActivity::class.java)
             startActivity(intent)
 
         }
 
         iv_qr_code.setOnClickListener {
             addClipboard(this@CollectActivity,sharedPref.publicKey)
-            getResourceString(R.string.copy_success).toast()
+            getString(R.string.copy_success).toast()
         }
 
         requestNet()

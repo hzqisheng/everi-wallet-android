@@ -36,17 +36,40 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
         }
 
         tv_sure.setOnClickListener {
-            mWebView.evaluateJavascript(WebViewApi.importEVTWallet(et_import.text.toString(),et_new_pwd.text.toString())){}
+            val memo = et_import.text.toString()
+            if (memo.isEmpty()) {
+                getString(R.string.input_memo).toast()
+            }
+            val oldPwd = et_new_pwd.text.toString()
+            val newPwd = et_new_pwd_confirm.text.toString()
+
+            if (oldPwd.length < 8) {
+                getString(R.string.Password_must_not_be_less_than_8_bits).toast()
+                return@setOnClickListener
+            }
+            if (oldPwd != newPwd) {
+                getString(R.string.password_not_equals).toast()
+                return@setOnClickListener
+            }
+
+            mWebView.evaluateJavascript(WebViewApi.validateMnemonic(memo), null)
         }
 
+    }
 
+    override fun checkSuccess(msg: String) {
+        if (msg == "true") {
+            mWebView.evaluateJavascript(WebViewApi.importEVTWallet(et_import.text.toString(), et_new_pwd.text.toString()), null)
+        }else {
+            getString(R.string.memo_error).toast()
+        }
     }
 
     override fun onDataResult(msg: String) {
         super.onDataResult(msg)
         msg.logE()
-        if(msg.isEmpty())return
-        var baseBean = Gson().fromJson(msg,BaseData::class.java)
+        if (msg.isEmpty()) return
+        var baseBean = Gson().fromJson(msg, BaseData::class.java)
         baseBean.save()
         mContext.sharedPref.publicKey = baseBean.publicKey
         mContext.sharedPref.privateKey = baseBean.privateKey
@@ -54,12 +77,9 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
         mContext.sharedPref.mnemoinc = baseBean.mnemoinc
         getString(R.string.import_success).toast()
         mActivity.finish()
-        var intent = Intent(mContext,MainActivity::class.java)
+        var intent = Intent(mContext, MainActivity::class.java)
         startActivity(intent)
     }
-
-
-
 
 
 }

@@ -54,6 +54,10 @@ class FtsIssueActivity : SimpleActivity() {
         }
 
         tv_issue.setOnClickListener {
+            if (et_number.text.isEmpty()){
+                getString(R.string.issue_number_empty).toast()
+                return@setOnClickListener
+            }
             //发行量
             val issueCount: Int = et_number.text.toString().toInt()
             //发行地址

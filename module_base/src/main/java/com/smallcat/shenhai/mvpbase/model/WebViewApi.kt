@@ -97,4 +97,9 @@ object WebViewApi {
     /** 上传图片 **/
     fun pushTransaction(s1: String, s2: String, s3: String, s4: String, int: Int) = "javascript:pushTransaction('$s1','$s2','$s3','$s4',$int)"
 
+    //验证助记词
+    fun validateMnemonic(s: String) = "javascript:validateMnemonic('$s')"
+
+    //验证私钥
+    fun isValidPrivateKey(s: String) = "javascript:isValidPrivateKey('$s')"
 }

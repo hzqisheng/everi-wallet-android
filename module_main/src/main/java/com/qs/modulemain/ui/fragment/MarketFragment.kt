@@ -52,6 +52,15 @@ class MarketFragment : SimpleFragment() {
             startActivity(intent)
         }
 
+        val tvRight = mView.findViewById<TextView>(R.id.tv_right)
+        tvRight?.apply {
+            text = getString(R.string.export)
+            setTextColor(mContext.getResourceColor(R.color.color_e4))
+            setOnClickListener{
+                mContext.start(ExportAddressActivity::class.java)
+            }
+        }
+
         adapter = AddressAdapter(dataList);
 
         var footView = View(mContext)

@@ -8,7 +8,6 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5aa9e2ebf29d98623e0000fa" />
@@ -17,12 +16,12 @@
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
@@ -50,6 +49,7 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".WebActivity"></activity>
     </application>
 
 </manifest>

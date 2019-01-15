@@ -12,6 +12,8 @@ import android.webkit.WebView
 import com.smallcat.shenhai.mvpbase.R
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -20,6 +22,7 @@ import me.yokeyword.fragmentation.SupportFragment
  */
 abstract class SimpleFragment : SupportFragment() {
 
+    private var mCompositeDisposable: CompositeDisposable? = null
     protected lateinit var mView: View
     protected lateinit var mActivity: Activity
     protected lateinit var mContext: Context
@@ -61,9 +64,28 @@ abstract class SimpleFragment : SupportFragment() {
         loadingDialog!!.show()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        dismissLoading()
+        unSubscribe()
+    }
+
     protected fun dismissLoading() {
         if (loadingDialog != null)
             loadingDialog!!.dismiss()
+    }
+
+
+    private fun unSubscribe() {
+        if (mCompositeDisposable != null)
+            mCompositeDisposable!!.clear()
+    }
+
+    protected fun addSubscribe(disposable: Disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        mCompositeDisposable!!.add(disposable)
     }
 
     protected abstract fun initData()

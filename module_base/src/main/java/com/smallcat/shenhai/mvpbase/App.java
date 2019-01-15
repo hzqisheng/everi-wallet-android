@@ -48,6 +48,7 @@ public class App extends Application {
         Tiny.getInstance().init(this);
         
         ARouter.openLog();   // 打印日志
+        ARouter.openDebug();
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 

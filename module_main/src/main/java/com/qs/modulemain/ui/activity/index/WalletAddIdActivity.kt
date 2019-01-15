@@ -45,12 +45,15 @@ class WalletAddIdActivity : SimpleActivity() {
             tv_msg.text = Html.fromHtml(s)
         }
 
-
         tv_create.setOnClickListener {
 
             val oldPwd = et_new_pwd.text.toString()
             val newPwd = et_new_pwd_confirm.text.toString()
 
+            if (oldPwd.length < 8){
+                getString(R.string.Password_must_not_be_less_than_8_bits).toast()
+                return@setOnClickListener
+            }
             if(oldPwd != newPwd){
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener

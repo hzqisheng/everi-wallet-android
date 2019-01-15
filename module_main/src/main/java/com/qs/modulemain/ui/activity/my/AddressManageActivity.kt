@@ -38,7 +38,7 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
         tvTitle?.text = getString(R.string.address_manage)
 
         if(intent.hasExtra("isNeedBack")){
-            isNeedBack = true;
+            isNeedBack = true
         }
 
         tvRight?.apply {

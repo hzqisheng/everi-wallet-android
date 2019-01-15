@@ -42,7 +42,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":module_base")
     implementation project(":module_main")
-    implementation project(":module_third")
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 }

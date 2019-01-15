@@ -28,9 +28,12 @@ class ExportAddressActivity : SimpleActivity() {
         for (addressBean in dataList) {
             result += addressBean.toString()
         }
-        tvExport.setText(result)
+        tvExport.text = result
 
         tv_save.setOnClickListener {
+            if (result == ""){
+                return@setOnClickListener
+            }
             addClipboard(this@ExportAddressActivity,result)
             getResourceString(R.string.copy_success).toast()
         }

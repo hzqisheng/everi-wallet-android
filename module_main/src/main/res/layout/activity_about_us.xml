@@ -34,6 +34,7 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="12dp"
             android:layout_marginStart="18dp"
+            android:visibility="gone"
             android:background="@color/color_cc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -44,8 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="36dp"
-            android:textColor="@color/color_33"
+            android:layout_marginBottom="8dp"
             android:text="@string/now_version"
+            android:textColor="@color/color_33"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_head" />
 
@@ -69,6 +72,7 @@
             android:layout_marginBottom="8dp"
             android:drawableEnd="@drawable/ic_my_more"
             android:text="@string/check_version"
+            android:visibility="gone"
             android:textColor="@color/color_33"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

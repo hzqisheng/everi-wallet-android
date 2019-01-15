@@ -1,12 +1,7 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.view.LayoutInflater
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
@@ -14,7 +9,6 @@ import com.qs.modulemain.bean.ReceScanBean
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -30,11 +24,10 @@ import kotlinx.android.synthetic.main.activity_scan_collect.*
 import java.text.DecimalFormat
 
 class ScanCollectActivity : SimpleActivity() {
-    /** 密码框 **/
-    private var pwdDialog: Dialog? = null
+
     private lateinit  var mUseFts:ChooseGetBean
-    private  var sybid = 0;
-    private var isCollect = false;
+    private  var sybid = 0
+    private var isCollect = false
     private var scanResult :String = ""
 
     override val layoutId: Int
@@ -60,19 +53,14 @@ class ScanCollectActivity : SimpleActivity() {
                     }
                 })
 
-        layout.setOnClickListener {
-//            var intent = Intent(this,)
-            var intent = Intent(this,CollectChooseFtsActivity::class.java)
-            startActivityForResult(intent,101)
-        }
 
         if(intent.hasExtra("data")){
             mUseFts = intent.getSerializableExtra("data") as ChooseGetBean
 
-            textView6.text =mUseFts.name
+            textView6.text =mUseFts.sym_name
 
             if(mUseFts!!.metas.size >0){
-                if("symbol-icon".equals(mUseFts!!.metas[0].key)){
+                if("symbol-icon" == mUseFts!!.metas[0].key){
                     var bitmap = Base64Utils.base64ToBitmap(mUseFts!!.metas[0].value)
                     iv_img.setImageBitmap(bitmap)
                 }
@@ -80,7 +68,7 @@ class ScanCollectActivity : SimpleActivity() {
          }
 
         if(intent.hasExtra("scanResult")){
-            isCollect = true;
+            isCollect = true
             scanResult = intent.getStringExtra("scanResult")
         }
 
@@ -89,6 +77,11 @@ class ScanCollectActivity : SimpleActivity() {
         tv_sure.setOnClickListener {
 
             if(mUseFts == null){
+                getString(R.string.please_choose_currency_and_money).toast()
+                return@setOnClickListener
+            }
+
+            if (et_pwd.text.toString().isEmpty()){
                 getString(R.string.please_choose_currency_and_money).toast()
                 return@setOnClickListener
             }
@@ -113,7 +106,7 @@ class ScanCollectActivity : SimpleActivity() {
                 return@setOnClickListener
             }
 
-            var intent = Intent(this,ScanActivity::class.java)
+            val intent = Intent(this,ScanActivity::class.java)
             intent.putExtra("data",mUseFts)
             intent.putExtra("num",et_pwd.text.toString())
             intent.putExtra("ScanType",ScanActivity.RECE)
@@ -147,8 +140,7 @@ class ScanCollectActivity : SimpleActivity() {
                 for (meta in mUseFts.metas) {
                     if("symbol-icon".equals(meta.key)){
                         if(meta.value.isEmpty())return
-                        var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                        if(decodedByte == null)return
+                        var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                         iv_img.setImageBitmap(decodedByte)
                     }
                 }

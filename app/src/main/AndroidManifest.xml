@@ -14,4 +14,9 @@
         tools:ignore="GoogleAppIndexingWarning">
     </application>
 
+    <!--适配19:9全面屏黑边问题：https://blog.csdn.net/darkeet/article/details/80049913-->
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.2"/>
+
 </manifest>

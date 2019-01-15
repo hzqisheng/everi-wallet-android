@@ -36,7 +36,7 @@ class WalletDetailActivity : SimpleActivity() {
         mWalletName = DataSupport.find(BaseData::class.java, id.toLong())
 
         val name = if (mWalletName?.name.isNullOrBlank()) {
-            "EVT-wallet"
+            "everiToken-wallet"
         } else {
             mWalletName?.name.toString()
         }

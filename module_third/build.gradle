@@ -19,6 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     kapt {
         arguments {
             arg("moduleName", project.getName())
@@ -29,5 +30,6 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':module_base')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     kapt 'com.alibaba:arouter-compiler:1.1.4'
 }

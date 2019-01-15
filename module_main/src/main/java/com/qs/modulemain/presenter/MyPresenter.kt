@@ -15,31 +15,5 @@ import io.reactivex.schedulers.Schedulers
  */
 class MyPresenter(private val mContext: Context) : BasePresenter<MyView>() {
 
-    init {
-        registerEvent()
-    }
-
-    fun loadData(){
-        /*addSubscribe(mApi.getUseInfo()
-                .sanitizeJson()
-                .subscribeWith(object : CommonSubscriber<UseInfoBean>(mView) {
-                    override fun onNext(data: UseInfoBean) {
-                        mView!!.loadSuccess(data)
-                    }
-                }))*/
-    }
-
-
-
-    private fun registerEvent(){
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when(it.type){
-
-                    }
-                })
-    }
 
 }

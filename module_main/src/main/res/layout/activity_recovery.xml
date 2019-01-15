@@ -47,6 +47,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
             android:hint="@string/pwd"
+            android:inputType="textPassword"
             android:textColorHint="@color/color_bb"
             android:textColor="@color/color_33"
             android:textSize="13sp" />
@@ -61,6 +62,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
             android:hint="@string/comfire_pwd"
+            android:inputType="textPassword"
             android:textColorHint="@color/color_bb"
             android:textColor="@color/color_33"
             android:textSize="13sp" />

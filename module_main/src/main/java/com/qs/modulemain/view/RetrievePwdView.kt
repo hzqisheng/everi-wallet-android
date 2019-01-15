@@ -10,4 +10,6 @@ interface RetrievePwdView: BaseView{
     fun onImport(msg: String) {
 
     }
+
+    abstract fun checkSuccess(msg: String)
 }

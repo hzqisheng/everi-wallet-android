@@ -8,6 +8,7 @@ import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_retrieve_pwd.*
 
@@ -35,11 +36,12 @@ class RetrievePwdActivity : BaseActivity<RetrievePwdPresenter>(), RetrievePwdVie
             tv_msg.text = Html.fromHtml(s)
         }
 
+
         var memo = et_import.text.toString()
 
         tvNext.setOnClickListener {
-            if (mWalletBean.mnemoinc.equals(memo)) {
-                if (!et_new_pwd.text.toString().equals(et_new_pwd_confirm.text.toString())) {
+            if (mWalletBean.mnemoinc == memo) {
+                if (et_new_pwd.text.toString() != et_new_pwd_confirm.text.toString()) {
                     getResourceString(R.string.password_not_equals).toast()
                     return@setOnClickListener
                 }
@@ -54,6 +56,9 @@ class RetrievePwdActivity : BaseActivity<RetrievePwdPresenter>(), RetrievePwdVie
             }
         }
 
+    }
+
+    override fun checkSuccess(msg: String) {
 
     }
 

@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:background="@drawable/shadow_circle"
+        android:background="@drawable/shadow_line_e6_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -56,11 +56,13 @@
             android:id="@+id/view_line2"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+            android:visibility="gone"
             android:layout_below="@+id/ll_everi"
             android:background="@color/color_d8" />
 
         <LinearLayout
             android:id="@+id/ll_eth"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
@@ -90,6 +92,7 @@
 
         <View
             android:id="@+id/view_line3"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/ll_eth"
@@ -97,6 +100,7 @@
 
         <LinearLayout
             android:id="@+id/ll_eos"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:background="@drawable/my_item_selector"
             android:layout_width="match_parent"

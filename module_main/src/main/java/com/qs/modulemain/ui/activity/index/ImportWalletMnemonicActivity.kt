@@ -10,6 +10,7 @@ import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import kotlinx.android.synthetic.main.fragment_assets.*
 
 class ImportWalletMnemonicActivity : SimpleActivity() {
+
     private lateinit var mAdapter: WalletFragAdapter
     override val layoutId: Int
         get() = R.layout.activity_import_wallet_mnemonic

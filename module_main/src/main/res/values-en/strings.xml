@@ -16,7 +16,7 @@
     <string name="my_pass_code">My NFTs</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scan">Scan</string>
-    <string name="everi_pay">Pay</string>
+    <string name="everi_pay">everiPay</string>
     <string name="collect">Collect</string>
     <string name="issue">Issue</string>
     <string name="tv_return">Back</string>
@@ -48,7 +48,7 @@
     <string name="remark">Remark</string>
     <string name="please_input_notes">Please Input Notes</string>
     <string name="save">Save</string>
-    <string name="import_address_msg">Data Format: Type, Address, Group Name, Name, Telephone, Noten Type Display only supports one line of EVT, ETH and EOSn \n Address</string>
+    <string name="import_address_msg">Data Format: Type, Address, Group Name, Name, Telephone\n One Address One Line</string>
     <string name="Paste_the_address_here">Paste the address here</string>
     <string name="copy_content">Copy content</string>
     <string name="languages">Choice language</string>
@@ -60,10 +60,10 @@
     <string name="cancel">Cancel</string>
     <string name="the_service_fee_can_not_be_empty">Service charges cannot be empty</string>
     <string name="need_camerl_permission">Camera privileges are required</string>
-    <string name="issue_fts">Issue token</string>
-    <string name="issue_fts_msg">Suitable for integrals, points, standardized property, etc</string>
-    <string name="issue_nfts">Issuing pass</string>
-    <string name="issue_nfts_msg">Unique property interests suitable for bills, real estate, etc</string>
+    <string name="issue_fts">Issue FTs</string>
+    <string name="issue_fts_msg">Like Points,Scores and other standardized assets</string>
+    <string name="issue_nfts">Issue NFTs</string>
+    <string name="issue_nfts_msg">Like Tickets,property and other unique assets/rights</string>
     <string name="change_pwd">Change Password</string>
     <string name="retrieve_pwd">Retrieve password</string>
     <string name="export_mnemonic_code">Derived mnemonics</string>
@@ -103,7 +103,7 @@
     <string name="pwd_save_deposit_msg">For online storage, it is recommended that Keystore be saved using password-keeping software such as secure registration, higher password, etc</string>
     <string name="copy_keystore">Copy Keystore</string>
     <string name="please_choose_wallet_type">Please choose the type of wallet</string>
-    <string name="evt_wallet">EVT Wallet</string>
+    <string name="evt_wallet">everiToken Wallet</string>
     <string name="eth_wallet">ETH Wallet</string>
     <string name="eos_wallet">EOS Wallet</string>
     <string name="mnemonic">Mnemonic word</string>
@@ -130,24 +130,24 @@
     <string name="address_number">Address number</string>
     <string name="transfer_address">Transfer address</string>
     <string name="all_choose">All election</string>
-    <string name="batch_transfers">Bulk transfer</string>
+    <string name="batch_transfers">Bulk Transfer</string>
     <string name="transfer">Transfer</string>
     <string name="confirm_transfer">Confirm transfer</string>
     <string name="choose_fts">Choose Fts</string>
     <string name="CreateFts">Create FT</string>
     <string name="submit">Submit</string>
-    <string name="authority">Jurisdiction</string>
+    <string name="authority">Authority</string>
     <string name="icon">Icon (Recommendation 180*180)</string>
-    <string name="please_input_full_name">Please enter the full name of the token</string>
-    <string name="coin_full_name">Token of tokens</string>
-    <string name="please_input_decimals">Please input accuracy</string>
-    <string name="decimals">Accuracy (up to 18 digits of accuracy)</string>
+    <string name="please_input_full_name">Please enter coin full name </string>
+    <string name="coin_full_name">Coin Full Name</string>
+    <string name="please_input_decimals">Please input decimals</string>
+    <string name="decimals">Decimals (up to 18 digits of Decimals)</string>
     <string name="enter_the_total_number">Please enter the total amount of distribution</string>
-    <string name="total_supply">Total issue amount</string>
+    <string name="total_supply">Total Supply</string>
     <string name="enter_the_asset_number">Please enter the asset number</string>
     <string name="asset_number">Asset number</string>
-    <string name="enter_the_symbol">Please enter symbols</string>
-    <string name="coin_symbol">FT name</string>
+    <string name="enter_the_symbol">Please enter symbols(Capital)</string>
+    <string name="coin_symbol">Symbol</string>
     <string name="please_choose_address">Please choose your address for payment</string>
     <string name="please_choose_currency_and_money">Please choose the currency and amount of payment</string>
     <string name="balance">Balance</string>
@@ -173,7 +173,7 @@
     <string name="group_structure">Group structure</string>
     <string name="node">node</string>
     <string name="create_group">Create group</string>
-    <string name="my_group">My group</string>
+    <string name="my_group">My Group</string>
     <string name="from_adress_book_choose">From address book selection</string>
     <string name="hand_input_pub_key">Manual input of public key</string>
     <string name="new_note">New node</string>
@@ -204,7 +204,7 @@
     <string name="Fingerprint_authentication_failed_please_try_again">Failed, Please try again</string>
     <string name="switch_success">Switch Success!</string>
     <string name="repress_Exit">Re-press Exit</string>
-    <string name="transaction_success">Transaction Success</string>
+    <string name="transaction_success">Transaction Successful</string>
     <string name="domain">domain</string>
     <string name="Automatic_refresh_every_5_seconds">Automatic refresh every 5 seconds</string>
     <string name="owner">owner</string>
@@ -219,8 +219,8 @@
     <string name="issue_success">Issue Success</string>
 
     <string-array name="add_power">
-        <item>Only I can distribute, the permissions can not be changed</item>
-        <item>Only I can distribute, and later I can modify the permissions</item>
+        <item>Only I can issue, the authority can not be changed</item>
+        <item>Only I can issue, the authority can be changed later</item>
     </string-array>
     <string name="create">create</string>
     <string name="recover">recover</string>
@@ -228,9 +228,19 @@
     <string name="batch_create">Batch Generation</string>
     <string name="batch_create_nfts_name">Define with the Batch   Generation</string>
     <string name="domain_number">count</string>
-    <string name="Payer">Payer</string>
+    <string name="payee">Payee</string>
     <string name="memo">Memo</string>
     <string name="fees">Fees</string>
     <string name="choose_currency_for_pay">Choose currency for payment</string>
+    <string name="payer">payer</string>
+    <string name="copyed_please_search">Copied,please search and pasted on WeChat</string>
+    <string name="Password_must_not_be_less_than_8_bits">Password must not be less than 8 bits</string>
+    <string name="input_memo">Input mnemonics</string>
+    <string name="private_key_not_empty">private key not empty</string>
+    <string name="Upload_icon">Icon can not be empty</string>
+    <string name="can_not_biger_18">invalid asset</string>
+    <string name="memo_error">mnemonics error</string>
+    <string name="error_private_key">private ke error</string>
+    <string name="issue_number_empty">issue number not empty</string>
 
 </resources>

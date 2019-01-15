@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="付款方"
+            android:text="@string/payer"
             android:textColor="@color/color_3137" />
 
         <TextView
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:text="@string/Payer"
+            android:text="@string/payee"
             android:textColor="@color/color_3137" />
 
         <TextView

@@ -87,7 +87,8 @@
         <activity android:name=".ui.activity.index.RecoveryActivity" />
         <activity android:name=".ui.activity.index.TransactionRecordActivity" />
         <activity android:name=".ui.activity.index.NFTsPayActivity" />
-        <activity android:name=".ui.activity.index.NFTsDetailActivity"></activity>
+        <activity android:name=".ui.activity.index.NFTsDetailActivity" />
+        <activity android:name=".ui.activity.WebActivity"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
 package com.qs.modulemain.ui.activity.my
 
 import com.qs.modulemain.R
+import com.qs.modulemain.arouter.ARouterCenter
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
+import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.utils.addClipboard
+import kotlinx.android.synthetic.main.activity_join_communities.*
 
 class JoinCommunitiesActivity : SimpleActivity() {
 
@@ -11,6 +14,15 @@ class JoinCommunitiesActivity : SimpleActivity() {
 
     override fun initData() {
         tvTitle?.text = getString(R.string.add_community)
+
+        ll_face_book.setOnClickListener { ARouterCenter.goWebViewActivity("https://www.facebook.com/everiToken") }
+        ll_twitter.setOnClickListener { ARouterCenter.goWebViewActivity("https://twitter.com/EveriToken") }
+        ll_telegram.setOnClickListener { ARouterCenter.goWebViewActivity("https://t.me/everiToken") }
+        ll_wechat.setOnClickListener {
+            addClipboard(mContext, "everiToken")
+            getString(R.string.copyed_please_search).toast()
+        }
     }
+
 
 }

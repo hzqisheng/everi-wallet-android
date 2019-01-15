@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_wallet.*
 import org.litepal.crud.DataSupport
 import android.content.ContentValues
 import com.smallcat.shenhai.mvpbase.extension.*
+import com.smallcat.shenhai.mvpbase.utils.addClipboard
 
 
 @Route(path = ARouterConfig.MAIN_WALLET)
@@ -49,6 +50,11 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
                 putExtra("data", dataList[0].id)
                 mContext.startActivity(this)
             }
+        }
+
+        public_key.setOnClickListener {
+            addClipboard(mContext, dataList[0].publicKey)
+            mContext.getString(R.string.copy_success).toast()
         }
 
         adapterNow.setOnItemClickListener { adapter, view, position ->

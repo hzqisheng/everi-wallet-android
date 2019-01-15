@@ -65,7 +65,7 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         }
 
         val stringArray: Array<String> = this.resources.getStringArray(R.array.add_power)
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray)
+        val arrayAdapter = ArrayAdapter(this, R.layout.my_spinner, android.R.id.text1, stringArray)
         tv_permission.adapter = arrayAdapter
         tv_permission.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -95,11 +95,20 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 return@setOnClickListener
             }
 
-            if (et_code.text.toString().toIntOrNull() == null){
+            if (et_issue_number.text.length + et_decimals.text.toString().toInt() > 18) {
+                getString(R.string.can_not_biger_18).toast()
+                return@setOnClickListener
+            }
+
+            if (et_code.text.toString().toIntOrNull() == null) {
                 getString(R.string.symbol_id_too_long).toast()
                 return@setOnClickListener
             }
 
+            if (base64Image == "") {
+                getString(R.string.Upload_icon).toast()
+                return@setOnClickListener
+            }
 
             val addBean = AddFTSBean.create(et_name.text.toString(), et_full_name.text.toString(), et_code.text.toString(),
                     sharedPref.publicKey, et_issue_number.text.toString().toInt(), et_decimals.text.toString().toInt(),
@@ -115,9 +124,6 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
     override fun onDataResult(msg: String) {
         msg.logE()
-        if (base64Image == "") {
-            finish()
-        }
         lastPushTransaction = RxBusCenter.UPLOAD_IMG
         val map = HashMap<String, Any>()
         map["key"] = "symbol-icon"
