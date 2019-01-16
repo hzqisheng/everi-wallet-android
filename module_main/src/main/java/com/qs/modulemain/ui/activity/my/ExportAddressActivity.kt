@@ -35,7 +35,7 @@ class ExportAddressActivity : SimpleActivity() {
                 return@setOnClickListener
             }
             addClipboard(this@ExportAddressActivity,result)
-            getResourceString(R.string.copy_success).toast()
+            getString(R.string.copy_success).toast()
         }
     }
 

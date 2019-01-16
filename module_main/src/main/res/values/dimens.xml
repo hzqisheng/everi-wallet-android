@@ -11,4 +11,5 @@
     <dimen name="dp_7">7dp</dimen>
     <dimen name="sp_12">12sp</dimen>
     <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_1">1sp</dimen>
 </resources>

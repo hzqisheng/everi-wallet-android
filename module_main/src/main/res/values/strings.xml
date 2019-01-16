@@ -118,7 +118,7 @@
     <string name="you_need_pay_currency">您需要付款的币种为：</string>
     <string name="you_need_collect_currency">您需要收款的币种为：</string>
     <string name="sum_of_money">金额</string>
-    <string name="please_input_money">请输入金额</string>
+    <string name="please_input_money">请选择收款数量</string>
     <string name="please_choose_need_money">请选择需要收款的金额</string>
     <string name="confirm_collect">确认收款</string>
     <string name="please_choose_how_to_pay">请选择进行付款的代币</string>
@@ -194,7 +194,7 @@
     <string name="add_fts_count_not_null">发行总量和精度不能为空</string>
     <string name="add_fts_full_name_not_null">代币全称不能为空</string>
     <string name="password_error">密码错误</string>
-    <string name="copy_success">复制到剪切板</string>
+    <string name="copy_success">已复制</string>
     <string name="issue_nfts_success">发行成功</string>
     <string name="password_not_equals">两次输入密码不一致</string>
     <string name="set_max_money">请输入最大金额</string>
@@ -242,6 +242,8 @@
     <string name="memo_error">助记词错误</string>
     <string name="error_private_key">私钥不存在</string>
     <string name="issue_number_empty">请输入发行量</string>
+    <string name="all_address">全部地址</string>
+    <string name="choose_node">everiToken 节点设置</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

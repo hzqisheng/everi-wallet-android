@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:paddingStart="25dp"
         android:paddingEnd="2dp"
         android:textSize="12sp"

@@ -12,8 +12,7 @@
         android:id="@+id/cl_current"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/assetbackground"
-        >
+        android:background="@drawable/assetbackground">
 
         <RelativeLayout
             android:id="@+id/iv_bg"
@@ -22,9 +21,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_wallet_yellow_bg"
-            >
-
+            android:background="@drawable/ic_wallet_yellow_bg">
 
             <TextView
                 android:id="@+id/tv_asset_name"
@@ -42,44 +39,26 @@
                 android:layout_height="34dp"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/icon_fukuan_evt"
-                />
-
-            <TextView
-                android:id="@+id/tv_asset_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_asset_name"
-                android:layout_below="@+id/tv_asset_name"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/iv_icon"
-                android:background="@drawable/shape_line_0_31"
-                android:paddingEnd="6dp"
-                android:paddingStart="6dp"
-                android:text="EVT"
-                android:textColor="@color/color_3137"
-                android:textSize="13sp"
-                />
+                android:src="@drawable/icon_fukuan_evt" />
 
             <TextView
                 android:id="@+id/public_asset_key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tv_asset_type"
                 android:layout_below="@+id/tv_asset_name"
-                android:padding="8dp"
-                android:layout_alignBaseline="@id/tv_asset_type"
-                android:layout_toRightOf="@+id/tv_asset_type"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_alignStart="@+id/tv_asset_name"
                 android:drawableEnd="@drawable/ic_wallet_card"
                 android:drawablePadding="6dp"
                 android:ellipsize="end"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:singleLine="true"
                 android:textColor="@color/color_3137"
                 android:textSize="12sp"
-                tools:text="ssssssssssss"
+                tools:text="ssss"
                 />
         </RelativeLayout>
     </FrameLayout>

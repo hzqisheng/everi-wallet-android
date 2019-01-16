@@ -32,7 +32,7 @@ class ImportAddressActivity : BaseActivity<ImportAddressPresenter>(), ImportAddr
                     "Format error! please Check".toast()
                     return@setOnClickListener
                 }
-                var addressBean: AddressBean = AddressBean(value[0], value[1], value[2], value[3], value[4], value[5])
+                var addressBean = AddressBean(value[0], value[1], value[2], value[3], value[4], value[5])
                 addressBean.save()
             }
             finish()

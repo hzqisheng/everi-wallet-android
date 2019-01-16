@@ -33,19 +33,21 @@
             android:layout_height="53dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="everiToken"
-                android:layout_weight="1"
                 android:textColor="@color/color_33"
                 android:gravity="center_vertical" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_node"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
                 tools:text="https://www.aaa.aaa.aaa..."
+                android:singleLine="true"
                 android:textColor="@color/color_bb"
                 android:drawablePadding="8dp"
                 android:gravity="center"

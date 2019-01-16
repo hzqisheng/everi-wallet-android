@@ -51,6 +51,7 @@ class WalletDetailActivity : SimpleActivity() {
                 iv_touch.setImageResource(R.drawable.ic_finger_close)
             }
         }
+
         layout_wallet.setOnClickListener { showDialog(getString(R.string.wallet_name), mWalletName!!.name, 0) }
         tv_export.setOnClickListener { showFingerPrintDialog() }
         tv_set_up.setOnClickListener { getString(R.string.no_function).toast() }

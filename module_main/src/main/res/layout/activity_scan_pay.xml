@@ -184,7 +184,7 @@
             android:layout_marginBottom="16dp"
             android:background="@null"
             android:hint="@string/please_input_money"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:singleLine="true"
             android:textColor="@color/color_68"
             android:textColorHint="@color/color_bb"

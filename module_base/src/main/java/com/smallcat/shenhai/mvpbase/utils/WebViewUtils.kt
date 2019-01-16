@@ -141,37 +141,37 @@ private class WebViewCallBack : Any() {
 
     @JavascriptInterface
     fun getActionsCallback(s: String) {
-        ("getActionsCallback()  " + s).logE()
+        ("getActionsCallback()  $s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
     fun getEVTFungibleBalanceListCallback(s: String) {
-        ("getEVTFungibleBalanceListCallback" + s).logE()
+        ("getEVTFungibleBalanceListCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.HOME_FTS))
     }
 
     @JavascriptInterface
     fun getFungibleActionsByAddressCallback(s: String) {
-        ("getFungibleActionsByAddressCallback" + s).logE()
+        ("getFungibleActionsByAddressCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
     fun getEstimatedChargeForTransactionCallback(s: String) {
-        ("getEstimatedChargeForTransactionCallback" + s).logE()
+        ("getEstimatedChargeForTransactionCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SERVICE_CHARGE))
     }
 
     @JavascriptInterface
     fun privateToPublicCallback(s: String) {
-        ("privateToPublicCallback" + s).logE()
+        ("privateToPublicCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PRIVATE_TO_PUBLIC))
     }
 
     @JavascriptInterface
     fun getFungibleSymbolDetailCallback(s: String) {
-        ("getFungibleSymbolDetailCallback" + s).logE()
+        ("getFungibleSymbolDetailCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SYMBOL_DETAIL))
     }
 
@@ -180,7 +180,7 @@ private class WebViewCallBack : Any() {
      */
     @JavascriptInterface
     fun getStatusOfEvtLinkCallback(s: String) {
-        ("getStatusOfEvtLinkCallback" + s).logE()
+        ("getStatusOfEvtLinkCallback$s").logE()
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PAY_RECORD))
     }
 
@@ -202,14 +202,21 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHECK_PRIVATE))
     }
 
+    /*
+    @JavascriptInterface
+    fun changeNetworkCallback(s: String) {
+        ("changeNetworkCallback$s").logE()
+        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHANGE_NODE))
+    }*/
+
     fun handleResult(s: String): String {
         val resultBean = s.toResultBean()
         if (resultBean.code == 0) {
-            val s = Gson().fromJson<ErrorMSG>(resultBean.message, ErrorMSG::class.java)
+            val s1 = Gson().fromJson<ErrorMSG>(resultBean.message, ErrorMSG::class.java)
             if (LocalManageUtil.getSetLanguageLocale(App.getInstance()) == Locale.CHINA) {
-                s.cn.toast()
+                s1.cn.toast()
             } else {
-                s.en.toast()
+                s1.en.toast()
             }
             return ""
         }

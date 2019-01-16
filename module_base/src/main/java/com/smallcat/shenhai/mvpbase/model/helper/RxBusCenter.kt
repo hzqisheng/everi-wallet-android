@@ -3,7 +3,7 @@ package com.smallcat.shenhai.mvpbase.model.helper
 /**
  * Created by hui on 2018/8/23.
  */
-object RxBusCenter{
+object RxBusCenter {
 
     const val LOGIN = 10001
     const val MY_FTS = 10002
@@ -22,11 +22,11 @@ object RxBusCenter{
     //创建域
     const val CREATE_DOMAIN = 0x2005
     //我的域
-    const val MY_DOMAIN =0x2006
+    const val MY_DOMAIN = 0x2006
     //设置代币
     const val SET_FTS = 0x2007
     //发行域
-    const val ISSUE_DOMAIN=0x2008
+    const val ISSUE_DOMAIN = 0x2008
 
     //付款
     const val QRCODE_PAL = 0x2009
@@ -38,7 +38,7 @@ object RxBusCenter{
     const val SCAN_RECE = 0x2011
 
     //获取linkId
-    const val GET_LINkID  = 0x2012
+    const val GET_LINkID = 0x2012
 
     //请求付款
     const val REQUEST_PAY = 0x2013
@@ -76,5 +76,9 @@ object RxBusCenter{
 
     //验证私钥
     const val CHECK_PRIVATE = 0x2025
+
+    //修改节点
+    const val CHANGE_NODE = 0x2026
+
 
 }

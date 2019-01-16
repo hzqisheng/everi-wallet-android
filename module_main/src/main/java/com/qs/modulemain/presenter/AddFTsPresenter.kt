@@ -15,7 +15,6 @@ import io.reactivex.schedulers.Schedulers
  */
 class AddFTsPresenter(private val mContext: Context) : BasePresenter<AddFTsView>() {
 
-
     init {
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
@@ -29,7 +28,6 @@ class AddFTsPresenter(private val mContext: Context) : BasePresenter<AddFTsView>
                 })
 
     }
-
 
     fun loadData() {
         /*addSubscribe(mApi.getUseInfo()

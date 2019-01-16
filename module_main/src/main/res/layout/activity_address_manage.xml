@@ -54,7 +54,7 @@
             android:id="@+id/tv_group"
             android:layout_width="101dp"
             android:layout_height="30dp"
-            android:text="@string/choose_group"
+            android:text="@string/all_address"
             android:layout_marginStart="14dp"
             android:gravity="center_vertical"
             android:paddingStart="8dp"

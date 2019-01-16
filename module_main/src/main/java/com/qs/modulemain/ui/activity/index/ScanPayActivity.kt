@@ -1,33 +1,19 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Dialog
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.PayRequestBean
 import com.qs.modulemain.bean.PayResultBean
-import com.qs.modulemain.bean.RecordDetailBean
 import com.qs.modulemain.presenter.ScanPayPresenter
 import com.qs.modulemain.view.ScanPayView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.*
-import com.smallcat.shenhai.mvpbase.model.WebViewApi
-import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
-import com.smallcat.shenhai.mvpbase.model.helper.RxBus
-import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
+import com.smallcat.shenhai.mvpbase.extension.logE
+import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.utils.Base64Utils
-import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
-import com.smallcat.shenhai.mvpbase.utils.qrcode_type
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_scan_pay.*
 import java.text.DecimalFormat
 

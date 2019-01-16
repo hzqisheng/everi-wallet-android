@@ -23,6 +23,7 @@ open class SharedPref {
         const val KEY_MNEMONIC = "mnemonic"
         const val KEY_NAME = "name"
         const val KEY_FINGER = "finger"
+        const val KEY_NODE = "NODE"
     }
 
     //0 chinese 1 english
@@ -39,6 +40,10 @@ open class SharedPref {
     var currency: Int
         get() = prefs.getInt(KEY_CURRENCY, -1)
         set(value) = prefs.edit().putInt(KEY_CURRENCY, value).apply()
+
+    var chooseNode: String
+        get() = prefs.getString(KEY_NODE, "https://mainnet14.everitoken.io")!!
+        set(value) = prefs.edit().putString(KEY_NODE, value).apply()
 
     var publicKey: String
         get() = prefs.getString(KEY_PUBLIC, "")!!

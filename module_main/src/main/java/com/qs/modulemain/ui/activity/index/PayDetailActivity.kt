@@ -90,8 +90,7 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
         for (meta in data!!.metas) {
             if ("symbol-icon".equals(meta.key)) {
                 if (meta.value.isEmpty()) return
-                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
-                if (decodedByte == null) return
+                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                 iv_img.setImageBitmap(decodedByte)
             }
         }
@@ -123,14 +122,14 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
     private fun onDataResult1(msg: String) {
         "onDataResult1".logE()
         msg.logE()
-        var intent = Intent(this, PaySuccessActivity::class.java)
+        val intent = Intent(this, PaySuccessActivity::class.java)
         intent.putExtra("data", "-" + bean!!.number.split(" ")[0])
         startActivity(intent)
     }
 
     private fun onDataResult(msg: String) {
         msg.logE()
-        var jsonObj = JSONObject(msg)
+        val jsonObj = JSONObject(msg)
         tv_fee.text = (jsonObj.get("charge").toString().toFloat() * 0.00001f).toString()
     }
 

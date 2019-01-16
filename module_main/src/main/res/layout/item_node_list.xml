@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_node_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/color_33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_node_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/color_68"
+        tools:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tv_node_address"
+        app:layout_constraintTop_toBottomOf="@+id/tv_node_address" />
+
+    <View
+        android:id="@+id/view13"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sp_1"
+        android:layout_marginTop="6dp"
+        android:background="@color/color_cc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_node_name" />
+
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_languages_choose"
+        app:layout_constraintBottom_toTopOf="@+id/view13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

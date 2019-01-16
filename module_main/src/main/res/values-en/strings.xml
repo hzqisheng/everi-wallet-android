@@ -183,7 +183,7 @@
     <string name="please_input_pub_key">Please enter the public key</string>
     <string name="input_pub_key">Input public key</string>
     <string name="password_error">Password error</string>
-    <string name="copy_success">Copy to Shear Plate</string>
+    <string name="copy_success">Already Copied</string>
     <string name="password_not_equals">Two inconsistent passwords</string>
     <string name="set_max_money">Please enter the maximum amount</string>
     <string name="import_success">Successful import</string>
@@ -211,12 +211,14 @@
     <string name="no_fts">NO FTS</string>
     <string name="operation_success">Operation success</string>
 
-    <string name="add_fts_symbol_not_empty">Symbol Not Empty</string>
-    <string name="add_fts_symbol_id_not_empty">Symbol Id Not Empty</string>
-    <string name="add_fts_count_not_null">Count Not Null</string>
-    <string name="add_fts_full_name_not_null">Full Name Not Null</string>
+    <string name="add_fts_symbol_not_empty">Symbol can not be empty</string>
+    <string name="add_fts_symbol_id_not_empty">Symbol ID can not be empty</string>
+    <string name="add_fts_count_not_null">Count can not be empty</string>
+    <string name="add_fts_full_name_not_null">Full name can not be empty</string>
     <string name="symbol_id_too_long">Symbol Id Too Long</string>
     <string name="issue_success">Issue Success</string>
+
+    <string name="choose_node">everiTokenNode settings</string>
 
     <string-array name="add_power">
         <item>Only I can issue, the authority can not be changed</item>
@@ -236,11 +238,12 @@
     <string name="copyed_please_search">Copied,please search and pasted on WeChat</string>
     <string name="Password_must_not_be_less_than_8_bits">Password must not be less than 8 bits</string>
     <string name="input_memo">Input mnemonics</string>
-    <string name="private_key_not_empty">private key not empty</string>
+    <string name="private_key_not_empty">private key can not be empty</string>
     <string name="Upload_icon">Icon can not be empty</string>
     <string name="can_not_biger_18">invalid asset</string>
     <string name="memo_error">mnemonics error</string>
-    <string name="error_private_key">private ke error</string>
-    <string name="issue_number_empty">issue number not empty</string>
+    <string name="error_private_key">private key error</string>
+    <string name="issue_number_empty">issue number can not be empty</string>
+    <string name="all_address">ALL ADDRESS</string>
 
 </resources>
