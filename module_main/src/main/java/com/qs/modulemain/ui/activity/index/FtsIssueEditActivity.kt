@@ -1,19 +1,17 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Dialog
 import android.content.Intent
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.*
+import com.smallcat.shenhai.mvpbase.extension.getResourceColor
+import com.smallcat.shenhai.mvpbase.extension.logE
+import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
@@ -21,17 +19,13 @@ import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.SET_FTS
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_fts_issue_edit.*
-import java.util.ArrayList
+import java.util.*
 
 class FtsIssueEditActivity : SimpleActivity() {
     private lateinit var mFTSBean: ChooseGetBean
     private lateinit var upIssuBean: UpIssueBean
-    /** 密码框 **/
-    private var pwdDialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_fts_issue_edit
@@ -48,7 +42,7 @@ class FtsIssueEditActivity : SimpleActivity() {
                     }
                 })
 
-        mFTSBean = intent.getSerializableExtra("data") as ChooseGetBean;
+        mFTSBean = intent.getSerializableExtra("data") as ChooseGetBean
         tvTitle?.text = mFTSBean.name
         tv_name.text = mFTSBean.name
         tv_code.text = mFTSBean.creator
@@ -80,14 +74,14 @@ class FtsIssueEditActivity : SimpleActivity() {
         upIssuBean.manage = mFTSBean.manage
 //        upIssuBean.metas = ArrayList()
 
-        tvRight?.apply {
+        /*tvRight?.apply {
             text = getString(R.string.authority_setting)
             setTextColor(getResourceColor(R.color.color_e4))
             setOnClickListener {
                 var intent = Intent(this@FtsIssueEditActivity, IssueFtsAuthorityActivity::class.java)
                 startActivityForResult(intent, 101)
             }
-        }
+        }*/
 
         tv_save.setOnClickListener {
             var sendJson = Gson().toJson(upIssuBean)

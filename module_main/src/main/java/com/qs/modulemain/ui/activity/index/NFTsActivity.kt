@@ -48,6 +48,10 @@ class NFTsActivity : BaseActivity<NFTsPresenter>(), NFTsView {
 //        nFTsAdapter.setOnItemChildClickListener({adapter, view, position ->
 //            start(NFTsIssueActivity::class.java)
 //        })
+        swipe_refresh.setOnRefreshListener {
+            lastMY_NFTS = RxBusCenter.MY_NFTS_ACTIVITY
+            mWebView.evaluateJavascript(WebViewApi.getEVTDomainsList(sharedPref.publicKey), null)
+        }
 
         nFTsAdapter.onItemClickListener =object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
@@ -73,6 +77,7 @@ class NFTsActivity : BaseActivity<NFTsPresenter>(), NFTsView {
     }
 
     override fun loadNFTsSuccess(msg: String) {
+        swipe_refresh.isRefreshing = false
         val list = Gson().fromJson<List<DomainBean>>(msg, object : TypeToken<ArrayList<DomainBean>>() {}.type)
         nFTsList.clear()
         nFTsList.addAll(list)

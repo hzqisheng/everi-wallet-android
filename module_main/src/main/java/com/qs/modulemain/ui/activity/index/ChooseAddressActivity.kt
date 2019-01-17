@@ -11,6 +11,7 @@ import com.qs.modulemain.bean.AddressBean
 import com.qs.modulemain.ui.activity.my.AddressManageActivity
 import com.qs.modulemain.ui.adapter.ChooseAdapter
 import com.qs.modulemain.ui.adapter.ChooseAddressAdapter
+import com.qs.modulemain.util.DataUtils
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 import com.smallcat.shenhai.mvpbase.extension.start
@@ -37,6 +38,7 @@ class ChooseAddressActivity : SimpleActivity() {
         dataList = DataSupport.findAll(AddressBean::class.java) as ArrayList<AddressBean>?
 
         adapter = ChooseAddressAdapter(DataSupport.findAll(AddressBean::class.java) as ArrayList<AddressBean>?)
+        adapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_address))
         rv_list.adapter = adapter
 
         adapter.onItemClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {

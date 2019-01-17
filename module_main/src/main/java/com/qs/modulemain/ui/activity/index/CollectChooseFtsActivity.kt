@@ -20,12 +20,11 @@ import kotlinx.android.synthetic.main.activity_collect_choose_fts.*
 
 class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView {
 
-    private lateinit var chooseAdapter: CollChooseFTSAdapter;
+    private lateinit var chooseAdapter: CollChooseFTSAdapter
     private lateinit var dataList:ArrayList<ChooseGetBean>
     override fun initPresenter() {
         mPresenter = ChooseFTsPresenter(mContext)
     }
-
 
     override val layoutId: Int
         get() = R.layout.activity_collect_choose_fts

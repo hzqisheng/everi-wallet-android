@@ -40,11 +40,8 @@ class NFTsIssueActivity : SimpleActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
-        tvTitle?.text = getString(R.string.create_nfts)
-        ivRight?.apply {
-            setBackgroundResource(R.drawable.ic_question)
-            setOnClickListener {}
-        }
+        tvTitle?.text = getString(R.string.issue_nfts)
+
 
         mDomain = intent.getStringExtra("domain")
 
@@ -118,11 +115,11 @@ class NFTsIssueActivity : SimpleActivity() {
         tv_save.setOnClickListener {
 
             if (mDoaminNameList.size == 0) {
-                "Name is 0".toast()
+                getString(R.string.nft_can_not_be_empty).toast()
                 return@setOnClickListener
             }
             if (mAddressList.size == 0) {
-                "Address is 0".toast()
+                getString(R.string.please_input_address).toast()
                 return@setOnClickListener
             }
 

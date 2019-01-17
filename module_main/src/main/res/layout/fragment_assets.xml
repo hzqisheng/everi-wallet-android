@@ -83,6 +83,7 @@
         android:layout_marginStart="24dp"
         android:drawableTop="@drawable/ic_assets_sweet"
         android:text="@string/scan"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@id/tv_pay"
@@ -108,13 +109,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_assets_receive"
-        android:text="@string/collect"
         android:gravity="center"
+        android:text="@string/collect"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@id/tv_publish"
         app:layout_constraintStart_toEndOf="@+id/tv_pay"
-        app:layout_constraintTop_toTopOf="@+id/view"/>
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <TextView
         android:id="@+id/tv_publish"
@@ -123,6 +124,7 @@
         android:layout_marginEnd="24dp"
         android:drawableTop="@drawable/ic_assets_publish"
         android:text="@string/issue"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@id/view"

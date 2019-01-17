@@ -37,7 +37,7 @@ class NodeChooseActivity : SimpleActivity() {
                 WebViewApi.changeNetwork(Gson().toJson(map)).logE()
                 mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
                 mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
-                sharedPref.chooseNode = "https://" + list[mChoosePos].nodeName
+                sharedPref.chooseNode = list[mChoosePos].nodeAddress
                 RxBus.post(MessageEvent("https://" + list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
                 finish()
             }
@@ -75,7 +75,7 @@ class NodeChooseActivity : SimpleActivity() {
     }
 
     private fun addNode(s1: Int, s2: String): NodeBean {
-        if (sharedPref.chooseNode == "https://mainnet$s1.everitoken.io") {
+        if (sharedPref.chooseNode == "mainnet$s1.everitoken.io") {
             mChoosePos = s1 - 1
             return NodeBean("mainnet$s1.everitoken.io", "MainNet$s2", true)
         }

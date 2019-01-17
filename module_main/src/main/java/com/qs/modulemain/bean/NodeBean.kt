@@ -5,3 +5,8 @@ data class NodeBean(
         var nodeName: String = "",
         var isChoose: Boolean = false
 )
+
+data class HelpCenterBean(
+        var title: String = "",
+        var msg: String = ""
+)

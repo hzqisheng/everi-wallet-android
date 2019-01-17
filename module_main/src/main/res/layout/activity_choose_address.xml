@@ -46,7 +46,7 @@
         android:id="@+id/tv_type"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="ETH"
+        android:text="ALL"
         android:layout_marginStart="14dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
@@ -59,7 +59,7 @@
 
     <TextView
         android:id="@+id/tv_group"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="8dp"
@@ -68,8 +68,10 @@
         android:gravity="center_vertical"
         android:paddingStart="8dp"
         android:paddingEnd="2dp"
+        android:drawablePadding="8dp"
         android:textColor="@color/color_3137"
-        android:text="@string/choose_group"
+        android:text="@string/all_address"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintBottom_toBottomOf="@+id/view_bg"
         app:layout_constraintEnd_toStartOf="@+id/tv_search"
         app:layout_constraintStart_toEndOf="@id/tv_type"
@@ -113,11 +115,10 @@
     <FrameLayout
         android:id="@+id/fl_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="7dp"
         app:layout_constrainedHeight="true"
         android:background="@drawable/shadow_circle"
-        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toTopOf="@+id/tv_sure"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_bg">
@@ -125,7 +126,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

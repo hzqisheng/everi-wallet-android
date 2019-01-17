@@ -13,10 +13,7 @@ class NFTsEditActivity : SimpleActivity() {
 
     override fun initData() {
         tvTitle?.text = getString(R.string.create_nfts)
-        ivRight?.apply {
-            setBackgroundResource(R.drawable.ic_question)
-            setOnClickListener{}
-        }
+
         tv_sure.setOnClickListener {
             var intent = Intent()
             intent.putExtra("result",rv_list.text.toString())

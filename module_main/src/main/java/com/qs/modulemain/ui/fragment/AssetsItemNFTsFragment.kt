@@ -10,6 +10,7 @@ import com.qs.modulemain.presenter.AssetsItemNFTsPresenter
 import com.qs.modulemain.ui.activity.index.NFTsDetailActivity
 import com.qs.modulemain.ui.activity.index.NFTsPayActivity
 import com.qs.modulemain.ui.adapter.AssetsNFtsAdapter
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AssetsItemNFTsView
 import com.smallcat.shenhai.mvpbase.base.BaseFragment
@@ -43,6 +44,12 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     override val layoutId: Int = R.layout.fragment_assets_item
 
+
+    override fun onResume() {
+        super.onResume()
+        mWebView.evaluateJavascript(WebViewApi.getOwnedTokens(mContext.sharedPref.publicKey), null)
+    }
+
     override fun initData() {
         lastMY_NFTS = RxBusCenter.MY_NFTS
         nFTsAdapter = AssetsNFtsAdapter(nFTsList)
@@ -56,10 +63,15 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
         nFTsAdapter.setOnItemChildClickListener { _, _, position ->
            showFingerPrintDialog(position)
         }
+        nFTsAdapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_nfts_now))
         rv_list.adapter = nFTsAdapter
+        swipe_refresh.setOnRefreshListener {
+            mWebView.evaluateJavascript(WebViewApi.getOwnedTokens(mContext.sharedPref.publicKey), null)
+        }
     }
 
     override fun loadNFTsSuccess(msg: String) {
+        swipe_refresh.isRefreshing = false
         var chooseBean = ArrayList<ChooseGetBean>()
         try {
             chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)

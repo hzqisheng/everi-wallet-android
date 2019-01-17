@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.activity.my
 
+import android.annotation.SuppressLint
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
@@ -16,9 +17,10 @@ class NodeSettingActivity : SimpleActivity() {
     override val layoutId: Int
         get() = R.layout.activity_node_setting
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
         tvTitle?.text = getString(R.string.node_setting)
-        tv_node.text = sharedPref.chooseNode
+        tv_node.text = "https://" + sharedPref.chooseNode
         ll_everi.setOnClickListener { start(NodeChooseActivity::class.java) }
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)

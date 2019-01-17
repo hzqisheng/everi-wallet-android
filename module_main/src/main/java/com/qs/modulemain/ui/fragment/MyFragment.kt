@@ -78,6 +78,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
                 mContext.sharedPref.password = ""
                 mContext.sharedPref.name = ""
                 mContext.sharedPref.mnemoinc = ""
+                mContext.sharedPref.isFinger= 0
 
                 DataSupport.deleteAll(BaseData::class.java)
                 App.getInstance().finishAllActivity()

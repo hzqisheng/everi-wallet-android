@@ -99,48 +99,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:button="@drawable/selector_pwd_use"
                     android:checked="true"
                     android:paddingStart="8dp"
                     android:text="@string/only_i_can_issue"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view7" />
 
-                <View
-                    android:id="@+id/view6"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_half"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/color_dd"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cb_issue" />
 
-                <CheckBox
-                    android:id="@+id/cb_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/selector_pwd_use"
-                    android:paddingStart="8dp"
-                    android:text="@string/manual_edit_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-                <TextView
-                    android:id="@+id/tv_issue_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="18dp"
-                    android:padding="8dp"
-                    android:text="@string/edit"
-                    android:textColor="@color/color_4d7b"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view6" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -188,48 +156,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:button="@drawable/selector_pwd_use"
                     android:checked="true"
                     android:paddingStart="8dp"
                     android:text="@string/only_i_and_have_can_change"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view8" />
 
-                <View
-                    android:id="@+id/view9"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_half"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/color_dd"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cb_change" />
-
-                <CheckBox
-                    android:id="@+id/cb_edit_change"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/selector_pwd_use"
-                    android:paddingStart="8dp"
-                    android:text="@string/manual_edit_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-                <TextView
-                    android:id="@+id/tv_change_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="18dp"
-                    android:padding="8dp"
-                    android:text="@string/edit"
-                    android:textColor="@color/color_4d7b"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view9" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -277,48 +212,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:button="@drawable/selector_pwd_use"
                     android:checked="true"
                     android:paddingStart="8dp"
                     android:text="@string/only_i_can_manage"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view10" />
 
-                <View
-                    android:id="@+id/view11"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_half"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/color_dd"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cb_manage" />
 
-                <CheckBox
-                    android:id="@+id/cb_edit_manage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/selector_pwd_use"
-                    android:paddingStart="8dp"
-                    android:text="@string/manual_edit_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view11" />
-
-                <TextView
-                    android:id="@+id/tv_manage_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="18dp"
-                    android:padding="8dp"
-                    android:text="@string/edit"
-                    android:textColor="@color/color_4d7b"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view11" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView

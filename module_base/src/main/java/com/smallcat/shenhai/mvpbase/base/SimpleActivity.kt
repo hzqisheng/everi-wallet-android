@@ -117,6 +117,7 @@ abstract class SimpleActivity : SupportActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        dismissLoading()
         unSubscribe()
     }
 

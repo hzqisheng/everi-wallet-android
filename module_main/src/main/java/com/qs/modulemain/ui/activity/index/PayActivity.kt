@@ -40,6 +40,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     private var pwdDialog: Dialog? = null
     private var maxMoney: Float = 0f
     private var bean: ChooseGetBean? = null
+    private var isChooseSymbolResult = false
 
     override fun initPresenter() {
         mPresenter = PayPresenter(mContext)
@@ -51,6 +52,8 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     @SuppressLint("SetTextI18n")
     override fun initData() {
         tvTitle?.text = getString(R.string.everi_pay)
+
+        mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()) {}
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
@@ -73,23 +76,19 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
 
         tv_address.text = sharedPref.publicKey
 
-        textView7.setOnClickListener {
-            addClipboard(this@PayActivity, sharedPref.publicKey)
-            getString(R.string.copy_success).toast()
-        }
-
         tv_money.setOnClickListener {
             showSetUpDialog()
         }
 
         rb_sweep_payment.setOnClickListener {
-            val intent = Intent(this@PayActivity, ScanPayActivity::class.java)
-            intent.putExtra("maxMoney", maxMoney)
+            val intent = Intent(this@PayActivity, ScanActivity::class.java)
+            intent.putExtra("ScanType", 10001)
             startActivity(intent)
         }
 
         layout_choose.setOnClickListener {
             val intent = Intent(this, CollectChooseFtsActivity::class.java)
+            intent.putExtra("data", bean)
             startActivityForResult(intent, 101)
         }
 
@@ -142,7 +141,10 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     override fun onResume() {
         super.onResume()
         if (mLinkId == "") return
-
+        if (isChooseSymbolResult) {
+            isChooseSymbolResult = false
+            return
+        }
         val payBean = PayBean()
         payBean.keyProvider = listOf(sharedPref.privateKey)
         payBean.linkId = mLinkId
@@ -198,7 +200,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
                         }
                     }
                 }
-                mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload(), null)
+                isChooseSymbolResult = true
                 mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()) {}
             }
         }
@@ -209,6 +211,4 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         mWebView.evaluateJavascript(WebViewApi.stopEVTLinkQrImageReload()) {}
         qrcode_type = -1
     }
-
-
 }

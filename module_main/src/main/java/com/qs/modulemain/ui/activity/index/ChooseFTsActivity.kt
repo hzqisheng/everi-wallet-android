@@ -41,7 +41,9 @@ class ChooseFTsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView {
         dataList = ArrayList()
         chooseAdapter = ChooseFTSAdapter(dataList)
         rv_list.adapter = chooseAdapter
-
+        swipe_refresh.setOnRefreshListener {
+            mWebView.evaluateJavascript(WebViewApi.getEVTFungiblesList(sharedPref.publicKey), null)
+        }
         chooseAdapter.setOnItemClickListener { _, _, position ->
             //dataList[position]!!.sym.split("#")[1]
             val intent = Intent(mContext, FtsIssueActivity::class.java)
@@ -59,6 +61,7 @@ class ChooseFTsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsView {
     }
 
     override fun onDataResult(result: String) {
+        swipe_refresh.isRefreshing = false
         val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(result, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
         if (chooseBean != null) {
             dataList.clear()

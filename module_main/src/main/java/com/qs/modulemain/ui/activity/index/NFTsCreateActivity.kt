@@ -1,18 +1,12 @@
 package com.qs.modulemain.ui.activity.index
 
-import android.app.Dialog
 import android.content.Intent
-import android.view.LayoutInflater
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.DomainBean
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -29,8 +23,7 @@ import java.lang.Exception
 
 /** 创建通证 **/
 class NFTsCreateActivity : SimpleActivity() {
-    /** 密码框 **/
-    private var pwdDialog: Dialog? = null
+
     override val layoutId: Int
         get() = R.layout.activity_nfts_create
 
@@ -50,12 +43,8 @@ class NFTsCreateActivity : SimpleActivity() {
                 })
 
         tvTitle?.text = getString(R.string.create_nfts)
-        ivRight?.apply {
-            setBackgroundResource(R.drawable.ic_question)
-            setOnClickListener{}
-        }
 
-        //发行
+       /* //发行
         cb_issue.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 if(cb_edit.isChecked){
@@ -115,7 +104,7 @@ class NFTsCreateActivity : SimpleActivity() {
         tv_manage_edit.setOnClickListener {
             val intent = Intent(this@NFTsCreateActivity,NFTsEditActivity::class.java)
             startActivityForResult(intent,103)
-        }
+        }*/
 
 
         //start(NFTsEditActivity::class.java)
@@ -127,6 +116,11 @@ class NFTsCreateActivity : SimpleActivity() {
     }
 
     private fun handleCompleted() {
+
+        if(et_nfts.text.isEmpty()){
+            getString(R.string.nft_can_not_be_empty).toast()
+            return
+        }
 
         val domainBean: DomainBean = DomainBean.build();
         domainBean.name = et_nfts.text.toString()

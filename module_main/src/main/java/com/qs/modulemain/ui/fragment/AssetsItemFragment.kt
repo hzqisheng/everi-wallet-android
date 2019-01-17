@@ -17,6 +17,7 @@ import com.qs.modulemain.ui.activity.index.PayActivity
 import com.qs.modulemain.ui.activity.index.RecordActivity
 import com.qs.modulemain.ui.adapter.AssetsItemAdapter
 import com.qs.modulemain.ui.adapter.AssetsNFtsAdapter
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AssetsItemView
 import com.smallcat.shenhai.mvpbase.base.BaseFragment
@@ -71,8 +72,14 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
             startActivity(intent)
         }
 
+        ftsAdapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_fts_now))
+
         ftsAdapter.setOnItemChildClickListener { _, _, position ->
             showFingerPrintDialog(position)
+        }
+
+        swipe_refresh.setOnRefreshListener {
+            mWebView.evaluateJavascript(WebViewApi.getEVTFungibleBalanceList(mContext.sharedPref.publicKey)) {}
         }
     }
 
@@ -91,6 +98,7 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
     }
 
     override fun loadFTsSuccess(msg: String) {
+        swipe_refresh.isRefreshing = false
         if (msg.isEmpty()) return
         var chooseBean = ArrayList<ChooseGetBean>()
         try {

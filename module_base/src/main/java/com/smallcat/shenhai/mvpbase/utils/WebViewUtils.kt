@@ -64,115 +64,133 @@ private class WebViewCallBack : Any() {
     fun createEVTWalletCallback(s: String) {
         "createEVTWalletCallback".logE()
         s.logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CREATE_WALL))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CREATE_WALL))
     }
 
     @JavascriptInterface
     fun getOwnedTokensCallback(s: String) {
         "getOwnedTokensCallback".logE()
         s.logE()
-        RxBus.post(MessageEvent(handleResult(s), lastMY_NFTS))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, lastMY_NFTS))
     }
 
     @JavascriptInterface
     fun getFungibleBalanceCallback(s: String) {
         "getFungibleBalanceCallback".logE()
         s.logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.MY_FTS))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.MY_FTS))
     }
 
     @JavascriptInterface
     fun importEVTWalletCallback(s: String) {
         "importEVTWalletCallback".logE()
         s.logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.LOGIN))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.LOGIN))
     }
 
     @JavascriptInterface
     fun needPrivateKey(s: String) {
         "needPrivateKey".logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.NEED_PRIVATE_KEY))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.NEED_PRIVATE_KEY))
     }
 
     @JavascriptInterface
     fun getCreatedFungiblesCallback(s: String) {
         "getCreatedFungiblesCallback".logE()
         s.logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHOOSE_FTS))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHOOSE_FTS))
     }
 
     @JavascriptInterface
     fun pushTransactionCallback(s: String) {
-        ("pushTransactionCallback()" + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), lastPushTransaction))
+        ("pushTransactionCallback()$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, lastPushTransaction))
     }
 
     @JavascriptInterface
     fun getEVTFungiblesListCallback(s: String) {
-        ("getEVTFungiblesListCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHOOSE_FTS))
+        ("getEVTFungiblesListCallback()  $s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHOOSE_FTS))
     }
 
     @JavascriptInterface
     fun getEVTDomainsListCallback(s: String) {
-        ("getEVTDomainsListCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.MY_DOMAIN))
+        ("getEVTDomainsListCallback()  $s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.MY_DOMAIN))
     }
 
     /** 收付款二维码 **/
     @JavascriptInterface
     fun getEVTLinkQrImageCallback(s: String) {
-        ("getEVTLinkQrImageCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), qrcode_type))
+        ("getEVTLinkQrImageCallback()  $s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, qrcode_type))
     }
 
     /** 扫描二维码 **/
     @JavascriptInterface
     fun parseEvtLinkCallback(s: String) {
-        ("parseEvtLinkCallback()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), qrcode_type))
+        ("parseEvtLinkCallback()  $s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, qrcode_type))
     }
 
     @JavascriptInterface
     fun getUniqueLinkIdCallback(s: String) {
-        ("getUniqueLinkId()  " + s).logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.GET_LINkID))
+        ("getUniqueLinkId()  $s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.GET_LINkID))
     }
 
     @JavascriptInterface
     fun getActionsCallback(s: String) {
         ("getActionsCallback()  $s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
     fun getEVTFungibleBalanceListCallback(s: String) {
         ("getEVTFungibleBalanceListCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.HOME_FTS))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.HOME_FTS))
     }
 
     @JavascriptInterface
     fun getFungibleActionsByAddressCallback(s: String) {
         ("getFungibleActionsByAddressCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.RECORD_TRANSACATION))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.RECORD_TRANSACATION))
     }
 
     @JavascriptInterface
     fun getEstimatedChargeForTransactionCallback(s: String) {
         ("getEstimatedChargeForTransactionCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SERVICE_CHARGE))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.SERVICE_CHARGE))
     }
 
     @JavascriptInterface
     fun privateToPublicCallback(s: String) {
         ("privateToPublicCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PRIVATE_TO_PUBLIC))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.PRIVATE_TO_PUBLIC))
     }
 
     @JavascriptInterface
     fun getFungibleSymbolDetailCallback(s: String) {
         ("getFungibleSymbolDetailCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.SYMBOL_DETAIL))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.SYMBOL_DETAIL))
     }
 
     /**
@@ -181,7 +199,8 @@ private class WebViewCallBack : Any() {
     @JavascriptInterface
     fun getStatusOfEvtLinkCallback(s: String) {
         ("getStatusOfEvtLinkCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.PAY_RECORD))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.PAY_RECORD))
     }
 
     /**
@@ -190,7 +209,8 @@ private class WebViewCallBack : Any() {
     @JavascriptInterface
     fun validateMnemonicCallback(s: String) {
         ("validateMnemonicCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHECK_MEMO))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_MEMO))
     }
 
     /**
@@ -199,7 +219,8 @@ private class WebViewCallBack : Any() {
     @JavascriptInterface
     fun isValidPrivateKeyCallback(s: String) {
         ("isValidPrivateKey$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHECK_PRIVATE))
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_PRIVATE))
     }
 
     /*
@@ -209,7 +230,7 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHANGE_NODE))
     }*/
 
-    fun handleResult(s: String): String {
+    fun handleResult(s: String): String? {
         val resultBean = s.toResultBean()
         if (resultBean.code == 0) {
             val s1 = Gson().fromJson<ErrorMSG>(resultBean.message, ErrorMSG::class.java)
@@ -218,7 +239,7 @@ private class WebViewCallBack : Any() {
             } else {
                 s1.en.toast()
             }
-            return ""
+            return null
         }
         return resultBean.data.toString()
     }

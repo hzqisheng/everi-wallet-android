@@ -44,8 +44,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="10dp"
-                    android:inputType="textCapWords"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:inputType="text"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:background="@null"
                     android:hint="@string/enter_the_symbol"
                     android:textSize="14sp" />
@@ -75,6 +75,7 @@
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="10dp"
                     android:background="@null"
+                    android:maxLength="18"
                     android:hint="@string/please_input_full_name"
                     android:textSize="14sp" />
 

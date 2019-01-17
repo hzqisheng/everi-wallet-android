@@ -30,6 +30,9 @@ import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_add_fts.*
+import android.text.method.ReplacementTransformationMethod
+
+
 
 
 class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
@@ -78,10 +81,17 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
         }
 
+        et_name.transformationMethod = replacementTransformationMethod
+
         tv_sure.setOnClickListener {
 
             if (et_name.text.isEmpty()) {
                 getString(R.string.add_fts_symbol_not_empty).toast()
+                return@setOnClickListener
+            }
+
+            if (et_full_name.text.isEmpty()) {
+                getString(R.string.full_name_not_null).toast()
                 return@setOnClickListener
             }
 
@@ -122,6 +132,16 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
     }
 
+    private val replacementTransformationMethod = object : ReplacementTransformationMethod() {
+        override fun getOriginal(): CharArray {
+            return charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+        }
+
+        override fun getReplacement(): CharArray {
+            return charArrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
+        }
+    }
+
     override fun onDataResult(msg: String) {
         msg.logE()
         lastPushTransaction = RxBusCenter.UPLOAD_IMG
@@ -134,6 +154,7 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
     }
 
     override fun uploadSuccess(msg: String) {
+        getString(R.string.create_success).toast()
         finish()
     }
 

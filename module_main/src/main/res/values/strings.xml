@@ -31,11 +31,11 @@
     <string name="add_address">新增地址</string>
     <string name="import_address">导入地址</string>
     <string name="export">导出</string>
-    <string name="please_use_same_wallet_scan">请使用相同钱包扫一扫</string>
+    <string name="please_use_same_wallet_scan">仅用于面对面交易</string>
     <string name="pay_code">付款码</string>
     <string name="sweep_code_payment">扫码支付</string>
     <string name="address">地址</string>
-    <string name="max_pay">最大支付金额：</string>
+    <string name="max_pay">最大支付数量：</string>
     <string name="choose_this_way_to_pay">选择此方式进行付款</string>
     <string name="click_qrcode_to_copy_address">点击二维码复制地址</string>
     <string name="type">类型</string>
@@ -77,7 +77,7 @@
     <string name="Immediate_import">立即导入</string>
     <string name="change_pwd_msg">忘记密码？导入助记词或私钥进行回复。</string>
     <string name="import_wallet_msg">请输入备份的钱包助记词(12个英文单词)，按空格分割</string>
-    <string name="retrieve_pwd_msg">此软件不存储用户密码，无法提供找回或重置功能。如果忘记密码，用户只能通过自己备份的钱包私钥或助记词，重新导入后设置新密码</string>
+    <string name="retrieve_pwd_msg">此软件不存储用户密码，无法提供找回或重置功能。如果忘记密码，用户只能通过自己备份的钱包私钥或助记词，重新导入后设置新密码。\n如果您的钱包是没有助记词的，您可以先创建一个新身份，然后通过私钥导入钱包。</string>
     <string name="wallet_import">导入钱包</string>
     <string name="Be_careful">注意！</string>
     <string name="export_mnemonic">拥有钱包私钥就能完全控制钱包资产，因此强烈建议你在使用钱包前做好备份，将钱包私钥保存到安全的地方。</string>
@@ -117,8 +117,8 @@
     <string name="check_version">检测版本</string>
     <string name="you_need_pay_currency">您需要付款的币种为：</string>
     <string name="you_need_collect_currency">您需要收款的币种为：</string>
-    <string name="sum_of_money">金额</string>
-    <string name="please_input_money">请选择收款数量</string>
+    <string name="sum_of_money">数量</string>
+    <string name="please_input_money">请输入数量</string>
     <string name="please_choose_need_money">请选择需要收款的金额</string>
     <string name="confirm_collect">确认收款</string>
     <string name="please_choose_how_to_pay">请选择进行付款的代币</string>
@@ -130,7 +130,7 @@
     <string name="please_input_every_address_money">请输入每个地址转账金额</string>
     <string name="batch_set">批量设置</string>
     <string name="address_number">地址个数：</string>
-    <string name="domain_number">域名个数：</string>
+    <string name="domain_number">个数：</string>
     <string name="transfer_address">转账地址</string>
     <string name="all_choose">全选</string>
     <string name="batch_transfers">批量转账</string>
@@ -152,7 +152,7 @@
     <string name="enter_the_symbol">请输入符号(必须是大写字母)</string>
     <string name="coin_symbol">代币简称</string>
     <string name="please_choose_address">请选择地址进行付款</string>
-    <string name="please_choose_currency_and_money">请选择付款币种及金额</string>
+    <string name="please_choose_currency_and_money">请选择付款币种及数量</string>
     <string name="balance">余额</string>
     <string name="enter_remarks">请输入备注</string>
     <string name="threshold">阈值</string>
@@ -189,7 +189,7 @@
     <string name="batch_create">批量生成</string>
 
     <!--选择代币-->
-    <string name="add_fts_symbol_not_empty">符号不能为空</string>
+    <string name="add_fts_symbol_not_empty">代币简称不能为空</string>
     <string name="add_fts_symbol_id_not_empty">资产编号不能为空</string>
     <string name="add_fts_count_not_null">发行总量和精度不能为空</string>
     <string name="add_fts_full_name_not_null">代币全称不能为空</string>
@@ -244,6 +244,39 @@
     <string name="issue_number_empty">请输入发行量</string>
     <string name="all_address">全部地址</string>
     <string name="choose_node">everiToken 节点设置</string>
+    <string name="no_address">暂无地址</string>
+    <string name="no_fts_now">暂无代币</string>
+    <string name="no_nfts_now">暂无通证</string>
+    <string name="full_name_not_null">代币全称不能为空</string>
+    <string name="help_center_1">EveriWallet功能概述</string>
+    <string name="help_center_2">创建EveriWallet钱包</string>
+    <string name="help_center_3">如何备份钱包</string>
+    <string name="help_center_4">如何导入钱包</string>
+    <string name="help_center_5">如何转账和收款</string>
+    <string name="help_center_6">什么是域（Domain）</string>
+    <string name="help_center_7">什么是同质通证（FT）</string>
+    <string name="help_center_8">什么是非同质通证（NFT）</string>
+    <string name="help_center_9">如何发行同质通证</string>
+    <string name="help_center_10">如何发行非同质通证</string>
+    <string name="help_center_11">如何使用everiPay</string>
+    <string name="help_center_12">如何使用everiPass</string>
+    <string name="help_center_13">如何切换语言</string>
+    <string name="help_center_1_msg">EveriWallet是一款专门为everiToken公有链开发的钱包，除了传统钱包的转账收款等功能外，具有其他特色功能：钱包支持两种数字资产，同质通证（积分，点数，标准化的传统数字资产）和非同质通证（票据，房产等具有唯一属性的资产）；支持用户自行完成发行通证，实现对数字资产整个生命周期的管理。</string>
+    <string name="help_center_2_msg">启动钱包程序，根据指引向导，会有【创建钱包】和【恢复身份】两个选项。点击【创建钱包】，根据提示输出用户密码。EveriWallet并不存储用户密码，如果用户遗失了密码，只能通过备份的钱包私钥或助记词重新导入，才能够重新设置用户密码。</string>
+    <string name="help_center_3_msg">EveriWallet目前支持两种方式备份钱包，导出助记词或者导出私钥。用户只需要使用一套助记词就可以管理多个钱包和自己的个人数据。具体操作：在钱包主界面底端的【我的】-【管理钱包】中选择要备份的钱包，进入钱包设置的相关界面后，可以进行导出助记词和导出私钥等操作，除此之外，这里也可以重新设置用户密码。</string>
+    <string name="help_center_4_msg">EveriWallet有两种导入钱包的方式。第一种是在创建钱包的时候选择【恢复身份】，根据提示输入备份钱包的助记词（12个英文单词，按空格分隔）或者私钥，再输入当时设置的用户密码即可。或者在钱包主界面底部【我的】-【管理钱包】中选择导入钱包，方法如上。</string>
+    <string name="help_center_5_msg">EveriWallet用户的账户里会有同质通证和非同质通证两种数字资产，对于同质通证数字资产，EveriWallet钱包目前提供转账和收款服务。进入钱包主界面，在【我的代币】标题下列出了同质通证的列表，点击其中一项就会展示该数字资产的交易记录。并且可以对这一资产进行【转账】或【收款】操作。</string>
+    <string name="help_center_6_msg">域针对通证不同的应用场景，使用灵活的权限管理来体现一类通证。每一个通证都属于一种特定的域，域有唯一的域名。通过通证的域名可以查询域信息，在域的信息中可以查看权限管理。</string>
+    <string name="help_center_7_msg">同质通证，用来表示积分，点数，标准化资产等不具有唯一性质的资产权益，在主界面中用【我的代币】来表示我的同质通证。</string>
+    <string name="help_center_8_msg">非同质通证，用来表示票据，房产，门票，学历证书等具有唯一性质的资产权益，在主界面中用【我的通证】来表示我的非同质通证。</string>
+    <string name="help_center_9_msg">进入钱包主界面，点击【发行】，选择创建同质Token - 输入资产编号 、符号、总量、图标或编辑权限，最后点击【提交】按钮。</string>
+    <string name="help_center_10_msg">进入钱包主界面，点击【发行】，点击【创建Domain】，输入域名，点击发行栏【新增】，添加地址或者添加组，分别输入公钥，权重和阈值。依次点击转移栏和管理栏新增，并设置对应的权限，最后点击【提交】按钮。</string>
+    <string name="help_center_11_msg">everiPay用于线下面对面支付。用户通过设置最大支付额，向商户展示支付二维码。商家通过扫码来核销此通证。其他同质通证也可以使用everiPay来进行支付，例如兑换一个产品需要某超市4000积分，则商家通过扫码核销4000该通证，在满足条件的情况下，用户地址会被扣除4000积分。</string>
+    <string name="help_center_12_msg">everiPass针对面对面应用场景。第三方通过扫码器扫一扫即可验证某二维码包含的通证真伪。例如毕业证可以做成一个非同质通证，并生成一个二维码，第三方通过everiPass扫描，系统会返回通证真伪。</string>
+    <string name="help_center_13_msg">在钱包主界面选择【我的】-【系统设置】-【选择语言】，切换语言为简体中文或者English。</string>
+    <string name="nft_can_not_be_empty">通证名称不能为空</string>
+    <string name="please_use_same_wallet">请使用相同钱包扫一扫</string>
+    <string name="create_success">创建成功</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

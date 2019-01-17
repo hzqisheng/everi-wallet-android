@@ -18,6 +18,7 @@
         android:id="@+id/view_bg"
         android:layout_width="match_parent"
         android:layout_height="47dp"
+        android:visibility="gone"
         android:background="@color/white"
         android:layout_below="@+id/toolbar"
         android:gravity="center_vertical"
@@ -38,7 +39,7 @@
 
         <TextView
             android:id="@+id/tv_type"
-            android:layout_width="101dp"
+            android:layout_width="72dp"
             android:layout_height="30dp"
             android:text="ALL"
             android:layout_marginStart="14dp"
@@ -47,24 +48,22 @@
             android:paddingEnd="2dp"
             android:drawableEnd="@drawable/ic_blue_choose"
             android:background="@drawable/shape_line_3_cc"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_group"
-            android:layout_width="101dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="@string/all_address"
             android:layout_marginStart="14dp"
             android:gravity="center_vertical"
             android:paddingStart="8dp"
             android:paddingEnd="2dp"
+            android:drawablePadding="8dp"
             android:layout_toEndOf="@+id/tv_type"
             android:drawableEnd="@drawable/ic_blue_choose"
             android:background="@drawable/shape_line_3_cc"
-            app:layout_constraintStart_toEndOf="@id/tv_type"
-            />
-
+            app:layout_constraintStart_toEndOf="@id/tv_type" />
     </RelativeLayout>
 
     <View
