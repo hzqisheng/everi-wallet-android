@@ -28,7 +28,7 @@ open class SharedPref {
 
     //0 chinese 1 english
     var languages: Int
-        get() = prefs.getInt(KEY_LANGUAGE, 1)
+        get() = prefs.getInt(KEY_LANGUAGE, -1)
         set(value) = prefs.edit().putInt(KEY_LANGUAGE, value).apply()
 
     //0 close 1 open

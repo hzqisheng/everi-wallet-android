@@ -80,5 +80,8 @@ object RxBusCenter {
     //修改节点
     const val CHANGE_NODE = 0x2026
 
+    //交易数据
+    const val TRAN_MSG = 0x2027
+
 
 }

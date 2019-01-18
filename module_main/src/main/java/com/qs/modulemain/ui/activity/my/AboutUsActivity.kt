@@ -19,6 +19,5 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
     override fun initData() {
         tvTitle?.text = getString(R.string.about_us)
         tv_version.text = getVersionName(mContext)
-
     }
 }

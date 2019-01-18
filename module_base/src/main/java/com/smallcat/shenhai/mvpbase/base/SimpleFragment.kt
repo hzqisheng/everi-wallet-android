@@ -7,10 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import com.smallcat.shenhai.mvpbase.R
-import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

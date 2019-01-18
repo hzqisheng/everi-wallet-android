@@ -16,7 +16,7 @@ class PaySuccessActivity : SimpleActivity() {
     override fun initData() {
         val data = intent.getStringExtra("data")
         tvTitle?.text = getString(R.string.transaction_success)
-        tv_pay.text = "$data EVT"
+        tv_pay.text = data
 
         tv_sure.setOnClickListener {
             start(MainActivity::class.java)

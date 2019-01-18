@@ -3,19 +3,16 @@ package com.smallcat.shenhai.mvpbase.utils
 import android.annotation.SuppressLint
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
-import android.widget.LinearLayout
 import com.google.gson.Gson
 import com.smallcat.shenhai.mvpbase.App
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.toResultBean
 import com.smallcat.shenhai.mvpbase.extension.toast
-import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.ErrorMSG
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.widget.ProgressWebView
-import java.security.PublicKey
 import java.util.*
 
 @SuppressLint("StaticFieldLeak")
@@ -23,8 +20,6 @@ private var webView: WebView? = null
 
 fun initWebView() {
     webView = ProgressWebView(App.getInstance())
-    val params = LinearLayout.LayoutParams(0, 0)
-    webView?.layoutParams = params
     webView?.addJavascriptInterface(WebViewCallBack(), "test")
     webView?.loadUrl("file:///android_asset/dist/index.html")
     "WebView初始化成功".logE()
@@ -223,12 +218,12 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_PRIVATE))
     }
 
-    /*
     @JavascriptInterface
-    fun changeNetworkCallback(s: String) {
-        ("changeNetworkCallback$s").logE()
-        RxBus.post(MessageEvent(handleResult(s), RxBusCenter.CHANGE_NODE))
-    }*/
+    fun getTransactionDetailByIdCallback(s: String) {
+        ("getTransactionDetailByIdCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.TRAN_MSG))
+    }
 
     fun handleResult(s: String): String? {
         val resultBean = s.toResultBean()

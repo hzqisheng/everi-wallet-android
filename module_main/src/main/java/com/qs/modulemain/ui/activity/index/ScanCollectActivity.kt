@@ -25,10 +25,10 @@ import java.text.DecimalFormat
 
 class ScanCollectActivity : SimpleActivity() {
 
-    private lateinit  var mUseFts:ChooseGetBean
-    private  var sybid = 0
+    private lateinit var mUseFts: ChooseGetBean
+    private var sybid = 0
     private var isCollect = false
-    private var scanResult :String = ""
+    private var scanResult: String = ""
 
     override val layoutId: Int
         get() = R.layout.activity_scan_collect
@@ -39,7 +39,7 @@ class ScanCollectActivity : SimpleActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.SCAN_RECE -> RecvieSuccess(it.msg)
                     }
                 })
@@ -48,26 +48,26 @@ class ScanCollectActivity : SimpleActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                     }
                 })
 
 
-        if(intent.hasExtra("data")){
+        if (intent.hasExtra("data")) {
             mUseFts = intent.getSerializableExtra("data") as ChooseGetBean
 
-            textView6.text =mUseFts.sym_name
+            textView6.text = mUseFts.sym_name
 
-            if(mUseFts!!.metas.size >0){
-                if("symbol-icon" == mUseFts!!.metas[0].key){
+            if (mUseFts!!.metas.size > 0) {
+                if ("symbol-icon" == mUseFts!!.metas[0].key) {
                     var bitmap = Base64Utils.base64ToBitmap(mUseFts!!.metas[0].value)
                     iv_img.setImageBitmap(bitmap)
                 }
             }
-         }
+        }
 
-        if(intent.hasExtra("scanResult")){
+        if (intent.hasExtra("scanResult")) {
             isCollect = true
             scanResult = intent.getStringExtra("scanResult")
         }
@@ -76,70 +76,70 @@ class ScanCollectActivity : SimpleActivity() {
 
         tv_sure.setOnClickListener {
 
-            if(mUseFts == null){
+            if (mUseFts == null) {
                 getString(R.string.please_choose_currency_and_money).toast()
                 return@setOnClickListener
             }
 
-            if (et_pwd.text.toString().isEmpty()){
+            if (et_pwd.text.toString().isEmpty()) {
                 getString(R.string.please_choose_currency_and_money).toast()
                 return@setOnClickListener
             }
 
-            if(isCollect){
+            if (isCollect) {
 
                 //收款
                 var num = et_pwd.text.toString()
 
                 var JING = ""
-                for (i in 0..mUseFts!!.sym.split(",")[0].toInt()-1){
-                    JING +="0";
+                for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
+                    JING += "0";
                 }
-                val df = DecimalFormat("0."+JING)
+                val df = DecimalFormat("0." + JING)
                 //linkBean!!.publicKeys[0]
-                var json = Gson().toJson(ReceScanBean.createBean(scanResult,sharedPref.publicKey,df.format(num.toFloat()),mUseFts.sym.split("#")[1]))
+                var json = Gson().toJson(ReceScanBean.createBean(scanResult, sharedPref.publicKey, df.format(num.toFloat()), mUseFts.sym.split("#")[1]))
 
                 json.logE()
 
                 lastPushTransaction = RxBusCenter.SCAN_RECE
-                mWebView.evaluateJavascript(WebViewApi.pushTransaction("everipay",json)){}
+                mWebView.evaluateJavascript(WebViewApi.pushTransaction("everipay", json)) {}
                 return@setOnClickListener
             }
 
-            val intent = Intent(this,ScanActivity::class.java)
-            intent.putExtra("data",mUseFts)
-            intent.putExtra("num",et_pwd.text.toString())
-            intent.putExtra("ScanType",ScanActivity.RECE)
+            val intent = Intent(this, ScanActivity::class.java)
+            intent.putExtra("data", mUseFts)
+            intent.putExtra("num", et_pwd.text.toString())
+            intent.putExtra("ScanType", ScanActivity.RECE)
             startActivity(intent)
         }
     }
 
     private fun RecvieSuccess(msg: String) {
-        var num:String = et_pwd.text.toString()
+        var num: String = et_pwd.text.toString()
 
         var JING = ""
-        for (i in 0..mUseFts!!.sym.split(",")[0].toInt()-1){
-            JING +="0";
+        for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
+            JING += "0";
         }
-        val df = DecimalFormat("0."+JING)
+        val df = DecimalFormat("0." + JING)
 
-        var intent = Intent(this,PaySuccessActivity::class.java)
-        intent.putExtra("data","+"+df.format(num.toFloat()))
+        var intent = Intent(this, PaySuccessActivity::class.java)
+        intent.putExtra("data", "+" + df.format(num.toFloat()) + " " + textView6.text)
         startActivity(intent)
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 101){
-            if(resultCode == 101){
+        if (requestCode == 101) {
+            if (resultCode == 101) {
                 mUseFts = data?.getSerializableExtra("data") as ChooseGetBean
 
-                textView6.text =mUseFts.name
+                textView6.text = mUseFts.name
 
                 for (meta in mUseFts.metas) {
-                    if("symbol-icon".equals(meta.key)){
-                        if(meta.value.isEmpty())return
+                    if ("symbol-icon".equals(meta.key)) {
+                        if (meta.value.isEmpty()) return
                         var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
                         iv_img.setImageBitmap(decodedByte)
                     }
@@ -149,7 +149,7 @@ class ScanCollectActivity : SimpleActivity() {
     }
 
     private fun showFingerPrintDialog() {
-        confirmPassword(sharedPref.isFinger , supportFragmentManager, object : FingerSuccessCallback() {
+        confirmPassword(sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
                 mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }

@@ -114,7 +114,10 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     private fun onPayRecord(msg: String) {
         val transactionRecord = Gson().fromJson(msg, TransactionResult::class.java) ?: return
         if (transactionRecord.transactionId != null) {
-            start(TransactionRecordActivity::class.java)
+            Intent(this, TransactionRecordActivity::class.java).apply {
+                putExtra("id", transactionRecord.transactionId)
+                startActivity(this)
+            }
             finish()
         } else {
             val str = Gson().toJson(LinkBean(mLinkId), LinkBean::class.java)

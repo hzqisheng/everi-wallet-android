@@ -10,9 +10,10 @@ import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
+import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.fitSystemWhite
 import com.smallcat.shenhai.mvpbase.utils.getWebViewInstance
-import java.util.HashMap
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -21,18 +22,28 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fitSystemWhite(this)
+        mWebView = getWebViewInstance()
+        if (sharedPref.languages == -1) {
+            if (LocalManageUtil.getSystemLocale(this) == Locale.CHINA) {
+                sharedPref.languages = 0
+            } else {
+                sharedPref.languages = 1
+            }
+        }
         Handler().postDelayed({
-            mWebView = getWebViewInstance()
-            val map = HashMap<String, Any>()
-            map["host"] = sharedPref.chooseNode
-            map["port"] = 443
-            map["protocol"] = "https"
-            WebViewApi.changeNetwork(Gson().toJson(map)).logE()
-            mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
-            mWebView.evaluateJavascript(WebViewApi.EVTInit()) {}
-            if(sharedPref.publicKey.isEmpty()){
+            if (sharedPref.chooseNode != "mainnet14.everitoken.io") {
+                val map = HashMap<String, Any>()
+                map["host"] = sharedPref.chooseNode
+                map["port"] = 443
+                map["protocol"] = "https"
+                WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+                mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+            }
+            WebViewApi.EVTInit().logE()
+            mWebView.loadUrl(WebViewApi.EVTInit(), null)
+            if (sharedPref.publicKey.isEmpty()) {
                 start(CreateWalletIdIndex::class.java)
-            }else{
+            } else {
                 start(MainActivity::class.java)
             }
             finish()

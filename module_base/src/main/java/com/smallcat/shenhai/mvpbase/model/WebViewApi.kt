@@ -1,6 +1,5 @@
 package com.smallcat.shenhai.mvpbase.model
 
-import com.smallcat.shenhai.mvpbase.model.bean.LinkBean
 
 object WebViewApi {
     /**
@@ -105,4 +104,8 @@ object WebViewApi {
 
     //切换节点
     fun changeNetwork(s: String) = "javascript:changeNetwork('$s')"
+
+    //获取交易信息
+    fun getTransactionDetailById(s: String) = "javascript:getTransactionDetailById('$s')"
+
 }

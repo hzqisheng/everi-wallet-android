@@ -67,7 +67,7 @@
     <string name="change_pwd">Change Password</string>
     <string name="retrieve_pwd">Retrieve password</string>
     <string name="export_mnemonic_code">Derived mnemonics</string>
-    <string name="add_id_wallet">Increased Identity Wallet</string>
+    <string name="add_id_wallet">Create Identity</string>
     <string name="erit_id_wallet">Editorial Identity Wallet</string>
     <string name="current_pwd">Current password</string>
     <string name="new_pwd">New password</string>
@@ -186,7 +186,7 @@
     <string name="copy_success">Already Copied</string>
     <string name="password_not_equals">Two inconsistent passwords</string>
     <string name="set_max_money">Please enter the maximum amount</string>
-    <string name="import_success">Successful import</string>
+    <string name="import_success">Successful Create</string>
     <string name="create_id">Create identity</string>
     <string name="recover_id">Restore identity</string>
     <string name="no_function">This function is not yet open</string>

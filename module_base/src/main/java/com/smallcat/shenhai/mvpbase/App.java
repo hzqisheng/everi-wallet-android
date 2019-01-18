@@ -5,9 +5,9 @@ import android.app.Application;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.smallcat.shenhai.mvpbase.utils.WebViewUtilsKt;
 import com.zxy.tiny.Tiny;
 
 import org.litepal.LitePal;
@@ -20,7 +20,7 @@ import java.util.List;
  * @author smallCut
  * @date 2018/11/7
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     private static App mApplication;
 
@@ -35,8 +35,6 @@ public class App extends Application {
         super.onCreate();
         mApplication = this;
         registerActivityListener();
-
-        WebViewUtilsKt.initWebView();
         //app字体大小不随系统变化
         Resources res = getResources();
         Configuration config = new Configuration();
@@ -44,11 +42,9 @@ public class App extends Application {
         res.updateConfiguration(config, res.getDisplayMetrics());
 
         LitePal.initialize(this);
-
         Tiny.getInstance().init(this);
         
         ARouter.openLog();   // 打印日志
-        ARouter.openDebug();
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 

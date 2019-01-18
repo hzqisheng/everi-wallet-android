@@ -123,7 +123,7 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
         "onDataResult1".logE()
         msg.logE()
         val intent = Intent(this, PaySuccessActivity::class.java)
-        intent.putExtra("data", "-" + bean!!.number.split(" ")[0])
+        intent.putExtra("data", "-" + tv_money.text)
         startActivity(intent)
     }
 
