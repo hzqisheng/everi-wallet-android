@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qs.modulemain.R;
+import com.qs.modulemain.bean.HelpCenterBean;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -55,5 +56,22 @@ public class DataUtils {
 
     public static void test(String s){
         List<String> list = new Gson().fromJson(s, new TypeToken<ArrayList<String>>() {}.getType());
+    }
+
+    public static List<HelpCenterBean> addFtsHelpData(Context mContext){
+        List<HelpCenterBean> list = new ArrayList<>();
+        list.add(new HelpCenterBean(mContext.getString(R.string.issue_fts), mContext.getString(R.string.addfts_help_1)));
+        list.add(new HelpCenterBean(mContext.getString(R.string.coin_symbol), mContext.getString(R.string.addfts_help_2)));
+        list.add(new HelpCenterBean(mContext.getString(R.string.asset_number), mContext.getString(R.string.addfts_help_3)));
+        list.add(new HelpCenterBean(mContext.getString(R.string.total_supply), mContext.getString(R.string.addfts_help_4)));
+        list.add(new HelpCenterBean(mContext.getString(R.string.decimals), mContext.getString(R.string.addfts_help_5)));
+        list.add(new HelpCenterBean(mContext.getString(R.string.icon), mContext.getString(R.string.addfts_help_6)));
+        return list;
+    }
+
+    public static List<HelpCenterBean> addNFtsHelpData(Context mContext){
+        List<HelpCenterBean> list = new ArrayList<>();
+        list.add(new HelpCenterBean(mContext.getString(R.string.domain), mContext.getString(R.string.add_nfts_help_1)));
+        return list;
     }
 }

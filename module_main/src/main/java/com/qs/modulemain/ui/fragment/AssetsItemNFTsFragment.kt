@@ -28,7 +28,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     private var nFTsList = ArrayList<ChooseGetBean>()
 
-    private lateinit var nFTsAdapter: AssetsNFtsAdapter
+    private var nFTsAdapter: AssetsNFtsAdapter? = null
 
     override fun initPresenter() {
         mPresenter = AssetsItemNFTsPresenter(mContext)
@@ -36,14 +36,13 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
+        if (isVisibleToUser && nFTsAdapter != null) {
             lastMY_NFTS = RxBusCenter.MY_NFTS
             mWebView.evaluateJavascript(WebViewApi.getOwnedTokens(mContext.sharedPref.publicKey), null)
         }
     }
 
     override val layoutId: Int = R.layout.fragment_assets_item
-
 
     override fun onResume() {
         super.onResume()
@@ -53,17 +52,17 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
     override fun initData() {
         lastMY_NFTS = RxBusCenter.MY_NFTS
         nFTsAdapter = AssetsNFtsAdapter(nFTsList)
-        nFTsAdapter.setOnItemClickListener { _, _, position ->
+        nFTsAdapter?.setOnItemClickListener { _, _, position ->
             Intent(mActivity, NFTsDetailActivity::class.java).apply {
                 putExtra("domain", nFTsList[position].domain)
                 putExtra("token", nFTsList[position].name)
                 startActivity(this)
             }
         }
-        nFTsAdapter.setOnItemChildClickListener { _, _, position ->
-           showFingerPrintDialog(position)
+        nFTsAdapter?.setOnItemChildClickListener { _, _, position ->
+            showFingerPrintDialog(position)
         }
-        nFTsAdapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_nfts_now))
+        nFTsAdapter?.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_nfts_now))
         rv_list.adapter = nFTsAdapter
         swipe_refresh.setOnRefreshListener {
             mWebView.evaluateJavascript(WebViewApi.getOwnedTokens(mContext.sharedPref.publicKey), null)
@@ -81,7 +80,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
         nFTsList.clear()
         nFTsList.addAll(chooseBean)
-        nFTsAdapter.setNewData(nFTsList)
+        nFTsAdapter?.setNewData(nFTsList)
     }
 
     private fun showFingerPrintDialog(position: Int) {

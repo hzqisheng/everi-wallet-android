@@ -1,9 +1,18 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.DomainBean
+import com.qs.modulemain.ui.adapter.HelpAdapter
+import com.qs.modulemain.ui.fragment.HelpDialogFragment
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
@@ -43,6 +52,10 @@ class NFTsCreateActivity : SimpleActivity() {
                 })
 
         tvTitle?.text = getString(R.string.create_nfts)
+        ivRight?.apply {
+            setBackgroundResource(R.drawable.ic_question)
+            setOnClickListener { showHelpDialog() }
+        }
 
        /* //发行
         cb_issue.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -207,6 +220,22 @@ class NFTsCreateActivity : SimpleActivity() {
                 "invalid code !".toast()
             }
         }
+    }
+
+    private fun showHelpDialog(){
+        val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_help, null, false)
+        val recyclerView = contentView.findViewById<RecyclerView>(R.id.rv_list)
+        val adapter = HelpAdapter(DataUtils.addNFtsHelpData(mContext))
+        recyclerView.adapter = adapter
+        val popupWindow = PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true)
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        popupWindow.isOutsideTouchable = true
+        popupWindow.isTouchable = true
+        popupWindow.animationStyle = R.style.ActionSheetDialogTop
+        popupWindow.showAsDropDown(toolbar)
+        /*val fragment = HelpDialogFragment()
+        fragment.setDate(DataUtils.addNFtsHelpData(mContext), toolbar.height)
+        fragment.show(supportFragmentManager, "helpDialog")*/
     }
 
     private fun showFingerPrintDialog() {

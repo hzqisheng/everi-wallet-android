@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_text"
+        android:textSize="15sp"
+        android:textColor="@color/color_33"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:drawableStart="@drawable/shape_circle_bo"
+        android:drawablePadding="9dp"
+        tools:text="域"/>
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_68"
+        android:textSize="13sp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="10dp"
+        tools:text="域名称由最大21个指定字符[0-9,A-Z,a-z.-]组成，同时通过设置相应权限来组织和管理通证。"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sp_1"
+        android:background="@color/color_e3"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"/>
+</LinearLayout>

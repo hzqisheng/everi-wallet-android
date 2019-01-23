@@ -20,17 +20,6 @@ class MainPresenter(private val mContext: Context) : BasePresenter<MainView>() {
         registerEvent()
     }
 
-    fun loadData(){
-        /*addSubscribe(mApi.getUseInfo()
-                .sanitizeJson()
-                .subscribeWith(object : CommonSubscriber<UseInfoBean>(mView) {
-                    override fun onNext(data: UseInfoBean) {
-                        mView!!.loadSuccess(data)
-                    }
-                }))*/
-    }
-
-
 
     private fun registerEvent(){
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
@@ -38,7 +27,7 @@ class MainPresenter(private val mContext: Context) : BasePresenter<MainView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
                     when(it.type){
-                        RxBusCenter.LOGIN -> mView!!.loginSuccess(it.msg)
+                        RxBusCenter.CHECK_VERSION -> mView!!.checkSuccess(it.msg)
                     }
                 })
     }

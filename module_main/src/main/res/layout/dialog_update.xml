@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_5">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="21dp"
+            android:text="@string/check_update"
+            android:textColor="@color/color_33"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text=""
+            android:textColor="@color/color_33"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/shape_line_14_3137"
+            android:gravity="center"
+            android:text="@string/do_not_download"
+            android:textColor="@color/color_3137"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_download"
+            app:layout_constraintEnd_toStartOf="@+id/tv_download"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_download" />
+
+        <TextView
+            android:id="@+id/tv_download"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/shape_3137_14"
+            android:gravity="center"
+            android:text="@string/download"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_cancel"
+            app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

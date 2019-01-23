@@ -22,6 +22,4 @@ class PaySuccessActivity : SimpleActivity() {
             start(MainActivity::class.java)
         }
     }
-
-
 }

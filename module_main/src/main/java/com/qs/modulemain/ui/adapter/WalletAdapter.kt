@@ -1,16 +1,13 @@
 package com.qs.modulemain.ui.adapter
 
 import android.content.Intent
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.qs.modulemain.R
-import com.qs.modulemain.R.id.iv_bg
 import com.qs.modulemain.ui.activity.index.WalletDetailActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import com.smallcat.shenhai.mvpbase.utils.addClipboard

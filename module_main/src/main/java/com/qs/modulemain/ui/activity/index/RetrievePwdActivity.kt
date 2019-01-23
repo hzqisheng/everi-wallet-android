@@ -5,10 +5,8 @@ import com.qs.modulemain.R
 import com.qs.modulemain.presenter.RetrievePwdPresenter
 import com.qs.modulemain.view.RetrievePwdView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
-import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_retrieve_pwd.*
 
@@ -42,7 +40,7 @@ class RetrievePwdActivity : BaseActivity<RetrievePwdPresenter>(), RetrievePwdVie
         tvNext.setOnClickListener {
             if (mWalletBean.mnemoinc == memo) {
                 if (et_new_pwd.text.toString() != et_new_pwd_confirm.text.toString()) {
-                    getResourceString(R.string.password_not_equals).toast()
+                    getString(R.string.password_not_equals).toast()
                     return@setOnClickListener
                 }
                 mWalletBean.password = et_new_pwd.text.toString()

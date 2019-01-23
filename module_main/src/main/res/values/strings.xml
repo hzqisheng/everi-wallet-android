@@ -277,6 +277,18 @@
     <string name="nft_can_not_be_empty">通证名称不能为空</string>
     <string name="please_use_same_wallet">请使用相同钱包扫一扫</string>
     <string name="create_success">创建成功</string>
+    <string name="addfts_help_1">不同于以太坊通过编写合约创建代币，EveriWallet通过可视化的表单，设置好符号、总量、图标等既可以快速创建一种Token。</string>
+    <string name="addfts_help_2">代币简称指代币的缩写，这里我们定义为最多7个大写英文字母。例如：EVT、PEVT</string>
+    <string name="addfts_help_3">该代币的唯一标识正整数，不可重复。系统目前默认1 为 EVT，2为 PEVT</string>
+    <string name="addfts_help_4">发行总量即可发行的最大数量。</string>
+    <string name="addfts_help_5">您可输入0–18的数字，例如输入2,则代表该代币可以精确到0.01</string>
+    <string name="addfts_help_6">Token的图标将存储在everiToken上，这会消耗部分手续费（EVT/PEVT)，推荐使用180x180像素的图片。</string>
+    <string name="add_nfts_help_1">域名称由最大21个指定字符[0–9，A-Z，a-z.-]组成，同时通过设置相应权限来组织和管理通证。</string>
+    <string name="do_not_download">暂不下载</string>
+    <string name="choose_browser">请选择浏览器</string>
+    <string name="download">下载更新</string>
+    <string name="check_update">检查更新</string>
+    <string name="latest_version">当前版本已经是最新版本</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>

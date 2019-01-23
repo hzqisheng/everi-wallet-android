@@ -4,7 +4,6 @@ import com.qs.modulemain.R
 import com.qs.modulemain.presenter.ChangePwdPresenter
 import com.qs.modulemain.view.ChangePwdView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -28,11 +27,11 @@ class ChangePwdActivity : BaseActivity<ChangePwdPresenter>(), ChangePwdView {
         tv_import.setOnClickListener { start(RetrievePwdActivity::class.java) }
         tv_sure.setOnClickListener {
             if(!mWalletBean.password.equals(et_current.text.toString())){
-                getResourceString(R.string.password_error).toast()
+                getString(R.string.password_error).toast()
                 return@setOnClickListener
             }
             if(!et_new_pwd.text.toString().equals(et_new_pwd_confirm.text.toString())){
-                getResourceString(R.string.password_not_equals).toast()
+                getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
             mWalletBean.password = et_new_pwd.text.toString()

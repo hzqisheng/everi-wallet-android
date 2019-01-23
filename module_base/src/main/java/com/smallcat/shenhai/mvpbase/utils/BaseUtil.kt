@@ -9,11 +9,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.Uri
-import android.support.v4.content.ContextCompat.getSystemService
 import com.smallcat.shenhai.mvpbase.App
-import com.smallcat.shenhai.mvpbase.R
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
-import com.smallcat.shenhai.mvpbase.extension.toast
 
 /**
  * @author smallCut

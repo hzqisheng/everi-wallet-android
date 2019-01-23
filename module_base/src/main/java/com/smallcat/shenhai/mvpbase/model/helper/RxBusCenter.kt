@@ -83,5 +83,8 @@ object RxBusCenter {
     //交易数据
     const val TRAN_MSG = 0x2027
 
+    //检查更新
+    const val CHECK_VERSION = 0x2028
+
 
 }

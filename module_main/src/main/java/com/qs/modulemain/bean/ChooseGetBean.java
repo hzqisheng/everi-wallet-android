@@ -39,6 +39,7 @@ public class ChooseGetBean implements Serializable{
     private String asset;
     private String domain;
     private List<MetasBean> metas;
+    private boolean isChoose = false;
 
     public void addIssueAuthorizersBean(ChooseGetBean.IssueBean.AuthorizersBean authorizersBean){
         if (issue == null){
@@ -87,6 +88,13 @@ public class ChooseGetBean implements Serializable{
     }
 
 
+    public boolean isChoose() {
+        return isChoose;
+    }
+
+    public void setChoose(boolean choose) {
+        isChoose = choose;
+    }
 
     public String getName() {
         return name;

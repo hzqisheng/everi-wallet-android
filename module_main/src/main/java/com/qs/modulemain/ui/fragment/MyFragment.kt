@@ -19,6 +19,7 @@ import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import com.smallcat.shenhai.mvpbase.model.http.ApiConfig
 import kotlinx.android.synthetic.main.fragment_my.*
 import org.litepal.crud.DataSupport
 
@@ -64,7 +65,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_SUBJECT, "MyEVT")
-            putExtra(Intent.EXTRA_TEXT, "https://dibaqu.com/B3ma")
+            putExtra(Intent.EXTRA_TEXT, ApiConfig.SHARE_URL)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent.createChooser(this, "分享到"))
         }

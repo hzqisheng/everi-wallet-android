@@ -3,16 +3,10 @@ package com.qs.modulemain.ui.activity.my
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.AddressBean
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
-import kotlinx.android.synthetic.main.activity_export.*
-import org.litepal.crud.DataSupport
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Context.CLIPBOARD_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.utils.addClipboard
+import kotlinx.android.synthetic.main.activity_export.*
+import org.litepal.crud.DataSupport
 
 
 class ExportAddressActivity : SimpleActivity() {

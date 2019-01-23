@@ -113,7 +113,7 @@
     <string name="keystore_pwd">Keystore password</string>
     <string name="Copy_and_paste_the_contents_of_the_wallet_Keystore_file_directly_into_the_input_box">Copy and paste the contents of the wallet Keystore file directly into the input box</string>
     <string name="now_version">Current Version</string>
-    <string name="check_version">Check version</string>
+    <string name="check_version">Check Version</string>
     <string name="you_need_pay_currency">The currency in which you need to pay is</string>
     <string name="sum_of_money">Amount</string>
     <string name="please_input_money">Enter the amount</string>
@@ -278,5 +278,17 @@
     <string name="nft_can_not_be_empty">NFT name cannot be empty</string>
     <string name="please_use_same_wallet">Please scan with the same wallet</string>
     <string name="create_success">Create success</string>
+    <string name="addfts_help_1">Different with Ethereum\'s writing smart contract, EveriWallet can quickly create a Token by setting symbols, amounts, Icons, and so on through visual forms.</string>
+    <string name="addfts_help_2">Symbol refers to the name of Token, which is defined as up to 7 uppercase letters.For example, EVT, PEVT</string>
+    <string name="addfts_help_3">The unique number to Identity a Fungible Token.In EveriWallet, #1 means EVT and #2 means PEVT.</string>
+    <string name="addfts_help_4">Total Supply refers to the total number of a Token.</string>
+    <string name="addfts_help_5">You can enter a number from 0–18, for example, enter 2, which means the token can be accurate to 0.01.</string>
+    <string name="addfts_help_6">For convinient, EveriWallet will store Token\'s Icon on everiToken.It will cost part of the service fee(EVT/PEVT) and we recommend you use 180x180 pixel pictures.</string>
 
+    <string name="add_nfts_help_1">Domain names consist of up to 21 specified characters [0–9，A-Z，a-z.-]， and Non-Fungible Tokens are organized and managed by setting authoritiy management in domain.</string>
+    <string name="do_not_download">Cancel</string>
+    <string name="choose_browser">Choose Browser</string>
+    <string name="download">Download</string>
+    <string name="check_update">New Version</string>
+    <string name="latest_version">Already The Latest Version</string>
 </resources>

@@ -225,6 +225,13 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(s1, RxBusCenter.TRAN_MSG))
     }
 
+    @JavascriptInterface
+    fun getAPPVersionCallback(s: String) {
+        ("getAPPVersionCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_VERSION))
+    }
+
     fun handleResult(s: String): String? {
         val resultBean = s.toResultBean()
         if (resultBean.code == 0) {

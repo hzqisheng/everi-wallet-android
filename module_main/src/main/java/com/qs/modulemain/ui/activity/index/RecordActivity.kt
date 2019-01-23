@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_record.*
 import java.util.ArrayList
 
 class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
+
     private lateinit var data: ChooseGetBean
     private var resultBean: ArrayList<RecordDetailBean> = ArrayList()
     private lateinit var mAdapter: RecordItemAdapter

@@ -10,3 +10,9 @@ data class HelpCenterBean(
         var title: String = "",
         var msg: String = ""
 )
+
+data class VersionBean(
+    val androidVersion: String,
+    val iOSVersion: String,
+    val isAndroidForceUpdate: Boolean
+)

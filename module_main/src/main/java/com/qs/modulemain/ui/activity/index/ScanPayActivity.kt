@@ -64,18 +64,19 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
                 })*/
 
         layout_choose.setOnClickListener {
-            var intent = Intent(this@ScanPayActivity, CollectChooseFtsActivity::class.java)
+            val intent = Intent(this@ScanPayActivity, CollectChooseFtsActivity::class.java)
+            intent.putExtra("data", mFtsBean)
             startActivityForResult(intent, 101)
         }
 
         iv_scan.setOnClickListener {
-            var intent = Intent(this@ScanPayActivity, ScanActivity::class.java)
+            val intent = Intent(this@ScanPayActivity, ScanActivity::class.java)
             intent.putExtra("ScanType", 1000)
             startActivityForResult(intent, 1)
         }
 
         textView6.setOnClickListener {
-            var intent = Intent(this@ScanPayActivity, ChooseAddressActivity::class.java)
+            val intent = Intent(this@ScanPayActivity, ChooseAddressActivity::class.java)
             startActivityForResult(intent, 3)
         }
 

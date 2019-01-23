@@ -56,7 +56,7 @@
 
 
     <ImageView
-        android:id="@+id/iv_more"
+        android:id="@+id/iv_choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -66,5 +66,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_wallet_more"/>
+        app:srcCompat="@drawable/ic_languages_choose"/>
 </android.support.constraint.ConstraintLayout>

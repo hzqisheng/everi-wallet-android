@@ -108,4 +108,7 @@ object WebViewApi {
     //获取交易信息
     fun getTransactionDetailById(s: String) = "javascript:getTransactionDetailById('$s')"
 
+    //检查更新
+    fun getAPPVersion() = "javascript:getAPPVersion()"
+
 }

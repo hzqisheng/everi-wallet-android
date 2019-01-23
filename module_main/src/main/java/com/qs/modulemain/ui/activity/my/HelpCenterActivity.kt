@@ -2,13 +2,11 @@ package com.qs.modulemain.ui.activity.my
 
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.HelpCenterBean
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 
 class HelpCenterActivity : SimpleActivity() {
 

@@ -60,7 +60,12 @@ class CollectActivity : SimpleActivity() {
         requestNet()
     }
 
-    fun requestNet() {
+    override fun onResume() {
+        super.onResume()
+        rb_pay_code.isChecked = true
+    }
+
+    private fun requestNet() {
         var address = PayActivity.Address()
         address.address = sharedPref.publicKey
         qrcode_type = RxBusCenter.QRCODE_RECE

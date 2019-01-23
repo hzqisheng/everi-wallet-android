@@ -104,6 +104,7 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
         mContext.sharedPref.privateKey = baseBean.privateKey
         mContext.sharedPref.password = baseBean.password
         mContext.sharedPref.mnemoinc = baseBean.mnemoinc
+        mContext.sharedPref.isFinger = 0
         getString(R.string.import_success).toast()
         mActivity.finish()
         var intent = Intent(mContext, MainActivity::class.java)

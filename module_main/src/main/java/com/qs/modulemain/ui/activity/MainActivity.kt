@@ -1,10 +1,20 @@
 package com.qs.modulemain.ui.activity
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
+import android.support.v7.app.AlertDialog
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.arouter.ARouterConfig
+import com.qs.modulemain.bean.VersionBean
 import com.qs.modulemain.presenter.MainPresenter
 import com.qs.modulemain.ui.fragment.AssetsFragment
 import com.qs.modulemain.ui.fragment.ManageFragment
@@ -13,13 +23,16 @@ import com.qs.modulemain.ui.fragment.MyFragment
 import com.qs.modulemain.view.MainView
 import com.smallcat.shenhai.mvpbase.App
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
+import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import com.smallcat.shenhai.mvpbase.model.http.ApiConfig
 import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
 import com.smallcat.shenhai.mvpbase.utils.destroyWebView
 import com.smallcat.shenhai.mvpbase.utils.fitSystemAllScroll
+import com.smallcat.shenhai.mvpbase.utils.getVersionName
 import kotlinx.android.synthetic.main.activity_main.*
 import me.yokeyword.fragmentation.ISupportFragment
 import java.util.*
@@ -33,6 +46,8 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
         private const val MANAGE = 3
         private const val MY = 4
     }
+
+    private var dialog: Dialog? = null
 
     private var show = ASSETS
     private var hide = ASSETS
@@ -101,15 +116,42 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
         } else {
             cent_icon.setBackgroundResource(R.drawable.switch_en)
         }
+
+        WebViewApi.getAPPVersion().logE()
+        mWebView.evaluateJavascript(WebViewApi.getAPPVersion(), null)
     }
 
-    override fun loginSuccess(data: String) {
-//        val bean = Gson().fromJson(data, BaseData::class.java)
-//        bean.save()
-//        sharedPref.publicKey = "EVT5qn48E8eZKJb5yM24bgC1m8MdRFg5eBU76cQfDXBGXr3UYjLvY"
-//        sharedPref.privateKey = bean.privateKey
-//        sharedPref.password = bean.password
-//        sharedPref.mnemoinc = bean.mnemoinc
+    @SuppressLint("SetTextI18n")
+    override fun checkSuccess(msg: String) {
+        val bean = Gson().fromJson(msg, VersionBean::class.java)
+        if (getVersionName(mContext) != bean.androidVersion) {
+            if (dialog == null) {
+                dialog = Dialog(mContext, R.style.CustomDialog)
+            }
+            val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
+            val tvMsg = view.findViewById<TextView>(R.id.tv_msg)
+            val tvSure = view.findViewById<TextView>(R.id.tv_download)
+            val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+            if (LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA) {
+                tvMsg.text = "系统检测到当前的最新版本为${bean.androidVersion}，是否下载更新?"
+            } else {
+                tvMsg.text = "The latest version is ${bean.androidVersion} and whether to download the update or not？"
+            }
+            tvSure.setOnClickListener {
+                val intent = Intent()
+                intent.action = Intent.ACTION_VIEW
+                intent.data = Uri.parse(ApiConfig.SHARE_URL)
+                startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)))
+            }
+            if (bean.isAndroidForceUpdate) {
+                tvCancel.visibility = View.GONE
+            }
+            tvCancel.setOnClickListener { dialog!!.dismiss() }
+            dialog!!.setContentView(view)
+            dialog!!.setCanceledOnTouchOutside(false)
+            dialog!!.setCancelable(false)
+            dialog!!.show()
+        }
     }
 
     private fun getFragment(position: Int): ISupportFragment {

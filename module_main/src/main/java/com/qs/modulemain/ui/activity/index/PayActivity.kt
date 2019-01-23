@@ -143,6 +143,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
 
     override fun onResume() {
         super.onResume()
+        rb_pay_code.isChecked = true
         if (mLinkId == "") return
         if (isChooseSymbolResult) {
             isChooseSymbolResult = false

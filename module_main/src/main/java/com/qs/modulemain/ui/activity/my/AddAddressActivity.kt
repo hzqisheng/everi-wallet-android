@@ -7,11 +7,8 @@ import com.qs.modulemain.presenter.AddAddressPresenter
 import com.qs.modulemain.ui.activity.index.ScanActivity
 import com.qs.modulemain.view.AddAddressView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.toast
 import kotlinx.android.synthetic.main.activity_add_address.*
-import kotlinx.android.synthetic.main.activity_fts_issue.*
-import org.litepal.LitePal
 
 class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
 

@@ -6,11 +6,7 @@ import com.qs.modulemain.R
 import com.qs.modulemain.bean.AddressBean
 import java.util.ArrayList
 
-/**
- * 作者： MirsFang on 2018/12/15 16:24
- * 邮箱： mirsfang@163.com
- * 类描述：
- */
+
 class AddressAdapter(data: ArrayList<AddressBean>?) : BaseQuickAdapter<AddressBean, BaseViewHolder>(R.layout.item_address, data) {
 
     override fun convert(helper: BaseViewHolder?, item: AddressBean?) {

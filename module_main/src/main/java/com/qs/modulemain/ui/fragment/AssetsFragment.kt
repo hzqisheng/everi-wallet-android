@@ -8,24 +8,19 @@ import android.text.TextUtils
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.qs.modulemain.R
-import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.ui.activity.index.*
 import com.qs.modulemain.ui.adapter.AssetsFragAdapter
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.utils.addClipboard
-import kotlinx.android.synthetic.main.activity_scan_collect.*
 import kotlinx.android.synthetic.main.fragment_assets.*
 
 
@@ -33,7 +28,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
 
     private lateinit var adapter: AssetsFragAdapter
 
-    private var dialog:Dialog ?= null
+    private var dialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_assets
@@ -46,7 +41,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         tab_layout.setupWithViewPager(view_pager)
 
         public_asset_key.setOnClickListener {
-            addClipboard(mContext,mContext.sharedPref.publicKey)
+            addClipboard(mContext, mContext.sharedPref.publicKey)
             getString(R.string.copy_success).toast()
         }
 
@@ -55,7 +50,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
             tabItem!!.customView = adapter.getTabView(i, tab_layout, mContext)
         }
 
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
             }
 
@@ -73,14 +68,14 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        if(!TextUtils.isEmpty(mContext.sharedPref.name)) {
+        if (!TextUtils.isEmpty(mContext.sharedPref.name)) {
             tv_asset_name.text = mContext.sharedPref.name
         }
 
         public_asset_key.text = mContext.sharedPref.publicKey
     }
 
-    private fun initListener(){
+    private fun initListener() {
         tv_scan.setOnClickListener(this)
         tv_pay.setOnClickListener(this)
         tv_publish.setOnClickListener(this)
@@ -100,7 +95,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
         }
     }
 
-    private fun showIssueDialog(){
+    private fun showIssueDialog() {
         if (dialog == null) {
             dialog = Dialog(mContext, R.style.CustomDialog)
         }
@@ -111,7 +106,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
             mContext.start(ChooseFTsActivity::class.java)
             dialog!!.dismiss()
         }
-        ivNFTs.setOnClickListener{
+        ivNFTs.setOnClickListener {
             dialog!!.dismiss()
             mContext.start(NFTsActivity::class.java)
         }
@@ -123,7 +118,7 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (dialog != null && dialog!!.isShowing){
+        if (dialog != null && dialog!!.isShowing) {
             dialog!!.dismiss()
         }
     }
@@ -131,12 +126,12 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
     private fun showFingerPrintDialog(item: ChooseGetBean?) {
         confirmPassword(mContext.sharedPref.isFinger, childFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
-                if (item == null){
+                if (item == null) {
                     getString(R.string.no_fts).toast()
                     return
                 }
                 val intent = Intent(mContext, PayActivity::class.java)
-                intent.putExtra("data",item)
+                intent.putExtra("data", item)
                 mContext.startActivity(intent)
             }
         })
@@ -148,8 +143,8 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
      * @param v The view that was clicked.
      */
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.tv_scan ->{
+        when (v?.id) {
+            R.id.tv_scan -> {
                 val intent = Intent(mContext, ScanActivity::class.java)
                 intent.putExtra("ScanType", 10001)
                 startActivity(intent)

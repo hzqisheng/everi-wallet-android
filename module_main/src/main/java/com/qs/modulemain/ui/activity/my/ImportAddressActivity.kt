@@ -5,10 +5,8 @@ import com.qs.modulemain.bean.AddressBean
 import com.qs.modulemain.presenter.ImportAddressPresenter
 import com.qs.modulemain.view.ImportAddressView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.toast
 import kotlinx.android.synthetic.main.activity_import_address.*
-import java.util.ArrayList
 
 class ImportAddressActivity : BaseActivity<ImportAddressPresenter>(), ImportAddressView {
 

@@ -4,7 +4,10 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -31,8 +34,11 @@ import com.zhihu.matisse.MimeType
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_add_fts.*
 import android.text.method.ReplacementTransformationMethod
-
-
+import android.widget.PopupWindow
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+import com.qs.modulemain.ui.adapter.HelpAdapter
+import com.qs.modulemain.util.DataUtils
 
 
 class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
@@ -48,6 +54,10 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
     override fun initData() {
         tvTitle?.text = getString(R.string.CreateFts)
+        ivRight?.apply {
+            setBackgroundResource(R.drawable.ic_question)
+            setOnClickListener { showHelpDialog() }
+        }
 
         iv_img.setOnClickListener {
             val rxPermissions = RxPermissions(this)
@@ -140,6 +150,19 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         override fun getReplacement(): CharArray {
             return charArrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
         }
+    }
+
+    private fun showHelpDialog() {
+        val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_help, null, false)
+        val recyclerView = contentView.findViewById<RecyclerView>(R.id.rv_list)
+        val adapter = HelpAdapter(DataUtils.addFtsHelpData(mContext))
+        recyclerView.adapter = adapter
+        val popupWindow = PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true)
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        popupWindow.isOutsideTouchable = true
+        popupWindow.isTouchable = true
+        popupWindow.animationStyle = R.style.ActionSheetDialogTop
+        popupWindow.showAsDropDown(toolbar)
     }
 
     override fun onDataResult(msg: String) {

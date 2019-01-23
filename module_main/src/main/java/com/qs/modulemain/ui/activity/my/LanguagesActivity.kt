@@ -5,7 +5,6 @@ import com.qs.modulemain.R
 import com.qs.modulemain.ui.activity.MainActivity
 import com.smallcat.shenhai.mvpbase.App
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceString
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.utils.LocalManageUtil
