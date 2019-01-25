@@ -18,6 +18,7 @@ android {
 
     buildTypes {
         release {
+            //混淆
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
@@ -28,7 +29,6 @@ android {
     }
 
     signingConfigs {
-
         debug{
             storeFile file('/Users/hui/Desktop/jks/everToken.jks')
             storePassword "123456"

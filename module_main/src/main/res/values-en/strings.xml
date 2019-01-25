@@ -11,7 +11,7 @@
     <string name="property">property</string>
     <string name="market">Market</string>
     <string name="manage">Manage</string>
-    <string name="my">My</string>
+    <string name="my">Me</string>
     <string name="my_token">My FTs</string>
     <string name="my_pass_code">My NFTs</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -21,8 +21,8 @@
     <string name="issue">Issue</string>
     <string name="tv_return">Back</string>
     <string name="wallet">Wallet</string>
-    <string name="now_user_wallet">Wallet in Current Identity</string>
-    <string name="import_wallet">Imported Wallet</string>
+    <string name="now_user_wallet">Current Wallet</string>
+    <string name="import_wallet">Imported Wallets</string>
     <string name="search">Search</string>
     <string name="all">All</string>
     <string name="choose_group">Choose</string>
@@ -48,7 +48,7 @@
     <string name="remark">Remark</string>
     <string name="please_input_notes">Please Input Notes</string>
     <string name="save">Save</string>
-    <string name="import_address_msg">Data Format: Type, Address, Group Name, Name, Telephone\n One Address One Line</string>
+    <string name="import_address_msg">Data Format: Type, Address, Group Name, Name, Telephone, Memo\n Currently:only support EVT with one address in one line.</string>
     <string name="Paste_the_address_here">Paste the address here</string>
     <string name="copy_content">Copy content</string>
     <string name="languages">Choice language</string>
@@ -66,9 +66,9 @@
     <string name="issue_nfts_msg">Including Tickets,property and other unique assets/rights</string>
     <string name="change_pwd">Change Password</string>
     <string name="retrieve_pwd">Retrieve password</string>
-    <string name="export_mnemonic_code">Derived mnemonics</string>
+    <string name="export_mnemonic_code">Export Mnemonics Code</string>
     <string name="add_id_wallet">Create Identity</string>
-    <string name="erit_id_wallet">Editorial Identity Wallet</string>
+    <string name="erit_id_wallet">Edit Identity Wallet</string>
     <string name="current_pwd">Current password</string>
     <string name="new_pwd">New password</string>
     <string name="confirm_new_pwd">Confirm the new password</string>
@@ -190,8 +190,8 @@
     <string name="create_id">Create identity</string>
     <string name="recover_id">Restore identity</string>
     <string name="no_function">This function is not yet open</string>
-    <string name="count">Count</string>
-    <string name="surplus">Surplus</string>
+    <string name="count">Total</string>
+    <string name="surplus">Remaining</string>
     <string name="circulation">Circulation</string>
     <string name="select_pay">Please choose currency for payment</string>
     <string name="collect_code">Collect Code</string>
@@ -222,8 +222,9 @@
 
     <string-array name="add_power">
         <item>Only I can issue, the authority can not be changed</item>
-        <item>Only I can issue, the authority can be changed later</item>
+        <!--<item>Only I can issue, the authority can be changed later</item>-->
     </string-array>
+
     <string name="create">create</string>
     <string name="recover">recover</string>
     <string name="issue_nfts_success">issue_success</string>
@@ -245,7 +246,7 @@
     <string name="error_private_key">private key error</string>
     <string name="issue_number_empty">issue number can not be empty</string>
     <string name="all_address">ALL ADDRESS</string>
-    <string name="no_address">No Address</string>
+    <string name="no_address">No Address Now</string>
     <string name="no_fts_now">No FTs Now</string>
     <string name="no_nfts_now">No NFTs Now</string>
     <string name="full_name_not_null">Full name can not be empty</string>
@@ -291,4 +292,8 @@
     <string name="download">Download</string>
     <string name="check_update">New Version</string>
     <string name="latest_version">Already The Latest Version</string>
+    <string name="address_error">Error Address</string>
+    <string name="Format_error_please_Check">Format Error! Please Check</string>
+    <string name="import_address_success">Import Success</string>
+    <string name="add_img_msg">This icon cannot be modified. Recommended to use transparent bottom PNG format.</string>
 </resources>

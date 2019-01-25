@@ -51,9 +51,8 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
         tv_money.text = data.asset.split(" ")[0] + " " + data.sym_name
 
         for (meta in data.metas) {
-            if ("symbol-icon" == meta.key) {
-                if (meta.value.isEmpty()) return
-                val decodedByte: Bitmap = Base64Utils.base64ToBitmap(meta.value) ?: return
+            if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                 iv_img.setImageBitmap(decodedByte)
             }
         }
@@ -77,7 +76,7 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
         rv_list.adapter = mAdapter
 
 
-        var json = Gson().toJson(request)
+        val json = Gson().toJson(request)
 
         json.logE()
 

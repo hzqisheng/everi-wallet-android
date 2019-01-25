@@ -1,6 +1,7 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.qs.modulemain.R
@@ -40,10 +41,10 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
 
             tv_name.text = mFtsBean!!.sym_name + "(" + mFtsBean!!.asset.split("S")[1] + ")"
 
-            if (mFtsBean!!.metas.size > 0) {
-                if ("symbol-icon".equals(mFtsBean!!.metas[0].key)) {
-                    var bitmap = Base64Utils.base64ToBitmap(mFtsBean!!.metas[0].value)
-                    iv_img.setImageBitmap(bitmap)
+            for (meta in mFtsBean!!.metas) {
+                if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                    val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                    iv_img.setImageBitmap(decodedByte)
                 }
             }
 
@@ -146,11 +147,11 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
             if (resultCode == 101) {
                 mFtsBean = data!!.getSerializableExtra("data") as ChooseGetBean
                 tv_name.text = mFtsBean!!.sym_name
-
-                if (mFtsBean!!.metas.size > 0) {
-                    if ("symbol-icon".equals(mFtsBean!!.metas[0].key)) {
-                        var bitmap = Base64Utils.base64ToBitmap(mFtsBean!!.metas[0].value)
-                        iv_img.setImageBitmap(bitmap)
+                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                for (meta in mFtsBean!!.metas) {
+                    if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                        iv_img.setImageBitmap(decodedByte)
                     }
                 }
 

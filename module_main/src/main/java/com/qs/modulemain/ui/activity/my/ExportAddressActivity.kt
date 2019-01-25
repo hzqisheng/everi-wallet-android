@@ -17,8 +17,8 @@ class ExportAddressActivity : SimpleActivity() {
     override fun initData() {
         tvTitle?.text = getString(R.string.export)
 
-        var dataList: List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
-        var result: String = ""
+        val dataList: List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
+        var result = ""
         for (addressBean in dataList) {
             result += addressBean.toString()
         }

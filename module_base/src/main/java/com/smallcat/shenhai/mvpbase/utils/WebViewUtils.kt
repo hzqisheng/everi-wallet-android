@@ -218,6 +218,16 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_PRIVATE))
     }
 
+    /**
+     * 验证地址
+     */
+    @JavascriptInterface
+    fun isValidPublicKeyCallback(s: String) {
+        ("isValidPublicKey$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.CHECK_ADDRESS))
+    }
+
     @JavascriptInterface
     fun getTransactionDetailByIdCallback(s: String) {
         ("getTransactionDetailByIdCallback$s").logE()

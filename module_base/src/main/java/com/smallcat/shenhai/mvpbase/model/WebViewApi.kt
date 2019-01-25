@@ -102,6 +102,9 @@ object WebViewApi {
     //验证私钥
     fun isValidPrivateKey(s: String) = "javascript:isValidPrivateKey('$s')"
 
+    //验证地址
+    fun isValidPublicKey(s: String) = "javascript:isValidPublicKey('$s')"
+
     //切换节点
     fun changeNetwork(s: String) = "javascript:changeNetwork('$s')"
 

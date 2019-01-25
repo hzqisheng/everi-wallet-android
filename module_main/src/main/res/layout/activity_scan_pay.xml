@@ -36,7 +36,7 @@
                 android:layout_height="26dp"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="18dp"
-                android:src="@drawable/logo"
+                android:src="@drawable/icon_fukuan_evt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

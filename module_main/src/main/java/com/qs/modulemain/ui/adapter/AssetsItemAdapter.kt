@@ -24,11 +24,10 @@ class AssetsItemAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<Ch
         bg.setImageResource(R.drawable.icon_fukuan_evt)
 
         for (meta in item.metas) {
-            if("symbol-icon" == meta.key){
-                if(meta.value.isEmpty())return
-                val decodedByte: Bitmap = Base64Utils.base64ToBitmap(meta.value) ?: return
-                bg.setImageBitmap(decodedByte)
-            }
+            if (meta.value.isEmpty()) return
+            if (!meta.value.contains(",")) return
+            val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
+            bg.setImageBitmap(decodedByte)
         }
     }
 

@@ -7,11 +7,10 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.AddFTSBean
@@ -34,9 +33,8 @@ import com.zhihu.matisse.MimeType
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_add_fts.*
 import android.text.method.ReplacementTransformationMethod
-import android.widget.PopupWindow
 import android.view.LayoutInflater
-import android.widget.LinearLayout
+import android.widget.*
 import com.qs.modulemain.ui.adapter.HelpAdapter
 import com.qs.modulemain.util.DataUtils
 
@@ -60,21 +58,7 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         }
 
         iv_img.setOnClickListener {
-            val rxPermissions = RxPermissions(this)
-            rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .subscribe { granted ->
-                        if (granted) {
-                            Matisse.from(this@AddFtsActivity)
-                                    .choose(MimeType.ofImage())
-                                    .countable(true)
-                                    .maxSelectable(9)
-                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                                    .thumbnailScale(0.85f)
-                                    .maxSelectable(1)
-                                    .imageEngine(Glide4Engine())
-                                    .forResult(REQUEST_CODE_CHOOSE)
-                        }
-                    }
+            showToastDialog()
         }
 
         val stringArray: Array<String> = this.resources.getStringArray(R.array.add_power)
@@ -150,6 +134,30 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         override fun getReplacement(): CharArray {
             return charArrayOf('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
         }
+    }
+
+    private fun showToastDialog(){
+        val build = AlertDialog.Builder(mContext)
+        build.setMessage(getString(R.string.add_img_msg))
+        build.setPositiveButton(getString(R.string.sure)){ dialog, _ ->
+            dialog.dismiss()
+            val rxPermissions = RxPermissions(this)
+            rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .subscribe { granted ->
+                        if (granted) {
+                            Matisse.from(this@AddFtsActivity)
+                                    .choose(MimeType.ofImage())
+                                    .countable(true)
+                                    .maxSelectable(9)
+                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                                    .thumbnailScale(0.85f)
+                                    .maxSelectable(1)
+                                    .imageEngine(Glide4Engine())
+                                    .forResult(REQUEST_CODE_CHOOSE)
+                        }
+                    }
+        }
+        build.create().show()
     }
 
     private fun showHelpDialog() {

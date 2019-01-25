@@ -86,5 +86,7 @@ object RxBusCenter {
     //检查更新
     const val CHECK_VERSION = 0x2028
 
+    //验证私钥
+    const val CHECK_ADDRESS = 0x2029
 
 }

@@ -13,6 +13,7 @@ import com.qs.modulemain.bean.AddressBean
 import com.qs.modulemain.presenter.AddressManagePresenter
 import com.qs.modulemain.ui.activity.index.RecordActivity
 import com.qs.modulemain.ui.adapter.AddressAdapter
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.view.AddressManageView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
@@ -58,9 +59,10 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
 
         dataList = ArrayList()
         adapter = AddressAdapter(dataList)
+        adapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_address))
 
-        var footView = View(this)
-        var layoutParams = ViewGroup.LayoutParams(MATCH_PARENT,60)
+        val footView = View(this)
+        val layoutParams = ViewGroup.LayoutParams(MATCH_PARENT,60)
         footView.layoutParams = layoutParams;
         adapter.addFooterView(footView)
         rv_list.adapter = adapter
@@ -93,7 +95,6 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
         dataList.addAll(list)
         adapter.notifyDataSetChanged()
     }
-
 
     override fun loadSuccess(data: Any) {
 

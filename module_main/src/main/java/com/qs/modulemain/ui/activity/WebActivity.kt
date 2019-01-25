@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterConfig
+import com.qs.modulemain.ui.widget.ProgressWebView
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import kotlinx.android.synthetic.main.activity_web.*
 
@@ -17,7 +18,7 @@ class WebActivity : SimpleActivity() {
 
     override fun initData() {
         val url = intent.getStringExtra("url")
-        val webView = WebView(applicationContext)
+        val webView = ProgressWebView(applicationContext)
         val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         webView.layoutParams = params
         fl_web_view.addView(webView)

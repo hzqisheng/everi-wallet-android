@@ -44,7 +44,7 @@ class NFTsCreateActivity : SimpleActivity() {
                 .subscribe { it ->
                     when(it.type){
                         RxBusCenter.CREATE_DOMAIN -> {
-                            it.msg.logE()
+                            getString(R.string.create_success).toast()
                             finish()
                         }
                         RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
@@ -223,7 +223,7 @@ class NFTsCreateActivity : SimpleActivity() {
     }
 
     private fun showHelpDialog(){
-        val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_help, null, false)
+        /*val contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_help, null, false)
         val recyclerView = contentView.findViewById<RecyclerView>(R.id.rv_list)
         val adapter = HelpAdapter(DataUtils.addNFtsHelpData(mContext))
         recyclerView.adapter = adapter
@@ -232,10 +232,10 @@ class NFTsCreateActivity : SimpleActivity() {
         popupWindow.isOutsideTouchable = true
         popupWindow.isTouchable = true
         popupWindow.animationStyle = R.style.ActionSheetDialogTop
-        popupWindow.showAsDropDown(toolbar)
-        /*val fragment = HelpDialogFragment()
+        popupWindow.showAsDropDown(toolbar)*/
+        val fragment = HelpDialogFragment()
         fragment.setDate(DataUtils.addNFtsHelpData(mContext), toolbar.height)
-        fragment.show(supportFragmentManager, "helpDialog")*/
+        fragment.show(supportFragmentManager, "helpDialog")
     }
 
     private fun showFingerPrintDialog() {

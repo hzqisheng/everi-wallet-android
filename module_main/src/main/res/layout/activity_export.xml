@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_f5"
+    android:orientation="vertical"
     tools:context=".ui.activity.my.ExportAddressActivity">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/normal_toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        layout="@layout/normal_toolbar"/>
 
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_margin="7dp"
-        android:gravity="center_vertical"
-        android:paddingStart="25dp"
-        android:paddingEnd="2dp"
-        android:textSize="12sp"
-        android:lineSpacingExtra="12dp"
-        android:background="@drawable/shadow_circle"
-        android:layout_below="@+id/toolbar"
-        android:text="@string/import_address_msg"
-        />
-
-    <TextView
-        android:id="@+id/tvExport"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:gravity="center"
-        android:paddingStart="25dp"
-        android:paddingEnd="2dp"
+        android:gravity="center_vertical"
+        android:padding="25dp"
         android:textSize="12sp"
         android:lineSpacingExtra="12dp"
-        android:layout_below="@+id/tv_msg"
         android:background="@drawable/shadow_circle"
-        />
+        android:text="@string/import_address_msg" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="7dp"
+        android:background="@drawable/shadow_circle">
+        <TextView
+            android:id="@+id/tvExport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="clip_horizontal"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingTop="18dp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="12dp" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/tv_save"
@@ -51,8 +53,6 @@
         android:text="@string/copy_content"
         android:textColor="@color/color_e4"
         android:layout_margin="14dp"
-        android:layout_alignParentBottom="true"
         />
 
-
-</RelativeLayout>
+</LinearLayout>

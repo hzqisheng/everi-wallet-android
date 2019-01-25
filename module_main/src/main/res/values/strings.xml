@@ -289,10 +289,14 @@
     <string name="download">下载更新</string>
     <string name="check_update">检查更新</string>
     <string name="latest_version">当前版本已经是最新版本</string>
+    <string name="address_error">地址不合法</string>
+    <string name="Format_error_please_Check">数据格式错误</string>
+    <string name="import_address_success">导入成功</string>
+    <string name="add_img_msg">此图标日后无法修改，请慎重选择，建议使用透明底的PNG格式</string>
 
     <string-array name="add_power">
         <item>只有我能发行，权限不可更改</item>
-        <item>只有我能发行，后期我可修改权限</item>
+       <!-- <item>只有我能发行，后期我可修改权限</item>-->
     </string-array>
 
 </resources>

@@ -84,6 +84,7 @@ class FingerprintDialogFragment : DialogFragment() {
         initKey()
         initCipher()
         fingerprintManager = context!!.getSystemService(FingerprintManager::class.java)
+        isCancelable = false
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Material_Light_Dialog)
     }
 

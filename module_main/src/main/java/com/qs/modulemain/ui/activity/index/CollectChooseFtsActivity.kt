@@ -59,8 +59,8 @@ class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsVi
 
     override fun onDataResult(result: String) {
         val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(result, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
-        for (i in chooseBean.indices){
-            if (chooseBean[i].sym == bean.sym){
+        for (i in chooseBean.indices) {
+            if (chooseBean[i].sym == bean.sym) {
                 mChoosePos = i
                 chooseBean[i].isChoose = true
                 break

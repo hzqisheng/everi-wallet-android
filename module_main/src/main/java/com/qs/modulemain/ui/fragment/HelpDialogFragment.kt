@@ -31,10 +31,8 @@ class HelpDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = Dialog(context!!, R.style.dialog_top)
         val v = LayoutInflater.from(context!!).inflate(R.layout.dialog_help, null)
-        val bg = v.findViewById<View>(R.id.view_bg)
         val recyclerView = v.findViewById<RecyclerView>(R.id.rv_list)
         val adapter = HelpAdapter(list)
-        bg.setOnClickListener { dialog.dismiss() }
         recyclerView.adapter = adapter
         dialog.setContentView(v)
         dialog.setCancelable(true)

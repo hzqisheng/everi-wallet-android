@@ -76,7 +76,7 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
         mContext.sharedPref.password = baseBean.password
         mContext.sharedPref.mnemoinc = baseBean.mnemoinc
         mContext.sharedPref.isFinger = 0
-        getString(R.string.import_success).toast()
+        getString(R.string.import_address_success).toast()
         mActivity.finish()
         var intent = Intent(mContext, MainActivity::class.java)
         startActivity(intent)

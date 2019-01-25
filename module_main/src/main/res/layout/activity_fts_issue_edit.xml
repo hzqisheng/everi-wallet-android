@@ -198,6 +198,7 @@
         android:background="@drawable/shape_3137_4"
         android:gravity="center"
         android:text="@string/submit"
+        android:visibility="gone"
         android:textColor="@color/color_e4"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="15dp"

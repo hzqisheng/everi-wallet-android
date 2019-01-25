@@ -59,10 +59,10 @@ class ScanCollectActivity : SimpleActivity() {
 
             textView6.text = mUseFts.sym_name
 
-            if (mUseFts!!.metas.size > 0) {
-                if ("symbol-icon" == mUseFts!!.metas[0].key) {
-                    var bitmap = Base64Utils.base64ToBitmap(mUseFts!!.metas[0].value)
-                    iv_img.setImageBitmap(bitmap)
+            for (meta in mUseFts.metas) {
+                if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                    val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                    iv_img.setImageBitmap(decodedByte)
                 }
             }
         }
@@ -136,11 +136,10 @@ class ScanCollectActivity : SimpleActivity() {
                 mUseFts = data?.getSerializableExtra("data") as ChooseGetBean
 
                 textView6.text = mUseFts.name
-
+                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
                 for (meta in mUseFts.metas) {
-                    if ("symbol-icon".equals(meta.key)) {
-                        if (meta.value.isEmpty()) return
-                        var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
+                    if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                         iv_img.setImageBitmap(decodedByte)
                     }
                 }

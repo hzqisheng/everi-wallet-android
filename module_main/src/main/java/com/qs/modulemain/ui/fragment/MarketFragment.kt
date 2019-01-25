@@ -13,6 +13,7 @@ import com.qs.modulemain.ui.activity.my.AddAddressActivity
 import com.qs.modulemain.ui.activity.my.ExportAddressActivity
 import com.qs.modulemain.ui.activity.my.ImportAddressActivity
 import com.qs.modulemain.ui.adapter.AddressAdapter
+import com.qs.modulemain.util.DataUtils
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 import com.smallcat.shenhai.mvpbase.extension.start
@@ -24,7 +25,7 @@ import java.util.ArrayList
 
 class MarketFragment : SimpleFragment() {
 
-    private var adapter: AddressAdapter ?= null
+    private var adapter: AddressAdapter? = null
     private var dataList: ArrayList<AddressBean> = ArrayList()
 
     override val layoutId: Int
@@ -44,11 +45,11 @@ class MarketFragment : SimpleFragment() {
         mView.findViewById<TextView>(R.id.tv_title).text = getText(R.string.address_manage)
 
         tv_add.setOnClickListener {
-            var intent = Intent(mContext,AddAddressActivity::class.java)
+            val intent = Intent(mContext, AddAddressActivity::class.java)
             startActivity(intent)
         }
         tv_import.setOnClickListener {
-            var intent = Intent(mContext,ImportAddressActivity::class.java)
+            val intent = Intent(mContext, ImportAddressActivity::class.java)
             startActivity(intent)
         }
 
@@ -56,16 +57,17 @@ class MarketFragment : SimpleFragment() {
         tvRight?.apply {
             text = getString(R.string.export)
             setTextColor(mContext.getResourceColor(R.color.color_e4))
-            setOnClickListener{
+            setOnClickListener {
                 mContext.start(ExportAddressActivity::class.java)
             }
         }
 
-        adapter = AddressAdapter(dataList);
+        adapter = AddressAdapter(dataList)
+        adapter?.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_address))
 
-        var footView = View(mContext)
-        var layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,60)
-        footView.layoutParams = layoutParams;
+        val footView = View(mContext)
+        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 60)
+        footView.layoutParams = layoutParams
         adapter!!.addFooterView(footView)
         rv_list.adapter = adapter
 
@@ -73,13 +75,12 @@ class MarketFragment : SimpleFragment() {
 
     override fun onResume() {
         super.onResume()
-        var list:List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
+        val list: List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
         dataList.clear()
         dataList.addAll(list)
-        if(adapter != null)
-        adapter!!.notifyDataSetChanged()
+        if (adapter != null)
+            adapter!!.notifyDataSetChanged()
     }
-
 
 
 }

@@ -88,9 +88,8 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
         tv_money.text = bean!!.number.split(" ")[0] + " " + data!!.sym_name
 
         for (meta in data!!.metas) {
-            if ("symbol-icon".equals(meta.key)) {
-                if (meta.value.isEmpty()) return
-                var decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: return
+            if (meta.value.isNotEmpty() && meta.value.contains(",")) {
+                val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                 iv_img.setImageBitmap(decodedByte)
             }
         }
@@ -114,7 +113,7 @@ class PayDetailActivity : BaseActivity<PayDetailPresenter>(), PayDetailView {
             var json = Gson().toJson(bean)
 
             lastPushTransaction = RxBusCenter.REQUEST_PAY
-            mWebView.evaluateJavascript(WebViewApi.pushTransaction("transferft", json, jsss)) {}
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("transferft", json, jsss), null)
         }
 
     }
