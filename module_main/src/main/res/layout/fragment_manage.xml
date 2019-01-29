@@ -48,7 +48,7 @@
             android:gravity="center_vertical"
             android:paddingStart="18dp"
             android:paddingEnd="12dp"
-            android:text="@string/batch_transfers"
+            android:text="@string/my_create_fts"
             android:textColor="@color/color_33"
             android:textSize="13sp" />
     </RelativeLayout>
@@ -71,14 +71,14 @@
             android:layout_width="match_parent"
             android:gravity="center_vertical"
             android:background="@drawable/my_item_selector"
-            android:layout_height="53dp">
+            android:layout_height="50dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:drawableStart="@drawable/ic_my_nfts"
-                android:text="@string/my_nfts"
+                android:text="@string/my_create_nft"
                 android:layout_weight="1"
                 android:textColor="@color/color_33"
                 android:drawablePadding="15dp"
@@ -86,43 +86,6 @@
 
             <TextView
                 android:id="@+id/tv_my_nfts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:textColor="@color/color_bb"
-                android:drawablePadding="8dp"
-                android:text=""
-                android:gravity="center"
-                android:drawableEnd="@drawable/ic_my_more"/>
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view_line2"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/color_d8" />
-
-        <LinearLayout
-            android:id="@+id/ll_my_group"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:background="@drawable/my_item_selector"
-            android:layout_height="53dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:text="@string/my_group"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_my_group"
-                android:textColor="@color/color_33"
-                android:drawablePadding="15dp"
-                android:gravity="center_vertical" />
-
-            <TextView
-                android:id="@+id/tv_my_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"

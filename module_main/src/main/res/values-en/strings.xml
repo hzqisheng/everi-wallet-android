@@ -296,4 +296,6 @@
     <string name="Format_error_please_Check">Format Error! Please Check</string>
     <string name="import_address_success">Import Success</string>
     <string name="add_img_msg">This icon cannot be modified. Recommended to use transparent bottom PNG format.</string>
+    <string name="my_create_fts">The token I created</string>
+    <string name="my_create_nft">The domain I created</string>
 </resources>

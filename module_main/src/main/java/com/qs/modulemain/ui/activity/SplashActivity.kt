@@ -39,7 +39,6 @@ class SplashActivity : AppCompatActivity() {
                 WebViewApi.changeNetwork(Gson().toJson(map)).logE()
                 mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
             }
-            WebViewApi.EVTInit().logE()
             mWebView.loadUrl(WebViewApi.EVTInit(), null)
             if (sharedPref.publicKey.isEmpty()) {
                 start(CreateWalletIdIndex::class.java)
