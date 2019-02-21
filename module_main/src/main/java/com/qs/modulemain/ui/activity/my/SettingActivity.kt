@@ -23,7 +23,7 @@ class SettingActivity : SimpleActivity() {
         tvTitle?.text = getString(R.string.system_setting)
 
         tv_choose_language.setOnClickListener { start(LanguagesActivity::class.java) }
-        tv_currency_setting.setOnClickListener { start(CurrencySettingActivity::class.java) }
+        //tv_currency_setting.setOnClickListener { start(CurrencySettingActivity::class.java) }
         tv_node_setting.setOnClickListener { start(NodeSettingActivity::class.java) }
         ll_max_service_fee.setOnClickListener { showMaxServiceFeeDialog() }
         ll_max_pay.setOnClickListener { start(MaxPaymentActivity::class.java) }

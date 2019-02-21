@@ -20,10 +20,11 @@ class AddFTsPresenter(private val mContext: Context) : BasePresenter<AddFTsView>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.ADD_FTS -> mView!!.onDataResult(it.msg)
                         RxBusCenter.UPLOAD_IMG -> mView!!.uploadSuccess(it.msg)
                         RxBusCenter.NEED_PRIVATE_KEY -> mView!!.showPassWordDialog(it.msg)
+                        RxBusCenter.RANDOM_VALID_SYMID -> mView!!.setRandomValidSymbolId(it.msg)
                     }
                 })
 

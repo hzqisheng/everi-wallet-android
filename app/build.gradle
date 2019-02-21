@@ -30,7 +30,7 @@ android {
 
     signingConfigs {
         debug{
-            storeFile file('/Users/hui/Desktop/jks/everToken.jks')
+            storeFile file('C:\\jks\\everToken.jks')
             storePassword "123456"
             keyAlias "key0"
             keyPassword "123456"

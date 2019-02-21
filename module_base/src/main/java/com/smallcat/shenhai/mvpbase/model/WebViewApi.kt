@@ -114,4 +114,7 @@ object WebViewApi {
     //检查更新
     fun getAPPVersion() = "javascript:getAPPVersion()"
 
+    //获取资产编号
+    fun randomValidSymbolId() = "javascript:randomValidSymbolId()"
+
 }

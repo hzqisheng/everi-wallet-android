@@ -46,7 +46,7 @@
             android:layout_below="@+id/tv_choose_language"
             android:background="@color/color_d8" />
 
-        <TextView
+        <!--<TextView
             android:layout_below="@+id/view_line2"
             android:id="@+id/tv_currency_setting"
             android:layout_width="match_parent"
@@ -65,10 +65,10 @@
             android:layout_height="0.5dp"
             android:layout_marginStart="16dp"
             android:layout_below="@+id/tv_currency_setting"
-            android:background="@color/color_d8" />
+            android:background="@color/color_d8" />-->
 
         <TextView
-            android:layout_below="@+id/view_line3"
+            android:layout_below="@+id/view_line2"
             android:id="@+id/tv_node_setting"
             android:layout_width="match_parent"
             android:layout_height="53dp"

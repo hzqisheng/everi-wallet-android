@@ -61,6 +61,9 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
             showToastDialog()
         }
 
+        //获取资产编号
+        mWebView.evaluateJavascript(WebViewApi.randomValidSymbolId(), null)
+
         val stringArray: Array<String> = this.resources.getStringArray(R.array.add_power)
         val arrayAdapter = ArrayAdapter(this, R.layout.my_spinner, android.R.id.text1, stringArray)
         tv_permission.adapter = arrayAdapter
@@ -136,10 +139,10 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
         }
     }
 
-    private fun showToastDialog(){
+    private fun showToastDialog() {
         val build = AlertDialog.Builder(mContext)
         build.setMessage(getString(R.string.add_img_msg))
-        build.setPositiveButton(getString(R.string.sure)){ dialog, _ ->
+        build.setPositiveButton(getString(R.string.sure)) { dialog, _ ->
             dialog.dismiss()
             val rxPermissions = RxPermissions(this)
             rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -227,6 +230,11 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 }
             }
         }
+    }
+
+    //设置获取到的随机资产编号
+    override fun setRandomValidSymbolId(msg: String) {
+        et_code.setText(msg)
     }
 
 }

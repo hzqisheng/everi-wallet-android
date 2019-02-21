@@ -8,7 +8,6 @@ import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
@@ -69,7 +68,7 @@ class FtsIssueEditActivity : SimpleActivity() {
 
 
         upIssuBean = UpIssueBean()
-        upIssuBean.sym_id = mFTSBean.sym.split("#")[1]
+//        upIssuBean.sym_id = mFTSBean.sym.split("#")[1]
         upIssuBean.issue = mFTSBean.issue
         upIssuBean.manage = mFTSBean.manage
 //        upIssuBean.metas = ArrayList()

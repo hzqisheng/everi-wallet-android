@@ -15,7 +15,7 @@ public class AddFTSBean {
         ManageBean manageBean = new ManageBean();
         List<ManageBean.AuthorizersBean> authorizersBeanList = new ArrayList<>();
 
-        if(power == 0) {
+        if(power == 1) {
             ManageBean.AuthorizersBean authorizersBean = new ManageBean.AuthorizersBean();
             authorizersBean.ref = "[A] " + publicKey;
             authorizersBeanList.add(authorizersBean);

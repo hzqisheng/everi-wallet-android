@@ -89,4 +89,7 @@ object RxBusCenter {
     //验证私钥
     const val CHECK_ADDRESS = 0x2029
 
+    //获取资产编号
+    const val RANDOM_VALID_SYMID = 0x2030
+
 }

@@ -3,11 +3,11 @@
     <string name="address_manage">Manage Address</string>
     <string name="about_us">About us</string>
     <string name="share_friends">Share</string>
-    <string name="assets">Property</string>
+    <string name="assets">Assets</string>
     <string name="add_community">Join Communities</string>
     <string name="help_center">Help Center</string>
     <string name="system_setting">Settings</string>
-    <string name="login_out">Login Out</string>
+    <string name="login_out">log out</string>
     <string name="property">property</string>
     <string name="market">Market</string>
     <string name="manage">Manage</string>
@@ -51,9 +51,9 @@
     <string name="import_address_msg">Data Format: Type, Address, Group Name, Name, Telephone, Memo\n Currently:only support EVT with one address in one line.</string>
     <string name="Paste_the_address_here">Paste the address here</string>
     <string name="copy_content">Copy content</string>
-    <string name="languages">Choice language</string>
+    <string name="languages">Languages</string>
     <string name="currency_setting">Asset Conversion Unit</string>
-    <string name="node_setting">Node setup</string>
+    <string name="node_setting">Node Settings</string>
     <string name="max_service_fee">Setting up the maximum handling fee</string>
     <string name="max_payment">Setting the maximum payment amount</string>
     <string name="sure">Confirm</string>
@@ -222,7 +222,7 @@
 
     <string-array name="add_power">
         <item>Only I can issue, the authority can not be changed</item>
-        <!--<item>Only I can issue, the authority can be changed later</item>-->
+        <item>Only I can issue, the authority can be changed later</item>
     </string-array>
 
     <string name="create">create</string>
@@ -250,32 +250,32 @@
     <string name="no_fts_now">No FTs Now</string>
     <string name="no_nfts_now">No NFTs Now</string>
     <string name="full_name_not_null">Full name can not be empty</string>
-    <string name="help_center_1">EveriWallEveriWallet features overview</string>
+    <string name="help_center_1">EveriWallet features overview</string>
     <string name="help_center_2">Create an EveriWallet wallet</string>
     <string name="help_center_3">How to backup your wallet</string>
     <string name="help_center_4">How to import a wallet</string>
     <string name="help_center_5">How to transfer and collect money</string>
     <string name="help_center_6">What is a domain?</string>
-    <string name="help_center_7">What is homogenous certificate (FT)</string>
-    <string name="help_center_8">What is non-homogeneous pass (NFT)</string>
-    <string name="help_center_9">How to issue a homogenous certificate</string>
-    <string name="help_center_10">How to issue non-homogeneous certificates</string>
+    <string name="help_center_7">What is Fungible Token (FT)</string>
+    <string name="help_center_8">What is Non-fungible token (NFT)</string>
+    <string name="help_center_9">How to issue a Fungible Token</string>
+    <string name="help_center_10">How to issue a Non-fungible token</string>
     <string name="help_center_11">How to use EveriPay</string>
     <string name="help_center_12">How to use EveriPass</string>
     <string name="help_center_13">How to switch languages</string>
-    <string name="help_center_1_msg">EveriWallet is a wallet uniquely developed for the everiToken public chain. In addition to the traditional wallet transfer, it has additional features: the wallet supports two digital assets, the same pass (points, standardized traditional digital assets), and non-homogenous certificates (notes, real estate, and other assets with unique attributes). The wallet supports users when completing the issuance of a pass in order to enable management throughout the entire life cycle of a digital asset</string>
-    <string name="help_center_2_msg">tart the wallet program. According to the guide wizard, there are two options: [Create Wallet] and [Restore Identity]. Click (Create Wallet) and input the user password as prompted.  EveriWallet does not store user passwords. If the user loses the password, the user password can only be reset by re-importing the backup wallet private key or mnemonic.</string>
-    <string name="help_center_3_msg">EveriWallet currently supports two ways to back up your wallet: exporting mnemonics or private keys. Users only need to use a set of mnemonics to manage multiple wallets and their personal data. Specific operation: Select the wallet to be backed up in [My]-[Manage Wallet] at the bottom of the main interface of the wallet. After entering the relevant interface within the wallet settings, you can choose to export the mnemonic and the private key. You may also reset your user password here.</string>
-    <string name="help_center_4_msg">Everiwallet provides two ways to import your wallet. The first way is to select (Resume Identity) and then enter the backup wallet’s mnemonic (…..) or the private key according to the prompt. The user password may be set after the information is verified. The second way is to import the wallet through (My)-(Manage Wallet) located at the bottom of the wallet’s main interface</string>
-    <string name="help_center_5_msg">Each EveriWallet account has both a homogenous certificate and a non-homogeneous certificate. For homogenous digital assets, Everiwallet provides transfer and collection services. To access, enter the main interface of the wallet and go to the homogeneous certificate list under the heading (My Token). Click one of them to display the transaction record of the digital asset.</string>
-    <string name="help_center_6_msg">The domain uses flexible rights management to reflect a type of certificate for different application scenarios. Each pass belongs to a specific domain, and the domain has a unique domain name. The domain name can be queried through the domain name of the certificate, and the rights management can be viewed in the domain information.</string>
-    <string name="help_center_7_msg">A homogenous pass is used to represent points, standardized assets, and other assets that do not have a unique nature. Access by clicking on (my token) in the main interface.</string>
-    <string name="help_center_8_msg">Non-homogeneous pass certificate, used to represent bills, real estate, tickets, academic certificates and other assets of a unique nature, in the main interface with [my pass] to represent my non-homogeneous pass.</string>
-    <string name="help_center_9_msg">Go to the main wallet interface, click [Issue], select Create Homogeneous Token - enter the asset number, symbol, total amount, icon or edit permission, and finally click the [Submit] button</string>
-    <string name="help_center_10_msg">Go to the main wallet interface, click [Issue], click [Create Domain], enter the domain name, click the release column [Add], add an address or add a group, and enter the public key, weight and threshold respectively. Click the transfer bar and the management bar to add, and set the corresponding permissions, and finally click the [Submit] button.</string>
-    <string name="help_center_11_msg">everiPay is used for payment below the line. The user displays the payment QR code to the merchant by setting the maximum payment amount. The merchant verified the certificate by scanning the code. Other homogenous certificates can also be used to pay with everiPay. For example, if a product needs 4000 points for a supermarket, the merchant will write off the certificate by sweeping the code 4000. If the condition is met, the user address will be deducted 4000 points.</string>
-    <string name="help_center_12_msg">everiPass is for face-to-face application scenarios. The third party can verify the authenticity of the pass contained in a QR code by scanning the scanner. For example, a diploma can be made into a non-homogeneous pass and a QR code is generated. The third party scans through everiPass and the system returns the authenticity of the pass.</string>
-    <string name="help_center_13_msg">In the main interface of the wallet, select [My] - [System Settings] - [Select Language] and switch the language to Simplified Chinese or English.</string>
+    <string name="help_center_1_msg">EveriWallet is a wallet application developed for the everiToken public chain. In addition to the transfer and collection functions, the wallet supports special functions: the wallet supports two kinds of digital assets, Fungible Token (points, standardized traditional digital assets), and Non-fungible tokens (notes, real estate, and other assets with unique attributes); Supports users to complete their own issuance of tokens in order to manage throughout the entire life cycle of  digital assets.</string>
+    <string name="help_center_2_msg">Start the wallet program. According to the guide , there will be two options: [Create Wallet] and [Restore Identity]. Click on [Create Wallet] and input the user password.  EveriWallet does not store user’s passwords. If user loses the password, the user can only be reset by re-importing the backup wallet private key or mnemonic codes.</string>
+    <string name="help_center_3_msg">EveriWallet currently supports two ways to back up your wallet: exporting mnemonic codes or private keys. Users only need to use a set of mnemonic codes to manage multiple wallets and their personal data. Specific operation: Select the wallet to be backed up in [My]-[Wallet Manage] at the bottom of the main interface of the wallet. Then you can choose to export the mnemonic codes and the private key. You may also reset your user password here.</string>
+    <string name="help_center_4_msg">Everiwallet provides two ways to import your wallet. The first way is to select the [Resume Identity] and then enter the backup wallet’s mnemonic codes (12 English words, separated by spaces) or the private key. After that, users can enter the wallet’s user password. The second way is to import the wallet through [My]-[Wallet Manage] located at the bottom of the wallet’s main interface,as above.</string>
+    <string name="help_center_5_msg">Every EveriWallet account has both Fungible Token and Non-fungible token. For Fungible Token, Everiwallet provides transfer and collection services. The wallet’s main interface lists the user’s Fungible Token  below [My Token]. Clicking on one of them to display the transaction record and you can transfer and collection this token here.</string>
+    <string name="help_center_6_msg">The domain uses flexible rights management to reflect a type of certificate for different application scenarios. Each token belongs to a specific domain, and the domain has a unique domain name. The domain information and the rights management can be queried through the domain name of the token.</string>
+    <string name="help_center_7_msg">Fungible Token is used to represent the points, standardized digital assets, and other assets without a unique nature. Clicking on [my token money] in the main interface to show my Fungible Token.</string>
+    <string name="help_center_8_msg">Non-fungible token is used to represent tickets,  real estate, academic certificates and other assets with a unique nature. Clicking on [my token] in the main interface to show my Non-fungible tokens.</string>
+    <string name="help_center_9_msg">Enter the wallet’s main interface, click [Issue], select issue Fungible Token, then input the asset number, symbol, total amount, icon or edit permission, and finally click the [Submit].</string>
+    <string name="help_center_10_msg">Enter the wallet’s main interface, click [Issue], click [Create Domain], then input the domain name, click the release column [Add], add an address or add a group, and enter the public key, weight and threshold respectively. Click the transfer bar and the management bar to add, and set the corresponding permissions,  and finally click the [Submit].</string>
+    <string name="help_center_11_msg">EveriPay is used for face-to-face payment below the line. The user displays the payment QR code to the merchant by setting the maximum payment amount. The merchant verified the token by scanning the QR code. Other Fungible Token can also be paid by everiPay. For example, if a product needs 4000 points from a supermarket, the merchant will charge off 4000 this token by scanning the QR code. If the condition is met, the user’s address will be deducted 4000 points.</string>
+    <string name="help_center_12_msg">EveriPass is used for face-to-face application scenarios. The third party can verify the authenticity of the token contained in a QR code by code scanner. For example, a diploma can be made as a Non-fungible token and generate a QR code. The third party scans through everiPass and the system returns the authenticity of the pass.</string>
+    <string name="help_center_13_msg">In the main interface of the wallet, select [My] - [System Settings] - [Select Language] and switch the language to 简体中文 or English.</string>
     <string name="nft_can_not_be_empty">NFT name cannot be empty</string>
     <string name="please_use_same_wallet">Please scan with the same wallet</string>
     <string name="create_success">Create success</string>

@@ -24,6 +24,7 @@ open class SharedPref {
         const val KEY_NAME = "name"
         const val KEY_FINGER = "finger"
         const val KEY_NODE = "NODE"
+        const val KEY_TIP = "helpTipNext"
     }
 
     //0 chinese 1 english
@@ -64,5 +65,9 @@ open class SharedPref {
     var name: String
         get() = prefs.getString(KEY_NAME, "")!!
         set(value) = prefs.edit().putString(KEY_NAME, value).apply()
+
+    var helpTipNext: Boolean
+        get() = prefs.getBoolean(KEY_TIP, false)!!
+        set(value) = prefs.edit().putBoolean(KEY_TIP, value).apply()
 
 }

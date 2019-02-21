@@ -256,4 +256,12 @@ private class WebViewCallBack : Any() {
         return resultBean.data.toString()
     }
 
+    //获取资产编号
+    @JavascriptInterface
+    fun randomValidSymbolIdCallback(s: String) {
+        ("randomValidSymbolId$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.RANDOM_VALID_SYMID))
+    }
+
 }

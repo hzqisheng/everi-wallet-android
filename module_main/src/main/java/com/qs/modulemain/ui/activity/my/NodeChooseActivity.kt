@@ -26,22 +26,22 @@ class NodeChooseActivity : SimpleActivity() {
 
     override fun initData() {
         tvTitle?.text = getString(R.string.choose_node)
-        tvRight?.apply {
-            text = getString(R.string.save)
-            setTextColor(getResourceColor(R.color.color_e4))
-            setOnClickListener {
-                val map = HashMap<String, Any>()
-                map["host"] = list[mChoosePos].nodeAddress
-                map["port"] = 443
-                map["protocol"] = "https"
-                WebViewApi.changeNetwork(Gson().toJson(map)).logE()
-                mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
-                mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
-                sharedPref.chooseNode = list[mChoosePos].nodeAddress
-                RxBus.post(MessageEvent("https://" + list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
-                finish()
-            }
-        }
+//        tvRight?.apply {
+//            text = getString(R.string.save)
+//            setTextColor(getResourceColor(R.color.color_e4))
+//            setOnClickListener {
+//                val map = HashMap<String, Any>()
+//                map["host"] = list[mChoosePos].nodeAddress
+//                map["port"] = 443
+//                map["protocol"] = "https"
+//                WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+//                mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+//                mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+//                sharedPref.chooseNode = list[mChoosePos].nodeAddress
+//                RxBus.post(MessageEvent("https://" + list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
+//                finish()
+//            }
+//        }
 
         getData()
         adapter = NodeListAdapter(list)
@@ -51,6 +51,17 @@ class NodeChooseActivity : SimpleActivity() {
             mChoosePos = position
             list[mChoosePos].isChoose = true
             adapter.notifyItemChanged(mChoosePos)
+
+            val map = HashMap<String, Any>()
+            map["host"] = list[mChoosePos].nodeAddress
+            map["port"] = 443
+            map["protocol"] = "https"
+            WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+            mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+            mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+            sharedPref.chooseNode = list[mChoosePos].nodeAddress
+            RxBus.post(MessageEvent("https://" + list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
+            finish()
         }
         rv_list.adapter = adapter
     }

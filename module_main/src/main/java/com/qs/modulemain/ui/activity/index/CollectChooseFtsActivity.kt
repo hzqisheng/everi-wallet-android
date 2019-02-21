@@ -3,6 +3,7 @@ package com.qs.modulemain.ui.activity.index
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
@@ -58,14 +59,15 @@ class CollectChooseFtsActivity : BaseActivity<ChooseFTsPresenter>(), ChooseFTsVi
     }
 
     override fun onDataResult(result: String) {
+        Log.e(" [ERROR]", result)
         val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(result, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
-        for (i in chooseBean.indices) {
-            if (chooseBean[i].sym == bean.sym) {
-                mChoosePos = i
-                chooseBean[i].isChoose = true
-                break
-            }
-        }
+//        for (i in chooseBean.indices) {
+//            if (chooseBean[i].sym == bean.sym) {
+//                mChoosePos = i
+//                chooseBean[i].isChoose = true
+//                break
+//            }
+//        }
         dataList.clear()
         dataList.addAll(chooseBean)
         chooseAdapter.notifyDataSetChanged()

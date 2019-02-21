@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="319dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/shape_white_13"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:gravity="center"
+            android:text="代币创建规则"
+            android:textColor="#ff333333"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="37dp"
+            android:background="@drawable/shape_blue_2"
+            android:text="确定"
+            android:textColor="#ffffffff"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/cb_tip_next"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="17dp"
+            android:button="@drawable/selector_tip_next_bg"
+            android:text="下次不再提醒"
+            android:textColor="#ff686868"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
