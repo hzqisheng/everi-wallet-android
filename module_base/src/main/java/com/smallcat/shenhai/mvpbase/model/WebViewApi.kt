@@ -117,4 +117,7 @@ object WebViewApi {
     //获取资产编号
     fun randomValidSymbolId() = "javascript:randomValidSymbolId()"
 
+    //添加节点
+    //fun checkNetwork(port: Int, host: String, protocol: String) = "javascript:checkNetwork($port,'$host','$protocol')"
+    fun checkNetwork(s: String) = "javascript:checkNetwork('$s')"
 }

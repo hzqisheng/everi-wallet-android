@@ -12,6 +12,7 @@ import com.smallcat.shenhai.mvpbase.model.bean.ErrorMSG
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.REQUEST_ERROR
 import com.smallcat.shenhai.mvpbase.model.widget.ProgressWebView
 import java.util.*
 
@@ -245,6 +246,7 @@ private class WebViewCallBack : Any() {
     fun handleResult(s: String): String? {
         val resultBean = s.toResultBean()
         if (resultBean.code == 0) {
+            RxBus.post(MessageEvent(s, RxBusCenter.REQUEST_ERROR))
             val s1 = Gson().fromJson<ErrorMSG>(resultBean.message, ErrorMSG::class.java)
             if (LocalManageUtil.getSetLanguageLocale(App.getInstance()) == Locale.CHINA) {
                 s1.cn.toast()
@@ -262,6 +264,14 @@ private class WebViewCallBack : Any() {
         ("randomValidSymbolId$s").logE()
         val s1 = handleResult(s) ?: return
         RxBus.post(MessageEvent(s1, RxBusCenter.RANDOM_VALID_SYMID))
+    }
+
+    //添加节点
+    @JavascriptInterface
+    fun checkNetworkCallback(s: String) {
+        ("checkNetworkCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.ADD_NODE))
     }
 
 }

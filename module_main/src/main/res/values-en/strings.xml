@@ -296,4 +296,10 @@
     <string name="Format_error_please_Check">Format Error! Please Check</string>
     <string name="import_address_success">Import Success</string>
     <string name="add_img_msg">This icon cannot be modified. Recommended to use transparent bottom PNG format.</string>
+
+    <string name="add">Add</string>
+    <string name="add_valid_node_tip">Please Enter a valid Node Address</string>
+    <string name="current_node">The Current Node is everiToken</string>
+    <string name="add_node_hint">protocol://host:post</string>
+
 </resources>

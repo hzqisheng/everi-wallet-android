@@ -20,7 +20,7 @@ class NodeSettingActivity : SimpleActivity() {
     @SuppressLint("SetTextI18n")
     override fun initData() {
         tvTitle?.text = getString(R.string.node_setting)
-        tv_node.text = "https://" + sharedPref.chooseNode
+        tv_node.text = /*"https://" +*/ sharedPref.chooseNode
         ll_everi.setOnClickListener { start(NodeChooseActivity::class.java) }
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)

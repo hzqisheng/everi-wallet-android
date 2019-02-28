@@ -4,7 +4,9 @@ import android.app.Dialog
 import android.app.KeyguardManager
 import android.content.ContentValues
 import android.content.Intent
+import android.hardware.Camera
 import android.hardware.fingerprint.FingerprintManager
+import android.media.FaceDetector
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
@@ -71,7 +73,7 @@ class WalletDetailActivity : SimpleActivity() {
             val fragment = PasswordDialogFragment()
             fragment.setCallback(object : FingerSuccessCallback() {
                 override fun onCheckSuccess() {
-                    if (mWalletName?.isSelect == 1){
+                    if (mWalletName?.isSelect == 1) {
                         sharedPref.isFinger = 1
                     }
                     mWalletName?.isFinger = 1
@@ -86,7 +88,7 @@ class WalletDetailActivity : SimpleActivity() {
     }
 
     private fun closeFinger() {
-        if (mWalletName?.isSelect == 1){
+        if (mWalletName?.isSelect == 1) {
             sharedPref.isFinger = 0
         }
         mWalletName?.isFinger = 0

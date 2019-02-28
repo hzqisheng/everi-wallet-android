@@ -6,15 +6,26 @@ import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
+import android.text.method.ReplacementTransformationMethod
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import com.google.gson.Gson
+import com.matisse.Matisse
+import com.matisse.MimeTypeManager
+import com.matisse.entity.ConstValue
+import com.matisse.widget.CropImageView
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.AddFTSBean
 import com.qs.modulemain.presenter.AddFTsPresenter
+import com.qs.modulemain.ui.adapter.HelpAdapter
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.AddFTsView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
@@ -28,15 +39,8 @@ import com.smallcat.shenhai.mvpbase.utils.Glide4Engine
 import com.smallcat.shenhai.mvpbase.utils.bitmapToBase64
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import com.tbruyelle.rxpermissions2.RxPermissions
-import com.zhihu.matisse.Matisse
-import com.zhihu.matisse.MimeType
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_add_fts.*
-import android.text.method.ReplacementTransformationMethod
-import android.view.LayoutInflater
-import android.widget.*
-import com.qs.modulemain.ui.adapter.HelpAdapter
-import com.qs.modulemain.util.DataUtils
 
 
 class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
@@ -148,15 +152,82 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
             rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .subscribe { granted ->
                         if (granted) {
+
+//                            Matisse.from(this@AddFtsActivity)
+//                                    .choose(MimeType.ofImage())
+//                                    .countable(true)
+//                                    .maxSelectable(9)
+//                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+//                                    .thumbnailScale(0.85f)
+//                                    .maxSelectable(1)
+//                                    .imageEngine(Glide4Engine())
+//                                    .forResult(REQUEST_CODE_CHOOSE)
+
                             Matisse.from(this@AddFtsActivity)
-                                    .choose(MimeType.ofImage())
+                                    .choose(MimeTypeManager.ofImage(), false)
                                     .countable(true)
-                                    .maxSelectable(9)
-                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                                    .thumbnailScale(0.85f)
+                                    //.capture(true)
+                                    //.showSingleMediaType(true)
+                                    .isCrop(true)
+//                                    .cropOutPutX(400)                     // 设置裁剪后保存图片的宽高
+//                                    .cropOutPutY(400)                     // 设置裁剪后保存图片的宽高
+                                    .cropStyle(CropImageView.Style.RECTANGLE)
+                                    .setStatusIsDark(false)
+                                    .theme(R.style.Matisse_Dark)
+                                    //.captureStrategy(CaptureStrategy(true, "${Platform.getPackageName(this@AddFtsActivity)}.fileprovider"))
                                     .maxSelectable(1)
+                                    .thumbnailScale(0.85f)
+                                    //.gridExpectedSize(resources.getDimensionPixelSize(R.dimen.grid_expected_size))
+                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                                     .imageEngine(Glide4Engine())
-                                    .forResult(REQUEST_CODE_CHOOSE)
+//                                    .setOnSelectedListener(object : OnSelectedListener {
+//                                        override fun onSelected(uriList: List<Uri>, pathList: List<String>) {
+//                                            // DO SOMETHING IMMEDIATELY HERE
+//                                            Log.e("onSelected", "onSelected: pathList=$pathList")
+//                                        }
+//                                    })
+//                                    .originalEnable(false)
+//                                    .maxOriginalSize(10)
+//                                    .setOnCheckedListener(object : OnCheckedListener {
+//                                        override fun onCheck(isChecked: Boolean) {
+//                                            // DO SOMETHING IMMEDIATELY HERE
+//                                            Log.e("isChecked", "onCheck: isChecked=$isChecked")
+//                                        }
+//                                    })
+                                    .forResult(ConstValue.REQUEST_CODE_CHOOSE)
+
+
+//                            Matisse.from(this@AddFtsActivity)
+//                                    .choose(MimeTypeManager.ofAll(), false)
+//                                    .countable(true)
+//                                    .capture(true)
+//                                    .showSingleMediaType(true)
+//                                    .isCrop(true)
+//                                    .cropStyle(CropImageView.Style.CIRCLE)
+//                                    .setStatusIsDark(false)
+//                                    .theme(R.style.Matisse_Dark)
+//                                    .captureStrategy(CaptureStrategy(true, "${Platform.getPackageName(this@AddFtsActivity)}.fileprovider"))
+//                                    .maxSelectable(1)
+//                                    .thumbnailScale(0.8f)
+//                                    .gridExpectedSize(resources.getDimensionPixelSize(R.dimen.grid_expected_size))
+//                                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+//                                    .imageEngine(Glide4Engine())
+//                                    .setOnSelectedListener(object : OnSelectedListener {
+//                                        override fun onSelected(uriList: List<Uri>, pathList: List<String>) {
+//                                            // DO SOMETHING IMMEDIATELY HERE
+//                                            Log.e("onSelected", "onSelected: pathList=$pathList")
+//                                        }
+//                                    })
+//                                    .originalEnable(false)
+//                                    .maxOriginalSize(10)
+//                                    .setOnCheckedListener(object : OnCheckedListener {
+//                                        override fun onCheck(isChecked: Boolean) {
+//                                            // DO SOMETHING IMMEDIATELY HERE
+//                                            Log.e("isChecked", "onCheck: isChecked=$isChecked")
+//                                        }
+//                                    })
+//                                    .forResult(ConstValue.REQUEST_CODE_CHOOSE)
+
                         }
                     }
         }
@@ -207,28 +278,70 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            val uriList: List<Uri> = Matisse.obtainResult(data)
-            if (uriList.isEmpty()) {
+        if (data == null) {
+            return
+        }
+        if (requestCode == ConstValue.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+//            val uriList: List<Uri> = Matisse.obtainResult(data)
+//            if (uriList.isEmpty()) {
+//                return
+//            }
+//            val options: BitmapFactory.Options = BitmapFactory.Options()
+//            var bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uriList[0]), null, options)
+//
+//            val options1: Tiny.BitmapCompressOptions = Tiny.BitmapCompressOptions()
+//            options1.width = 50
+//            options1.height = 50
+//            Tiny.getInstance().source(uriList[0]).asBitmap().withOptions(options1).compress { isSuccess, bitmap ->
+//
+//                if (isSuccess) {
+//                    iv_img.setImageBitmap(bitmap)
+//                    uriList[0].toString().logE()
+//                    val type: String = options.outMimeType
+//                    base64Image = "data:" + type + ";base64," + bitmapToBase64(bitmap)
+//                    base64Image = base64Image.replace("\n", "")
+//                    WebViewApi.EVTInit()
+//                }
+//            }
+
+            //裁剪成功后只返回裁剪后图片的绝对路径，不返回Uri，需自行转换
+            val pathList: List<String> = Matisse.obtainPathResult(data)
+            if (pathList.isEmpty()) {
                 return
             }
             val options: BitmapFactory.Options = BitmapFactory.Options()
-            var bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uriList[0]), null, options)
-
+            var bitmap = BitmapFactory.decodeFile(pathList[0], options)
             val options1: Tiny.BitmapCompressOptions = Tiny.BitmapCompressOptions()
-            options1.width = 50
-            options1.height = 50
-            Tiny.getInstance().source(uriList[0]).asBitmap().withOptions(options1).compress { isSuccess, bitmap ->
-
+            options1.width = 100
+            options1.height = 100
+            Tiny.getInstance().source(pathList[0]).asBitmap().withOptions(options1).compress { isSuccess, bitmap ->
                 if (isSuccess) {
                     iv_img.setImageBitmap(bitmap)
-                    uriList[0].toString().logE()
+                    pathList[0].logE()
                     val type: String = options.outMimeType
                     base64Image = "data:" + type + ";base64," + bitmapToBase64(bitmap)
                     base64Image = base64Image.replace("\n", "")
                     WebViewApi.EVTInit()
                 }
             }
+
+//            val pathList = Matisse.obtainPathResult(data)
+//            var string = pathList[0]
+//            // 原文件
+//            val file = FileUtil.getFileByPath(Matisse.obtainPathResult(data)[0])
+//            if (file != null) {
+//                // 压缩文件
+//                val compressFile = CompressHelper.getDefault(applicationContext)?.compressToFile(file)
+//                val bitmap = BitmapFactory.decodeStream(FileInputStream(compressFile))
+//                iv_img.setImageBitmap(bitmap)
+//                val options: BitmapFactory.Options = BitmapFactory.Options()
+//                BitmapFactory.decodeFile(pathList[0], options)
+//                val type: String = options.outMimeType
+//                base64Image = "data:" + type + ";base64," + bitmapToBase64(bitmap)
+//                base64Image = base64Image.replace("\n", "")
+//                WebViewApi.EVTInit()
+//            }
+
         }
     }
 

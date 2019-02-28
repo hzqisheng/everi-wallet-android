@@ -4,4 +4,5 @@ import com.smallcat.shenhai.mvpbase.base.BaseView
 
 interface AssetsItemView: BaseView{
     fun loadFTsSuccess(msg: String)
+    fun loadFTsError(msg: String)
 }

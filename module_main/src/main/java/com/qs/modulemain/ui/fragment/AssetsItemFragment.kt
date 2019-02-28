@@ -64,6 +64,15 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
 
     override fun initData() {
         ftsAdapter = AssetsItemAdapter(ftsList)
+
+        val myAssets = mContext.sharedPref.myAssets
+        if (!"".equals(myAssets)) {
+            val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(myAssets, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
+            firstBean = chooseBean[0]
+            ftsList.clear()
+            ftsList.addAll(chooseBean)
+        }
+
         rv_list.adapter = ftsAdapter
 
         ftsAdapter.setOnItemClickListener { _, _, position ->
@@ -104,6 +113,7 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
         try {
             chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
             firstBean = chooseBean[0]
+            mContext.sharedPref.myAssets = msg
         } catch (e: Exception) {
             "数据为空".logE()
         }
@@ -112,4 +122,20 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
         ftsList.addAll(chooseBean)
         ftsAdapter.notifyDataSetChanged()
     }
+
+    override fun loadFTsError(msg: String) {
+        swipe_refresh.isRefreshing = false
+        val myAssets = mContext.sharedPref.myAssets
+        if (!"".equals(myAssets)) {
+            val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(myAssets, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
+            firstBean = chooseBean[0]
+            ftsList.clear()
+            ftsList.addAll(chooseBean)
+            ftsAdapter.notifyDataSetChanged()
+        } else {
+            ftsList.clear()
+            ftsAdapter.notifyDataSetChanged()
+        }
+    }
+
 }

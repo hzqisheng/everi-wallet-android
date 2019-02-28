@@ -22,7 +22,7 @@ class AssetsItemPresenter(private val mContext: Context) : BasePresenter<AssetsI
         registerEvent()
     }
 
-    fun loadData(){
+    fun loadData() {
         /*addSubscribe(mApi.getUseInfo()
                 .sanitizeJson()
                 .subscribeWith(object : CommonSubscriber<UseInfoBean>(mView) {
@@ -32,13 +32,14 @@ class AssetsItemPresenter(private val mContext: Context) : BasePresenter<AssetsI
                 }))*/
     }
 
-    private fun registerEvent(){
+    private fun registerEvent() {
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { it ->
-                    when(it.type){
+                    when (it.type) {
                         RxBusCenter.HOME_FTS -> mView!!.loadFTsSuccess(it.msg)
+                        RxBusCenter.REQUEST_ERROR -> mView!!.loadFTsError(it.msg)
                     }
                 })
     }

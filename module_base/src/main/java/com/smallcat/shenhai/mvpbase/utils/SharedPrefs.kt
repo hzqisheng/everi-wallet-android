@@ -25,6 +25,7 @@ open class SharedPref {
         const val KEY_FINGER = "finger"
         const val KEY_NODE = "NODE"
         const val KEY_TIP = "helpTipNext"
+        const val CUSTOM_NODE = "customNode"
     }
 
     //0 chinese 1 english
@@ -70,4 +71,13 @@ open class SharedPref {
         get() = prefs.getBoolean(KEY_TIP, false)!!
         set(value) = prefs.edit().putBoolean(KEY_TIP, value).apply()
 
+    //保存我的代币数据，用于离线展示
+    var myAssets: String
+        get() = prefs.getString(privateKey, "")!!
+        set(value) = prefs.edit().putString(privateKey, value).apply()
+
+    //保存自定义节点地址，用#分隔开
+    var customNode: String
+        get() = prefs.getString(CUSTOM_NODE, "")!!
+        set(value) = prefs.edit().putString(CUSTOM_NODE, value).apply()
 }

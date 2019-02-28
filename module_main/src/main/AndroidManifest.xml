@@ -90,6 +90,19 @@
         <activity android:name=".ui.activity.index.NFTsDetailActivity" />
         <activity android:name=".ui.activity.WebActivity" />
         <activity android:name=".ui.activity.my.NodeChooseActivity"></activity>
+
+        <!--com.nfleo:MatisseKotlin:1.1.0库所需-->
+        <activity android:name="com.matisse.ui.view.MatisseActivity" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.qs.evertoken.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_public" />
+        </provider>
+
     </application>
 
 </manifest>

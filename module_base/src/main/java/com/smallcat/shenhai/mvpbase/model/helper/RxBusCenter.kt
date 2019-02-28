@@ -92,4 +92,10 @@ object RxBusCenter {
     //获取资产编号
     const val RANDOM_VALID_SYMID = 0x2030
 
+    //请求失败
+    const val REQUEST_ERROR = 0x2031
+
+    //添加节点
+    const val ADD_NODE = 0x2032
+
 }

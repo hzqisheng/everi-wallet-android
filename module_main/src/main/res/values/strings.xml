@@ -299,4 +299,9 @@
         <item>只有我能发行，后期我可修改权限</item>
     </string-array>
 
+    <string name="add">添加</string>
+    <string name="add_valid_node_tip">请输入有效的节点地址</string>
+    <string name="current_node">当前节点为 everiToken</string>
+    <string name="add_node_hint">protocol://host:post</string>
+
 </resources>

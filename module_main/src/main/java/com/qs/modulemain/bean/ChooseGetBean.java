@@ -33,8 +33,8 @@ public class ChooseGetBean implements Serializable {
     private String create_time;
     private IssueBean issue;
     private ManageBean manage;
-    private String total_supply;
-    private String current_supply;
+    private String total_supply = " ";
+    private String current_supply = " ";
     private String address;
     private String asset;
     private String domain;
@@ -157,7 +157,11 @@ public class ChooseGetBean implements Serializable {
     }
 
     public String getTotal_supply() {
-        return total_supply;
+        if (total_supply == null || "".equals(total_supply) || " ".equals(total_supply)) {
+            return "  ";
+        } else {
+            return total_supply;
+        }
     }
 
     public void setTotal_supply(String total_supply) {
@@ -165,7 +169,11 @@ public class ChooseGetBean implements Serializable {
     }
 
     public String getCurrent_supply() {
-        return current_supply;
+        if (current_supply == null || "".equals(current_supply) || " ".equals(current_supply)) {
+            return "  ";
+        } else {
+            return current_supply;
+        }
     }
 
     public void setCurrent_supply(String current_supply) {

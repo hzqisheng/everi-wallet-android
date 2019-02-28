@@ -12,7 +12,7 @@ import java.util.ArrayList
 class NodeListAdapter(data: ArrayList<NodeBean>?) : BaseQuickAdapter<NodeBean, BaseViewHolder>(R.layout.item_node_list, data) {
 
     override fun convert(helper: BaseViewHolder, item: NodeBean) {
-        helper.setText(R.id.tv_node_address, "https://" + item.nodeAddress)
+        helper.setText(R.id.tv_node_address, /*"https://" + */item.nodeAddress)
                 .setText(R.id.tv_node_name, item.nodeName)
         val ivChoose = helper.getView<ImageView>(R.id.iv_choose)
         if (item.isChoose) {
