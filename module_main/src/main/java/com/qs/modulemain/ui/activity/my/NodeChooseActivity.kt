@@ -124,23 +124,32 @@ class NodeChooseActivity : SimpleActivity() {
                 val matcher = pattern.matcher(input)
                 //通过调用Matcher的find方法得知是否匹配成功
                 if (matcher.find()) {
-                    val inputSplit = input.split(":")
-                    if (inputSplit.size >= 3) {
-                        val arg0: String = inputSplit[1].substring(2)
-                        val arg1: Int = Integer.parseInt(inputSplit[2])
-                        val arg2: String = inputSplit[0]
-                        ("arg0>>>" + arg0).logE()
-                        ("arg1>>>" + arg1).logE()
-                        ("arg2>>>" + arg2).logE()
-                        addNodeAddress = input
+                    var isAdd = false
+                    list.forEach { nodeBean: NodeBean ->
+                        if (input.equals(nodeBean.nodeAddress)) {
+                            isAdd = true
+                            getString(R.string.node_exist).toast()
+                        }
+                    }
+                    if (!isAdd) {
+                        val inputSplit = input.split(":")
+                        if (inputSplit.size >= 3) {
+                            val arg0: String = inputSplit[1].substring(2)
+                            val arg1: Int = Integer.parseInt(inputSplit[2])
+                            val arg2: String = inputSplit[0]
+                            ("arg0>>>" + arg0).logE()
+                            ("arg1>>>" + arg1).logE()
+                            ("arg2>>>" + arg2).logE()
+                            addNodeAddress = input
 //                        mWebView.evaluateJavascript(WebViewApi.checkNetwork(arg0, arg1, arg2), null)
-                        val map = HashMap<String, Any>()
-                        map["host"] = arg0
-                        map["port"] = arg1
-                        map["protocol"] = arg2
-                        WebViewApi.checkNetwork(Gson().toJson(map)).logE()
-                        mWebView.evaluateJavascript(WebViewApi.checkNetwork(Gson().toJson(map)), null)
-                        //mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+                            val map = HashMap<String, Any>()
+                            map["host"] = arg0
+                            map["port"] = arg1
+                            map["protocol"] = arg2
+                            WebViewApi.checkNetwork(Gson().toJson(map)).logE()
+                            mWebView.evaluateJavascript(WebViewApi.checkNetwork(Gson().toJson(map)), null)
+                            //mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+                        }
                     }
                 } else {
                     getString(R.string.add_valid_node_tip).toast()

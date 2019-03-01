@@ -301,5 +301,6 @@
     <string name="add_valid_node_tip">Please Enter a valid Node Address</string>
     <string name="current_node">The Current Node is everiToken</string>
     <string name="add_node_hint">protocol://host:post</string>
+    <string name="node_exist">This node has been added</string>
 
 </resources>
