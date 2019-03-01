@@ -74,7 +74,7 @@ class NodeChooseActivity : SimpleActivity() {
                 .subscribe { it ->
                     when (it.type) {
                         RxBusCenter.ADD_NODE -> {
-                            sharedPref.customNode += sharedPref.customNode + addNodeAddress
+                            sharedPref.customNode += sharedPref.customNode + "#" + addNodeAddress
                             list.add(addNode(list.size + 1, addNodeAddress))
                             adapter.notifyDataSetChanged()
                         }
