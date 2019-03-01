@@ -42,20 +42,20 @@ fun Context.start(activity: Class<*>) {
     }
 }
 
-fun String.hide4(): String{
+fun String.hide4(): String {
     val subString = this.substring(3, 7)
     return this.replace(subString, "****")
 }
 
-fun String.toResultBean():ResultBean{
-    var resultBean:ResultBean?
+fun String.toResultBean(): ResultBean {
+    var resultBean: ResultBean?
     try {
         val json = JSONObject(this)
         resultBean = ResultBean()
         resultBean.code = json.getInt("code")
         resultBean.message = json.getString("message")
         resultBean.data = json.get("data")
-    }catch (e:Exception){
+    } catch (e: Exception) {
         resultBean = ResultBean()
         resultBean.code = 0
         resultBean.message = "data is invalid !"

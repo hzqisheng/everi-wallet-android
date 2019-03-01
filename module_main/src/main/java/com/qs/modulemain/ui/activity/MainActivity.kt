@@ -117,7 +117,6 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
             cent_icon.setBackgroundResource(R.drawable.switch_en)
         }
 
-        WebViewApi.getAPPVersion().logE()
         mWebView.evaluateJavascript(WebViewApi.getAPPVersion(), null)
     }
 
