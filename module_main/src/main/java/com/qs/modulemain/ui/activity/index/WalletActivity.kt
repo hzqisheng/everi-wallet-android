@@ -86,6 +86,11 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
         rv_import.isNestedScrollingEnabled = false
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateShow()
+    }
+
     private fun updateShow(): List<BaseData> {
         val dataList: List<BaseData> = DataSupport.where("isCreate == 1").find(BaseData::class.java)
         if (dataList.isNotEmpty()) {

@@ -152,6 +152,7 @@ class WalletDetailActivity : SimpleActivity() {
                         mWalletName!!.name = etNumber.text.toString()
                         mWalletName!!.update(mWalletName!!.id.toLong())
                         tv_name.text = mWalletName!!.name
+                        mContext.sharedPref.name = mWalletName!!.name
                     }
                 }
             }

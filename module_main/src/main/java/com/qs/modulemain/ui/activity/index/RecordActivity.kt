@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
+import com.qs.modulemain.arouter.ARouterCenter
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.RecordDetailBean
 import com.qs.modulemain.bean.RecordRequestBean
@@ -74,7 +75,10 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
 
         mAdapter = RecordItemAdapter(resultBean)
         rv_list.adapter = mAdapter
-
+        mAdapter.setOnItemClickListener { _, _, position ->
+            val url = "https://evtscan.io/trx/${resultBean.get(position).trx_id}?theme=light"
+            ARouterCenter.goWebViewActivity(url)
+        }
 
         val json = Gson().toJson(request)
 

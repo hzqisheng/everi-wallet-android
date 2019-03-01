@@ -90,16 +90,53 @@ class NodeChooseActivity : SimpleActivity() {
             list[mChoosePos].isChoose = true
             adapter.notifyItemChanged(mChoosePos)
 
-            val map = HashMap<String, Any>()
-            map["host"] = list[mChoosePos].nodeAddress
-            map["port"] = 443
-            map["protocol"] = "https"
-            WebViewApi.changeNetwork(Gson().toJson(map)).logE()
-            mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
-            mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
-            sharedPref.chooseNode = list[mChoosePos].nodeAddress
-            RxBus.post(MessageEvent(/*"https://" +*/ list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
-            finish()
+            val inputSplit = list[mChoosePos].nodeAddress.split(":")
+            if (inputSplit.size >= 3) {
+                val arg0: String = inputSplit[1].substring(2)
+                val arg1: Int = Integer.parseInt(inputSplit[2])
+                val arg2: String = inputSplit[0]
+                ("arg0>>>" + arg0).logE()
+                ("arg1>>>" + arg1).logE()
+                ("arg2>>>" + arg2).logE()
+                val map = HashMap<String, Any>()
+                map["host"] = arg0
+                map["port"] = arg1
+                map["protocol"] = arg2
+                WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+                mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+                mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+                sharedPref.chooseNode = list[mChoosePos].nodeAddress
+                RxBus.post(MessageEvent(/*"https://" +*/ list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
+                finish()
+            } else {
+                if (inputSplit.size >= 2) {
+                    val arg0: String = inputSplit[1].substring(2)
+                    val arg2: String = inputSplit[0]
+                    ("arg0>>>" + arg0).logE()
+                    ("arg2>>>" + arg2).logE()
+                    val map = HashMap<String, Any>()
+                    map["host"] = arg0
+                    map["port"] = 443
+                    map["protocol"] = arg2
+                    WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+                    mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+                    mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+                    sharedPref.chooseNode = list[mChoosePos].nodeAddress
+                    RxBus.post(MessageEvent(/*"https://" +*/ list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
+                    finish()
+                }
+            }
+
+//            val map = HashMap<String, Any>()
+//            map["host"] = list[mChoosePos].nodeAddress
+//            map["port"] = 443
+//            map["protocol"] = "https"
+//            WebViewApi.changeNetwork(Gson().toJson(map)).logE()
+//            mWebView.evaluateJavascript(WebViewApi.changeNetwork(Gson().toJson(map)), null)
+//            mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
+//            sharedPref.chooseNode = list[mChoosePos].nodeAddress
+//            RxBus.post(MessageEvent(/*"https://" +*/ list[mChoosePos].nodeAddress, RxBusCenter.CHANGE_NODE))
+//            finish()
         }
         rv_list.adapter = adapter
     }
@@ -124,32 +161,29 @@ class NodeChooseActivity : SimpleActivity() {
                 val matcher = pattern.matcher(input)
                 //通过调用Matcher的find方法得知是否匹配成功
                 if (matcher.find()) {
-                    var isAdd = false
                     list.forEach { nodeBean: NodeBean ->
                         if (input.equals(nodeBean.nodeAddress)) {
-                            isAdd = true
                             getString(R.string.node_exist).toast()
+                            return@setOnClickListener
                         }
                     }
-                    if (!isAdd) {
-                        val inputSplit = input.split(":")
-                        if (inputSplit.size >= 3) {
-                            val arg0: String = inputSplit[1].substring(2)
-                            val arg1: Int = Integer.parseInt(inputSplit[2])
-                            val arg2: String = inputSplit[0]
-                            ("arg0>>>" + arg0).logE()
-                            ("arg1>>>" + arg1).logE()
-                            ("arg2>>>" + arg2).logE()
-                            addNodeAddress = input
+                    val inputSplit = input.split(":")
+                    if (inputSplit.size >= 3) {
+                        val arg0: String = inputSplit[1].substring(2)
+                        val arg1: Int = Integer.parseInt(inputSplit[2])
+                        val arg2: String = inputSplit[0]
+                        ("arg0>>>" + arg0).logE()
+                        ("arg1>>>" + arg1).logE()
+                        ("arg2>>>" + arg2).logE()
+                        addNodeAddress = input
 //                        mWebView.evaluateJavascript(WebViewApi.checkNetwork(arg0, arg1, arg2), null)
-                            val map = HashMap<String, Any>()
-                            map["host"] = arg0
-                            map["port"] = arg1
-                            map["protocol"] = arg2
-                            WebViewApi.checkNetwork(Gson().toJson(map)).logE()
-                            mWebView.evaluateJavascript(WebViewApi.checkNetwork(Gson().toJson(map)), null)
-                            //mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
-                        }
+                        val map = HashMap<String, Any>()
+                        map["host"] = arg0
+                        map["port"] = arg1
+                        map["protocol"] = arg2
+                        WebViewApi.checkNetwork(Gson().toJson(map)).logE()
+                        mWebView.evaluateJavascript(WebViewApi.checkNetwork(Gson().toJson(map)), null)
+                        //mWebView.evaluateJavascript(WebViewApi.EVTInit(), null)
                     }
                 } else {
                     getString(R.string.add_valid_node_tip).toast()
@@ -181,7 +215,7 @@ class NodeChooseActivity : SimpleActivity() {
         list.add(addNode(13, "(VIRGINIA)"))
         list.add(addNode(14, "(SHANGHAI) [with history plugin]"))
         list.add(addNode(15, "(SINGAPORE) [with history plugin]"))
-        list.add(addNode(16, "http://testnet1.everitoken.io:8888/"))
+        list.add(addNode(16, "http://testnet1.everitoken.io:8888"))
         if (!"".equals(sharedPref.customNode)) {
             val split = sharedPref.customNode.split("#")
             //index为集合下标，s为集合对象
