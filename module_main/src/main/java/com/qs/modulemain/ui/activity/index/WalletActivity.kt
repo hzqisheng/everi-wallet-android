@@ -102,6 +102,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
             if (dataList[dataList.size - 1].isSelect == 1) {
                 iv_bg.setImageResource(mContext.getResourceColor(R.color.transparent))
                 iv_bg.setBackgroundResource(R.drawable.ic_wallet_yellow_bg)
+                sharedPref.name = dataList[dataList.size - 1].name
             } else {
                 iv_bg.setBackgroundColor(mContext.getResourceColor(R.color.transparent))
                 iv_bg.setImageResource(R.drawable.shape_round_wallet_bg)

@@ -56,7 +56,7 @@ class WalletDetailActivity : SimpleActivity() {
 
         layout_wallet.setOnClickListener { showDialog(getString(R.string.wallet_name), mWalletName!!.name, 0) }
         tv_export.setOnClickListener { showFingerPrintDialog() }
-        tv_set_up.setOnClickListener { getString(R.string.no_function).toast() }
+        //tv_set_up.setOnClickListener { getString(R.string.no_function).toast() }
         iv_touch.setOnClickListener {
             if (mWalletName?.isFinger == 0) {
                 openFinger()
@@ -152,7 +152,6 @@ class WalletDetailActivity : SimpleActivity() {
                         mWalletName!!.name = etNumber.text.toString()
                         mWalletName!!.update(mWalletName!!.id.toLong())
                         tv_name.text = mWalletName!!.name
-                        mContext.sharedPref.name = mWalletName!!.name
                     }
                 }
             }

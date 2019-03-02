@@ -44,7 +44,7 @@ open class SharedPref {
         set(value) = prefs.edit().putInt(KEY_CURRENCY, value).apply()
 
     var chooseNode: String
-        get() = prefs.getString(KEY_NODE, "mainnet14.everitoken.io")!!
+        get() = prefs.getString(KEY_NODE, "https://mainnet14.everitoken.io")!!
         set(value) = prefs.edit().putString(KEY_NODE, value).apply()
 
     var publicKey: String
