@@ -101,7 +101,7 @@ class NFTsIssueActivity : SimpleActivity() {
 
         //添加地址
         iv_add_address.setOnClickListener {
-            addAddress(et_address.text.toString())
+            addAddress(tv_address.text.toString())
         }
         //扫一扫
         iv_scan.setOnClickListener {

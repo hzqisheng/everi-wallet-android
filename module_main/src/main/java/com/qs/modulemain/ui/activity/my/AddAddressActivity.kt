@@ -46,19 +46,19 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
 
         tv_save.setOnClickListener {
 
-            if (et_address.text.toString().isEmpty()) {
+            if (tv_address.text.toString().isEmpty()) {
                 "Address is not null !".toast()
                 return@setOnClickListener
             }
 
-            mWebView.evaluateJavascript(WebViewApi.isValidPublicKey(et_address.text.toString()), null)
+            mWebView.evaluateJavascript(WebViewApi.isValidPublicKey(tv_address.text.toString()), null)
 
         }
     }
 
     private fun checkSuccess(string: String) {
         if (string == "true") {
-            val address = et_address.text.toString()
+            val address = tv_address.text.toString()
 
             val groupName = et_group_name.text.toString()
 
@@ -83,7 +83,7 @@ class AddAddressActivity : BaseActivity<AddAddressPresenter>(), AddAddressView {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == ScanActivity.resultCode) {
             val result = data!!.getStringExtra("result")
-            et_address.setText(result.toString())
+            tv_address.setText(result.toString())
         }
     }
 

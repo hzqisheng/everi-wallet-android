@@ -5,7 +5,6 @@ import com.qs.modulemain.bean.AddressBean
 import com.qs.modulemain.presenter.ImportAddressPresenter
 import com.qs.modulemain.view.ImportAddressView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
-import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
@@ -45,12 +44,12 @@ class ImportAddressActivity : BaseActivity<ImportAddressPresenter>(), ImportAddr
 
         tv_save.setOnClickListener {
 
-            if (et_address.text.toString().isEmpty()) {
+            if (tv_address.text.toString().isEmpty()) {
                 getString(R.string.please_input_address).toast()
                 return@setOnClickListener
             }
 
-            val text = et_address.text.toString().trim()
+            val text = tv_address.text.toString().trim()
             val result: List<String> = text.split("\n")
             addressData = result
             maxPos = result.size - 1

@@ -17,7 +17,7 @@ import com.qs.modulemain.util.DataUtils
 import com.smallcat.shenhai.mvpbase.base.SimpleFragment
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 import com.smallcat.shenhai.mvpbase.extension.start
-import kotlinx.android.synthetic.main.activity_address_manage.*
+import kotlinx.android.synthetic.main.fragment_market.*
 import org.litepal.crud.DataSupport
 import org.w3c.dom.Text
 import java.util.ArrayList

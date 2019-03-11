@@ -1,62 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.aitsuki.swipe.SwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/view2"
+    <TextView
+        android:id="@+id/right_menu"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textColor="@color/color_e4" />
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/shadow_circle"
-        app:layout_constraintDimensionRatio="H, 7:2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_code"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:maxLines="2"
-        android:textColor="@color/color_3137"
-        app:layout_constraintEnd_toStartOf="@id/tv_type"
-        app:layout_constraintBottom_toTopOf="@+id/tv_msg"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="EVT8LJq6...caQkAySesdfsdfsf" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/shadow_circle"
+            app:layout_constraintDimensionRatio="H, 7:2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="28dp"
-        android:textColor="@color/color_68"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_code"
-        tools:text="钱钱钱" />
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:maxLines="2"
+            android:textColor="@color/color_3137"
+            app:layout_constraintBottom_toTopOf="@+id/tv_msg"
+            app:layout_constraintEnd_toStartOf="@id/tv_type"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="EVT8LJq6...caQkAySesdfsdfsf" />
 
-    <TextView
-        android:id="@+id/tv_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/shape_line_0_31"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
-        android:textColor="@color/color_3137"
-        android:textSize="13sp"
-        android:text="EVT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/color_68"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_code"
+            tools:text="钱钱钱" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="34dp"
+            android:background="@drawable/shape_line_0_31"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="EVT"
+            android:textColor="@color/color_3137"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</com.aitsuki.swipe.SwipeItemLayout>

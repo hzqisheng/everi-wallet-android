@@ -23,10 +23,10 @@ import org.litepal.crud.DataSupport
 import java.util.ArrayList
 
 @Route(path = ARouterConfig.MY_ADDRESS)
-class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressManageView {
+class AddressManageActivity : BaseActivity<AddressManagePresenter>(), AddressManageView {
     private lateinit var adapter: AddressAdapter
-    private lateinit var dataList:ArrayList<AddressBean>
-    private var isNeedBack : Boolean = false
+    private lateinit var dataList: ArrayList<AddressBean>
+    private var isNeedBack: Boolean = false
 
     override fun initPresenter() {
         mPresenter = AddressManagePresenter(mContext)
@@ -38,14 +38,14 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
     override fun initData() {
         tvTitle?.text = getString(R.string.address_manage)
 
-        if(intent.hasExtra("isNeedBack")){
+        if (intent.hasExtra("isNeedBack")) {
             isNeedBack = true
         }
 
         tvRight?.apply {
             text = getString(R.string.export)
             setTextColor(getResourceColor(R.color.color_e4))
-            setOnClickListener{
+            setOnClickListener {
                 start(ExportAddressActivity::class.java)
             }
         }
@@ -62,10 +62,10 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
         adapter.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_address))
 
         val footView = View(this)
-        val layoutParams = ViewGroup.LayoutParams(MATCH_PARENT,60)
-        footView.layoutParams = layoutParams;
+        val layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, 60)
+        footView.layoutParams = layoutParams
         adapter.addFooterView(footView)
-        rv_list.adapter = adapter
+        srcv_list.adapter = adapter
 
         adapter.onItemChildClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
@@ -73,7 +73,7 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
             }
 
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                if(isNeedBack) {
+                if (isNeedBack) {
                     val intent = Intent(mContext, RecordActivity::class.java)
                     intent.putExtra("data", dataList[position].address)
                     setResult(1, intent)
@@ -90,7 +90,7 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
 
     override fun onResume() {
         super.onResume()
-        val list:List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
+        val list: List<AddressBean> = DataSupport.findAll(AddressBean::class.java)
         dataList.clear()
         dataList.addAll(list)
         adapter.notifyDataSetChanged()
@@ -99,4 +99,5 @@ class AddressManageActivity : BaseActivity<AddressManagePresenter>(),AddressMana
     override fun loadSuccess(data: Any) {
 
     }
+
 }

@@ -18,6 +18,8 @@ class JoinCommunitiesActivity : SimpleActivity() {
         ll_face_book.setOnClickListener { ARouterCenter.goWebViewActivity("https://www.facebook.com/everiToken") }
         ll_twitter.setOnClickListener { ARouterCenter.goWebViewActivity("https://twitter.com/EveriToken") }
         ll_telegram.setOnClickListener { ARouterCenter.goWebViewActivity("https://t.me/everiToken") }
+        ll_telegram_chinese.setOnClickListener { ARouterCenter.goWebViewActivity("https://t.me/everiTokenCNofficial") }
+        ll_telegram_russian.setOnClickListener { ARouterCenter.goWebViewActivity("https://t.me/everitokenru") }
         ll_wechat.setOnClickListener {
             addClipboard(mContext, "everiToken")
             getString(R.string.copyed_please_search).toast()

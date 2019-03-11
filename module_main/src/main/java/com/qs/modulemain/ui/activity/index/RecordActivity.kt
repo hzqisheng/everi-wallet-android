@@ -3,6 +3,7 @@ package com.qs.modulemain.ui.activity.index
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
@@ -97,6 +98,12 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
         //收款
         tv_collect.setOnClickListener {
             intent = Intent(this, CollectActivity::class.java)
+            val currencyString = tv_currency.text.toString()
+            if (currencyString.contains("#")) {
+                val fungibleId = currencyString.substring(currencyString.indexOf("#") + 1, currencyString.length - 1)
+                Log.e("fungibleId", fungibleId)
+                intent.putExtra("fungibleId", fungibleId.toInt())
+            }
             startActivity(intent)
         }
     }

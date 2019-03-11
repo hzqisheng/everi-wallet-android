@@ -52,17 +52,18 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
         }
 
         if (intent.hasExtra("address")) {
-            tv_address.text = intent.getStringExtra("address")
+            //tv_address.text = intent.getStringExtra("address")
+            tv_address.setText(intent.getStringExtra("address"))
         }
 
-      /*  addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
-                    when (it.type) {
-                        RxBusCenter.QRCODE_PAL -> onQrCodeResult(it.msg)
-                    }
-                })*/
+        /*  addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe { it ->
+                      when (it.type) {
+                          RxBusCenter.QRCODE_PAL -> onQrCodeResult(it.msg)
+                      }
+                  })*/
 
         layout_choose.setOnClickListener {
             val intent = Intent(this@ScanPayActivity, CollectChooseFtsActivity::class.java)
@@ -132,7 +133,8 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
 
         for (segment in payResult.segments) {
             if (segment.typeKey == 95) {
-                tv_address.text = segment.value.toString()
+                //tv_address.text = segment.value.toString()
+                tv_address.setText(segment.value.toString())
             }
         }
     }
@@ -150,7 +152,8 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
                 iv_img.setImageResource(R.drawable.icon_fukuan_evt)
                 for (meta in mFtsBean!!.metas) {
                     if (meta.value.isNotEmpty() && meta.value.contains(",")) {
-                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
+                                ?: continue
                         iv_img.setImageBitmap(decodedByte)
                     }
                 }
@@ -163,7 +166,8 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
             if (resultCode == ScanActivity.resultCode) {
                 "2222222222222".logE()
                 val result = data!!.getStringExtra("result")
-                tv_address.text = result
+                //tv_address.text = result
+                tv_address.setText(result)
 /*
                 qrcode_type = RxBusCenter.QRCODE_PAL
                 mWebView.evaluateJavascript(WebViewApi.parseEvtLink(result)) {}*/
@@ -172,7 +176,8 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
 
         if (requestCode == 3) {
             if (data != null && data.hasExtra("data")) {
-                tv_address.text = data.getStringExtra("data")
+                //tv_address.text = data.getStringExtra("data")
+                tv_address.setText(data.getStringExtra("data"))
             }
         }
     }

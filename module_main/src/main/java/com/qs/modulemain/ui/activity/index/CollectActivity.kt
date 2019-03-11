@@ -1,9 +1,11 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.content.Intent
+import android.util.Log
 import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
+import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
@@ -17,6 +19,7 @@ import com.smallcat.shenhai.mvpbase.utils.qrcode_type
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pay2.*
+import java.util.HashMap
 
 
 class CollectActivity : SimpleActivity() {
@@ -28,11 +31,18 @@ class CollectActivity : SimpleActivity() {
 //        }
 //    }
 
+    // 1000 需要地址
+    private var fungibleId: Int = 0
+
     override val layoutId: Int
         get() = R.layout.activity_pay2
 
     override fun initData() {
         tvTitle?.text = getString(R.string.collect)
+
+        if (intent != null && intent.hasExtra("fungibleId")) {
+            fungibleId = intent.getIntExtra("fungibleId", 0)
+        }
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
@@ -69,8 +79,15 @@ class CollectActivity : SimpleActivity() {
         var address = PayActivity.Address()
         address.address = sharedPref.publicKey
         qrcode_type = RxBusCenter.QRCODE_RECE
-        mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("payeeCode", Gson().toJson(address), "{\"autoReload\": true}")) {}
 
+        if (fungibleId != 0) {
+            val map = HashMap<String, Any>()
+            map["address"] = address.address
+            map["fungibleId"] = fungibleId
+            Log.e("getEVTLinkQrImage", Gson().toJson(map))
+            mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("payeeCode", Gson().toJson(map), "{\"autoReload\": true}")) {}
+        } else
+            mWebView.evaluateJavascript(WebViewApi.getEVTLinkQrImage("payeeCode", Gson().toJson(address), "{\"autoReload\": true}")) {}
     }
 
     fun onDataResult(string: String) {

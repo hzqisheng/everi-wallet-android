@@ -306,5 +306,6 @@
     <string name="current_node">当前节点为 everiToken</string>
     <string name="add_node_hint">protocol://host:post</string>
     <string name="node_exist">已经添加过该节点</string>
+    <string name="delete">删除</string>
 
 </resources>

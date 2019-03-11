@@ -81,6 +81,7 @@ dependencies {
 
     //api 'com.zhihu.android:matisse:0.5.2-beta4'
     api 'com.nfleo:MatisseKotlin:1.1.0'
+    api 'com.github.AItsuki:SwipeMenuRecyclerView:1.1.3'
 
     api 'com.zxy.android:tiny:0.0.6'
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,13 +14,13 @@
 
     <LinearLayout
         android:id="@+id/layout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_circle"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
@@ -46,11 +45,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:textColor="@color/color_3137"
                 android:text="EVT(#1）"
+                android:textColor="@color/color_3137"
                 app:layout_constraintStart_toEndOf="@+id/iv_img"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -68,39 +66,39 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="12dp"
+                android:text="@string/choose_currency_for_pay"
                 android:textColor="@color/color_cc"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                android:text="@string/choose_currency_for_pay"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         </android.support.constraint.ConstraintLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/color_cc"/>
+            android:background="@color/color_cc" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/balance"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:textColor="@color/color_33"/>
+            android:text="@string/balance"
+            android:textColor="@color/color_33" />
+
         <TextView
             android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginTop="8dp"
-            android:textColorHint="@color/color_bb"
+            android:layout_marginBottom="12dp"
             android:textColor="@color/color_68"
+            android:textColorHint="@color/color_bb"
             android:textSize="14sp"
-            tools:text="880.00"/>
+            tools:text="880.00" />
     </LinearLayout>
 
     <LinearLayout
@@ -111,8 +109,8 @@
         android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_circle"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/layout"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -141,19 +139,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_pay_scan" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
+                android:background="@null"
                 android:ellipsize="end"
+                android:hint="@string/please_choose_address"
                 android:maxEms="30"
                 android:singleLine="true"
-                android:hint="@string/please_choose_address"
-                android:textColorHint="@color/color_cc"
                 android:textColor="@color/color_68"
+                android:textColorHint="@color/color_cc"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_scan"
@@ -175,6 +174,7 @@
             android:text="@string/sum_of_money"
             android:textColor="@color/color_33" />
 
+
         <EditText
             android:id="@+id/et_pwd"
             android:layout_width="match_parent"
@@ -195,30 +195,32 @@
         android:id="@+id/ll_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_circle"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/fl_key">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/remark"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
-            android:textColor="@color/color_33"/>
+            android:text="@string/remark"
+            android:textColor="@color/color_33" />
+
         <EditText
             android:id="@+id/et_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="@string/enter_remarks"
-            android:singleLine="true"
-            android:gravity="clip_vertical"
             android:layout_marginStart="14dp"
             android:layout_marginTop="8dp"
-            android:textColorHint="@color/color_bb"
+            android:background="@null"
+            android:gravity="clip_vertical"
+            android:hint="@string/enter_remarks"
+            android:singleLine="true"
             android:textColor="@color/color_68"
+            android:textColorHint="@color/color_bb"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -241,11 +243,11 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_33"
         android:layout_marginStart="14dp"
         android:layout_marginTop="24dp"
-        android:textStyle="bold"
         android:text="@string/please_choose_currency_and_money"
+        android:textColor="@color/color_33"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 </android.support.constraint.ConstraintLayout>

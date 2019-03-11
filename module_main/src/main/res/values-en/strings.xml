@@ -304,5 +304,6 @@
     <string name="current_node">The Current Node is everiToken</string>
     <string name="add_node_hint">protocol://host:post</string>
     <string name="node_exist">This node has been added</string>
+    <string name="delete">Delete</string>
 
 </resources>

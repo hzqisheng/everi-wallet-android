@@ -1,5 +1,6 @@
 package com.qs.modulemain.ui.adapter
 
+import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.qs.modulemain.R
@@ -11,9 +12,16 @@ class AddressAdapter(data: ArrayList<AddressBean>?) : BaseQuickAdapter<AddressBe
 
     override fun convert(helper: BaseViewHolder?, item: AddressBean?) {
         //地址
-        helper!!.setText(R.id.tv_code,item!!.address)
+        helper!!.setText(R.id.tv_code, item!!.address)
         //name
-        helper.setText(R.id.tv_msg,item.name)
+        helper.setText(R.id.tv_msg, item.name)
+        //删除地址
+        val delete = helper.getView<TextView>(R.id.right_menu)
+        delete.setOnClickListener {
+            data.remove(item)
+            notifyDataSetChanged()
+            item.delete()
+        }
     }
 
 }

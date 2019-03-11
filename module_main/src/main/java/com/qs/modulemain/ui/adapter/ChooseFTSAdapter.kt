@@ -2,25 +2,14 @@ package com.qs.modulemain.ui.adapter
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.qs.modulemain.R
-import com.qs.modulemain.R.id.view
-import com.qs.modulemain.bean.ChooseFTSBean
 import com.qs.modulemain.bean.ChooseGetBean
-import com.qs.modulemain.ui.activity.index.FtsIssueActivity
 import com.qs.modulemain.ui.activity.index.FtsIssueEditActivity
-import com.smallcat.shenhai.mvpbase.extension.logE
-import com.smallcat.shenhai.mvpbase.model.bean.ChooseBean
 import com.smallcat.shenhai.mvpbase.utils.Base64Utils
-import com.smallcat.shenhai.mvpbase.utils.GlideImageLoader
-import com.smallcat.shenhai.mvpbase.utils.base64ToBitmap
 import java.text.DecimalFormat
 import java.util.ArrayList
 
