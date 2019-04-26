@@ -69,6 +69,12 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
+            val find = DataSupport.where("privateKey = ?", et_import.text.toString()).find(BaseData::class.java)
+            if (find.isNotEmpty()) {
+                getString(R.string.private_key_exist).toast()
+                return@setOnClickListener
+            }
+
             mWebView.evaluateJavascript(WebViewApi.isValidPrivateKey(privateKey), null)
         }
     }
@@ -76,7 +82,7 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
     override fun checkSuccess(msg: String) {
     }
 
-    private fun checkKey(msg: String){
+    private fun checkKey(msg: String) {
         if (msg == "true") {
             mWebView.evaluateJavascript(WebViewApi.privateToPublic(et_import.text.toString()), null)
         } else {

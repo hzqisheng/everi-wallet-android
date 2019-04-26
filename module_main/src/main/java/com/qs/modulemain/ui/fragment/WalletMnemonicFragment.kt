@@ -16,6 +16,7 @@ import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.fragment_wallet_mnemonic.*
+import org.litepal.crud.DataSupport
 
 
 class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwdView {
@@ -51,6 +52,11 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
+            val find = DataSupport.where("privateKey = ?", et_import.text.toString()).find(BaseData::class.java)
+            if (find.isNotEmpty()) {
+                getString(R.string.private_key_exist).toast()
+                return@setOnClickListener
+            }
 
             mWebView.evaluateJavascript(WebViewApi.validateMnemonic(memo), null)
         }
@@ -60,7 +66,7 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
     override fun checkSuccess(msg: String) {
         if (msg == "true") {
             mWebView.evaluateJavascript(WebViewApi.importEVTWallet(et_import.text.toString(), et_new_pwd.text.toString()), null)
-        }else {
+        } else {
             getString(R.string.memo_error).toast()
         }
     }

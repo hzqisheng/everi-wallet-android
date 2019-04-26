@@ -305,5 +305,6 @@
     <string name="add_node_hint">protocol://host:post</string>
     <string name="node_exist">This node has been added</string>
     <string name="delete">Delete</string>
+    <string name="private_key_exist">The wallet is already on the list</string>
 
 </resources>

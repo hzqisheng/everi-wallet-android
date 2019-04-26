@@ -307,5 +307,5 @@
     <string name="add_node_hint">protocol://host:post</string>
     <string name="node_exist">已经添加过该节点</string>
     <string name="delete">删除</string>
-
+    <string name="private_key_exist">该钱包已经在列表中</string>
 </resources>
