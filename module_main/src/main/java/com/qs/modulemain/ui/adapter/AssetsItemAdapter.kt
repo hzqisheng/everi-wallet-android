@@ -24,6 +24,7 @@ class AssetsItemAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<Ch
         bg.setImageResource(R.drawable.icon_fukuan_evt)
 
         for (meta in item.metas) {
+
             if (meta.value.isEmpty()) continue
             if (!meta.value.contains(",")) continue
             val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
