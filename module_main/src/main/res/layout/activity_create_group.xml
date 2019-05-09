@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
 
     <include
@@ -14,14 +15,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
         android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_circle"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -29,18 +30,18 @@
 
         <LinearLayout
             android:id="@+id/ll_address"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:text="@string/name"
                 android:textColor="@color/color_33"
-                android:textSize="15sp"
-                android:layout_marginStart="24dp"/>
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_name"
@@ -48,11 +49,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
+                android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="@string/please_input"
-                android:textSize="13sp"
                 android:textColorHint="@color/color_bb"
-                android:background="@null"/>
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -63,7 +64,7 @@
             android:layout_marginStart="24dp"
             android:background="@color/color_cc" />
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/ll_group_name"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -130,44 +131,45 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="24dp"
-            android:background="@color/color_cc" />
+            android:background="@color/color_cc" />-->
 
         <LinearLayout
             android:id="@+id/ll_phone"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/threshold"
+                android:layout_marginStart="24dp"
                 android:layout_weight="1"
+                android:text="@string/threshold"
                 android:textColor="@color/color_33"
-                android:textSize="15sp"
-                android:layout_marginStart="24dp"/>
+                android:textSize="15sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/iv_reduce"
-                android:src="@drawable/ic_reduce"/>
-
-            <TextView
-                android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                tools:text="1"/>
+                android:src="@drawable/ic_reduce" />
+
+            <EditText
+                android:id="@+id/et_number"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_grey"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1" />
 
             <ImageView
+                android:id="@+id/iv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:id="@+id/iv_add"
-                android:src="@drawable/ic_add"/>
+                android:src="@drawable/ic_add" />
         </LinearLayout>
 
         <View
@@ -179,42 +181,52 @@
 
         <LinearLayout
             android:id="@+id/ll_remark"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
                 android:text="@string/node"
                 android:textColor="@color/color_33"
-                android:textSize="15sp"
-                android:layout_marginStart="24dp"/>
+                android:textSize="15sp" />
 
             <ImageView
+                android:id="@+id/iv_add_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
                 android:layout_marginStart="21dp"
-                android:id="@+id/iv_add_note"
-                android:src="@drawable/ic_address_add"/>
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/ic_address_add" />
         </LinearLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tv_sure"
+        app:layout_constraintTop_toBottomOf="@+id/layout"></RelativeLayout>
 
     <TextView
         android:id="@+id/tv_sure"
         android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:gravity="center"
-        android:background="@drawable/shape_3137_4"
-        android:text="@string/submit"
-        android:textColor="@color/color_e4"
-        android:layout_marginTop="28dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout"/>
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textColor="@color/color_e4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

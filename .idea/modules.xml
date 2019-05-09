@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/module_base/module_base.iml" filepath="$PROJECT_DIR$/module_base/module_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_main/module_main.iml" filepath="$PROJECT_DIR$/module_main/module_main.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_third/module_third.iml" filepath="$PROJECT_DIR$/module_third/module_third.iml" />
+      <module fileurl="file://$PROJECT_DIR$/treeview_lib/treeview_lib.iml" filepath="$PROJECT_DIR$/treeview_lib/treeview_lib.iml" />
     </modules>
   </component>
 </project>

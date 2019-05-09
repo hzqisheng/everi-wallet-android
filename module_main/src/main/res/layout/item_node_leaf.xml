@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/node_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_delete">
+
+        <!--<ImageView
+            android:id="@+id/arrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_node_right" />-->
+
+        <TextView
+            android:id="@+id/node_name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            tools:text="阈值1" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:src="@drawable/ic_address_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:background="#CCCCCC"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

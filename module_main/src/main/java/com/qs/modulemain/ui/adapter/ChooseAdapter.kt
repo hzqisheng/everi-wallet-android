@@ -16,10 +16,15 @@ class ChooseAdapter(data: List<ChooseBean>?) : BaseQuickAdapter<ChooseBean, Base
         viewHolder.setText(R.id.tv_name, item.title)
 
         val bg = viewHolder.getView<ImageView>(R.id.iv_choose)
-        if (item.isSelected){
+        if (item.isSelected) {
             bg.visibility = View.VISIBLE
-        }else{
+        } else {
             bg.visibility = View.GONE
+        }
+        if ((data.size - 1) == viewHolder.adapterPosition) {
+            viewHolder.setVisible(R.id.view12, false)
+        } else {
+            viewHolder.setVisible(R.id.view12, true)
         }
     }
 }

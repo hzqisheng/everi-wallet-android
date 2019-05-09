@@ -32,10 +32,10 @@
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_line_e6_7"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_bg"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_bg">
+        app:layout_constraintTop_toBottomOf="@+id/iv_bg">
 
         <TextView
             android:id="@+id/tv_batch_transfer"
@@ -59,41 +59,77 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
-        android:orientation="vertical"
         android:background="@drawable/shadow_line_e6_7"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout1">
 
         <LinearLayout
             android:id="@+id/ll_my_nfts"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="50dp"
             android:background="@drawable/my_item_selector"
-            android:layout_height="50dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:drawableStart="@drawable/ic_my_nfts"
-                android:text="@string/my_create_nft"
                 android:layout_weight="1"
-                android:textColor="@color/color_33"
+                android:drawableStart="@drawable/ic_my_nfts"
                 android:drawablePadding="15dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:text="@string/my_create_nft"
+                android:textColor="@color/color_33" />
 
             <TextView
                 android:id="@+id/tv_my_nfts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:textColor="@color/color_bb"
+                android:drawableEnd="@drawable/ic_my_more"
                 android:drawablePadding="8dp"
-                android:text=""
                 android:gravity="center"
-                android:drawableEnd="@drawable/ic_my_more"/>
+                android:text=""
+                android:textColor="@color/color_bb" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ffdddddd"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_groups"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/my_item_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_my_groups"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/my_groups"
+                android:textColor="@color/color_33" />
+
+            <TextView
+                android:id="@+id/tv_my_groups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:drawableEnd="@drawable/ic_my_more"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/color_bb" />
         </LinearLayout>
 
     </LinearLayout>

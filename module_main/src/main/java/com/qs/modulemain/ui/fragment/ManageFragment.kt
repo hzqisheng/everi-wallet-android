@@ -20,6 +20,7 @@ class ManageFragment : SimpleFragment() {
     override fun initData() {
         tv_batch_transfer.setOnClickListener { mContext.start(ChooseFTsActivity::class.java) }
         ll_my_nfts.setOnClickListener { mContext.start(NFTsActivity::class.java) }
+        ll_my_groups.setOnClickListener { mContext.start(MyGroupActivity::class.java) }
     }
 
 }
