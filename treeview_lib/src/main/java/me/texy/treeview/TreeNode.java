@@ -17,6 +17,7 @@ package me.texy.treeview;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Created by xinyuanzhong on 2017/4/20.
@@ -49,23 +50,42 @@ public class TreeNode {
         isLeafNode = leafNode;
     }
 
-    public static boolean isHaveLeafNode(TreeNode treeNode) {
-        if (treeNode == null) {
-            return false;
+    /**
+     * 获得所有节点
+     *
+     * @param nodes 所有节点
+     * @param node  要遍历的TreeNode
+     */
+    public void getAllTreeNodes(List<TreeNode> nodes, TreeNode node) {
+        nodes.add(node);
+        if (node.isLeafNode()) {
+            return;
         }
-        if (treeNode.isLeafNode) {
-            return true;
+        for (int i = 0; i < node.getChildren().size(); i++) {
+            getAllTreeNodes(nodes, node.getChildren().get(i));
         }
-        for (int i = 0; i < treeNode.getChildren().size(); i++) {
-            if (treeNode.getChildren().get(i).isLeafNode) {
-                return true;
-            } else {
-                if (isHaveLeafNode(treeNode.getChildren().get(i))) {
-                    return true;
+    }
+
+    /**
+     * 获得所有节点中需要删除的没有叶子节点的非叶节点
+     *
+     * @param nodes           所有节点
+     * @param needDeleteNodes 无效节点
+     */
+    public void getInvalidTreeNodes(List<TreeNode> nodes, List<TreeNode> needDeleteNodes) {
+        for (int i = 0; i < nodes.size(); i++) {
+            ArrayList<TreeNode> myNodes = new ArrayList<>();
+            getAllTreeNodes(myNodes, nodes.get(i));
+            boolean isHaveLeafNode = false;
+            for (int j = 0; j < myNodes.size(); j++) {
+                if (myNodes.get(j).isLeafNode()) {
+                    isHaveLeafNode = true;
                 }
             }
+            if (!isHaveLeafNode) {
+                needDeleteNodes.add(nodes.get(i));
+            }
         }
-        return false;
     }
 
     public TreeNode(Object value) {

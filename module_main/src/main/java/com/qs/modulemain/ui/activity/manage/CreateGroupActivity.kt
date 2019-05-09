@@ -33,7 +33,6 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 
     private lateinit var mRootNode: TreeNode
     private lateinit var mTreeView: TreeView
-    private var mNodes: ArrayList<Any> = arrayListOf()
 
     override fun initPresenter() {
         mPresenter = CreateGroupPresenter(mContext)
@@ -58,20 +57,58 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
                 getString(R.string.please_input_name).toast()
                 return@setOnClickListener
             }
-            if (!TreeNode.isHaveLeafNode(mRootNode)) {
+
+//            val nodes = ArrayList<TreeNode>()
+//            mRootNode.getAllTreeNodes(nodes, mRootNode)
+//            var isHaveLeafNode = false
+//            nodes.forEach {
+//                if (it.isLeafNode) {
+//                    isHaveLeafNode = true
+//                }
+//            }
+//            Log.e("Lody", "size：${nodes.size}")
+//            if (!isHaveLeafNode) {
+//                getString(R.string.invalid_authority_settings).toast()
+//                mRootNode.children.clear()
+//                mTreeView.refreshTreeView()
+//                return@setOnClickListener
+//            }
+
+            //删除无效非叶节点
+            val nodes = ArrayList<TreeNode>()
+            val invalidNodes = ArrayList<TreeNode>()
+            mRootNode.getAllTreeNodes(nodes, mRootNode)
+            mRootNode.getInvalidTreeNodes(nodes, invalidNodes)
+            Log.e("Lody", "无效节点size：${invalidNodes.size}")
+            var isHaveLeafNode = false
+            nodes.forEach {
+                if (it.isLeafNode) {
+                    isHaveLeafNode = true
+                }
+            }
+            if (!isHaveLeafNode) {
                 getString(R.string.invalid_authority_settings).toast()
                 mRootNode.children.clear()
                 mTreeView.refreshTreeView()
                 return@setOnClickListener
             }
-
-            mNodes.clear()
-            getRoot(mRootNode)
-            Log.e("Lody", Gson().toJson(mNodes))
+            invalidNodes.forEach {
+                mRootNode.removeChild(it)
+            }
             mTreeView.refreshTreeView()
-            val root = Root(getThreshold(), 0, mNodes)
+
+            val allNodes = ArrayList<Any>()
+            getRoot(allNodes, mRootNode)
+            Log.e("Lody", Gson().toJson(allNodes))
+//            mTreeView.refreshTreeView()
+//            if (allNodes.size <= 0) {
+//                getString(R.string.invalid_authority_settings).toast()
+//                return@setOnClickListener
+//            }
+            val root = Root(getThreshold(), 0, allNodes)
             val group = Group(et_name.text.toString(), sharedPref.privateKey, root)
             val rootGroup = RootGroup(et_name.text.toString(), group)
+            Log.e("Lody", Gson().toJson(rootGroup))
         }
         iv_reduce.setOnClickListener {
             try {
@@ -129,25 +166,41 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
         }
     }
 
-    private fun getRoot(treeNode: TreeNode): List<Any> {
-        val nodes: ArrayList<Any> = arrayListOf()
-        treeNode.children.forEach {
-            if (it.isLastChild && !it.isLeafNode) {
-                mRootNode.removeChild(it)
-                return@forEach
-            }
-            if (!it.isLastChild) {
-                if (it.value is GroupNonLeafNode) {
-                    mNodes.add(NonLeafNode(it.value as GroupNonLeafNode, getRoot(it)))
-                } else {
-                    mNodes.add(it.value)
-                }
+    private fun getRoot(nodes: ArrayList<Any>, node: TreeNode) {
+        if (node.isRoot) {
+            if (node.children.size > 0)
+                node.children.forEach { getRoot(nodes, it) }
+            else
+                return
+        } else {
+            if (node.isLeafNode) {
+                nodes.add(node.value)
+                return
             } else {
-                nodes.add(it.value)
-                mNodes.add(it.value)
+
+                //删除没有叶子节点的非叶节点，递归遍历同时进行删除会将深层遍历的元素删除，出现闪退
+                //解决办法，先遍历出所有需要删除的数据，再在统一进行删除操作
+//                val allNodes = ArrayList<TreeNode>()
+//                node.getAllTreeNodes(allNodes, node)
+//                var isHaveLeafNode = false
+//                allNodes.forEach {
+//                    if (it.isLeafNode) {
+//                        isHaveLeafNode = true
+//                    }
+//                }
+//                if (!isHaveLeafNode) {
+//                    mRootNode.removeChild(node)
+//                    return
+//                }
+
+                val nonLeafNode = node.value as GroupNonLeafNode
+                val subNodes = ArrayList<Any>()
+                nodes.add(NonLeafNode(nonLeafNode.threshold, nonLeafNode.weight, subNodes))
+                node.children.forEach {
+                    getRoot(subNodes, it)
+                }
             }
         }
-        return nodes
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

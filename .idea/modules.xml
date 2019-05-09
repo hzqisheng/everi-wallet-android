@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/everi-wallet-android.iml" filepath="$PROJECT_DIR$/.idea/everi-wallet-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/everi-wallet-android.iml" filepath="$PROJECT_DIR$/everi-wallet-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_base/module_base.iml" filepath="$PROJECT_DIR$/module_base/module_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_main/module_main.iml" filepath="$PROJECT_DIR$/module_main/module_main.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_third/module_third.iml" filepath="$PROJECT_DIR$/module_third/module_third.iml" />

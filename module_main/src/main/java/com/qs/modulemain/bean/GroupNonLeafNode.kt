@@ -21,7 +21,8 @@ data class Root(
 )
 
 data class NonLeafNode(
-        var groupNonLeafNode: GroupNonLeafNode = GroupNonLeafNode(),
+        var threshold: Int = 1,
+        var weight: Int = 1,
         var nodes: List<Any> = listOf()
 )
 
