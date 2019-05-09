@@ -176,7 +176,7 @@
     <string name="group_structure">组结构</string>
     <string name="node">节点</string>
     <string name="create_group">创建组</string>
-    <string name="my_group">我的组</string>
+    <string name="my_groups">我的组</string>
     <string name="from_adress_book_choose">从地址本选择</string>
     <string name="hand_input_pub_key">手动输入公钥</string>
     <string name="new_note">新建节点</string>
@@ -308,4 +308,10 @@
     <string name="node_exist">已经添加过该节点</string>
     <string name="delete">删除</string>
     <string name="private_key_exist">该钱包已经在列表中</string>
+    <string name="leafNode">叶节点</string>
+    <string name="nonLeafNode">非叶节点</string>
+    <string name="please_input_key">请输入Key值</string>
+    <string name="invalid_key">无效的Key</string>
+    <string name="invalid_authority_settings">无效的权限设置</string>
+
 </resources>

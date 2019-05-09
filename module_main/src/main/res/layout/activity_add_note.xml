@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/normal_toolbar"/>
+    <include layout="@layout/normal_toolbar" />
 
     <LinearLayout
         android:id="@+id/ll_name"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_7"
+        android:layout_marginTop="@dimen/dp_7"
+        android:layout_marginEnd="@dimen/dp_7"
         android:background="@drawable/shadow_line_e6_7"
         android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/dp_7"
-        android:layout_marginStart="@dimen/dp_7"
-        android:layout_marginEnd="@dimen/dp_7"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_marginStart="20dp"
-            android:text="@string/name"
-            android:gravity="center_vertical"
             android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/node"
             android:textColor="@color/color_33"
             android:textSize="15sp" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           tools:text="叶节点"
-           android:textColor="@color/color_68"
-           android:layout_marginEnd="20dp"
-           android:drawableEnd="@drawable/ic_my_more"/>
+        <TextView
+            android:id="@+id/tv_leaf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:drawableEnd="@drawable/ic_my_more"
+            android:text="@string/leafNode"
+            android:textColor="@color/color_68" />
 
     </LinearLayout>
 
@@ -51,84 +51,119 @@
 
         <LinearLayout
             android:id="@+id/ll_address"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:gravity="center_vertical"
-            android:layout_height="48dp">
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_key"
                 android:layout_width="wrap_content"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
-                android:text="@string/key"
-                android:gravity="center_vertical"
                 android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/key"
                 android:textColor="@color/color_33"
                 android:textSize="15sp" />
 
             <EditText
+                android:id="@+id/tv_type"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_type"
                 android:layout_weight="1"
-                android:singleLine="true"
-                android:gravity="end"
                 android:background="@null"
-                android:textSize="@dimen/sp_14"
+                android:gravity="end"
+                android:hint="@string/please_input"
+                android:singleLine="true"
                 android:textColorHint="@color/color_bb"
-                android:hint="@string/please_input"/>
+                android:textSize="@dimen/sp_14" />
 
             <ImageView
+                android:id="@+id/iv_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="24dp"
-                android:id="@+id/iv_scan"
-                android:src="@drawable/ic_pay_scan"/>
+                android:src="@drawable/ic_pay_scan" />
+
+            <View
+                android:id="@+id/v"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_threshold_reduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_reduce"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_threshold"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_grey"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_threshold_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:src="@drawable/ic_add"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_half"
             android:layout_marginStart="19dp"
-            android:background="@color/color_cc"/>
+            android:background="@color/color_cc" />
 
         <LinearLayout
             android:id="@+id/ll_phone"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/weight"
+                android:layout_marginStart="24dp"
                 android:layout_weight="1"
+                android:text="@string/weight"
                 android:textColor="@color/color_33"
-                android:textSize="15sp"
-                android:layout_marginStart="24dp"/>
+                android:textSize="15sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/iv_reduce"
-                android:src="@drawable/ic_reduce"/>
-
-            <TextView
-                android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                tools:text="1"/>
+                android:src="@drawable/ic_reduce" />
+
+            <EditText
+                android:id="@+id/et_number"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_grey"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1" />
 
             <ImageView
+                android:id="@+id/iv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:id="@+id/iv_add"
-                android:src="@drawable/ic_add"/>
+                android:src="@drawable/ic_add" />
         </LinearLayout>
     </LinearLayout>
 
@@ -136,11 +171,11 @@
         android:id="@+id/tv_save"
         android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:gravity="center"
-        android:background="@drawable/shape_3137_4"
-        android:text="@string/submit"
-        android:textColor="@color/color_e4"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/shape_3137_4"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textColor="@color/color_e4" />
 </LinearLayout>

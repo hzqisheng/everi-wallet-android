@@ -16,7 +16,7 @@ class MyGroupActivity : BaseActivity<MyGroupPresenter>(), MyGroupView {
     override val layoutId: Int = R.layout.activity_my_group
 
     override fun initData() {
-        tvTitle?.text = getString(R.string.my_group)
+        tvTitle?.text = getString(R.string.my_groups)
         tv_add.setOnClickListener { start(CreateGroupActivity::class.java) }
     }
 

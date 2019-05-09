@@ -26,11 +26,18 @@ android {
             arg("moduleName", project.getName())
         }
     }
+
+    //Kotlin对象Parcelable所需
+    androidExtensions {
+        experimental = true
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_base')
+    implementation project(':treeview_lib')
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'

@@ -152,7 +152,7 @@
     <string name="please_choose_currency_and_money">Please choose the currency and amount</string>
     <string name="balance">Balance</string>
     <string name="enter_remarks">Please enter notes</string>
-    <string name="threshold">threshold</string>
+    <string name="threshold">Threshold</string>
     <string name="metadata">metadata</string>
     <string name="authority_setting">Permission settings</string>
     <string name="only_i_can_issue">Only I can distribute</string>
@@ -173,7 +173,7 @@
     <string name="group_structure">Group structure</string>
     <string name="node">node</string>
     <string name="create_group">Create group</string>
-    <string name="my_group">My Group</string>
+    <string name="my_groups">My Groups</string>
     <string name="from_adress_book_choose">From address book selection</string>
     <string name="hand_input_pub_key">Manual input of public key</string>
     <string name="new_note">New node</string>
@@ -306,5 +306,9 @@
     <string name="node_exist">This node has been added</string>
     <string name="delete">Delete</string>
     <string name="private_key_exist">The wallet is already on the list</string>
-
+    <string name="leafNode">Leaf Node</string>
+    <string name="nonLeafNode">Non-Leaf Node</string>
+    <string name="please_input_key">Enter Key Value</string>
+    <string name="invalid_key">Invalid Key</string>
+    <string name="invalid_authority_settings">Invalid Authority Settings</string>
 </resources>

@@ -1,1 +1,1 @@
-include ':app', ':module_main', 'module_base', ':module_third'
+include ':app', ':module_main', 'module_base', ':module_third', ':treeview_lib'
