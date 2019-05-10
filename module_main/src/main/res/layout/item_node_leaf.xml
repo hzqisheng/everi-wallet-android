@@ -10,7 +10,7 @@
         android:id="@+id/node_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="36dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginRight="25dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"

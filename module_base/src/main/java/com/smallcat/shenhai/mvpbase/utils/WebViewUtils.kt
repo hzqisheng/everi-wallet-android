@@ -274,4 +274,20 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(s1, RxBusCenter.ADD_NODE))
     }
 
+    //获取由publicKeys管理的组列表
+    @JavascriptInterface
+    fun getManagedGroupsCallback(s: String) {
+        ("getManagedGroupsCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.MY_GROUP))
+    }
+
+    //通过 name 获取有关组的详细信息
+    @JavascriptInterface
+    fun getGroupDetailCallback(s: String) {
+        ("getGroupDetailCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.GROUP_DETAIL))
+    }
+
 }

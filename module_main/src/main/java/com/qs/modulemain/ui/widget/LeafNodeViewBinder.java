@@ -25,8 +25,9 @@ public class LeafNodeViewBinder extends CheckableNodeViewBinder {
     TextView tvDes;
     ImageView ivDelete;
     Activity mActivity;
+    boolean isDetail;
 
-    public LeafNodeViewBinder(Activity activity, TreeView treeView, TreeNode treeNode, View itemView) {
+    public LeafNodeViewBinder(Activity activity, TreeView treeView, TreeNode treeNode, View itemView, boolean isDetail) {
         super(itemView);
         this.mActivity = activity;
         this.mTreeView = treeView;
@@ -35,6 +36,7 @@ public class LeafNodeViewBinder extends CheckableNodeViewBinder {
 //        ivExpand = (ImageView) itemView.findViewById(R.id.arrow_img);
         tvDes = (TextView) itemView.findViewById(R.id.node_name_view);
         ivDelete = (ImageView) itemView.findViewById(R.id.iv_delete);
+        this.isDetail = isDetail;
     }
 
     @Override
@@ -49,6 +51,9 @@ public class LeafNodeViewBinder extends CheckableNodeViewBinder {
 
     @Override
     public void bindView(final TreeNode treeNode) {
+        if (isDetail){
+            ivDelete.setVisibility(View.INVISIBLE);
+        }
         llContent.setPadding(39 * treeNode.getLevel(), 0, 0, 0);
 //        ivExpand.setRotation(treeNode.isExpanded() ? 90 : 0);
         GroupLeafNode value = (GroupLeafNode) treeNode.getValue();

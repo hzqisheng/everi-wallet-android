@@ -120,4 +120,10 @@ object WebViewApi {
     //添加节点
     //fun checkNetwork(port: Int, host: String, protocol: String) = "javascript:checkNetwork($port,'$host','$protocol')"
     fun checkNetwork(s: String) = "javascript:checkNetwork('$s')"
+
+    /** 获取由publicKeys管理的组列表 **/
+    fun getManagedGroups(publicKeys: String) = "javascript:getManagedGroups('$publicKeys')"
+
+    //通过 name 获取有关组的详细信息.
+    fun getGroupDetail(name: String) = "javascript:getGroupDetail('$name')"
 }

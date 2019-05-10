@@ -20,7 +20,7 @@ object RxBusCenter {
     //需要密码
     const val NEED_PRIVATE_KEY = 0x2003
     //创建域
-    const val CREATE_DOMAIN = 0x2005
+    const val CREATE_DOMAIN = 0x2005 //创建域
     //我的域
     const val MY_DOMAIN = 0x2006
     //设置代币
@@ -98,4 +98,12 @@ object RxBusCenter {
     //添加节点
     const val ADD_NODE = 0x2032
 
+    //创建组
+    const val CREATE_GROUP = 0x2033 //创建组
+
+    //获取由publicKeys管理的组列表
+    const val MY_GROUP = 0x2034
+
+    //通过name获取有关组的详细信息
+    const val GROUP_DETAIL = 0x2035
 }

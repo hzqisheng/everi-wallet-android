@@ -31,8 +31,9 @@ public class NonLeafNodeViewBinder extends CheckableNodeViewBinder {
     ImageView ivAdd;
     ImageView ivDelete;
     Activity mActivity;
+    boolean isDetail;
 
-    public NonLeafNodeViewBinder(Activity activity, TreeView treeView, TreeNode treeNode, View itemView) {
+    public NonLeafNodeViewBinder(Activity activity, TreeView treeView, TreeNode treeNode, View itemView, boolean isDetail) {
         super(itemView);
         this.mActivity = activity;
         this.mTreeView = treeView;
@@ -42,6 +43,7 @@ public class NonLeafNodeViewBinder extends CheckableNodeViewBinder {
         tvDes = (TextView) itemView.findViewById(R.id.node_name_view);
         ivAdd = (ImageView) itemView.findViewById(R.id.iv_add);
         ivDelete = (ImageView) itemView.findViewById(R.id.iv_delete);
+        this.isDetail = isDetail;
     }
 
     @Override
@@ -56,6 +58,15 @@ public class NonLeafNodeViewBinder extends CheckableNodeViewBinder {
 
     @Override
     public void bindView(final TreeNode treeNode) {
+        if (isDetail) {
+            ivAdd.setVisibility(View.INVISIBLE);
+            ivDelete.setVisibility(View.INVISIBLE);
+        }
+        if (treeNode.hasChild()) {
+            ivExpand.setVisibility(View.VISIBLE);
+        } else {
+            ivExpand.setVisibility(View.GONE);
+        }
         llContent.setPadding(30 * treeNode.getLevel(), 0, 0, 0);
         ivExpand.setRotation(treeNode.isExpanded() ? 90 : 0);
         GroupNonLeafNode value = (GroupNonLeafNode) treeNode.getValue();

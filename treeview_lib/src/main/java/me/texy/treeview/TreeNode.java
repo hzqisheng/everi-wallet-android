@@ -15,9 +15,10 @@
 package me.texy.treeview;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Created by xinyuanzhong on 2017/4/20.

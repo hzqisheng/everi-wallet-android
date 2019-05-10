@@ -311,4 +311,6 @@
     <string name="please_input_key">Enter Key Value</string>
     <string name="invalid_key">Invalid Key</string>
     <string name="invalid_authority_settings">Invalid Authority Settings</string>
+    <string name="value">value</string>
+    <string name="creator">creator</string>
 </resources>

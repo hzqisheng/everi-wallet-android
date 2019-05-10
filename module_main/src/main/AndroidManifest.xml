@@ -90,6 +90,7 @@
         <activity android:name=".ui.activity.index.NFTsDetailActivity" />
         <activity android:name=".ui.activity.WebActivity" />
         <activity android:name=".ui.activity.my.NodeChooseActivity"></activity>
+        <activity android:name=".ui.activity.manage.GroupDetailActivity"></activity>
 
         <!--com.nfleo:MatisseKotlin:1.1.0库所需-->
         <activity android:name="com.matisse.ui.view.MatisseActivity" />

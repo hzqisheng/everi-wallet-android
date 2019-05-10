@@ -8,10 +8,20 @@ import com.qs.modulemain.R
 import com.qs.modulemain.bean.*
 import com.qs.modulemain.presenter.CreateGroupPresenter
 import com.qs.modulemain.ui.widget.MyNodeViewFactory
+import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.CreateGroupView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
+import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.toResultBean
 import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.model.WebViewApi
+import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
+import com.smallcat.shenhai.mvpbase.model.helper.RxBus
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
+import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_create_group.*
 import me.texy.treeview.TreeNode
 import me.texy.treeview.TreeView
@@ -33,6 +43,8 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 
     private lateinit var mRootNode: TreeNode
     private lateinit var mTreeView: TreeView
+    //是否修改节点，如果是和节点详情共用同一个mRootNode
+    private var isEdit = false
 
     override fun initPresenter() {
         mPresenter = CreateGroupPresenter(mContext)
@@ -42,9 +54,35 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 
     override fun initData() {
         tvTitle?.text = getString(R.string.create_group)
+
+        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { it ->
+                    when (it.type) {
+                        RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
+                        RxBusCenter.CREATE_GROUP -> {
+                            if (isEdit) {
+                                setResult(1, null)
+                            }
+                            getString(R.string.create_success).toast()
+                            finish()
+                        }
+                    }
+                })
+
+        if (intent.hasExtra("threshold")) {
+            isEdit = true
+            et_name.setText(intent.getStringExtra("name"))
+            //设置不可编辑
+            et_name.keyListener = null
+            et_number.setText(intent.getIntExtra("threshold", 1).toString())
+        }
+
 //        list = arrayListOf(ChooseBean(getString(R.string.I_am_in_charge_of_management), true),
 //                ChooseBean(getString(R.string.from_adress_book_choose)), ChooseBean(getString(R.string.hand_input_pub_key)))
 //        tv_manage.setOnClickListener { showDialog() }
+
         iv_add_note.setOnClickListener {
             //start(AddNoteActivity::class.java)
             isAddLevel1Node = true
@@ -97,6 +135,7 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
             }
             mTreeView.refreshTreeView()
 
+
             val allNodes = ArrayList<Any>()
             getRoot(allNodes, mRootNode)
             Log.e("Lody", Gson().toJson(allNodes))
@@ -106,9 +145,11 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
 //                return@setOnClickListener
 //            }
             val root = Root(getThreshold(), 0, allNodes)
-            val group = Group(et_name.text.toString(), sharedPref.privateKey, root)
+            val group = Group(et_name.text.toString(), sharedPref.publicKey, root)
             val rootGroup = RootGroup(et_name.text.toString(), group)
             Log.e("Lody", Gson().toJson(rootGroup))
+            lastPushTransaction = RxBusCenter.CREATE_GROUP
+            mWebView.evaluateJavascript(WebViewApi.pushTransaction("newgroup", Gson().toJson(rootGroup)), null)
         }
         iv_reduce.setOnClickListener {
             try {
@@ -127,9 +168,14 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
             }
         }
 
-        mRootNode = TreeNode.root()
+        mRootNode = if (isEdit) {
+            GroupDetailActivity.mRootNode
+        } else {
+            TreeNode.root()
+        }
+
 //        buildTree()
-        val myNodeViewFactory = MyNodeViewFactory(this, mRootNode)
+        val myNodeViewFactory = MyNodeViewFactory(this, mRootNode, false)
         mTreeView = TreeView(mRootNode, this, myNodeViewFactory)
         myNodeViewFactory.setmTreeView(mTreeView)
         val view = mTreeView.view
@@ -201,6 +247,14 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
                 }
             }
         }
+    }
+
+    private fun showFingerPrintDialog() {
+        confirmPassword(sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
+            override fun onCheckSuccess() {
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

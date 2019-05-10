@@ -313,5 +313,7 @@
     <string name="please_input_key">请输入Key值</string>
     <string name="invalid_key">无效的Key</string>
     <string name="invalid_authority_settings">无效的权限设置</string>
+    <string name="value">值</string>
+    <string name="creator">creator</string>
 
 </resources>
