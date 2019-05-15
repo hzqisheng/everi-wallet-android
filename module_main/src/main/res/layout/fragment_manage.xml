@@ -81,7 +81,7 @@
                 android:drawableStart="@drawable/ic_my_nfts"
                 android:drawablePadding="15dp"
                 android:gravity="center_vertical"
-                android:text="@string/my_create_nft"
+                android:text="@string/my_domains"
                 android:textColor="@color/color_33" />
 
             <TextView

@@ -4,7 +4,7 @@ data class GroupDetailBean(
         val name: String = "",
         val key: String = "",
         val root: DetailRoot = DetailRoot(),
-        val metas: List<DetailMetas> = listOf()
+        val metas: ArrayList<DetailMetas> = arrayListOf()
 )
 
 data class DetailRoot(

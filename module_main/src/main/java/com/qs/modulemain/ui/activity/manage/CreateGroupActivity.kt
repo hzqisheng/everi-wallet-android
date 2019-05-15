@@ -7,7 +7,9 @@ import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.*
 import com.qs.modulemain.presenter.CreateGroupPresenter
+import com.qs.modulemain.ui.fragment.HelpDialogFragment
 import com.qs.modulemain.ui.widget.MyNodeViewFactory
+import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
 import com.qs.modulemain.view.CreateGroupView
 import com.smallcat.shenhai.mvpbase.base.BaseActivity
@@ -22,7 +24,13 @@ import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_add_note.*
 import kotlinx.android.synthetic.main.activity_create_group.*
+import kotlinx.android.synthetic.main.activity_create_group.et_number
+import kotlinx.android.synthetic.main.activity_create_group.iv_add
+import kotlinx.android.synthetic.main.activity_create_group.iv_reduce
+import kotlinx.android.synthetic.main.activity_create_group.toolbar
+import kotlinx.android.synthetic.main.activity_nfts_create.*
 import me.texy.treeview.TreeNode
 import me.texy.treeview.TreeView
 import java.lang.Exception
@@ -53,7 +61,10 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
     override val layoutId: Int = R.layout.activity_create_group
 
     override fun initData() {
-        tvTitle?.text = getString(R.string.create_group)
+        ivRight?.apply {
+            setBackgroundResource(R.drawable.ic_question)
+            setOnClickListener { showHelpDialog() }
+        }
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
                 .subscribeOn(Schedulers.io())
@@ -62,12 +73,14 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
                     when (it.type) {
                         RxBusCenter.NEED_PRIVATE_KEY -> showFingerPrintDialog()
                         RxBusCenter.CREATE_GROUP -> {
+                            dismissLoading()
                             if (isEdit) {
                                 setResult(1, null)
                             }
                             getString(R.string.create_success).toast()
                             finish()
                         }
+                        RxBusCenter.REQUEST_ERROR -> dismissLoading()
                     }
                 })
 
@@ -78,6 +91,8 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
             et_name.keyListener = null
             et_number.setText(intent.getIntExtra("threshold", 1).toString())
         }
+
+        tvTitle?.text = if (isEdit) getString(R.string.authority_setting) else getString(R.string.create_group)
 
 //        list = arrayListOf(ChooseBean(getString(R.string.I_am_in_charge_of_management), true),
 //                ChooseBean(getString(R.string.from_adress_book_choose)), ChooseBean(getString(R.string.hand_input_pub_key)))
@@ -149,10 +164,17 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
             val rootGroup = RootGroup(et_name.text.toString(), group)
             Log.e("Lody", Gson().toJson(rootGroup))
             lastPushTransaction = RxBusCenter.CREATE_GROUP
-            mWebView.evaluateJavascript(WebViewApi.pushTransaction("newgroup", Gson().toJson(rootGroup)), null)
+            if (isEdit) { //修改更新组节点
+                mWebView.evaluateJavascript(WebViewApi.pushTransaction("updategroup", Gson().toJson(rootGroup)), null)
+            } else { //新增组节点
+                mWebView.evaluateJavascript(WebViewApi.pushTransaction("newgroup", Gson().toJson(rootGroup)), null)
+            }
         }
         iv_reduce.setOnClickListener {
             try {
+                if (et_number.text.toString().toInt() <= 1) {
+                    return@setOnClickListener
+                }
                 et_number.setText(((et_number.text.toString().toInt()) - 1).toString())
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -192,6 +214,12 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
             e.printStackTrace()
             1
         }
+    }
+
+    private fun showHelpDialog() {
+        val fragment = HelpDialogFragment()
+        fragment.setDate(DataUtils.addGroupHelpData(mContext), toolbar.height)
+        fragment.show(supportFragmentManager, "helpDialog")
     }
 
     private fun buildTree() {
@@ -252,7 +280,9 @@ class CreateGroupActivity : BaseActivity<CreateGroupPresenter>(), CreateGroupVie
     private fun showFingerPrintDialog() {
         confirmPassword(sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
-                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
+                mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {
+                    showLoading()
+                }
             }
         })
     }

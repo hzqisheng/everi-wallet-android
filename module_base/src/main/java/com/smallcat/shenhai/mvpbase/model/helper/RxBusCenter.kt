@@ -106,4 +106,10 @@ object RxBusCenter {
 
     //通过name获取有关组的详细信息
     const val GROUP_DETAIL = 0x2035
+
+    //添加元数据
+    const val ADD_META = 0x2036
+
+    //通过name获取阈的详细信息.
+    const val DOMAIN_DETAIL = 0x2037
 }

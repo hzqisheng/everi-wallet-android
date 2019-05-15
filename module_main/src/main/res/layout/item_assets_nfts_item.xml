@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
@@ -24,13 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/color_68"
-        android:maxLength="35"
-        android:maxEms="35"
-        android:textSize="12sp"
         android:ellipsize="end"
         android:lines="1"
+        android:maxEms="35"
+        android:maxLength="35"
         android:scrollHorizontally="true"
+        android:textColor="@color/color_68"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="EOS5fKva...UBt7gBagC" />
@@ -41,15 +40,30 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="6dp"
         android:padding="8dp"
+        android:src="@drawable/icon_home_everipass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/icon_home_everipass" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_issue"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_35415f_1"
+        android:gravity="center"
+        android:text="@string/issue"
+        android:textColor="#35415F"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_cc"
         android:layout_marginTop="13dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_number"/>
+        android:background="@color/color_cc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_number" />
 </android.support.constraint.ConstraintLayout>

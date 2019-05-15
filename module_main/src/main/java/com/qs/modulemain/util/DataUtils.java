@@ -74,4 +74,11 @@ public class DataUtils {
         list.add(new HelpCenterBean(mContext.getString(R.string.domain), mContext.getString(R.string.add_nfts_help_1)));
         return list;
     }
+
+    public static List<HelpCenterBean> addGroupHelpData(Context mContext){
+        List<HelpCenterBean> list = new ArrayList<>();
+        list.add(new HelpCenterBean(mContext.getString(R.string.group), mContext.getString(R.string.add_group_help)));
+        return list;
+    }
+
 }

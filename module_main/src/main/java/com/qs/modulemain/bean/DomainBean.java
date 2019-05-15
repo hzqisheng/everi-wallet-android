@@ -17,80 +17,80 @@ public class DomainBean {
      * transfer : {"name":"transfer","threshold":1,"authorizers":[{"ref":"[G] .OWNER","weight":1}]}
      * manage : {"name":"manage","threshold":1,"authorizers":[{"ref":"[A]  + publicKey","weight":1}]}
      */
-    public static DomainBean build(){
+    public static DomainBean build() {
         return new DomainBean();
     }
 
-    public void setBuildName(String name){
+    public void setBuildName(String name) {
         this.name = name;
     }
 
-    public void setBuildPublickKey(String publicKey){
+    public void setBuildPublickKey(String publicKey) {
         this.creator = publicKey;
     }
 
-    public void addIssueAuthorizersBean(IssueBean.AuthorizersBean authorizersBean){
-        if (issue == null){
+    public void addIssueAuthorizersBean(IssueBean.AuthorizersBean authorizersBean) {
+        if (issue == null) {
             issue = new IssueBean();
             issue.authorizers = new ArrayList<>();
         }
 
         issue.authorizers.add(authorizersBean);
-        if(issue.authorizers.size() > 0){
+        if (issue.authorizers.size() > 0) {
             issue.threshold = 1;
         }
     }
 
-    public void removeIssueAuthorizersBean(IssueBean.AuthorizersBean authorizersBean){
-        if (issue == null || issue.authorizers == null ||issue.authorizers.size() == 0){
-           return;
+    public void removeIssueAuthorizersBean(IssueBean.AuthorizersBean authorizersBean) {
+        if (issue == null || issue.authorizers == null || issue.authorizers.size() == 0) {
+            return;
         }
         issue.authorizers.remove(authorizersBean);
-        if(issue.authorizers.size() == 0){
+        if (issue.authorizers.size() == 0) {
             issue.threshold = 0;
         }
     }
 
-    public void addTransferAuthorizersBean(TransferBean.AuthorizersBeanX authorizersBeanX){
-        if(transfer == null){
+    public void addTransferAuthorizersBean(TransferBean.AuthorizersBeanX authorizersBeanX) {
+        if (transfer == null) {
             transfer = new TransferBean();
             transfer.authorizers = new ArrayList<>();
         }
 
         transfer.authorizers.add(authorizersBeanX);
-        if(transfer.authorizers.size() > 0){
+        if (transfer.authorizers.size() > 0) {
             transfer.threshold = 1;
         }
     }
 
-    public void removeTransferAuthorizersBean(TransferBean.AuthorizersBeanX authorizersBeanX){
-        if(transfer == null || transfer.authorizers == null ||transfer.authorizers.size() == 0){
+    public void removeTransferAuthorizersBean(TransferBean.AuthorizersBeanX authorizersBeanX) {
+        if (transfer == null || transfer.authorizers == null || transfer.authorizers.size() == 0) {
             return;
         }
         transfer.authorizers.remove(authorizersBeanX);
-        if(transfer.authorizers.size() == 0){
+        if (transfer.authorizers.size() == 0) {
             transfer.threshold = 0;
         }
     }
 
-    public void addManageAuthorizersBean(ManageBean.AuthorizersBeanXX authorizersBeanXX){
-        if(manage == null){
+    public void addManageAuthorizersBean(ManageBean.AuthorizersBeanXX authorizersBeanXX) {
+        if (manage == null) {
             manage = new ManageBean();
             manage.authorizers = new ArrayList<>();
         }
         manage.authorizers.add(authorizersBeanXX);
 
-        if(manage.authorizers.size()>0){
+        if (manage.authorizers.size() > 0) {
             manage.threshold = 1;
         }
     }
 
-    public void removeManageAuthorizersBean(ManageBean.AuthorizersBeanXX authorizersBeanXX){
-        if(manage == null || manage.authorizers == null || manage.authorizers.size() == 0){
+    public void removeManageAuthorizersBean(ManageBean.AuthorizersBeanXX authorizersBeanXX) {
+        if (manage == null || manage.authorizers == null || manage.authorizers.size() == 0) {
             return;
         }
         manage.authorizers.remove(authorizersBeanXX);
-        if(manage.authorizers.size() == 0){
+        if (manage.authorizers.size() == 0) {
             manage.threshold = 0;
         }
     }
@@ -151,7 +151,7 @@ public class DomainBean {
 
         private String name = "issue";
         private int threshold;
-        private List<AuthorizersBean> authorizers;
+        private ArrayList<AuthorizersBean> authorizers;
 
         public String getName() {
             return name;
@@ -169,19 +169,28 @@ public class DomainBean {
             this.threshold = threshold;
         }
 
-        public List<AuthorizersBean> getAuthorizers() {
+        public ArrayList<AuthorizersBean> getAuthorizers() {
             return authorizers;
         }
 
-        public void setAuthorizers(List<AuthorizersBean> authorizers) {
+        public void setAuthorizers(ArrayList<AuthorizersBean> authorizers) {
             this.authorizers = authorizers;
         }
 
         public static class AuthorizersBean {
+
             /**
              * ref : [A]  + publicKey
              * weight : 1
              */
+
+            public AuthorizersBean() {
+            }
+
+            public AuthorizersBean(String ref, int weight) {
+                this.ref = ref;
+                this.weight = weight;
+            }
 
             private String ref;
             private int weight;
@@ -213,7 +222,7 @@ public class DomainBean {
 
         private String name = "transfer";
         private int threshold;
-        private List<AuthorizersBeanX> authorizers;
+        private ArrayList<AuthorizersBeanX> authorizers;
 
         public String getName() {
             return name;
@@ -231,11 +240,11 @@ public class DomainBean {
             this.threshold = threshold;
         }
 
-        public List<AuthorizersBeanX> getAuthorizers() {
+        public ArrayList<AuthorizersBeanX> getAuthorizers() {
             return authorizers;
         }
 
-        public void setAuthorizers(List<AuthorizersBeanX> authorizers) {
+        public void setAuthorizers(ArrayList<AuthorizersBeanX> authorizers) {
             this.authorizers = authorizers;
         }
 
@@ -247,6 +256,14 @@ public class DomainBean {
 
             private String ref;
             private int weight;
+
+            public AuthorizersBeanX() {
+            }
+
+            public AuthorizersBeanX(String ref, int weight) {
+                this.ref = ref;
+                this.weight = weight;
+            }
 
             public String getRef() {
                 return ref;
@@ -275,7 +292,7 @@ public class DomainBean {
 
         private String name = "manage";
         private int threshold;
-        private List<AuthorizersBeanXX> authorizers;
+        private ArrayList<AuthorizersBeanXX> authorizers;
 
         public String getName() {
             return name;
@@ -293,19 +310,28 @@ public class DomainBean {
             this.threshold = threshold;
         }
 
-        public List<AuthorizersBeanXX> getAuthorizers() {
+        public ArrayList<AuthorizersBeanXX> getAuthorizers() {
             return authorizers;
         }
 
-        public void setAuthorizers(List<AuthorizersBeanXX> authorizers) {
+        public void setAuthorizers(ArrayList<AuthorizersBeanXX> authorizers) {
             this.authorizers = authorizers;
         }
 
         public static class AuthorizersBeanXX {
+
             /**
              * ref : [A]  + publicKey
              * weight : 1
              */
+
+            public AuthorizersBeanXX() {
+            }
+
+            public AuthorizersBeanXX(String ref, int weight) {
+                this.ref = ref;
+                this.weight = weight;
+            }
 
             private String ref;
             private int weight;

@@ -315,5 +315,16 @@
     <string name="invalid_authority_settings">无效的权限设置</string>
     <string name="value">值</string>
     <string name="creator">creator</string>
+    <string name="new_add">新增</string>
+    <string name="my_domains">我的域</string>
+    <string name="new_domain">创建域</string>
+    <string name="add_address1">添加地址</string>
+    <string name="add_group">添加组</string>
+    <string name="pub_key">公钥</string>
+    <string name="domain_value">阈值</string>
+    <string name="please_input_domain_name">请输入域的名称</string>
+    <string name="group">组</string>
+    <string name="add_group_help">组名称由最大21个指定字符[0-9，A-Z，a-z.-]组成，可以通过把权限赋予某个组上，来实现现实中类似于组织架构的功能，从而实现对特定资产的分组管理。</string>
+
 
 </resources>

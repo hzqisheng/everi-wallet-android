@@ -47,7 +47,7 @@
             android:drawablePadding="6dp"
             android:layout_gravity="center"
             android:drawableStart="@drawable/ic_add_fts"
-            android:text="@string/create_nfts"
+            android:text="@string/new_domain"
             android:textColor="@color/color_e4"
             app:layout_constraintBottom_toBottomOf="@+id/tv_add"
             app:layout_constraintEnd_toEndOf="@+id/tv_add"

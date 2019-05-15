@@ -61,7 +61,6 @@
             android:id="@+id/view_line3"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginStart="24dp"
             android:background="@color/color_cc" />
 
         <!--<LinearLayout
@@ -176,7 +175,6 @@
             android:id="@+id/view_line6"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginStart="24dp"
             android:background="@color/color_cc" />
 
         <LinearLayout

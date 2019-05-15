@@ -15,6 +15,8 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.manage.DomainDetailActivity"></activity>
+        <activity android:name=".ui.activity.manage.AddGroupActivity" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask" />
@@ -89,11 +91,10 @@
         <activity android:name=".ui.activity.index.NFTsPayActivity" />
         <activity android:name=".ui.activity.index.NFTsDetailActivity" />
         <activity android:name=".ui.activity.WebActivity" />
-        <activity android:name=".ui.activity.my.NodeChooseActivity"></activity>
-        <activity android:name=".ui.activity.manage.GroupDetailActivity"></activity>
-
-        <!--com.nfleo:MatisseKotlin:1.1.0库所需-->
+        <activity android:name=".ui.activity.my.NodeChooseActivity" />
+        <activity android:name=".ui.activity.manage.GroupDetailActivity" /> <!-- com.nfleo:MatisseKotlin:1.1.0库所需 -->
         <activity android:name="com.matisse.ui.view.MatisseActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.qs.evertoken.fileprovider"
@@ -103,7 +104,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
         </provider>
-
     </application>
 
 </manifest>

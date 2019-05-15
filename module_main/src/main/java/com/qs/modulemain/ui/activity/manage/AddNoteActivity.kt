@@ -63,6 +63,9 @@ class AddNoteActivity : SimpleActivity() {
         }
         iv_threshold_reduce.setOnClickListener {
             try {
+                if (et_threshold.text.toString().toInt() <= 1) {
+                    return@setOnClickListener
+                }
                 et_threshold.setText(((et_threshold.text.toString().toInt()) - 1).toString())
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -79,6 +82,9 @@ class AddNoteActivity : SimpleActivity() {
         }
         iv_reduce.setOnClickListener {
             try {
+                if (et_number.text.toString().toInt() <= 1) {
+                    return@setOnClickListener
+                }
                 et_number.setText(((et_number.text.toString().toInt()) - 1).toString())
             } catch (e: Exception) {
                 e.printStackTrace()

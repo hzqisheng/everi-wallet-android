@@ -86,6 +86,30 @@
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toTopOf="@+id/view" />
 
+
+                <LinearLayout
+                    android:id="@+id/ll_add_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/view"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_address_add" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/new_add" />
+
+                </LinearLayout>
+
                 <View
                     android:id="@+id/view7"
                     android:layout_width="match_parent"
@@ -95,7 +119,67 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                <CheckBox
+                <TextView
+                    android:id="@+id/tv_domain0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/domain_value"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="@id/view"
+                    app:layout_constraintTop_toBottomOf="@id/view7" />
+
+                <ImageView
+                    android:id="@+id/iv_reduce_domain0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_reduce"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain0"
+                    app:layout_constraintRight_toLeftOf="@+id/et_number_domain0"
+                    app:layout_constraintTop_toTopOf="@id/view7" />
+
+                <EditText
+                    android:id="@+id/et_number_domain0"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_grey"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain0"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_add_domain0"
+                    app:layout_constraintTop_toTopOf="@id/view7" />
+
+                <ImageView
+                    android:id="@+id/iv_add_domain0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain0"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/view7" />
+
+                <View
+                    android:id="@+id/v_domain0"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="18dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_domain0" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_issue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/v_domain0" />
+                <!--<CheckBoxc
                     android:id="@+id/cb_issue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,7 +192,7 @@
                     android:text="@string/only_i_can_issue"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />-->
 
 
             </android.support.constraint.ConstraintLayout>
@@ -143,6 +227,28 @@
                     app:layout_constraintStart_toEndOf="@+id/view1"
                     app:layout_constraintTop_toTopOf="@+id/view1" />
 
+                <LinearLayout
+                    android:id="@+id/ll_add_transfer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/view1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view1">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_address_add" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/new_add" />
+                </LinearLayout>
+
                 <View
                     android:id="@+id/view8"
                     android:layout_width="match_parent"
@@ -152,7 +258,67 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-                <CheckBox
+                <TextView
+                    android:id="@+id/tv_domain1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/domain_value"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="@id/view1"
+                    app:layout_constraintTop_toBottomOf="@id/view8" />
+
+                <ImageView
+                    android:id="@+id/iv_reduce_domain1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_reduce"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain1"
+                    app:layout_constraintRight_toLeftOf="@+id/et_number_domain1"
+                    app:layout_constraintTop_toTopOf="@id/view8" />
+
+                <EditText
+                    android:id="@+id/et_number_domain1"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_grey"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain1"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_add_domain1"
+                    app:layout_constraintTop_toTopOf="@id/view8" />
+
+                <ImageView
+                    android:id="@+id/iv_add_domain1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/view8" />
+
+                <View
+                    android:id="@+id/v_domain1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="18dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_domain1" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_transfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/v_domain1" />
+                <!--<CheckBox
                     android:id="@+id/cb_change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -165,7 +331,7 @@
                     android:text="@string/only_i_and_have_can_change"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />-->
 
             </android.support.constraint.ConstraintLayout>
 
@@ -199,6 +365,28 @@
                     app:layout_constraintStart_toEndOf="@+id/view0"
                     app:layout_constraintTop_toTopOf="@+id/view0" />
 
+                <LinearLayout
+                    android:id="@+id/ll_add_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/view0"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view0">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_address_add" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/new_add" />
+                </LinearLayout>
+
                 <View
                     android:id="@+id/view10"
                     android:layout_width="match_parent"
@@ -208,7 +396,68 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-                <CheckBox
+                <TextView
+                    android:id="@+id/tv_domain2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/domain_value"
+                    android:textColor="@color/color_3137"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="@id/view0"
+                    app:layout_constraintTop_toBottomOf="@id/view10" />
+
+                <ImageView
+                    android:id="@+id/iv_reduce_domain2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_reduce"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain2"
+                    app:layout_constraintRight_toLeftOf="@+id/et_number_domain2"
+                    app:layout_constraintTop_toTopOf="@id/view10" />
+
+                <EditText
+                    android:id="@+id/et_number_domain2"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_grey"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain2"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_add_domain2"
+                    app:layout_constraintTop_toTopOf="@id/view10" />
+
+                <ImageView
+                    android:id="@+id/iv_add_domain2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_domain2"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/view10" />
+
+                <View
+                    android:id="@+id/v_domain2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_half"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="18dp"
+                    android:background="@color/color_dd"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_domain2" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_manage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/v_domain2" />
+                <!--<CheckBox
                     android:id="@+id/cb_manage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,7 +470,7 @@
                     android:text="@string/only_i_can_manage"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />-->
 
 
             </android.support.constraint.ConstraintLayout>

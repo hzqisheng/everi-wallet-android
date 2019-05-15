@@ -154,7 +154,7 @@
     <string name="enter_remarks">Please enter notes</string>
     <string name="threshold">Threshold</string>
     <string name="metadata">metadata</string>
-    <string name="authority_setting">Permission settings</string>
+    <string name="authority_setting">Authority</string>
     <string name="only_i_can_issue">Only I can distribute</string>
     <string name="manual_edit_content">Manual editing of content</string>
     <string name="change">transfer</string>
@@ -313,4 +313,17 @@
     <string name="invalid_authority_settings">Invalid Authority Settings</string>
     <string name="value">value</string>
     <string name="creator">creator</string>
+    <string name="new_add">Add</string>
+    <string name="my_domains">My Domains</string>
+    <string name="new_domain">New Domain</string>
+    <string name="add_address1">Add Address</string>
+    <string name="add_group">Add Group</string>
+    <string name="pub_key">Public Key</string>
+    <string name="domain_value">Domain Value</string>
+    <string name="please_input_domain_name">Please Input Domain Name</string>
+    <string name="group">Group</string>
+    <string name="add_group_help">Group names consists of a up of 21 specified characters [0-9, A-Z, a-z.-], and can be assigned to a certain group by realizing the functions similar to the organizational structure in real life, thereby realizing group management of specific assets.</string>
+
+
+
 </resources>

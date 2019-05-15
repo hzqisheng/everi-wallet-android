@@ -21,9 +21,15 @@ import kotlinx.android.synthetic.main.activity_my_group.tv_add
 
 class MyGroupActivity : BaseActivity<MyGroupPresenter>(), MyGroupView {
 
+    companion object {
+        var resultCode = 0x103
+    }
+
     private var mGroupList = ArrayList<GroupNameBean>()
 
     private lateinit var mGroupAdapter: MyGroupAdapter
+
+    var isAddGroup = false
 
     override fun initPresenter() {
         mPresenter = MyGroupPresenter(mContext)
@@ -35,6 +41,10 @@ class MyGroupActivity : BaseActivity<MyGroupPresenter>(), MyGroupView {
         tvTitle?.text = getString(R.string.my_groups)
         tv_add.setOnClickListener { start(CreateGroupActivity::class.java) }
 
+        isAddGroup = intent.getBooleanExtra("isAddGroup", false)
+        if (isAddGroup) {
+            mGroupList.add(GroupNameBean(".OWNER"))
+        }
         mGroupAdapter = MyGroupAdapter(mGroupList)
         rv_list.adapter = mGroupAdapter
 
@@ -44,9 +54,16 @@ class MyGroupActivity : BaseActivity<MyGroupPresenter>(), MyGroupView {
 
         mGroupAdapter.onItemClickListener = object : AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                val intent = Intent(this@MyGroupActivity, GroupDetailActivity::class.java)
-                intent.putExtra("groupName", mGroupList[position].name)
-                startActivity(intent)
+                if (isAddGroup) {
+                    val intent = Intent()
+                    intent.putExtra("groupName", mGroupList[position].name)
+                    setResult(resultCode, intent)
+                    finish()
+                } else {
+                    val intent = Intent(this@MyGroupActivity, GroupDetailActivity::class.java)
+                    intent.putExtra("groupName", mGroupList[position].name)
+                    startActivity(intent)
+                }
             }
 
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -64,6 +81,9 @@ class MyGroupActivity : BaseActivity<MyGroupPresenter>(), MyGroupView {
         swipe_refresh.isRefreshing = false
         val list = Gson().fromJson<List<GroupNameBean>>(msg, object : TypeToken<ArrayList<GroupNameBean>>() {}.type)
         mGroupList.clear()
+        if (isAddGroup) {
+            mGroupList.add(GroupNameBean(".OWNER"))
+        }
         mGroupList.addAll(list)
         mGroupAdapter.setNewData(mGroupList)
     }

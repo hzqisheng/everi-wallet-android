@@ -96,6 +96,9 @@ object WebViewApi {
     /** 上传图片 **/
     fun pushTransaction(s1: String, s2: String, s3: String, s4: String, int: Int) = "javascript:pushTransaction('$s1','$s2','$s3','$s4',$int)"
 
+    /** 添加元数据 **/
+    fun pushTransaction(s1: String, s2: String, s3: String, s4: String, s5: String) = "javascript:pushTransaction('$s1','$s2','$s3','$s4','$s5')"
+
     //验证助记词
     fun validateMnemonic(s: String) = "javascript:validateMnemonic('$s')"
 
@@ -126,4 +129,7 @@ object WebViewApi {
 
     //通过 name 获取有关组的详细信息.
     fun getGroupDetail(name: String) = "javascript:getGroupDetail('$name')"
+
+    //通过name获取阈的详细信息.
+    fun getDomainDetail(name: String) = "javascript:getDomainDetail('$name')"
 }

@@ -124,7 +124,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_half"
-            android:layout_marginStart="19dp"
             android:background="@color/color_cc" />
 
         <LinearLayout

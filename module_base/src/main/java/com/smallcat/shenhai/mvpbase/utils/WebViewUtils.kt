@@ -290,4 +290,12 @@ private class WebViewCallBack : Any() {
         RxBus.post(MessageEvent(s1, RxBusCenter.GROUP_DETAIL))
     }
 
+    //通过name获取阈的详细信息.
+    @JavascriptInterface
+    fun getDomainDetailCallback(s: String) {
+        ("getDomainDetailCallback$s").logE()
+        val s1 = handleResult(s) ?: return
+        RxBus.post(MessageEvent(s1, RxBusCenter.DOMAIN_DETAIL))
+    }
+
 }

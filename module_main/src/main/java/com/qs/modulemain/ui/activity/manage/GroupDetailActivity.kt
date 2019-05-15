@@ -48,7 +48,7 @@ class GroupDetailActivity : SimpleActivity() {
     private lateinit var mTreeView: TreeView
     var mGroupDetail = GroupDetailBean()
 
-    private var mList = ArrayList<DetailMetas>()
+//    private var mList = ArrayList<DetailMetas>()
 
     private lateinit var mAdapter: MetaDataAdapter
 
@@ -68,10 +68,12 @@ class GroupDetailActivity : SimpleActivity() {
         }
         iv_add_data.setOnClickListener {
             var intent = Intent(this@GroupDetailActivity, AddMetaActivity::class.java)
+            intent.putExtra("GroupDetailAdd", true)
+            intent.putExtra("groupName", mGroupName)
             startActivityForResult(intent, 103)
         }
 
-        mAdapter = MetaDataAdapter(mList)
+        mAdapter = MetaDataAdapter(/*mList*/mGroupDetail.metas)
         rv_list.adapter = mAdapter
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
@@ -82,6 +84,7 @@ class GroupDetailActivity : SimpleActivity() {
                         RxBusCenter.GROUP_DETAIL -> {
                             loadGroupDetailSuccess(it.msg)
                         }
+                        RxBusCenter.REQUEST_ERROR -> dismissLoading()
                     }
                 })
 
@@ -89,6 +92,7 @@ class GroupDetailActivity : SimpleActivity() {
     }
 
     fun loadGroupDetailSuccess(msg: String) {
+        dismissLoading()
         mGroupDetail = Gson().fromJson<GroupDetailBean>(msg, object : TypeToken<GroupDetailBean>() {}.type)
         tv_name.text = mGroupDetail.name
         tv_threshold.text = mGroupDetail.root.threshold.toString()
@@ -103,20 +107,24 @@ class GroupDetailActivity : SimpleActivity() {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         rl_container.addView(view)
         //元数据
-        mList.clear()
-        mList.addAll(mGroupDetail.metas)
-        mAdapter.setNewData(mList)
+//        mList.clear()
+//        mList.addAll(mGroupDetail.metas)
+        mAdapter.setNewData(/*mList*/mGroupDetail.metas)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 101) {
-            mTreeView.refreshTreeView()
+//            mTreeView.refreshTreeView()
+            mWebView.evaluateJavascript(WebViewApi.getGroupDetail(mGroupName)) {
+                showLoading()
+            }
         }
         if (requestCode == 103) {
             if (resultCode > 0 && data != null) {
-                var metaBean = data.getSerializableExtra("result") as ChooseGetBean.MetasBean
-
+                val metaBean = data.getSerializableExtra("result") as ChooseGetBean.MetasBean
+                mGroupDetail.metas.add(DetailMetas(metaBean.key, metaBean.value, metaBean.creator))
+                mAdapter.notifyDataSetChanged()
             }
         }
     }
