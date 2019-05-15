@@ -136,8 +136,13 @@ private class WebViewCallBack : Any() {
     @JavascriptInterface
     fun parseEvtLinkCallback(s: String) {
         ("parseEvtLinkCallback()  $s").logE()
-        val s1 = handleResult(s) ?: return
-        RxBus.post(MessageEvent(s1, qrcode_type))
+//        val s1 = handleResult(s) ?: return
+        val resultBean = s.toResultBean()
+        if (resultBean.code == 0) {
+            RxBus.post(MessageEvent(resultBean.data.toString(), RxBusCenter.SCAN_RESULT))
+        } else {
+            RxBus.post(MessageEvent(resultBean.data.toString(), qrcode_type))
+        }
     }
 
     @JavascriptInterface

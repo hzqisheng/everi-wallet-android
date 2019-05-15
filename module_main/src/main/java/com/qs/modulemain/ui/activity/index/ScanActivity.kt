@@ -24,6 +24,7 @@ import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
 import com.smallcat.shenhai.mvpbase.extension.logE
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
+import com.smallcat.shenhai.mvpbase.extension.toResultBean
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
@@ -65,6 +66,20 @@ class ScanActivity : SimpleActivity() {
     override fun initData() {
         tvTitle?.text = getString(R.string.scan)
         val rxPermissions = RxPermissions(this)
+
+        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { it ->
+                    when (it.type) {
+                        RxBusCenter.SCAN_RESULT -> {
+                            val intent = Intent(this@ScanActivity, ScanResultActivity::class.java)
+                            intent.putExtra("scanResult", scanResult)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                })
 
         if (intent != null && intent.hasExtra("ScanType")) {
             scanType = intent.getIntExtra("ScanType", 0)
@@ -246,7 +261,7 @@ class ScanActivity : SimpleActivity() {
                 startActivity(intent)
 
 
-            } else if (linkBean.flag == 3){
+            } else if (linkBean.flag == 3) {
                 //通证校验
                 getString(R.string.operation_success).toast()
             }
@@ -294,7 +309,7 @@ class ScanActivity : SimpleActivity() {
     }
 
     private fun showFingerPrintDialog() {
-        confirmPassword(sharedPref.isFinger , supportFragmentManager, object : FingerSuccessCallback() {
+        confirmPassword(sharedPref.isFinger, supportFragmentManager, object : FingerSuccessCallback() {
             override fun onCheckSuccess() {
                 mWebView.evaluateJavascript(WebViewApi.needPrivateKeyResponse(sharedPref.privateKey)) {}
             }

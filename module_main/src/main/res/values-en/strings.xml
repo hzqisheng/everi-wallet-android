@@ -323,7 +323,8 @@
     <string name="please_input_domain_name">Please Input Domain Name</string>
     <string name="group">Group</string>
     <string name="add_group_help">Group names consists of a up of 21 specified characters [0-9, A-Z, a-z.-], and can be assigned to a certain group by realizing the functions similar to the organizational structure in real life, thereby realizing group management of specific assets.</string>
-
+    <string name="scan_result">Scanned Results</string>
+    <string name="scanned_content_of_QR_code">The scanned content of QR code</string>
 
 
 </resources>

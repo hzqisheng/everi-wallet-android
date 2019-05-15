@@ -112,4 +112,7 @@ object RxBusCenter {
 
     //通过name获取阈的详细信息.
     const val DOMAIN_DETAIL = 0x2037
+
+    //通过name获取阈的详细信息.
+    const val SCAN_RESULT = 0x2038
 }

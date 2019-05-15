@@ -325,6 +325,7 @@
     <string name="please_input_domain_name">请输入域的名称</string>
     <string name="group">组</string>
     <string name="add_group_help">组名称由最大21个指定字符[0-9，A-Z，a-z.-]组成，可以通过把权限赋予某个组上，来实现现实中类似于组织架构的功能，从而实现对特定资产的分组管理。</string>
-
+    <string name="scan_result">扫描结果</string>
+    <string name="scanned_content_of_QR_code">已识别到二维码内容</string>
 
 </resources>
