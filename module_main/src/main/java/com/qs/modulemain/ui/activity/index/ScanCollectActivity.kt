@@ -59,11 +59,18 @@ class ScanCollectActivity : SimpleActivity() {
 
             textView6.text = mUseFts.sym_name
 
+            var isHaveIcon = false
             for (meta in mUseFts.metas) {
                 if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                     val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                     iv_img.setImageBitmap(decodedByte)
+                    isHaveIcon = true
                 }
+            }
+            if (!isHaveIcon && (mUseFts?.sym_name == "EVT" || mUseFts?.sym_name == "PEVT")) {
+                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+            } else if (!isHaveIcon) {
+                iv_img.setImageResource(0)
             }
         }
 
@@ -136,12 +143,20 @@ class ScanCollectActivity : SimpleActivity() {
                 mUseFts = data?.getSerializableExtra("data") as ChooseGetBean
 
                 textView6.text = mUseFts.name
-                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+//                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                var isHaveIcon = false
                 for (meta in mUseFts.metas) {
                     if (meta.value.isNotEmpty() && meta.value.contains(",")) {
-                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                        val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
+                                ?: continue
                         iv_img.setImageBitmap(decodedByte)
+                        isHaveIcon = true
                     }
+                }
+                if (!isHaveIcon && (mUseFts?.sym_name == "EVT" || mUseFts?.sym_name == "PEVT")) {
+                    iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                } else if (!isHaveIcon) {
+                    iv_img.setImageResource(0)
                 }
             }
         }

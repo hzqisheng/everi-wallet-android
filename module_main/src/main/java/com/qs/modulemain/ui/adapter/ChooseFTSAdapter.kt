@@ -33,12 +33,19 @@ class ChooseFTSAdapter(data: ArrayList<ChooseGetBean>?) : BaseQuickAdapter<Choos
             e.printStackTrace()
         }
         val bg = viewHolder.getView<ImageView>(R.id.iv_img)
-        bg.setImageResource(R.drawable.icon_fukuan_evt)
+        //bg.setImageResource(R.drawable.icon_fukuan_evt)
+        var isHaveIcon = false
         for (meta in item.metas) {
             if (meta.value.isEmpty()) continue
             if (!meta.value.contains(",")) continue
             val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
             bg.setImageBitmap(decodedByte)
+            isHaveIcon = true
+        }
+        if (!isHaveIcon && (item?.sym_name == "EVT" || item?.sym_name == "PEVT")) {
+            bg.setImageResource(R.drawable.icon_fukuan_evt)
+        } else if (!isHaveIcon) {
+            bg.setImageResource(0)
         }
 
         viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener {

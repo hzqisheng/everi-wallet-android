@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,9 +21,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="7dp"
         android:background="@drawable/shadow_circle"
+        android:gravity="center"
         android:text="@string/please_use_same_wallet_scan"
         android:textColor="@color/color_33"
-        android:gravity="center"
         android:textSize="15sp"
         app:layout_constraintDimensionRatio="H, 5:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_msg"
         app:layout_constraintTop_toBottomOf="@+id/tv_msg"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -84,10 +83,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color_3137"
-        android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintDimensionRatio="H, 6:1"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H, 6:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -96,33 +95,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:checked="true"
             android:button="@null"
-            android:drawablePadding="6dp"
-            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:checked="true"
             android:drawableTop="@drawable/selector_pay_code"
-            android:text="@string/pay_code"/>
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:text="@string/pay_code"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:textSize="12sp" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:background="@color/white"/>
+            android:background="@color/white" />
 
         <RadioButton
             android:id="@+id/rb_sweep_payment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="12sp"
-            android:gravity="center"
             android:button="@null"
-            android:drawablePadding="6dp"
-            android:textColor="@drawable/selector_bottom_view_textcolor"
             android:drawableTop="@drawable/selector_sweep_payment"
-            android:text="@string/sweep_code_payment"/>
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:text="@string/sweep_code_payment"
+            android:textColor="@drawable/selector_bottom_view_textcolor"
+            android:textSize="12sp" />
     </RadioGroup>
 
     <TextView
@@ -162,9 +161,9 @@
             android:layout_height="26dp"
             android:layout_marginStart="38dp"
             android:layout_marginTop="18dp"
-            android:src="@drawable/icon_fukuan_evt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <!--android:src="@drawable/icon_fukuan_evt"-->
 
         <TextView
             android:id="@+id/tv_name"
@@ -193,13 +192,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="12dp"
+            android:text="@string/select_pay"
             android:textColor="@color/color_cc"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            android:text="@string/select_pay"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -209,8 +207,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="28dp"
-        app:layout_constraintDimensionRatio="W, 1:1"
         app:layout_constraintBottom_toTopOf="@id/layout_choose"
+        app:layout_constraintDimensionRatio="W, 1:1"
         app:layout_constraintEnd_toEndOf="@+id/view_bg"
         app:layout_constraintStart_toStartOf="@+id/view_bg"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -221,11 +219,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:gravity="end"
+        android:text="100"
         android:textColor="@color/color_4d7b"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_max_pay"
-        app:layout_constraintTop_toTopOf="@+id/tv_max_pay"
-        android:text="100"
-        />
+        app:layout_constraintTop_toTopOf="@+id/tv_max_pay" />
 
 </android.support.constraint.ConstraintLayout>

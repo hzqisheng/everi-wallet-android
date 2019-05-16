@@ -52,11 +52,18 @@ class RecordActivity : BaseActivity<RecordPresenter>(), RecordView {
         tv_currency.text = data.sym_name + "(" + data.asset.split("S")[1] + ")"
         tv_money.text = data.asset.split(" ")[0] + " " + data.sym_name
 
+        var isHaveIcon = false
         for (meta in data.metas) {
             if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                 val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                 iv_img.setImageBitmap(decodedByte)
+                isHaveIcon = true
             }
+        }
+        if (!isHaveIcon && (data?.sym_name == "EVT" || data?.sym_name == "PEVT")) {
+            iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+        } else if (!isHaveIcon) {
+            iv_img.setImageResource(0)
         }
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)

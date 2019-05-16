@@ -26,13 +26,21 @@ class CollChooseFTSAdapter(data: ArrayList<ChooseGetBean>?) : BaseQuickAdapter<C
         viewHolder.setText(R.id.tv_address, mContext.getString(R.string.count) + " : " + item.total_supply.split(" ")[0]/*+","+mContext.getString(R.string.surplus)+" : "+ DecimalFormat("0."+JING).format(diff)*/)
 
         val bg = viewHolder.getView<ImageView>(R.id.iv_img)
-        bg.setImageResource(R.drawable.icon_fukuan_evt)
+        //bg.setImageResource(R.drawable.icon_fukuan_evt)
+        var isHaveIcon = false
         for (meta in item.metas) {
             if (meta.value.isEmpty()) continue
             if (!meta.value.contains(",")) continue
             val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
             bg.setImageBitmap(decodedByte)
+            isHaveIcon = true
         }
+        if (!isHaveIcon && (item?.sym_name == "EVT" || item?.sym_name == "PEVT")) {
+            bg.setImageResource(R.drawable.icon_fukuan_evt)
+        } else if (!isHaveIcon) {
+            bg.setImageResource(0)
+        }
+
 
         val ivChoose = viewHolder.getView<ImageView>(R.id.iv_choose)
 

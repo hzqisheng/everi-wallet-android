@@ -92,11 +92,18 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         if (bean != null) {
             tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
 
+            var isHaveIcon = false
             for (meta in bean!!.metas) {
                 if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                     val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                     iv_img.setImageBitmap(decodedByte)
+                    isHaveIcon = true
                 }
+            }
+            if (!isHaveIcon && (bean?.sym_name == "EVT" || bean?.sym_name == "PEVT")) {
+                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+            } else if (!isHaveIcon) {
+                iv_img.setImageResource(0)
             }
         }
 
@@ -196,16 +203,25 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
 
                 bean = data.getSerializableExtra("data") as ChooseGetBean
 
-                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+//                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                var isHaveIcon = false
                 if (bean != null) {
                     tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
                     for (meta in bean!!.metas) {
                         if (meta.value.isNotEmpty() && meta.value.contains(",")) {
-                            val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
+                            val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
+                                    ?: continue
                             iv_img.setImageBitmap(decodedByte)
+                            isHaveIcon = true
                         }
                     }
                 }
+                if (!isHaveIcon && (bean?.sym_name == "EVT" || bean?.sym_name == "PEVT")) {
+                    iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                } else if (!isHaveIcon) {
+                    iv_img.setImageResource(0)
+                }
+
                 isChooseSymbolResult = true
                 mWebView.evaluateJavascript(WebViewApi.getUniqueLinkId()) {}
             }

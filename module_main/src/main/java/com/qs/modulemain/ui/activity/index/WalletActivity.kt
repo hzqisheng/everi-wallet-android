@@ -78,7 +78,7 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
                 sharedPref.password = nowList[position].password
                 sharedPref.name = nowList[position].name
                 sharedPref.isFinger = nowList[position].isFinger
-                "Switch Success!".toast()
+                mContext.getString(R.string.switch_success).toast()
                 finish()
             }
         }

@@ -40,12 +40,18 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
             mFtsBean = intent.getSerializableExtra("data") as ChooseGetBean
 
             tv_name.text = mFtsBean!!.sym_name + "(" + mFtsBean!!.asset.split("S")[1] + ")"
-
+            var isHaveIcon = false
             for (meta in mFtsBean!!.metas) {
                 if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                     val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value) ?: continue
                     iv_img.setImageBitmap(decodedByte)
+                    isHaveIcon = true
                 }
+            }
+            if (!isHaveIcon && (mFtsBean?.sym_name == "EVT" || mFtsBean?.sym_name == "PEVT")) {
+                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+            } else if (!isHaveIcon) {
+                iv_img.setImageResource(0)
             }
 
             tv_money.text = mFtsBean!!.asset.split(" ")[0]
@@ -149,13 +155,20 @@ class ScanPayActivity : BaseActivity<ScanPayPresenter>(), ScanPayView {
             if (resultCode == 101) {
                 mFtsBean = data!!.getSerializableExtra("data") as ChooseGetBean
                 tv_name.text = mFtsBean!!.sym_name
-                iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                //iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                var isHaveIcon = false
                 for (meta in mFtsBean!!.metas) {
                     if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                         val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)
                                 ?: continue
                         iv_img.setImageBitmap(decodedByte)
+                        isHaveIcon = true
                     }
+                }
+                if (!isHaveIcon && (mFtsBean?.sym_name == "EVT" || mFtsBean?.sym_name == "PEVT")) {
+                    iv_img.setImageResource(R.drawable.icon_fukuan_evt)
+                } else if (!isHaveIcon) {
+                    iv_img.setImageResource(0)
                 }
 
                 tv_money.text = mFtsBean!!.asset.split(" ")[0]

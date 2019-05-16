@@ -12,10 +12,10 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="18dp"
-        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/tv_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_name" />
+    <!--android:src="@drawable/logo"-->
 
     <TextView
         android:id="@+id/tv_name"

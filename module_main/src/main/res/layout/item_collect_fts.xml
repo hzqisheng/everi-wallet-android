@@ -17,10 +17,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/icon_fukuan_evt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+    <!--android:src="@drawable/icon_fukuan_evt"-->
 
     <TextView
         android:id="@+id/tv_name"

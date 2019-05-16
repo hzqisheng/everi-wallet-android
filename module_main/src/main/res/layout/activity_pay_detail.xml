@@ -61,12 +61,12 @@
         android:id="@+id/iv_img"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:src="@drawable/icon_fukuan_evt"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintEnd_toStartOf="@id/tv_currency"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
+    <!--android:src="@drawable/icon_fukuan_evt"-->
 
     <TextView
         android:id="@+id/tv_currency"
