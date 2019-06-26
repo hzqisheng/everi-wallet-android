@@ -199,6 +199,7 @@
     <string name="password_not_equals">两次输入密码不一致</string>
     <string name="set_max_money">请输入最大金额</string>
     <string name="import_success">创建成功</string>
+    <string name="recovery_success">导入成功</string>
     <string name="create_id">创建身份</string>
     <string name="recover_id">恢复身份</string>
     <string name="create">立即创建</string>
@@ -327,5 +328,7 @@
     <string name="add_group_help">组名称由最大21个指定字符[0-9，A-Z，a-z.-]组成，可以通过把权限赋予某个组上，来实现现实中类似于组织架构的功能，从而实现对特定资产的分组管理。</string>
     <string name="scan_result">扫描结果</string>
     <string name="scanned_content_of_QR_code">已识别到二维码内容</string>
+    <string name="exceed_max_allowd_paid_amount">超过最大允许支付金额</string>
+    <string name="payer_and_payee_is_the_same_one">付款方和收款方不应该是同一个</string>
 
 </resources>

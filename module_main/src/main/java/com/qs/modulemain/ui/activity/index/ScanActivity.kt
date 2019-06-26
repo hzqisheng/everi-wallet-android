@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Vibrator
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.CheckBox
 import android.widget.EditText
@@ -59,6 +60,13 @@ class ScanActivity : SimpleActivity() {
     //付款的币种
     private lateinit var mUseFts: ChooseGetBean
 
+    //最大付款数量
+    private var maxAllowedAmount = 100F
+    //收款id,用于判断付款方和收款方是否是同一个
+    private var sybId = 0L
+    //付款id
+    private var selfSybId = -1L
+
     override val layoutId: Int
         get() = R.layout.activity_scan
 
@@ -83,6 +91,7 @@ class ScanActivity : SimpleActivity() {
 
         if (intent != null && intent.hasExtra("ScanType")) {
             scanType = intent.getIntExtra("ScanType", 0)
+            selfSybId = intent.getLongExtra("selfSybId", -1)
 
             if (scanType == RECE) {
                 mUseFts = intent.getSerializableExtra("data") as ChooseGetBean
@@ -131,6 +140,7 @@ class ScanActivity : SimpleActivity() {
                             RxBusCenter.SYMBOL_DETAIL -> onFTSDetail(it.msg)
                         }
                     })
+
         }
 
 
@@ -190,7 +200,13 @@ class ScanActivity : SimpleActivity() {
         intent = Intent(this, ScanCollectActivity::class.java)
         intent.putExtra("data", bean)
         intent.putExtra("scanResult", scanResult)
+        val decimal = bean.sym.split(",")[0].toDouble()
+        val number = Math.pow(10.0, decimal).toFloat()
+        intent.putExtra("maxAllowedAmount", maxAllowedAmount / number)
+        intent.putExtra("sybId", sybId)
+        intent.putExtra("selfSybId", selfSybId)
         startActivity(intent)
+        finish()
 
     }
 
@@ -214,7 +230,9 @@ class ScanActivity : SimpleActivity() {
         msg.logE()
         var address = ""
         var linkBean = Gson().fromJson(msg, ScanResultLinkeBean::class.java)
-
+        if (linkBean.publicKeys == null) {
+            return
+        }
         if (linkBean.publicKeys.size > 0) {
             address = linkBean.publicKeys[0]
         } else {
@@ -243,15 +261,24 @@ class ScanActivity : SimpleActivity() {
                 var jsonAry = jsonObj.getJSONArray("segments")
 
                 for (i in 0..jsonAry.length() - 1) {
-                    var segment = jsonAry.getJSONObject(i);
-                    if (segment.getInt("typeKey") == 44) {
+                    var segment = jsonAry.getJSONObject(i)
+                    if (segment.getInt("typeKey") == 43) {
+                        maxAllowedAmount = segment.getLong("value").toFloat()
+                    } else if (segment.getInt("typeKey") == 44) {
                         sybid = segment.getLong("value")
+                        sybId = sybid
                         break
                     }
                 }
 
-                mWebView.evaluateJavascript(WebViewApi.getFungibleSymbolDetail(sybid)) {}
+                if (selfSybId == sybId) {
+                    getString(R.string.payer_and_payee_is_the_same_one).toast()
+                    finish()
+                    return
+                }
 
+                mWebView.evaluateJavascript(WebViewApi.getFungibleSymbolDetail(sybid)) {}
+                return
 
             } else if (linkBean.flag == 17) {
                 var intent = Intent(mContext, ScanPayActivity::class.java)

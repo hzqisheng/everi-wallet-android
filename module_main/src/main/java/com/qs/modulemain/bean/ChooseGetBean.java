@@ -27,7 +27,7 @@ public class ChooseGetBean implements Serializable {
      */
 
     private String name;
-    private String sym_name;
+    private String sym_name = "";
     private String sym = "#,";
     private String creator;
     private String create_time;
@@ -36,9 +36,9 @@ public class ChooseGetBean implements Serializable {
     private String total_supply = " ";
     private String current_supply = " ";
     private String address;
-    private String asset;
+    private String asset = " S#";
     private String domain;
-    private List<MetasBean> metas;
+    private List<MetasBean> metas = new ArrayList<>();
     private boolean isChoose = false;
 
     public void addIssueAuthorizersBean(ChooseGetBean.IssueBean.AuthorizersBean authorizersBean) {

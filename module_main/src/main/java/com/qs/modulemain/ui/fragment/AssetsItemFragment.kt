@@ -3,6 +3,7 @@ package com.qs.modulemain.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -68,7 +69,11 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
         val myAssets = mContext.sharedPref.myAssets
         if (!"".equals(myAssets)) {
             val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(myAssets, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
-            firstBean = chooseBean[0]
+            if (chooseBean.isNotEmpty()) {
+                firstBean = chooseBean[0]
+            } else {
+                firstBean = ChooseGetBean()
+            }
             ftsList.clear()
             ftsList.addAll(chooseBean)
         }
@@ -112,9 +117,14 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
         var chooseBean = ArrayList<ChooseGetBean>()
         try {
             chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(msg, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
-            firstBean = chooseBean[0]
+            if (chooseBean.isNotEmpty()) {
+                firstBean = chooseBean[0]
+            } else {
+                firstBean = ChooseGetBean()
+            }
             mContext.sharedPref.myAssets = msg
         } catch (e: Exception) {
+            e.printStackTrace()
             "数据为空".logE()
         }
 

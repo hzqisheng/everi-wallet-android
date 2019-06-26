@@ -188,7 +188,7 @@
             android:singleLine="true"
             android:textColor="@color/color_68"
             android:textColorHint="@color/color_bb"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -214,14 +214,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:background="@null"
             android:gravity="clip_vertical"
             android:hint="@string/enter_remarks"
             android:singleLine="true"
             android:textColor="@color/color_68"
             android:textColorHint="@color/color_bb"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
     </LinearLayout>
 
     <TextView

@@ -78,7 +78,7 @@ class RecoveryActivity : SimpleActivity() {
         mContext.sharedPref.privateKey = baseBean.privateKey
         mContext.sharedPref.password = baseBean.password
         mContext.sharedPref.mnemoinc = baseBean.mnemoinc
-        getString(R.string.import_success).toast()
+        getString(R.string.recovery_success).toast()
         finish()
         var intent = Intent(mContext, MainActivity::class.java)
         startActivity(intent)

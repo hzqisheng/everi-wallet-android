@@ -125,7 +125,9 @@ class WalletActivity : BaseActivity<WalletPresenter>(), WalletView {
                 sharedPref.password = baseBean.password
                 sharedPref.name = baseBean.name
                 sharedPref.isFinger = baseBean.isFinger
-                getString(R.string.switch_success).toast()
+                runOnUiThread {
+                    getString(R.string.switch_success).toast()
+                }
                 finish()
             }
         }

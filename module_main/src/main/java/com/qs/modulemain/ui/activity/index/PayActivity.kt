@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.TextView
@@ -11,6 +12,7 @@ import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.bean.PayBean
+import com.qs.modulemain.bean.ScanResultLinkeBean
 import com.qs.modulemain.bean.TransactionResult
 import com.qs.modulemain.presenter.PayPresenter
 import com.qs.modulemain.ui.fragment.AssetsItemFragment
@@ -25,10 +27,12 @@ import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.utils.Base64Utils
+import com.smallcat.shenhai.mvpbase.utils.bitmapToBase64
 import com.smallcat.shenhai.mvpbase.utils.qrcode_type
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pay.*
+import org.json.JSONObject
 
 /** 付款 **/
 class PayActivity : BaseActivity<PayPresenter>(), PayView {
@@ -38,6 +42,9 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
     private var maxMoney: Float = 0f
     private var bean: ChooseGetBean? = null
     private var isChooseSymbolResult = false
+
+    //自己的付款id
+    private var selfSybId = -1L
 
     override fun initPresenter() {
         mPresenter = PayPresenter(mContext)
@@ -80,6 +87,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
         rb_sweep_payment.setOnClickListener {
             val intent = Intent(this@PayActivity, ScanActivity::class.java)
             intent.putExtra("ScanType", 10001)
+            intent.putExtra("selfSybId", selfSybId)
             startActivity(intent)
         }
 
@@ -91,6 +99,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
 
         if (bean != null) {
             tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
+            selfSybId = bean!!.asset.split("S")[1].substring(1).toLong()
 
             var isHaveIcon = false
             for (meta in bean!!.metas) {
@@ -207,6 +216,7 @@ class PayActivity : BaseActivity<PayPresenter>(), PayView {
                 var isHaveIcon = false
                 if (bean != null) {
                     tv_name.text = bean!!.sym_name + "(" + bean!!.asset.split("S")[1] + ")"
+                    selfSybId = bean!!.asset.split("S")[1].substring(1).toLong()
                     for (meta in bean!!.metas) {
                         if (meta.value.isNotEmpty() && meta.value.contains(",")) {
                             val decodedByte: Bitmap? = Base64Utils.base64ToBitmap(meta.value)

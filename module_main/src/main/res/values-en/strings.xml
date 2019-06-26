@@ -187,6 +187,7 @@
     <string name="password_not_equals">Two inconsistent passwords</string>
     <string name="set_max_money">Please enter the maximum amount</string>
     <string name="import_success">Successful Create</string>
+    <string name="recovery_success">Import success</string>
     <string name="create_id">Create identity</string>
     <string name="recover_id">Restore identity</string>
     <string name="no_function">This function is not yet open</string>
@@ -325,6 +326,8 @@
     <string name="add_group_help">Group names consists of a up of 21 specified characters [0-9, A-Z, a-z.-], and can be assigned to a certain group by realizing the functions similar to the organizational structure in real life, thereby realizing group management of specific assets.</string>
     <string name="scan_result">Scanned Results</string>
     <string name="scanned_content_of_QR_code">The scanned content of QR code</string>
+    <string name="exceed_max_allowd_paid_amount">Exceed max allowd paid amount</string>
+    <string name="payer_and_payee_is_the_same_one">Payer and payee shouldn\'t be the same one</string>
 
 
 </resources>

@@ -26,9 +26,16 @@ import java.text.DecimalFormat
 class ScanCollectActivity : SimpleActivity() {
 
     private lateinit var mUseFts: ChooseGetBean
-    private var sybid = 0
+    //    private var sybid = 0
     private var isCollect = false
     private var scanResult: String = ""
+
+    //最大付款数量
+    private var maxAllowedAmount = 100F
+    //收款id,用于判断付款方和收款方是否相同情况
+    private var sybId = 0L
+    //付款id
+    private var selfSybId = -1L
 
     override val layoutId: Int
         get() = R.layout.activity_scan_collect
@@ -79,7 +86,9 @@ class ScanCollectActivity : SimpleActivity() {
             scanResult = intent.getStringExtra("scanResult")
         }
 
-
+        maxAllowedAmount = intent.getFloatExtra("maxAllowedAmount", 100F)
+        sybId = intent.getLongExtra("sybId", 0L)
+        selfSybId = intent.getLongExtra("selfSybId", -1L)
 
         tv_sure.setOnClickListener {
 
@@ -97,6 +106,15 @@ class ScanCollectActivity : SimpleActivity() {
 
                 //收款
                 var num = et_pwd.text.toString()
+
+                if (num.toFloat() > maxAllowedAmount) {
+                    getString(R.string.exceed_max_allowd_paid_amount).toast()
+                    return@setOnClickListener
+                }
+                if (selfSybId == sybId) {
+                    getString(R.string.payer_and_payee_is_the_same_one).toast()
+                    return@setOnClickListener
+                }
 
                 var JING = ""
                 for (i in 0..mUseFts!!.sym.split(",")[0].toInt() - 1) {
