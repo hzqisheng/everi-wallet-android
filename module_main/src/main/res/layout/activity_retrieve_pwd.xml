@@ -31,7 +31,6 @@
             android:background="@drawable/shape_line_3_bb"
             android:layout_margin="14dp"
             android:paddingStart="16dp"
-            android:inputType="textPassword"
             android:paddingEnd="12dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

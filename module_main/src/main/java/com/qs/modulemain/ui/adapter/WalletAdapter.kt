@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.qs.modulemain.R
 import com.qs.modulemain.ui.activity.index.WalletDetailActivity
+import com.qs.modulemain.ui.activity.index.WalletDetailImportActivity
 import com.smallcat.shenhai.mvpbase.extension.getResourceColor
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
@@ -42,7 +43,7 @@ class WalletAdapter(data: List<BaseData>?) : BaseQuickAdapter<BaseData, BaseView
         }
 
         viewHolder.getView<ImageView>(R.id.iv_more).setOnClickListener {
-            Intent(mContext, WalletDetailActivity::class.java).apply {
+            Intent(mContext, WalletDetailImportActivity::class.java).apply {
                 putExtra("data", item.id)
                 mContext.startActivity(this)
             }

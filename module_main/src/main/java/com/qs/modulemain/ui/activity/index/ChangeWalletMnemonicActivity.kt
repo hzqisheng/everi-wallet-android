@@ -4,25 +4,31 @@ import android.support.design.widget.TabLayout
 import android.util.TypedValue
 import android.widget.TextView
 import com.qs.modulemain.R
-import com.qs.modulemain.ui.adapter.WalletFragAdapter
+import com.qs.modulemain.ui.adapter.WalletFragChangeAdapter
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import kotlinx.android.synthetic.main.activity_import_wallet_mnemonic.*
+import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import kotlinx.android.synthetic.main.activity_change_wallet_mnemonic.*
 
-class ImportWalletMnemonicActivity : SimpleActivity() {
+class ChangeWalletMnemonicActivity : SimpleActivity() {
 
-    private lateinit var mAdapter: WalletFragAdapter
+    private lateinit var mAdapter: WalletFragChangeAdapter
     override val layoutId: Int
-        get() = R.layout.activity_import_wallet_mnemonic
+        get() = R.layout.activity_change_wallet_mnemonic
+
+    private lateinit var mWalletBean: BaseData
 
     override fun initData() {
         tvTitle?.text = getString(R.string.wallet_import)
 
-        mAdapter = WalletFragAdapter(supportFragmentManager, mContext)
+        //获取数据
+        mWalletBean = intent.getSerializableExtra("data") as BaseData
+
+        mAdapter = WalletFragChangeAdapter(supportFragmentManager, mContext, mWalletBean)
         view_pager.adapter = mAdapter
         view_pager.offscreenPageLimit = 1
         tab_layout.setupWithViewPager(view_pager)
 
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
             }
 
@@ -48,6 +54,5 @@ class ImportWalletMnemonicActivity : SimpleActivity() {
             tabView?.setTextSize(TypedValue.COMPLEX_UNIT_PX, mContext.resources.getDimensionPixelSize(R.dimen.sp_14).toFloat())
         }
     }
-
 
 }

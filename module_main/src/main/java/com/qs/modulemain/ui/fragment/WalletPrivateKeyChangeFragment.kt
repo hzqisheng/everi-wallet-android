@@ -3,6 +3,7 @@ package com.qs.modulemain.ui.fragment
 
 import android.content.ContentValues
 import android.content.Intent
+import android.os.Bundle
 import android.os.Looper
 import android.text.Html
 import com.qs.modulemain.R
@@ -22,8 +23,11 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_wallet_mnemonic.*
 import org.litepal.crud.DataSupport
 
+private const val ARG_PARAM1 = "param1"
 
-class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwdView {
+class WalletPrivateKeyChangeFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwdView {
+
+    private lateinit var mWalletBean: BaseData
 
     override fun initPresenter() {
         mPresenter = RetrievePwdPresenter(mContext)
@@ -33,6 +37,10 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
 
     override fun initData() {
         et_import.hint = getString(R.string.please_input_private_key_content)
+        et_new_pwd.hint = getString(R.string.new_pwd)
+        et_new_pwd_confirm.hint = getString(R.string.confirm_new_pwd)
+
+        mWalletBean = arguments?.getSerializable(ARG_PARAM1) as BaseData
 
         val str = getString(R.string.retrieve_pwd_msg)
         val s = "<font color=\"#3F7DEE\">${getString(R.string.Be_careful)}</font>$str"
@@ -70,15 +78,18 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
-            val find = DataSupport.where("privateKey = ?", et_import.text.toString()).find(BaseData::class.java)
-            if (find.isNotEmpty()) {
-                mActivity.runOnUiThread {
-                    getString(R.string.private_key_exist).toast()
+            if (mWalletBean.privateKey == privateKey) {
+                mWalletBean.password = oldPwd
+                if (mWalletBean.update(mWalletBean.id.toLong()) > 0) {
+                    "Success".toast()
+                    if (mContext.sharedPref.publicKey == mWalletBean.publicKey) {
+                        mContext.sharedPref.password = mWalletBean.password
+                    }
+                    mActivity.finish()
+                } else {
+                    "Falied".toast()
                 }
-                return@setOnClickListener
             }
-
-            mWebView.evaluateJavascript(WebViewApi.isValidPrivateKey(privateKey), null)
         }
     }
 
@@ -120,5 +131,14 @@ class WalletPrivateKeyFragment : BaseFragment<RetrievePwdPresenter>(), RetrieveP
         startActivity(intent)
     }
 
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: BaseData) =
+                WalletPrivateKeyChangeFragment().apply {
+                    arguments = Bundle().apply {
+                        putSerializable(ARG_PARAM1, param1)
+                    }
+                }
+    }
 
 }

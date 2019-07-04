@@ -141,10 +141,10 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
             firstBean = chooseBean[0]
             ftsList.clear()
             ftsList.addAll(chooseBean)
-            ftsAdapter.notifyDataSetChanged()
+            ftsAdapter?.notifyDataSetChanged()
         } else {
             ftsList.clear()
-            ftsAdapter.notifyDataSetChanged()
+            ftsAdapter?.notifyDataSetChanged()
         }
     }
 

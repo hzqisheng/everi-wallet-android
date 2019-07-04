@@ -13,6 +13,7 @@ import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.activity_wallet.*
 import org.litepal.crud.DataSupport
 import android.content.ContentValues
+import android.os.Looper
 import com.smallcat.shenhai.mvpbase.extension.*
 import com.smallcat.shenhai.mvpbase.utils.addClipboard
 

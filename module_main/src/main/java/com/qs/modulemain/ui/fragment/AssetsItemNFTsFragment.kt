@@ -2,6 +2,7 @@ package com.qs.modulemain.ui.fragment
 
 
 import android.content.Intent
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
@@ -36,7 +37,7 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser && nFTsAdapter != null) {
+        if (isVisibleToUser /*&& nFTsAdapter != null*/) {
             lastMY_NFTS = RxBusCenter.MY_NFTS
             mWebView.evaluateJavascript(WebViewApi.getOwnedTokens(mContext.sharedPref.publicKey), null)
         }

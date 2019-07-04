@@ -2,6 +2,7 @@ package com.qs.modulemain.ui.fragment
 
 
 import android.content.Intent
+import android.os.Looper
 import android.text.Html
 import com.google.gson.Gson
 import com.qs.modulemain.R
@@ -17,6 +18,8 @@ import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
 import kotlinx.android.synthetic.main.fragment_wallet_mnemonic.*
 import org.litepal.crud.DataSupport
+import org.litepal.crud.callback.FindCallback
+import org.litepal.crud.callback.FindMultiCallback
 
 
 class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwdView {
@@ -52,9 +55,12 @@ class WalletMnemonicFragment : BaseFragment<RetrievePwdPresenter>(), RetrievePwd
                 getString(R.string.password_not_equals).toast()
                 return@setOnClickListener
             }
-            val find = DataSupport.where("privateKey = ?", et_import.text.toString()).find(BaseData::class.java)
+            //val find = DataSupport.where("privateKey = ?", et_import.text.toString()).find(BaseData::class.java)
+            val find = DataSupport.where("mnemoinc = ?", et_import.text.toString()).find(BaseData::class.java)
             if (find.isNotEmpty()) {
-                getString(R.string.private_key_exist).toast()
+                mActivity.runOnUiThread {
+                    getString(R.string.private_key_exist).toast()
+                }
                 return@setOnClickListener
             }
 

@@ -1,6 +1,7 @@
 package com.qs.modulemain.ui.activity.index
 
 import android.text.Html
+import android.util.Log
 import com.qs.modulemain.R
 import com.qs.modulemain.presenter.RetrievePwdPresenter
 import com.qs.modulemain.view.RetrievePwdView
@@ -35,18 +36,23 @@ class RetrievePwdActivity : BaseActivity<RetrievePwdPresenter>(), RetrievePwdVie
         }
 
 
-        var memo = et_import.text.toString()
-
         tvNext.setOnClickListener {
+            val memo = et_import.text.toString()
+            if (et_new_pwd.text.toString().length < 8) {
+                getString(R.string.Password_must_not_be_less_than_8_bits).toast()
+                return@setOnClickListener
+            }
+            if (et_new_pwd.text.toString() != et_new_pwd_confirm.text.toString()) {
+                getString(R.string.password_not_equals).toast()
+                return@setOnClickListener
+            }
             if (mWalletBean.mnemoinc == memo) {
-                if (et_new_pwd.text.toString() != et_new_pwd_confirm.text.toString()) {
-                    getString(R.string.password_not_equals).toast()
-                    return@setOnClickListener
-                }
                 mWalletBean.password = et_new_pwd.text.toString()
                 if (mWalletBean.update(mWalletBean.id.toLong()) > 0) {
                     "Success".toast()
-                    sharedPref.password = mWalletBean.password
+                    if (sharedPref.publicKey == mWalletBean.publicKey) {
+                        sharedPref.password = mWalletBean.password
+                    }
                     finish()
                 } else {
                     "Falied".toast()
