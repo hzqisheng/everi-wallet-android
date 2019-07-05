@@ -139,7 +139,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
             tvSure.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_VIEW
-                intent.data = Uri.parse(ApiConfig.SHARE_URL)
+                intent.data = Uri.parse(bean.androidUploadUrl/*ApiConfig.SHARE_URL*/)
                 startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)))
             }
             if (bean.isAndroidForceUpdate) {

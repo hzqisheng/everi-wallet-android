@@ -62,7 +62,7 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
             tvSure.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_VIEW
-                intent.data = Uri.parse(ApiConfig.SHARE_URL)
+                intent.data = Uri.parse(bean.androidUploadUrl/*ApiConfig.SHARE_URL*/)
                 startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)))
             }
             if (bean.isAndroidForceUpdate) {
@@ -73,7 +73,7 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
             dialog!!.setCanceledOnTouchOutside(false)
             dialog!!.setCancelable(false)
             dialog!!.show()
-        } else{
+        } else {
             getString(R.string.latest_version).toast()
         }
     }

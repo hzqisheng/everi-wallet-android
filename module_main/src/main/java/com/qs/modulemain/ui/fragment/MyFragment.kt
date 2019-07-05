@@ -3,8 +3,10 @@ package com.qs.modulemain.ui.fragment
 
 import android.content.Intent
 import android.view.View
+import com.google.gson.Gson
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterCenter
+import com.qs.modulemain.bean.VersionBean
 import com.qs.modulemain.presenter.MyPresenter
 import com.qs.modulemain.ui.activity.index.CreateWalletIdIndex
 import com.qs.modulemain.ui.activity.my.AboutUsActivity
@@ -18,8 +20,14 @@ import com.smallcat.shenhai.mvpbase.base.BaseFragment
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.extension.sharedPref
 import com.smallcat.shenhai.mvpbase.extension.start
+import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.bean.BaseData
+import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
+import com.smallcat.shenhai.mvpbase.model.helper.RxBus
+import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.http.ApiConfig
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_my.*
 import org.litepal.crud.DataSupport
 
@@ -41,6 +49,14 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         tv_share.setOnClickListener(this)
         tv_about_us.setOnClickListener(this)
         tv_login_out.setOnClickListener(this)
+        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    when (it.type) {
+                        RxBusCenter.CHECK_VERSION -> checkSuccess(it.msg)
+                    }
+                })
     }
 
     /**
@@ -53,7 +69,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
             R.id.tv_add_community -> mContext.start(JoinCommunitiesActivity::class.java)
             R.id.tv_setting -> mContext.start(SettingActivity::class.java)
             R.id.tv_help -> mContext.start(HelpCenterActivity::class.java)
-            R.id.tv_share -> share()
+            R.id.tv_share -> mWebView.evaluateJavascript(WebViewApi.getAPPVersion(), null)
             R.id.tv_about_us -> mContext.start(AboutUsActivity::class.java)
             R.id.tv_login_out -> {
                 showFingerPrintDialog()
@@ -61,11 +77,13 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         }
     }
 
-    private fun share() {
+
+    private fun checkSuccess(msg: String) {
+        val bean = Gson().fromJson(msg, VersionBean::class.java)
         Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_SUBJECT, "MyEVT")
-            putExtra(Intent.EXTRA_TEXT, ApiConfig.SHARE_URL)
+            putExtra(Intent.EXTRA_TEXT, bean.androidUploadUrl /*ApiConfig.SHARE_URL*/)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent.createChooser(this, "分享到"))
         }
@@ -79,7 +97,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
                 mContext.sharedPref.password = ""
                 mContext.sharedPref.name = ""
                 mContext.sharedPref.mnemoinc = ""
-                mContext.sharedPref.isFinger= 0
+                mContext.sharedPref.isFinger = 0
 
                 DataSupport.deleteAll(BaseData::class.java)
                 App.getInstance().finishAllActivity()
