@@ -46,6 +46,7 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
     @SuppressLint("SetTextI18n")
     override fun checkSuccess(msg: String) {
         val bean = Gson().fromJson(msg, VersionBean::class.java)
+        ApiConfig.shareUrl = bean.androidUploadUrl
         if (getVersionName(mContext) != bean.androidVersion) {
             if (dialog == null) {
                 dialog = Dialog(mContext, R.style.CustomDialog)
@@ -54,10 +55,15 @@ class AboutUsActivity : BaseActivity<AboutUsPresenter>(), AboutUsView {
             val tvMsg = view.findViewById<TextView>(R.id.tv_msg)
             val tvSure = view.findViewById<TextView>(R.id.tv_download)
             val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+//            if (LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA) {
+//                tvMsg.text = "系统检测到当前的最新版本为${bean.androidVersion}，是否下载更新?"
+//            } else {
+//                tvMsg.text = "The latest version is ${bean.androidVersion} and whether to download the update or not？"
+//            }
             if (LocalManageUtil.getSetLanguageLocale(this) == Locale.CHINA) {
-                tvMsg.text = "系统检测到当前的最新版本为${bean.androidVersion}，是否下载更新?"
+                tvMsg.text = bean.androidChUploadMessage
             } else {
-                tvMsg.text = "The latest version is ${bean.androidVersion} and whether to download the update or not？"
+                tvMsg.text = bean.androidEnUploadMessage
             }
             tvSure.setOnClickListener {
                 val intent = Intent()

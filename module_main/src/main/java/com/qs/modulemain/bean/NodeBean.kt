@@ -14,7 +14,11 @@ data class HelpCenterBean(
 data class VersionBean(
     val androidVersion: String,
     val androidUploadUrl: String,
+    val androidEnUploadMessage: String,
+    val androidChUploadMessage: String,
     val iOSVersion: String,
     val iOSUploadUrl: String,
+    val iOSEnUploadMessage: String,
+    val iOSChUploadMessage: String,
     val isAndroidForceUpdate: Boolean
 )

@@ -49,14 +49,6 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         tv_share.setOnClickListener(this)
         tv_about_us.setOnClickListener(this)
         tv_login_out.setOnClickListener(this)
-        addSubscribe(RxBus.toObservable(MessageEvent::class.java)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    when (it.type) {
-                        RxBusCenter.CHECK_VERSION -> checkSuccess(it.msg)
-                    }
-                })
     }
 
     /**
@@ -69,7 +61,7 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
             R.id.tv_add_community -> mContext.start(JoinCommunitiesActivity::class.java)
             R.id.tv_setting -> mContext.start(SettingActivity::class.java)
             R.id.tv_help -> mContext.start(HelpCenterActivity::class.java)
-            R.id.tv_share -> mWebView.evaluateJavascript(WebViewApi.getAPPVersion(), null)
+            R.id.tv_share -> share()
             R.id.tv_about_us -> mContext.start(AboutUsActivity::class.java)
             R.id.tv_login_out -> {
                 showFingerPrintDialog()
@@ -77,13 +69,11 @@ class MyFragment : BaseFragment<MyPresenter>(), MyView, View.OnClickListener {
         }
     }
 
-
-    private fun checkSuccess(msg: String) {
-        val bean = Gson().fromJson(msg, VersionBean::class.java)
+    private fun share() {
         Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_SUBJECT, "MyEVT")
-            putExtra(Intent.EXTRA_TEXT, bean.androidUploadUrl /*ApiConfig.SHARE_URL*/)
+            putExtra(Intent.EXTRA_TEXT, ApiConfig.shareUrl /*ApiConfig.SHARE_URL*/)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(Intent.createChooser(this, "分享到"))
         }
