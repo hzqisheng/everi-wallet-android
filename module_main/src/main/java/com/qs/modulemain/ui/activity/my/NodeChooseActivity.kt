@@ -227,6 +227,13 @@ class NodeChooseActivity : SimpleActivity() {
 
     private fun addNode(s1: Int, s2: String): NodeBean {
         if (s1 <= 15) {
+            if (s1 == 14) {
+                if (sharedPref.chooseNode == "https://mainnet$s1.evtnd.com") {
+                    mChoosePos = s1 - 1
+                    return NodeBean("https://mainnet$s1.evtnd.com", "MainNet$s2", true)
+                }
+                return NodeBean("https://mainnet$s1.evtnd.com", "MainNet$s2")
+            }
             if (sharedPref.chooseNode == "https://mainnet$s1.everitoken.io") {
                 mChoosePos = s1 - 1
                 return NodeBean("https://mainnet$s1.everitoken.io", "MainNet$s2", true)

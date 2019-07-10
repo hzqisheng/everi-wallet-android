@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
             }
         }
         Handler().postDelayed({
-            //            if (sharedPref.chooseNode != "mainnet14.everitoken.io") {
+            //            if (sharedPref.chooseNode != "mainnet14.evtnd.com") {
 //                val map = HashMap<String, Any>()
 //                map["host"] = sharedPref.chooseNode
 //                map["port"] = 443
