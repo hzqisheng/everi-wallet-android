@@ -121,13 +121,13 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 return@setOnClickListener
             }
 
-            if (et_issue_number.text.toString().toLong() * et_decimals.text.toString().toLong() > Int.MAX_VALUE) {
+            if ((et_issue_number.text.toString().toLong() * et_decimals.text.toString().toLong()).toString().length > 19) {
                 getString(R.string.exceed_max_allowd_issue_count).toast()
                 return@setOnClickListener
             }
 
             val addBean = AddFTSBean.create(et_name.text.toString(), et_full_name.text.toString(), et_code.text.toString(),
-                    sharedPref.publicKey, et_issue_number.text.toString().toInt(), et_decimals.text.toString().toInt(),
+                    sharedPref.publicKey, et_issue_number.text.toString()/*.toInt()*/, et_decimals.text.toString().toInt(),
                     tv_permission.selectedItemPosition, "")
             val addBeanJson = Gson().toJson(addBean)
             addBeanJson.logE()

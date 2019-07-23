@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class AddFTSBean {
 
-    public static AddFTSBean create(String symbol,String allName, String symbol_id, String publicKey, int count, int jingdu, int power,String base64Image) {
+    public static AddFTSBean create(String symbol, String allName, String symbol_id, String publicKey, /*int*/String count, int jingdu, int power, String base64Image) {
         AddFTSBean addFTSBean = new AddFTSBean();
         ManageBean manageBean = new ManageBean();
         List<ManageBean.AuthorizersBean> authorizersBeanList = new ArrayList<>();
 
-        if(power == 1) {
+        if (power == 1) {
             ManageBean.AuthorizersBean authorizersBean = new ManageBean.AuthorizersBean();
             authorizersBean.ref = "[A] " + publicKey;
             authorizersBeanList.add(authorizersBean);
@@ -45,7 +45,7 @@ public class AddFTSBean {
         }
         addFTSBean.total_supply = jCount + " S#" + symbol_id;
 
-        if(base64Image == null || !base64Image.isEmpty()) {
+        if (base64Image == null || !base64Image.isEmpty()) {
             List<MetasBean> metasBeans = new ArrayList<>();
             MetasBean metasBean = new MetasBean();
             metasBean.key = "symbol-icon";
@@ -104,11 +104,11 @@ public class AddFTSBean {
         this.sym_name = sym_name;
     }
 
-    public void setMetas(List<MetasBean> metas){
+    public void setMetas(List<MetasBean> metas) {
         this.metas = metas;
     }
 
-    public List<MetasBean> getMetas(){
+    public List<MetasBean> getMetas() {
         return metas;
     }
 
@@ -272,7 +272,7 @@ public class AddFTSBean {
         }
     }
 
-    public static class MetasBean{
+    public static class MetasBean {
 
         /**
          * key : symbol-icon
