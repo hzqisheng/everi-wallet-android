@@ -330,5 +330,6 @@
     <string name="scanned_content_of_QR_code">已识别到二维码内容</string>
     <string name="exceed_max_allowd_paid_amount">超过最大允许支付金额</string>
     <string name="payer_and_payee_is_the_same_one">付款方和收款方不应该是同一个</string>
+    <string name="exceed_max_allowd_issue_count">发行总量已超出上限。</string>
 
 </resources>

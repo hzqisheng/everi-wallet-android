@@ -328,6 +328,7 @@
     <string name="scanned_content_of_QR_code">The scanned content of QR code</string>
     <string name="exceed_max_allowd_paid_amount">Exceed max allowd paid amount</string>
     <string name="payer_and_payee_is_the_same_one">Payer and payee shouldn\'t be the same one</string>
+    <string name="exceed_max_allowd_issue_count">Total Supply has exceeded the ceilin.</string>
 
 
 </resources>

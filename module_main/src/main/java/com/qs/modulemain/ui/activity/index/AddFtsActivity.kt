@@ -106,10 +106,10 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                 return@setOnClickListener
             }
 
-            if (et_issue_number.text.length + et_decimals.text.toString().toInt() > 18) {
-                getString(R.string.can_not_biger_18).toast()
-                return@setOnClickListener
-            }
+//            if (et_issue_number.text.length + et_decimals.text.toString().toInt() > 18) {
+//                getString(R.string.can_not_biger_18).toast()
+//                return@setOnClickListener
+//            }
 
             if (et_code.text.toString().toIntOrNull() == null) {
                 getString(R.string.symbol_id_too_long).toast()
@@ -118,6 +118,11 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
 
             if (base64Image == "") {
                 getString(R.string.Upload_icon).toast()
+                return@setOnClickListener
+            }
+
+            if (et_issue_number.text.toString().toLong() * et_decimals.text.toString().toLong() > Int.MAX_VALUE) {
+                getString(R.string.exceed_max_allowd_issue_count).toast()
                 return@setOnClickListener
             }
 
