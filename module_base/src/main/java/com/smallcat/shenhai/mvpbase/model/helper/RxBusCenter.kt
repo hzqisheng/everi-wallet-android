@@ -115,4 +115,10 @@ object RxBusCenter {
 
     //通过name获取阈的详细信息.
     const val SCAN_RESULT = 0x2038
+
+    //转移NFT
+    const val TRANSFER_NFT = 0x2039
+
+    //销毁NFT
+    const val DESTROY_NFT = 0x2040
 }

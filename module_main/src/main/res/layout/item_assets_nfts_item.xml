@@ -34,6 +34,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="EOS5fKva...UBt7gBagC" />
 
+    <View
+        android:id="@+id/v_transfer"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tv_name"
+        app:layout_constraintRight_toLeftOf="@+id/iv_pay"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/iv_pay"
         android:layout_width="wrap_content"

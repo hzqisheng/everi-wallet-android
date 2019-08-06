@@ -136,7 +136,7 @@ class AssetsItemFragment : BaseFragment<AssetsItemPresenter>(), AssetsItemView {
     override fun loadFTsError(msg: String) {
         swipe_refresh.isRefreshing = false
         val myAssets = mContext.sharedPref.myAssets
-        if (!"".equals(myAssets)) {
+        if (!"".equals(myAssets) && !"[]".equals(myAssets)) {
             val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(myAssets, object : TypeToken<java.util.ArrayList<ChooseGetBean>>() {}.type)
             firstBean = chooseBean[0]
             ftsList.clear()

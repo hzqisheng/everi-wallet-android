@@ -10,6 +10,7 @@ import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.presenter.AssetsItemNFTsPresenter
 import com.qs.modulemain.ui.activity.index.NFTsDetailActivity
 import com.qs.modulemain.ui.activity.index.NFTsPayActivity
+import com.qs.modulemain.ui.activity.index.TransferLogActivity
 import com.qs.modulemain.ui.adapter.AssetsNFtsAdapter
 import com.qs.modulemain.util.DataUtils
 import com.qs.modulemain.util.confirmPassword
@@ -60,8 +61,16 @@ class AssetsItemNFTsFragment : BaseFragment<AssetsItemNFTsPresenter>(), AssetsIt
                 startActivity(this)
             }
         }
-        nFTsAdapter?.setOnItemChildClickListener { _, _, position ->
-            showFingerPrintDialog(position)
+        nFTsAdapter?.setOnItemChildClickListener { _, view, position ->
+            if (view.id == R.id.v_transfer) {
+                Intent(mActivity, TransferLogActivity::class.java).apply {
+                    putExtra("domain", nFTsList[position].domain)
+                    putExtra("token", nFTsList[position].name)
+                    startActivity(this)
+                }
+            } else if (view.id == R.id.iv_pay) {
+                showFingerPrintDialog(position)
+            }
         }
         nFTsAdapter?.emptyView = DataUtils.getEmptyView(mContext, getString(R.string.no_nfts_now))
         rv_list.adapter = nFTsAdapter

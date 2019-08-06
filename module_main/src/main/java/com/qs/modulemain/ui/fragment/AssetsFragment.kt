@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.qs.modulemain.R
 import com.qs.modulemain.bean.ChooseGetBean
 import com.qs.modulemain.ui.activity.index.*
@@ -22,6 +24,7 @@ import com.smallcat.shenhai.mvpbase.extension.start
 import com.smallcat.shenhai.mvpbase.extension.toast
 import com.smallcat.shenhai.mvpbase.utils.addClipboard
 import kotlinx.android.synthetic.main.fragment_assets.*
+import java.util.ArrayList
 
 
 class AssetsFragment : SimpleFragment(), View.OnClickListener {
@@ -149,7 +152,19 @@ class AssetsFragment : SimpleFragment(), View.OnClickListener {
                 intent.putExtra("ScanType", 10001)
                 startActivity(intent)
             }
-            R.id.tv_pay -> showFingerPrintDialog(AssetsItemFragment.firstBean)
+            R.id.tv_pay -> {
+                val myAssets = mContext.sharedPref.myAssets
+                if ("" != myAssets) {
+                    val chooseBean = Gson().fromJson<java.util.ArrayList<ChooseGetBean>>(myAssets, object : TypeToken<ArrayList<ChooseGetBean>>() {}.type)
+                    if (chooseBean.isNotEmpty()) {
+                        showFingerPrintDialog(AssetsItemFragment.firstBean)
+                    } else {
+                        getString(R.string.no_fts_now).toast()
+                    }
+                } else {
+                    getString(R.string.no_fts_now).toast()
+                }
+            }
             R.id.tv_receive -> mContext.start(CollectActivity::class.java)
             R.id.tv_publish -> showIssueDialog()
         }

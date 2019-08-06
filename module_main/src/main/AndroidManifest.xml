@@ -15,6 +15,9 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.index.TransferNftAckActivity"></activity>
+        <activity android:name=".ui.activity.index.TransferNftActivity" />
+        <activity android:name=".ui.activity.index.TransferLogActivity" />
         <activity android:name=".ui.activity.index.ScanResultActivity" />
         <activity android:name=".ui.activity.manage.DomainDetailActivity" />
         <activity android:name=".ui.activity.manage.AddGroupActivity" />
@@ -107,7 +110,7 @@
         </provider>
 
         <activity android:name=".ui.activity.index.WalletDetailImportActivity" />
-        <activity android:name=".ui.activity.index.ChangeWalletMnemonicActivity"></activity>
+        <activity android:name=".ui.activity.index.ChangeWalletMnemonicActivity" />
     </application>
 
 </manifest>

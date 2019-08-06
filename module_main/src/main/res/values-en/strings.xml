@@ -329,6 +329,12 @@
     <string name="exceed_max_allowd_paid_amount">Exceed max allowd paid amount</string>
     <string name="payer_and_payee_is_the_same_one">Payer and payee shouldn\'t be the same one</string>
     <string name="exceed_max_allowd_issue_count">Total Supply has exceeded the ceilin.</string>
-
+    <string name="transfer_log">Transfer Log</string>
+    <string name="destroy">Destroy</string>
+    <string name="transfer_time">Transfer Time:</string>
+    <string name="transfer_to">Transfer to:</string>
+    <string name="no_record">No Records Now</string>
+    <string name="confirm_transform">Confirm Transfer</string>
+    <string name="destroy_success">Destroy success</string>
 
 </resources>

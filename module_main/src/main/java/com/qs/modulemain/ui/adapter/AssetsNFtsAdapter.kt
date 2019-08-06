@@ -14,6 +14,7 @@ class AssetsNFtsAdapter(data: MutableList<ChooseGetBean>?) : BaseQuickAdapter<Ch
     override fun convert(viewHolder: BaseViewHolder, item: ChooseGetBean) {
         viewHolder.setText(R.id.tv_name, item.name)
                 .setText(R.id.tv_number, item.domain)
+                .addOnClickListener(R.id.v_transfer)
                 .addOnClickListener(R.id.iv_pay)
 
     }
