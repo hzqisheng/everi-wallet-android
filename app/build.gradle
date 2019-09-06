@@ -16,6 +16,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
+        ndk {
+            // 设置支持的SO库架构,上架谷歌市场时兼容64位版本
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+
     }
 
     buildTypes {
@@ -31,7 +37,7 @@ android {
     }
 
     signingConfigs {
-        debug{
+        debug {
             storeFile file('C:\\jks\\everToken.jks')
             storePassword "123456"
             keyAlias "key0"
