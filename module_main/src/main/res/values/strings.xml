@@ -338,5 +338,7 @@
     <string name="no_record">暂无记录</string>
     <string name="confirm_transform">确认转移</string>
     <string name="destroy_success">销毁成功</string>
+    <string name="address_invalid">地址无效</string>
+    <string name="address_already_exist">地址已存在</string>
 
 </resources>

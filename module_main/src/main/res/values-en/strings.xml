@@ -336,5 +336,7 @@
     <string name="no_record">No Records Now</string>
     <string name="confirm_transform">Confirm Transfer</string>
     <string name="destroy_success">Destroy success</string>
+    <string name="address_invalid">Address Invalid</string>
+    <string name="address_already_exist">Address already exist</string>
 
 </resources>

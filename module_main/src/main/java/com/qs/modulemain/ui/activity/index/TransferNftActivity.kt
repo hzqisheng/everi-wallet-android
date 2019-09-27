@@ -38,8 +38,12 @@ class TransferNftActivity : SimpleActivity() {
         }
         tv_next.setOnClickListener {
             if (mAddressList.size == 0) {
-                getString(R.string.please_input_address).toast()
-                return@setOnClickListener
+                if (tv_address.text.toString().isNotEmpty()) {
+                    addAddress(tv_address.text.toString())
+                } else {
+                    getString(R.string.please_input_address).toast()
+                    return@setOnClickListener
+                }
             }
             Intent(this@TransferNftActivity, TransferNftAckActivity::class.java).apply {
                 putExtra("domain", domainName)
@@ -52,7 +56,11 @@ class TransferNftActivity : SimpleActivity() {
 
     private fun addAddress(address: String) {
         if (address.isEmpty()) {
-            "Address Invalid".toast()
+            getString(R.string.address_invalid).toast()
+            return
+        }
+        if (mAddressList.contains(address)) {
+            getString(R.string.address_already_exist).toast()
             return
         }
         mAddressList.add(address)

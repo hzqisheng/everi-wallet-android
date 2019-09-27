@@ -28,12 +28,16 @@ private var toast: Toast? = null
 
 @SuppressLint("ShowToast")
 fun String.toast() {
-    if (toast == null) {
-        toast = Toast.makeText(App.getInstance(), this, Toast.LENGTH_SHORT)
-    } else {
-        toast!!.setText(this)
+    try {
+        if (toast == null) {
+            toast = Toast.makeText(App.getInstance(), this, Toast.LENGTH_SHORT)
+        } else {
+            toast!!.setText(this)
+        }
+        toast!!.show()
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
-    toast!!.show()
 }
 
 fun Context.start(activity: Class<*>) {
