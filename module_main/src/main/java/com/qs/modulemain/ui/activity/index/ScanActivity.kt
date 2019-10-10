@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,9 @@ import android.widget.TextView
 import cn.bingoogolapple.qrcode.core.QRCodeView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
+import com.matisse.Matisse
+import com.matisse.MimeTypeManager
+import com.matisse.entity.ConstValue
 import com.qs.modulemain.R
 import com.qs.modulemain.arouter.ARouterConfig
 import com.qs.modulemain.bean.ChooseFTSBean
@@ -23,15 +27,13 @@ import com.qs.modulemain.ui.fragment.AssetsItemFragment
 import com.qs.modulemain.util.confirmPassword
 import com.smallcat.shenhai.mvpbase.base.FingerSuccessCallback
 import com.smallcat.shenhai.mvpbase.base.SimpleActivity
-import com.smallcat.shenhai.mvpbase.extension.logE
-import com.smallcat.shenhai.mvpbase.extension.sharedPref
-import com.smallcat.shenhai.mvpbase.extension.toResultBean
-import com.smallcat.shenhai.mvpbase.extension.toast
+import com.smallcat.shenhai.mvpbase.extension.*
 import com.smallcat.shenhai.mvpbase.model.WebViewApi
 import com.smallcat.shenhai.mvpbase.model.helper.MessageEvent
 import com.smallcat.shenhai.mvpbase.model.helper.RxBus
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter
 import com.smallcat.shenhai.mvpbase.model.helper.RxBusCenter.SCAN_QRLINKE
+import com.smallcat.shenhai.mvpbase.utils.Glide4Engine
 import com.smallcat.shenhai.mvpbase.utils.lastPushTransaction
 import com.smallcat.shenhai.mvpbase.utils.qrcode_type
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -73,6 +75,24 @@ class ScanActivity : SimpleActivity() {
     @SuppressLint("CheckResult")
     override fun initData() {
         tvTitle?.text = getString(R.string.scan)
+        tvRight?.apply {
+            text = getString(R.string.album)
+            setTextColor(getResourceColor(R.color.white))
+            setOnClickListener {
+
+                Matisse.from(this@ScanActivity)
+                        .choose(MimeTypeManager.ofImage(), false)
+                        .isCrop(false)
+                        .setStatusIsDark(false)
+                        .theme(R.style.Matisse_Dark)
+                        .maxSelectable(1)
+                        .thumbnailScale(0.85f)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .imageEngine(Glide4Engine())
+                        .forResult(ConstValue.REQUEST_CODE_CHOOSE)
+
+            }
+        }
         val rxPermissions = RxPermissions(this)
 
         addSubscribe(RxBus.toObservable(MessageEvent::class.java)
@@ -146,6 +166,10 @@ class ScanActivity : SimpleActivity() {
 
         zxingview.setDelegate(object : QRCodeView.Delegate {
             override fun onScanQRCodeSuccess(result: String?) {
+                if(result.isNullOrEmpty()){
+                    getString(R.string.QR_not_found).toast()
+                    return
+                }
                 scanResult = result!!
                 when (scanType) {
                     0 -> {
@@ -185,7 +209,6 @@ class ScanActivity : SimpleActivity() {
                         "start scan".logE()
                         zxingview.startCamera()
                     } else {
-
                         getString(R.string.need_camerl_permission).toast()
                     }
                 }
@@ -343,5 +366,20 @@ class ScanActivity : SimpleActivity() {
         })
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) {
+            return
+        }
+        if (requestCode == ConstValue.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            //裁剪成功后只返回裁剪后图片的绝对路径，不返回Uri，需自行转换
+            val pathList: List<String> = Matisse.obtainPathResult(data)
+            if (pathList.isEmpty()) {
+                return
+            }
+            zxingview.decodeQRCode(pathList[0])
+        }
+    }
 
 }

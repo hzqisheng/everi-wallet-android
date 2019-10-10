@@ -340,5 +340,7 @@
     <string name="destroy_success">销毁成功</string>
     <string name="address_invalid">地址无效</string>
     <string name="address_already_exist">地址已存在</string>
+    <string name="album">相册</string>
+    <string name="QR_not_found">未发现二维码</string>
 
 </resources>

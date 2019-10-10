@@ -173,10 +173,10 @@ class AddFtsActivity : BaseActivity<AddFTsPresenter>(), AddFTsView {
                                     .countable(true)
                                     //.capture(true)
                                     //.showSingleMediaType(true)
-                                    .isCrop(true)
+                                    .isCrop(false)
 //                                    .cropOutPutX(400)                     // 设置裁剪后保存图片的宽高
 //                                    .cropOutPutY(400)                     // 设置裁剪后保存图片的宽高
-                                    .cropStyle(CropImageView.Style.RECTANGLE)
+                            //       .cropStyle(CropImageView.Style.RECTANGLE)
                                     .setStatusIsDark(false)
                                     .theme(R.style.Matisse_Dark)
                                     //.captureStrategy(CaptureStrategy(true, "${Platform.getPackageName(this@AddFtsActivity)}.fileprovider"))

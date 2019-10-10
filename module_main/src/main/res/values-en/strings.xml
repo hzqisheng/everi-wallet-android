@@ -338,5 +338,7 @@
     <string name="destroy_success">Destroy success</string>
     <string name="address_invalid">Address Invalid</string>
     <string name="address_already_exist">Address already exist</string>
+    <string name="album">Album</string>
+    <string name="QR_not_found">Not Found QR Code</string>
 
 </resources>
